@@ -1,21 +1,16 @@
-export * from './api';
+//////////////////////////
+// Dataset Definition
+//////////////////////////
 
-export type User = {
-  id: number;
-  username: string;
-};
-
-export type UserRegister = {
-  email: string;
-  username: string;
-  password: string;
-};
-
-export type UserLogin = {
-  username: string;
-  password: string;
-};
-
-export type SessionPlayer = {
-  id: number;
-};
+export interface Player {
+  id: string;
+  name: string;
+  position: string;
+  teams: string[];
+  years: [number, number | null];
+  numbers: number[];
+  height: string;
+  weight: number;
+  handedness: 'left' | 'right';
+  stats: Record<string, number>;
+}

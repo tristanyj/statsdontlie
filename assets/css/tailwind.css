@@ -4,5 +4,5 @@
 
 /* Your custom styles here */
 body {
-  @apply font-inter;
+  @apply font-inter bg-gray-50;
 }
