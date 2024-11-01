@@ -35,6 +35,8 @@ interface ArcData {
   data: any;
 }
 
+const g = ref<d3.Selection<SVGGElement, unknown, null, undefined> | null>(null);
+
 const arcGenerator = d3
   .arc<ArcData>()
   .padAngle(padAngle)
@@ -43,8 +45,13 @@ const arcGenerator = d3
   .startAngle((d) => d.startAngle)
   .endAngle((d) => d.endAngle);
 
-function createVisualization(g: d3.Selection<SVGGElement, unknown, null, undefined>) {
-  g.selectAll('.background-arc')
+function createVisualization() {
+  if (!g.value) {
+    return;
+  }
+
+  g.value
+    .selectAll('.background-arc')
     .data(
       selectedColumns.value.map((data, i) => ({
         innerRadius: radius * innerRadiusPadding,
@@ -72,10 +79,26 @@ const mountToContainer = () => {
     .attr('height', height)
     .attr('viewBox', `0 0 ${width} ${height}`)
     .attr('class', 'mx-auto');
-  const g = svg.append('g').attr('transform', `translate(${width / 2},${height / 2})`);
+  g.value = svg.append('g').attr('transform', `translate(${width / 2},${height / 2})`);
 
-  createVisualization(g);
+  createVisualization();
 };
+
+function updateVisualization() {
+  if (!container.value) return;
+
+  angleScale.domain([0, selectedColumnsCount.value]);
+
+  createVisualization();
+}
+
+watch(
+  () => selectedColumns.value,
+  () => {
+    updateVisualization();
+  },
+  { deep: true }
+);
 
 onMounted(() => {
   mountToContainer();

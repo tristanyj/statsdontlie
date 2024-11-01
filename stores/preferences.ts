@@ -52,6 +52,6 @@ export const usePreferencesStore = defineStore(
       updateSelectedQBs,
       updateSelectedColumns,
     };
-  },
-  { persist: true }
+  }
+  // { persist: true }
 );
