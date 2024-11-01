@@ -120,60 +120,71 @@ function createVisualization() {
       subGroup.columns.forEach((column, k) => {
         console.log({ column, k });
 
-        selectedPlayers.value.forEach((player, l) => {
-          console.log({ player, l });
+        selectedPlayers.value
+          .sort((a, b) => {
+            const aStat = a.stats[column.id];
+            const bStat = b.stats[column.id];
 
-          const stat = player.stats[column.id];
+            if (aStat && bStat) {
+              return bStat - aStat;
+            }
 
-          if (stat && g.value) {
-            const scaledValue = column.meta.scale(stat);
+            return 0;
+          })
+          .forEach((player, l) => {
+            console.log({ player, l });
 
-            console.log({ scaledValue });
+            const stat = player.stats[column.id];
 
-            const arcData = {
-              innerRadius: radius * innerRadiusPadding,
-              outerRadius:
-                radius * innerRadiusPadding + radius * (1 - innerRadiusPadding) * scaledValue,
-              startAngle: angleScale(columnIndex),
-              endAngle: angleScale(columnIndex + 1),
-              data: {
-                player,
-                stat,
-                column,
-              },
-            };
+            if (stat && g.value) {
+              const scaledValue = column.meta.scale(stat);
 
-            g.value
-              .append('path')
-              .attr('class', `value-arc player-${player.id}`)
-              .attr('d', arcGenerator(arcData))
-              .attr('fill', '#fff') // Assuming player has a color property
-              .attr('opacity', 0.8)
-              .attr('stroke', '#fff')
-              .attr('stroke-width', 1)
-              .on('mouseover', function (event) {
-                // Highlight arc
-                d3.select(this).attr('opacity', 1).attr('stroke-width', 2);
+              console.log({ scaledValue });
 
-                // Add tooltip
-                const [x, y] = d3.pointer(event);
-                g.value!.append('text')
-                  .attr('class', 'tooltip')
-                  .attr('x', x)
-                  .attr('y', y)
-                  .attr('text-anchor', 'middle')
-                  .attr('fill', '#fff')
-                  .text(`${player.name}: ${column.meta.format(stat)}`);
-              })
-              .on('mouseout', function () {
-                // Reset arc
-                d3.select(this).attr('opacity', 0.8).attr('stroke-width', 1);
+              const arcData = {
+                innerRadius: radius * innerRadiusPadding,
+                outerRadius:
+                  radius * innerRadiusPadding + radius * (1 - innerRadiusPadding) * scaledValue,
+                startAngle: angleScale(columnIndex),
+                endAngle: angleScale(columnIndex + 1),
+                data: {
+                  player,
+                  stat,
+                  column,
+                },
+              };
 
-                // Remove tooltip
-                g.value!.selectAll('.tooltip').remove();
-              });
-          }
-        });
+              g.value
+                .append('path')
+                .attr('class', `value-arc player-${player.id}`)
+                .attr('d', arcGenerator(arcData))
+                .attr('fill', '#fff') // Assuming player has a color property
+                .attr('opacity', 0.8)
+                .attr('stroke', '#fff')
+                .attr('stroke-width', 1)
+                .on('mouseover', function (event) {
+                  // Highlight arc
+                  d3.select(this).attr('opacity', 1).attr('stroke-width', 2);
+
+                  // Add tooltip
+                  const [x, y] = d3.pointer(event);
+                  g.value!.append('text')
+                    .attr('class', 'tooltip')
+                    .attr('x', x)
+                    .attr('y', y)
+                    .attr('text-anchor', 'middle')
+                    .attr('fill', '#fff')
+                    .text(`${player.name}: ${column.meta.format(stat)}`);
+                })
+                .on('mouseout', function () {
+                  // Reset arc
+                  d3.select(this).attr('opacity', 0.8).attr('stroke-width', 1);
+
+                  // Remove tooltip
+                  g.value!.selectAll('.tooltip').remove();
+                });
+            }
+          });
 
         columnIndex++;
       });

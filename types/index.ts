@@ -64,3 +64,37 @@ export interface Player {
   handedness: 'left' | 'right';
   stats: Record<ColumnKey, number>;
 }
+
+export interface Column {
+  id: ColumnKey;
+  name: string;
+  meta: {
+    domainMin: number;
+    domainMax: number;
+    scaleType: 'linear' | 'log' | 'pow';
+    formatType: 'number' | 'percent' | 'time';
+    labels: [
+      { value: number; position: 0.0 },
+      { value: number; position: 0.25 },
+      { value: number; position: 0.5 },
+      { value: number; position: 0.75 },
+      { value: number; position: 1.0 }
+    ];
+  };
+  record: {
+    value: number;
+    playerId: string;
+  };
+}
+
+export interface Group {
+  id: GroupKey;
+  name: string;
+  subGroups: SubGroup[];
+}
+
+export interface SubGroup {
+  id: SubGroupKey;
+  name: string;
+  columns: Column[];
+}
