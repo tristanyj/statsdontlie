@@ -556,7 +556,7 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Rushing Yards',
               meta: {
                 domainMin: 0,
-                domainMax: 1000,
+                domainMax: 1100,
                 scaleType: 'log',
                 formatType: 'number',
                 labels: [
@@ -564,11 +564,11 @@ export const useConfigStore = defineStore('config', () => {
                   { value: 250, position: 0.25 },
                   { value: 500, position: 0.5 },
                   { value: 750, position: 0.75 },
-                  { value: 1000, position: 1.0 },
+                  { value: 1100, position: 1.0 },
                 ],
               },
               record: {
-                value: 18,
+                value: 1049,
                 playerId: 'peyton-manning',
               },
             },
