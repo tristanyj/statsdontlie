@@ -50,8 +50,10 @@ export type ColumnKey =
   | 'awards.team.sb-appearance'
   | 'awards.team.sb-win';
 
+export type PlayerKey = 'aaron-rodgers' | 'tom-brady';
+
 export interface Player {
-  id: string;
+  id: PlayerKey;
   name: string;
   position: string;
   teams: string[];

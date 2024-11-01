@@ -1,10 +1,11 @@
-import type { ColumnKey } from '~/types';
+import type { ColumnKey, PlayerKey } from '~/types';
 
 export const usePreferencesStore = defineStore(
   'preferences',
   () => {
-    const selectedQBs = ref<string[]>([]);
-    const selectedColumns = ref<ColumnKey[]>([
+    const selectedPlayerIds = ref<PlayerKey[]>(['aaron-rodgers']);
+
+    const selectedColumnIds = ref<ColumnKey[]>([
       'regular-season.general.games',
       // 'regular-season.passing.completions',
       // 'regular-season.passing.attempts',
@@ -35,22 +36,22 @@ export const usePreferencesStore = defineStore(
       'awards.team.sb-win',
     ]);
 
-    const updateSelectedQBs = (newSelectedQBs: string[]) => {
-      selectedQBs.value = newSelectedQBs;
+    const updateselectedPlayerIds = (newselectedPlayerIds: PlayerKey[]) => {
+      selectedPlayerIds.value = newselectedPlayerIds;
     };
 
-    const updateSelectedColumns = (newSelectedColumns: ColumnKey[]) => {
-      selectedColumns.value = newSelectedColumns;
+    const updateSelectedColumnIds = (newselectedColumnIds: ColumnKey[]) => {
+      selectedColumnIds.value = newselectedColumnIds;
     };
 
-    const selectedColumnsCount = computed(() => selectedColumns.value.length);
+    const selectedColumnIdsCount = computed(() => selectedColumnIds.value.length);
 
     return {
-      selectedQBs,
-      selectedColumns,
-      selectedColumnsCount,
-      updateSelectedQBs,
-      updateSelectedColumns,
+      selectedPlayerIds,
+      selectedColumnIds,
+      selectedColumnIdsCount,
+      updateselectedPlayerIds,
+      updateSelectedColumnIds,
     };
   }
   // { persist: true }

@@ -4,23 +4,12 @@ import type { Player } from '@/types';
 
 useHead({ title: "Home | Broadway: Compare NFL's best QBs." });
 
-const preferencesStore = usePreferencesStore();
-const { selectedQBs } = storeToRefs(preferencesStore);
-
 const DATASET = dataset as unknown as { players: Player[] };
 
 const playersPickerFormatted = DATASET.players.map((player) => ({
   id: player.id,
   name: player.name,
 }));
-
-const playersChartFormatted = DATASET.players.filter((player) =>
-  selectedQBs.value.includes(player.id)
-);
-
-watch(selectedQBs, (newSelection) => {
-  console.log({ DATASET, newSelection });
-});
 </script>
 
 <template>
@@ -31,6 +20,6 @@ watch(selectedQBs, (newSelection) => {
       <UDivider orientation="vertical" />
       <VisualisationPickerColumn />
     </div>
-    <VisualisationChart :players="playersChartFormatted" />
+    <VisualisationChart :players="DATASET.players" />
   </div>
 </template>

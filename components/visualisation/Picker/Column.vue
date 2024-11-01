@@ -3,13 +3,13 @@ const configStore = useConfigStore();
 const { selectableColumnsGroupedByGroupKey } = storeToRefs(configStore);
 
 const preferencesStore = usePreferencesStore();
-const { selectedColumns } = storeToRefs(preferencesStore);
-const { updateSelectedColumns } = preferencesStore;
+const { selectedColumnIds } = storeToRefs(preferencesStore);
+const { updateSelectedColumnIds } = preferencesStore;
 
 const selection = computed({
-  get: () => selectedColumns.value,
+  get: () => selectedColumnIds.value,
   set: (newValue) => {
-    updateSelectedColumns(newValue);
+    updateSelectedColumnIds(newValue);
   },
 });
 </script>

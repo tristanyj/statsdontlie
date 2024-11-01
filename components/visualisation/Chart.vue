@@ -1,16 +1,54 @@
 <script setup lang="ts">
 import * as d3 from 'd3';
-// import type { Player } from '@/types';
+import type { Player } from '@/types';
 
 const preferencesStore = usePreferencesStore();
-const { selectedColumns, selectedColumnsCount } = storeToRefs(preferencesStore);
+const { selectedPlayerIds, selectedColumnIds, selectedColumnIdsCount } =
+  storeToRefs(preferencesStore);
 
-// const configStore = useConfigStore();
-// const { statGroups } = storeToRefs(configStore);
+const configStore = useConfigStore();
+const { statGroups } = storeToRefs(configStore);
 
-// const props = defineProps<{
-//   players: Player[];
-// }>();
+const props = defineProps<{
+  players: Player[];
+}>();
+
+const selectedPlayers = computed(() =>
+  props.players.filter((player) => selectedPlayerIds.value.includes(player.id))
+);
+
+const statGroupsWithselectedColumnIds = computed(() => {
+  if (!statGroups?.value) {
+    return [];
+  }
+
+  const groups = [];
+
+  for (const group of statGroups.value) {
+    const subGroups = [];
+
+    for (const subGroup of group.subGroups) {
+      const columns = subGroup.columns.filter((column) =>
+        selectedColumnIds.value.includes(column.id)
+      );
+      if (columns.length > 0) {
+        subGroups.push({
+          ...subGroup,
+          columns,
+        });
+      }
+    }
+
+    if (subGroups.length > 0) {
+      groups.push({
+        ...group,
+        subGroups,
+      });
+    }
+  }
+
+  return groups;
+});
 
 const container = ref<HTMLElement | null>(null);
 
@@ -23,7 +61,7 @@ const padAngle = 0.0025;
 
 const angleScale = d3
   .scaleLinear()
-  .domain([0, selectedColumnsCount.value])
+  .domain([0, selectedColumnIdsCount.value])
   .range([0, 2 * Math.PI]);
 
 interface ArcData {
@@ -53,7 +91,7 @@ function createVisualization() {
   g.value
     .selectAll('.background-arc')
     .data(
-      selectedColumns.value.map((data, i) => ({
+      selectedColumnIds.value.map((data, i) => ({
         innerRadius: radius * innerRadiusPadding,
         outerRadius: radius,
         startAngle: angleScale(i),
@@ -64,6 +102,83 @@ function createVisualization() {
     .join('path')
     .attr('class', 'background-arc')
     .attr('d', arcGenerator);
+
+  let columnIndex = 0;
+
+  statGroupsWithselectedColumnIds.value.forEach((group, i) => {
+    console.log({ group, i });
+
+    // createGroupBorder();
+    // createGroupLabel();
+
+    group.subGroups.forEach((subGroup, j) => {
+      console.log({ subGroup, j });
+
+      // createSubGroupBorder();
+      // createSubGroupLabel();
+
+      subGroup.columns.forEach((column, k) => {
+        console.log({ column, k });
+
+        selectedPlayers.value.forEach((player, l) => {
+          console.log({ player, l });
+
+          const stat = player.stats[column.id];
+
+          if (stat && g.value) {
+            const scaledValue = column.meta.scale(stat);
+
+            console.log({ scaledValue });
+
+            const arcData = {
+              innerRadius: radius * innerRadiusPadding,
+              outerRadius:
+                radius * innerRadiusPadding + radius * (1 - innerRadiusPadding) * scaledValue,
+              startAngle: angleScale(columnIndex),
+              endAngle: angleScale(columnIndex + 1),
+              data: {
+                player,
+                stat,
+                column,
+              },
+            };
+
+            g.value
+              .append('path')
+              .attr('class', `value-arc player-${player.id}`)
+              .attr('d', arcGenerator(arcData))
+              .attr('fill', '#fff') // Assuming player has a color property
+              .attr('opacity', 0.8)
+              .attr('stroke', '#fff')
+              .attr('stroke-width', 1)
+              .on('mouseover', function (event) {
+                // Highlight arc
+                d3.select(this).attr('opacity', 1).attr('stroke-width', 2);
+
+                // Add tooltip
+                const [x, y] = d3.pointer(event);
+                g.value!.append('text')
+                  .attr('class', 'tooltip')
+                  .attr('x', x)
+                  .attr('y', y)
+                  .attr('text-anchor', 'middle')
+                  .attr('fill', '#fff')
+                  .text(`${player.name}: ${column.meta.format(stat)}`);
+              })
+              .on('mouseout', function () {
+                // Reset arc
+                d3.select(this).attr('opacity', 0.8).attr('stroke-width', 1);
+
+                // Remove tooltip
+                g.value!.selectAll('.tooltip').remove();
+              });
+          }
+        });
+
+        columnIndex++;
+      });
+    });
+  });
 }
 
 const mountToContainer = () => {
@@ -87,13 +202,13 @@ const mountToContainer = () => {
 function updateVisualization() {
   if (!container.value) return;
 
-  angleScale.domain([0, selectedColumnsCount.value]);
+  angleScale.domain([0, selectedColumnIdsCount.value]);
 
   createVisualization();
 }
 
 watch(
-  () => selectedColumns.value,
+  () => selectedColumnIds.value,
   () => {
     updateVisualization();
   },

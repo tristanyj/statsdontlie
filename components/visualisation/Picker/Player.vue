@@ -1,16 +1,16 @@
 <script setup lang="ts">
 const preferencesStore = usePreferencesStore();
-const { selectedQBs } = storeToRefs(preferencesStore);
-const { updateSelectedQBs } = preferencesStore;
+const { selectedPlayerIds } = storeToRefs(preferencesStore);
+const { updateselectedPlayerIds } = preferencesStore;
 
 defineProps<{
   players: { id: string; name: string }[];
 }>();
 
 const selection = computed({
-  get: () => selectedQBs.value,
+  get: () => selectedPlayerIds.value,
   set: (newValue) => {
-    updateSelectedQBs(newValue);
+    updateselectedPlayerIds(newValue);
   },
 });
 </script>
