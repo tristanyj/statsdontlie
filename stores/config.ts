@@ -1,4 +1,5 @@
 import * as d3 from 'd3';
+import type { GroupKey, SubGroupKey, ColumnKey } from '~/types';
 
 // stats: {
 // "regular-season.general.games": 197,
@@ -38,7 +39,7 @@ import * as d3 from 'd3';
 // }
 
 export interface Column {
-  id: string;
+  id: ColumnKey;
   name: string;
   meta: {
     scale: d3.ScaleContinuousNumeric<number, number>;
@@ -55,13 +56,13 @@ export interface Column {
 }
 
 interface Group {
-  id: string;
+  id: GroupKey;
   name: string;
-  subgroups: SubGroup[];
+  subGroups: SubGroup[];
 }
 
 interface SubGroup {
-  id: string;
+  id: SubGroupKey;
   name: string;
   columns: Column[];
 }
@@ -73,13 +74,13 @@ export const useConfigStore = defineStore(
       {
         id: 'regular-season',
         name: 'Regular Season',
-        subgroups: [
+        subGroups: [
           {
-            id: 'general',
+            id: 'regular-season.general',
             name: 'General',
             columns: [
               {
-                id: 'games',
+                id: 'regular-season.general.games',
                 name: 'Games Played',
                 meta: {
                   scale: d3.scaleLinear().domain([0, 1000]),
@@ -115,11 +116,11 @@ export const useConfigStore = defineStore(
             ],
           },
           {
-            id: 'passing',
+            id: 'regular-season.passing',
             name: 'Passing',
             columns: [
               {
-                id: 'yards',
+                id: 'regular-season.passing.yards',
                 name: 'Passing Yards',
                 meta: {
                   scale: d3.scaleLog().domain([30000, 90000]),
@@ -149,7 +150,7 @@ export const useConfigStore = defineStore(
                 },
               },
               {
-                id: 'touchdownq',
+                id: 'regular-season.passing.touchdowns',
                 name: 'Passing TDs',
                 meta: {
                   scale: d3.scaleLog().domain([0, 1000]),
@@ -185,11 +186,11 @@ export const useConfigStore = defineStore(
             ],
           },
           {
-            id: 'rushing',
+            id: 'regular-season.rushing',
             name: 'Rushing',
             columns: [
               {
-                id: 'yards',
+                id: 'regular-season.rushing.yards',
                 name: 'Rushing Yards',
                 meta: {
                   scale: d3.scaleLog().domain([0, 10000]),
@@ -223,7 +224,7 @@ export const useConfigStore = defineStore(
                 },
               },
               {
-                id: 'touchdowns',
+                id: 'regular-season.rushing.touchdowns',
                 name: 'Rushing TDs',
                 meta: {
                   scale: d3.scaleLog().domain([0, 100]),
@@ -263,13 +264,13 @@ export const useConfigStore = defineStore(
       {
         id: 'post-season',
         name: 'Post Season',
-        subgroups: [
+        subGroups: [
           {
-            id: 'general',
+            id: 'post-season.general',
             name: 'General',
             columns: [
               {
-                id: 'games',
+                id: 'post-season.general.games',
                 name: 'Games Played',
                 meta: {
                   scale: d3.scaleLinear().domain([0, 100]),
@@ -305,11 +306,11 @@ export const useConfigStore = defineStore(
             ],
           },
           {
-            id: 'passing',
+            id: 'post-season.passing',
             name: 'Passing',
             columns: [
               {
-                id: 'yards',
+                id: 'post-season.passing.yards',
                 name: 'Passing Yards',
                 meta: {
                   scale: d3.scaleLog().domain([0, 10000]),
@@ -343,7 +344,7 @@ export const useConfigStore = defineStore(
                 },
               },
               {
-                id: 'touchdowns',
+                id: 'post-season.passing.touchdowns',
                 name: 'Passing TDs',
                 meta: {
                   scale: d3.scaleLog().domain([0, 100]),
@@ -379,11 +380,11 @@ export const useConfigStore = defineStore(
             ],
           },
           {
-            id: 'rushing',
+            id: 'post-season.rushing',
             name: 'Rushing',
             columns: [
               {
-                id: 'yards',
+                id: 'post-season.rushing.yards',
                 name: 'Rushing Yards',
                 meta: {
                   scale: d3.scaleLog().domain([0, 1000]),
@@ -417,7 +418,7 @@ export const useConfigStore = defineStore(
                 },
               },
               {
-                id: 'touchdowns',
+                id: 'post-season.rushing.touchdowns',
                 name: 'Rushing TDs',
                 meta: {
                   scale: d3.scaleLog().domain([0, 100]),
@@ -457,13 +458,13 @@ export const useConfigStore = defineStore(
       {
         id: 'awards',
         name: 'Awards & Honors',
-        subgroups: [
+        subGroups: [
           {
-            id: 'individual',
+            id: 'awards.individual',
             name: 'Individual',
             columns: [
               {
-                id: 'mvp',
+                id: 'awards.individual.mvp',
                 name: 'MVPs',
                 meta: {
                   scale: d3.scaleLinear().domain([0, 10]),
@@ -497,7 +498,7 @@ export const useConfigStore = defineStore(
                 },
               },
               {
-                id: 'pro-bowl',
+                id: 'awards.individual.pro-bowl',
                 name: 'Pro Bowls',
                 meta: {
                   scale: d3.scaleLinear().domain([0, 20]),
@@ -531,7 +532,7 @@ export const useConfigStore = defineStore(
                 },
               },
               {
-                id: 'all-pro',
+                id: 'awards.individual.all-pro',
                 name: 'All-Pros',
                 meta: {
                   scale: d3.scaleLinear().domain([0, 10]),
@@ -567,11 +568,11 @@ export const useConfigStore = defineStore(
             ],
           },
           {
-            id: 'team',
+            id: 'awards.team',
             name: 'Team',
             columns: [
               {
-                id: 'sb-appearance',
+                id: 'awards.team.sb-appearance',
                 name: 'Super Bowl Appearances',
                 meta: {
                   scale: d3.scaleLinear().domain([0, 10]),
@@ -605,7 +606,7 @@ export const useConfigStore = defineStore(
                 },
               },
               {
-                id: 'sb-win',
+                id: 'awards.team.sb-win',
                 name: 'Super Bowl Wins',
                 meta: {
                   scale: d3.scaleLinear().domain([0, 10]),
@@ -644,8 +645,28 @@ export const useConfigStore = defineStore(
       },
     ];
 
+    const selectableColumns = computed(() => {
+      return statGroups.flatMap((group) =>
+        group.subGroups.flatMap((subGroup) =>
+          subGroup.columns.map(({ id, name }) => ({ id, name }))
+        )
+      );
+    });
+
+    const selectableColumnsGroupedByGroupKey = computed(() => {
+      return statGroups.map((group) => ({
+        id: group.id,
+        name: group.name,
+        columns: group.subGroups.flatMap((subGroup) =>
+          subGroup.columns.map(({ id, name }) => ({ id, name }))
+        ),
+      }));
+    });
+
     return {
       statGroups,
+      selectableColumns,
+      selectableColumnsGroupedByGroupKey,
     };
   },
   { persist: true }

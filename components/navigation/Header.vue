@@ -6,7 +6,7 @@
       <div class="flex justify-between items-center">
         <div>-</div>
         <div class="grid grid-flow-col gap-10 uppercase">
-          <ULink to="/play">-</ULink>
+          <ULink to="/">-</ULink>
         </div>
         <div>-</div>
       </div>

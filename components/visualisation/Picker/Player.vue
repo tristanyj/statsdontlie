@@ -17,6 +17,7 @@ const selection = computed({
 
 <template>
   <div>
+    <h2 class="text-2xl font-bold text-center">Select Players</h2>
     <div class="flex justify-center p-5">
       <div class="grid grid-flow-col gap-5 text-center">
         <div

@@ -6,14 +6,7 @@ const SITE_URL = 'https://tristanyj.com';
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  // runtimeConfig: {
-  //   public: {
-  //     apiBase:
-  //       process.env.NODE_ENV === "production"
-  //         ? "/api"
-  //         : "http://localhost:8080/api/v1",
-  //   },
-  // },
+  css: ['~/assets/css/d3.css'],
   app: {
     head: {
       charset: 'utf-8',

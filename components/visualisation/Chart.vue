@@ -1,83 +1,63 @@
 <script setup lang="ts">
 import * as d3 from 'd3';
-import type { Player } from '@/types';
+// import type { Player } from '@/types';
 
-const configStore = useConfigStore();
-const { statGroups } = storeToRefs(configStore);
+const preferencesStore = usePreferencesStore();
+const { selectedColumns, selectedColumnsCount } = storeToRefs(preferencesStore);
 
-const props = defineProps<{
-  players: Player[];
-}>();
+// const configStore = useConfigStore();
+// const { statGroups } = storeToRefs(configStore);
+
+// const props = defineProps<{
+//   players: Player[];
+// }>();
 
 const container = ref<HTMLElement | null>(null);
 
 const width = 1000;
 const height = 1000;
+const margin = 100;
+const radius = Math.min(width, height) / 2 - margin;
+const innerRadiusPadding = 0.1;
+const padAngle = 0.0025;
+
+const angleScale = d3
+  .scaleLinear()
+  .domain([0, selectedColumnsCount.value])
+  .range([0, 2 * Math.PI]);
+
+interface ArcData {
+  innerRadius: number;
+  outerRadius: number;
+  startAngle: number;
+  endAngle: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any;
+}
+
+const arcGenerator = d3
+  .arc<ArcData>()
+  .padAngle(padAngle)
+  .innerRadius((d) => d.innerRadius)
+  .outerRadius((d) => d.outerRadius)
+  .startAngle((d) => d.startAngle)
+  .endAngle((d) => d.endAngle);
 
 function createVisualization(g: d3.Selection<SVGGElement, unknown, null, undefined>) {
-  // let columnIndex = 0;
-  let currentAngle = 0;
-
-  statGroups.value.forEach((group) => {
-    // Add group arc/border
-    addGroupArc(g, currentAngle, getGroupEndAngle(group));
-
-    // Add group label
-    // addGroupLabel(g, group.name, currentAngle, getGroupEndAngle(group));
-
-    // group.subgroups.forEach((subgroup) => {
-    //   // Add subgroup arc/border
-    //   addSubGroupArc(g, currentAngle, getSubGroupEndAngle(subgroup));
-
-    //   // Add subgroup label
-    //   addSubGroupLabel(g, subgroup.name, currentAngle, getSubGroupEndAngle(subgroup));
-
-    //   subgroup.columns.forEach((column) => {
-    //     // Create arcs for each QB's stat in this column
-    //     props.players.forEach((qb) => {
-    //       const statKey = `${group.id}.${subgroup.id}.${column.id}`;
-    //       const stat = qb.stats[statKey as keyof typeof qb.stats];
-
-    //       if (stat) {
-    //         addStatArc(g, {
-    //           value: stat.value,
-    //           maxValue: stat.max,
-    //           color: qb.color,
-    //           columnIndex,
-    //           meta: column.meta,
-    //         });
-    //       }
-    //     });
-
-    //     columnIndex++;
-    //   });
-    // });
-
-    currentAngle = getGroupEndAngle(group);
-  });
-}
-
-// Helper functions
-function getGroupEndAngle(group: Group): number {
-  return group.subgroups.reduce((total, subgroup) => total + subgroup.columns.length, 0) * ((2 * Math.PI) / 10);
-}
-
-function addGroupArc(g: d3.Selection<SVGGElement, unknown, null, undefined>, startAngle: number, endAngle: number) {
-  g.append('path')
-    .attr('class', 'group-border')
-    .attr(
-      'd',
-      d3.arc()({
-        innerRadius: radius + 20,
-        outerRadius: radius + 25,
-        startAngle,
-        endAngle,
-      })
+  g.selectAll('.background-arc')
+    .data(
+      selectedColumns.value.map((data, i) => ({
+        innerRadius: radius * innerRadiusPadding,
+        outerRadius: radius,
+        startAngle: angleScale(i),
+        endAngle: angleScale(i + 1),
+        data,
+      }))
     )
-    .attr('fill', '#333');
+    .join('path')
+    .attr('class', 'background-arc')
+    .attr('d', arcGenerator);
 }
-
-// Similar functions for subgroups and labels
 
 const mountToContainer = () => {
   if (!container.value) {
@@ -85,7 +65,13 @@ const mountToContainer = () => {
   }
 
   d3.select(container.value).selectAll('*').remove();
-  const svg = d3.select(container.value).append('svg').attr('width', width).attr('height', height).attr('viewBox', `0 0 ${width} ${height}`).attr('class', 'mx-auto');
+  const svg = d3
+    .select(container.value)
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('class', 'mx-auto');
   const g = svg.append('g').attr('transform', `translate(${width / 2},${height / 2})`);
 
   createVisualization(g);

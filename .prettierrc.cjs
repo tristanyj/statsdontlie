@@ -1,5 +1,5 @@
 module.exports = {
-  printWidth: 2500,
+  printWidth: 100,
   semi: true,
   singleAttributePerLine: true,
   endOfLine: 'lf',
