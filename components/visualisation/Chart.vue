@@ -147,13 +147,90 @@ function createTextWithBackground(
   return textGroup;
 }
 
-function createVisualization() {
+// Add this function to create the separators
+function createSeparators() {
   if (!g.value) return;
 
-  // Clear all existing elements first
+  let columnIndex = 0;
+  const groupStartIndices: number[] = [];
+
+  // Collect group start indices
+  statGroupsWithselectedColumnIds.value.forEach((group) => {
+    groupStartIndices.push(columnIndex);
+    group.subGroups.forEach((subGroup) => {
+      columnIndex += subGroup.columns.length;
+    });
+  });
+
+  // Create all separators
+  for (let i = 0; i <= selectedColumnIdsCount.value; i++) {
+    const angle = angleScale(i);
+    const isGroupSeparator = groupStartIndices.includes(i);
+    const lineLength = isGroupSeparator ? radius * 1.2 : radius; // 20% longer for group separators
+
+    g.value
+      .append('line')
+      .attr('class', `separator ${isGroupSeparator ? 'group-separator' : 'column-separator'}`)
+      .attr('x1', 0)
+      .attr('y1', radius * innerRadiusPadding)
+      .attr('x2', 0)
+      .attr('y2', lineLength)
+      .attr('stroke', isGroupSeparator ? '#333' : '#ccc')
+      .attr('stroke-width', isGroupSeparator ? 3 : 1)
+      .attr('transform', `rotate(${(angle * 180) / Math.PI - 90})`);
+
+    // Add group labels for group separators
+    if (isGroupSeparator && i < selectedColumnIdsCount.value) {
+      const groupIndex = groupStartIndices.indexOf(i);
+      const group = statGroupsWithselectedColumnIds.value[groupIndex];
+      if (group) {
+        const nextGroupStartIndex =
+          groupStartIndices[groupIndex + 1] || selectedColumnIdsCount.value;
+        const midAngle = angleScale((i + nextGroupStartIndex) / 2);
+
+        // Calculate position for group label
+        const labelRadius = radius * 1.3; // Place label outside the extended line
+        const x = labelRadius * Math.cos(midAngle - Math.PI / 2);
+        const y = labelRadius * Math.sin(midAngle - Math.PI / 2);
+
+        const textGroup = g.value.append('g').attr('class', 'category-label');
+
+        // Add the text first (but don't display it) to calculate its size
+        const textElement = textGroup
+          .append('text')
+          .attr('x', x)
+          .attr('y', y)
+          .attr('text-anchor', 'middle')
+          .attr('dominant-baseline', 'middle')
+          .attr('fill', '#fff')
+          .attr('font-size', 24)
+          .text(group.name);
+
+        // Get the bounding box of the text
+        const bbox = textElement.node()?.getBBox();
+
+        if (bbox) {
+          // Add the background rectangle
+          textGroup
+            .insert('rect', 'text') // Insert before text
+            .attr('x', bbox.x - 12)
+            .attr('y', bbox.y - 6)
+            .attr('width', bbox.width + 12 * 2)
+            .attr('height', bbox.height + 6 * 2)
+            .attr('rx', 4)
+            .attr('ry', 4)
+            .attr('fill', '#333')
+            .attr('opacity', 0.8);
+        }
+      }
+    }
+  }
+}
+
+function createVisualization() {
+  if (!g.value) return;
   g.value.selectAll('*').remove();
 
-  // Background arcs with proper data binding
   g.value
     .selectAll('.background-arc')
     .data(
@@ -170,7 +247,6 @@ function createVisualization() {
     .attr('d', arcGenerator)
     .attr('fill', '#f0f0f0');
 
-  // Prepare data for all arcs
   const arcData: Array<ArcDataExtended> = [];
 
   let columnIndex = 0;
@@ -200,10 +276,9 @@ function createVisualization() {
     });
   });
 
-  // Create value arcs with proper data binding
   g.value
     .selectAll('.value-arc')
-    .data(arcData, (d) => `${(d as ArcDataExtended).columnId}-${(d as ArcDataExtended).player.id}`) // Key function for proper updates
+    .data(arcData, (d) => `${(d as ArcDataExtended).columnId}-${(d as ArcDataExtended).player.id}`)
     .join(
       // Enter
       (enter) =>
@@ -248,7 +323,6 @@ function createVisualization() {
     .on('mouseover', function (event, d) {
       d3.select(this).transition().duration(0).attr('opacity', 1).attr('stroke-width', 2);
 
-      // Usage in your visualization:
       createTextWithBackground(g.value!, {
         x: 0,
         y: 0,
@@ -262,9 +336,10 @@ function createVisualization() {
     .on('mouseout', function () {
       d3.select(this).transition().duration(0).attr('opacity', 0.8).attr('stroke-width', 1);
 
-      // Remove the text with background
       g.value!.select('.text-with-background').remove();
     });
+
+  createSeparators();
 }
 
 function updateVisualization() {
