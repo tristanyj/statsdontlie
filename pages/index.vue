@@ -15,11 +15,11 @@ const playersPickerFormatted = DATASET.players.map((player) => ({
 <template>
   <div class="grid">
     <!-- <h1 class="text-2xl font-bold text-center">NFL Quarterback Career Statistics</h1> -->
+    <VisualisationChart :players="DATASET.players" />
     <div class="grid grid-flow-col gap-10 justify-center">
       <VisualisationPickerPlayer :players="playersPickerFormatted" />
       <UDivider orientation="vertical" />
       <VisualisationPickerColumn />
     </div>
-    <VisualisationChart :players="DATASET.players" />
   </div>
 </template>

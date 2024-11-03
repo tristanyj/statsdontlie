@@ -853,7 +853,6 @@ export const useConfigStore = defineStore('config', () => {
     }));
   });
 
-  // Getter for a single column's enriched data
   const getEnrichedColumn = (column: Column): EnrichedColumn => ({
     ...column,
     meta: {

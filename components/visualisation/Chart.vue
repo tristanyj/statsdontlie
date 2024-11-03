@@ -4,6 +4,7 @@ import type { d3GSelection, Player } from '@/types';
 
 const { width, height } = useChartDimensions();
 const { drawBackgroundArcs, drawValueArcs, drawSeparators } = useChartDrawArcs();
+const { drawColumnLabels } = useChartDrawLabels();
 const { scales, updateScale } = useChartScales();
 
 const preferencesStore = usePreferencesStore();
@@ -22,36 +23,29 @@ const selectedPlayers = computed(() =>
 );
 
 const statGroupsWithselectedColumnIds = computed(() => {
-  if (!statGroups?.value) {
-    return [];
-  }
+  return statGroups?.value
+    ? statGroups.value
+        .map((group) => ({
+          ...group,
+          subGroups: group.subGroups
+            .map((subGroup) => ({
+              ...subGroup,
+              columns: subGroup.columns.filter((column) =>
+                selectedColumnIds.value.includes(column.id)
+              ),
+            }))
+            .filter((subGroup) => subGroup.columns.length > 0),
+        }))
+        .filter((group) => group.subGroups.length > 0)
+    : [];
+});
 
-  const groups = [];
-
-  for (const group of statGroups.value) {
-    const subGroups = [];
-
-    for (const subGroup of group.subGroups) {
-      const columns = subGroup.columns.filter((column) =>
-        selectedColumnIds.value.includes(column.id)
-      );
-      if (columns.length > 0) {
-        subGroups.push({
-          ...subGroup,
-          columns,
-        });
-      }
-    }
-
-    if (subGroups.length > 0) {
-      groups.push({
-        ...group,
-        subGroups,
-      });
-    }
-  }
-
-  return groups;
+const selectedColumns = computed(() => {
+  return statGroupsWithselectedColumnIds.value
+    .map((group) => group.subGroups)
+    .flat()
+    .map((subGroup) => subGroup.columns)
+    .flat();
 });
 
 updateScale('angle', [0, selectedColumnIdsCount.value]);
@@ -63,6 +57,7 @@ function createVisualization() {
   if (!g.value) return;
   g.value.selectAll('*').remove();
 
+  // Draw arcs
   drawBackgroundArcs(g.value, scales.angle, selectedColumnIds.value);
   drawValueArcs(
     g.value,
@@ -76,6 +71,9 @@ function createVisualization() {
     statGroupsWithselectedColumnIds.value,
     selectedColumnIdsCount.value
   );
+
+  // Draw Labels
+  drawColumnLabels(g.value, scales.angle, selectedColumns.value);
 }
 
 function updateVisualization() {
