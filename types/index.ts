@@ -65,6 +65,22 @@ export interface Player {
   stats: Record<ColumnKey, number>;
 }
 
+// const getEnrichedColumn = (column: Column) => ({
+//   ...column,
+//   meta: {
+//     ...column.meta,
+//     scale: getScale(column),
+//     format: getFormat(column),
+//   },
+// });
+
+export interface EnrichedColumn extends Column {
+  meta: Column['meta'] & {
+    scale: (value: number) => number;
+    format: (value: number) => string;
+  };
+}
+
 export interface Column {
   id: ColumnKey;
   name: string;
@@ -87,14 +103,41 @@ export interface Column {
   };
 }
 
+export interface EnrichedGroup extends Group {
+  subGroups: EnrichedSubGroup[];
+}
+
 export interface Group {
   id: GroupKey;
   name: string;
   subGroups: SubGroup[];
 }
 
+export interface EnrichedSubGroup extends SubGroup {
+  columns: EnrichedColumn[];
+}
+
 export interface SubGroup {
   id: SubGroupKey;
   name: string;
   columns: Column[];
+}
+
+export type d3GSelection = d3.Selection<SVGGElement, unknown, null, undefined>;
+
+export interface ArcData {
+  innerRadius: number;
+  outerRadius: number;
+  startAngle: number;
+  endAngle: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any;
+}
+
+export interface ArcDataExtended {
+  columnId: string;
+  columnIndex: number;
+  player: Player;
+  stat: number;
+  scaledValue: number;
 }

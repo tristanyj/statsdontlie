@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import type { Column, Group } from '~/types';
+import type { Column, EnrichedColumn, EnrichedGroup, Group } from '~/types';
 
 export const useConfigStore = defineStore('config', () => {
   const statGroups = ref<Group[]>([
@@ -854,7 +854,7 @@ export const useConfigStore = defineStore('config', () => {
   });
 
   // Getter for a single column's enriched data
-  const getEnrichedColumn = (column: Column) => ({
+  const getEnrichedColumn = (column: Column): EnrichedColumn => ({
     ...column,
     meta: {
       ...column.meta,
@@ -863,15 +863,15 @@ export const useConfigStore = defineStore('config', () => {
     },
   });
 
-  // Computed property that uses the cached functions
-  const enrichedStatGroups = computed(() =>
-    statGroups.value.map((group) => ({
-      ...group,
-      subGroups: group.subGroups.map((subGroup) => ({
-        ...subGroup,
-        columns: subGroup.columns.map(getEnrichedColumn),
-      })),
-    }))
+  const enrichedStatGroups = computed(
+    () =>
+      statGroups.value.map((group) => ({
+        ...group,
+        subGroups: group.subGroups.map((subGroup) => ({
+          ...subGroup,
+          columns: subGroup.columns.map(getEnrichedColumn),
+        })),
+      })) as EnrichedGroup[]
   );
 
   onUnmounted(() => {
