@@ -166,7 +166,7 @@ function createSeparators() {
   for (let i = 0; i <= selectedColumnIdsCount.value; i++) {
     const angle = angleScale(i);
     const isGroupSeparator = groupStartIndices.includes(i);
-    const lineLength = isGroupSeparator ? radius * 1.2 : radius; // 20% longer for group separators
+    const lineLength = isGroupSeparator ? radius * 1.5 : radius; // 20% longer for group separators
 
     g.value
       .append('line')
@@ -175,55 +175,55 @@ function createSeparators() {
       .attr('y1', radius * innerRadiusPadding)
       .attr('x2', 0)
       .attr('y2', lineLength)
-      .attr('stroke', isGroupSeparator ? '#333' : '#ccc')
-      .attr('stroke-width', isGroupSeparator ? 3 : 1)
-      .attr('transform', `rotate(${(angle * 180) / Math.PI - 90})`);
+      .attr('stroke', isGroupSeparator ? '#000' : '#000')
+      .attr('stroke-width', 1.5)
+      .attr('transform', `rotate(${180 + (angle * 180) / Math.PI})`);
 
     // Add group labels for group separators
-    if (isGroupSeparator && i < selectedColumnIdsCount.value) {
-      const groupIndex = groupStartIndices.indexOf(i);
-      const group = statGroupsWithselectedColumnIds.value[groupIndex];
-      if (group) {
-        const nextGroupStartIndex =
-          groupStartIndices[groupIndex + 1] || selectedColumnIdsCount.value;
-        const midAngle = angleScale((i + nextGroupStartIndex) / 2);
+    // if (isGroupSeparator && i < selectedColumnIdsCount.value) {
+    //   const groupIndex = groupStartIndices.indexOf(i);
+    //   const group = statGroupsWithselectedColumnIds.value[groupIndex];
+    //   if (group) {
+    //     const nextGroupStartIndex =
+    //       groupStartIndices[groupIndex + 1] || selectedColumnIdsCount.value;
+    //     const midAngle = angleScale((i + nextGroupStartIndex) / 2);
 
-        // Calculate position for group label
-        const labelRadius = radius * 1.3; // Place label outside the extended line
-        const x = labelRadius * Math.cos(midAngle - Math.PI / 2);
-        const y = labelRadius * Math.sin(midAngle - Math.PI / 2);
+    //     // Calculate position for group label
+    //     const labelRadius = radius * 1.3; // Place label outside the extended line
+    //     const x = labelRadius * Math.cos(midAngle - Math.PI / 2);
+    //     const y = labelRadius * Math.sin(midAngle - Math.PI / 2);
 
-        const textGroup = g.value.append('g').attr('class', 'category-label');
+    //     const textGroup = g.value.append('g').attr('class', 'category-label');
 
-        // Add the text first (but don't display it) to calculate its size
-        const textElement = textGroup
-          .append('text')
-          .attr('x', x)
-          .attr('y', y)
-          .attr('text-anchor', 'middle')
-          .attr('dominant-baseline', 'middle')
-          .attr('fill', '#fff')
-          .attr('font-size', 24)
-          .text(group.name);
+    //     // Add the text first (but don't display it) to calculate its size
+    //     const textElement = textGroup
+    //       .append('text')
+    //       .attr('x', x)
+    //       .attr('y', y)
+    //       .attr('text-anchor', 'middle')
+    //       .attr('dominant-baseline', 'middle')
+    //       .attr('fill', '#fff')
+    //       .attr('font-size', 24)
+    //       .text(group.name);
 
-        // Get the bounding box of the text
-        const bbox = textElement.node()?.getBBox();
+    //     // Get the bounding box of the text
+    //     const bbox = textElement.node()?.getBBox();
 
-        if (bbox) {
-          // Add the background rectangle
-          textGroup
-            .insert('rect', 'text') // Insert before text
-            .attr('x', bbox.x - 12)
-            .attr('y', bbox.y - 6)
-            .attr('width', bbox.width + 12 * 2)
-            .attr('height', bbox.height + 6 * 2)
-            .attr('rx', 4)
-            .attr('ry', 4)
-            .attr('fill', '#333')
-            .attr('opacity', 0.8);
-        }
-      }
-    }
+    //     if (bbox) {
+    //       // Add the background rectangle
+    //       textGroup
+    //         .insert('rect', 'text') // Insert before text
+    //         .attr('x', bbox.x - 12)
+    //         .attr('y', bbox.y - 6)
+    //         .attr('width', bbox.width + 12 * 2)
+    //         .attr('height', bbox.height + 6 * 2)
+    //         .attr('rx', 4)
+    //         .attr('ry', 4)
+    //         .attr('fill', '#333')
+    //         .attr('opacity', 0.8);
+    //     }
+    //   }
+    // }
   }
 }
 
