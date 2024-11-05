@@ -1,7 +1,17 @@
 import type { d3GSelection, EnrichedColumn } from '~/types';
 
+const getRandomColor = () => {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 3; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+
 export function useChartDrawLabels() {
-  const { radius } = useChartDimensions();
+  const { radius, innerRadiusPadding } = useChartDimensions();
+  const { arcGenerator } = useChartGenerators();
 
   function createTextWithBackground(
     selection: d3.Selection<SVGGElement, unknown, null, undefined>,
@@ -77,7 +87,7 @@ export function useChartDrawLabels() {
     columnLabels.each(function (d, i) {
       const angle = angleScale(i);
       const midAngle = angle + (angleScale(i + 1) - angle) / 2;
-      const labelRadius = radius * 1.1;
+      const labelRadius = radius * 1.06;
 
       const rotation = (midAngle * 180) / Math.PI - 90;
       const textAnchor = midAngle > Math.PI ? 'end' : 'start';
@@ -102,8 +112,87 @@ export function useChartDrawLabels() {
     });
   }
 
+  function drawColumnScales(
+    g: d3GSelection,
+    angleScale: d3.ScaleLinear<number, number>,
+    columns: EnrichedColumn[]
+  ) {
+    g.selectAll('.column-scale').remove();
+
+    const columnScales = g
+      .selectAll('.column-scale')
+      .data(columns)
+      .enter()
+      .append('g')
+      .attr('class', 'column-scale')
+      .attr('transform', (d, i) => `rotate(${angleScale(i)}) translate(0, 10)`);
+
+    columnScales.each(function (d, i) {
+      const startAngle = angleScale(i);
+      const endAngle = angleScale(i + 1);
+      const midAngle = (startAngle + endAngle) / 2;
+      const shouldFlip = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
+      const baseRadius = radius * innerRadiusPadding;
+
+      d.meta.labels.forEach((label) => {
+        const scaleOffset = label.position * (radius - baseRadius);
+        const flipOffset = shouldFlip ? 8 : 0;
+        const standardRadius = baseRadius + scaleOffset + flipOffset;
+        const labelRadius = label.position === 1.0 ? standardRadius + 3 : standardRadius;
+
+        const textArc = arcGenerator({
+          innerRadius: labelRadius,
+          outerRadius: labelRadius,
+          startAngle: shouldFlip ? endAngle : startAngle,
+          endAngle: shouldFlip ? startAngle : endAngle,
+          data: label,
+        });
+
+        console.log(
+          `label ${d.name}, ${label.position}:`,
+          label.value * (d.meta.domainMax - d.meta.domainMin)
+        );
+
+        const value = d.meta.scale(label.value * (d.meta.domainMax - d.meta.domainMin)).toFixed(0);
+
+        const tempText = g
+          .append('text')
+          .style('font-size', '12px')
+          .text(value)
+          .style('visibility', 'hidden');
+        const textLength = tempText.node()?.getComputedTextLength() || 0;
+        tempText.remove();
+
+        const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
+        const textPercentage = (textLength / arcLength) * 100;
+        const restPercentage = 100 - textPercentage;
+        const textOffsetPercentage = restPercentage / 4;
+
+        console.log({ textLength, arcLength, textOffsetPercentage });
+
+        console.log(`label ${d.name}, ${label.position}:`, {
+          startAngle: (startAngle * 180) / Math.PI,
+          endAngle: (endAngle * 180) / Math.PI,
+          startIndex: i,
+          endIndex: i + 1,
+        });
+
+        g.append('path').attr('id', `label-path-${d.id}-${label.position}`).attr('d', textArc);
+        // .attr('stroke', getRandomColor());
+
+        g.append('text')
+          .append('textPath')
+          .attr('href', `#label-path-${d.id}-${label.position}`)
+          .attr('startOffset', `${textOffsetPercentage}%`)
+          .style('font-size', '10px')
+          .text(`${value} ${label.position === 1.0 ? d.meta.scaleType : ''}`);
+      });
+    });
+  }
+
   return {
     createTextWithBackground,
     drawColumnLabels,
+    drawColumnScales,
   };
 }

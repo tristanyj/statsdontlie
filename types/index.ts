@@ -46,7 +46,8 @@ export type ColumnKey =
   | 'awards.individual.mvp'
   | 'awards.individual.sb-mvp'
   | 'awards.individual.pro-bowl'
-  | 'awards.individual.all-pro'
+  | 'awards.individual.all-pro-first'
+  | 'awards.individual.all-pro-second'
   | 'awards.team.sb-appearance'
   | 'awards.team.sb-win';
 

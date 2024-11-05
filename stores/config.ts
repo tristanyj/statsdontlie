@@ -711,8 +711,29 @@ export const useConfigStore = defineStore('config', () => {
               },
             },
             {
-              id: 'awards.individual.all-pro',
-              name: 'All-Pro Selections',
+              id: 'awards.individual.all-pro-first',
+              name: '1st Team All-Pro Selections',
+              meta: {
+                domainMin: 0,
+                domainMax: 10,
+                scaleType: 'linear',
+                formatType: 'number',
+                labels: [
+                  { value: 0, position: 0.0 },
+                  { value: 2.5, position: 0.25 },
+                  { value: 5, position: 0.5 },
+                  { value: 7.5, position: 0.75 },
+                  { value: 10, position: 1.0 },
+                ],
+              },
+              record: {
+                value: 7,
+                playerId: 'peyton-manning',
+              },
+            },
+            {
+              id: 'awards.individual.all-pro-second',
+              name: '2nd Team All-Pro Selections',
               meta: {
                 domainMin: 0,
                 domainMax: 10,

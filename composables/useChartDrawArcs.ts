@@ -1,5 +1,3 @@
-import * as d3 from 'd3';
-
 import type { ColumnKey, d3GSelection, EnrichedGroup, Group, Player } from '~/types';
 
 export interface ArcData {
@@ -10,15 +8,6 @@ export interface ArcData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
 }
-
-const getRandomColor = () => {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 3; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-};
 
 interface ArcDataExtended {
   columnId: string;
@@ -31,7 +20,6 @@ interface ArcDataExtended {
 export function useChartDrawArcs() {
   const { arcGenerator } = useChartGenerators();
   const { radius, innerRadiusPadding } = useChartDimensions();
-  const { createTextWithBackground } = useChartDrawLabels();
 
   function drawOutsideArcs(
     g: d3GSelection,
@@ -92,23 +80,23 @@ export function useChartDrawArcs() {
       .attr('stroke-width', 1);
   }
 
-  function drawSubCategoryArc(
-    g: d3GSelection,
-    angleScale: d3.ScaleLinear<number, number>,
-    selectedColumnIds: ColumnKey[]
-  ) {
-    g.select('.category-arc')
-      .data({
-        innerRadius: radius * 1.5 * innerRadiusPadding,
-        outerRadius: radius * 1.5,
-        startAngle: angleScale(0),
-        endAngle: angleScale(360),
-      })
-      .join('path')
-      .attr('class', 'category-arc')
-      .attr('d', arcGenerator)
-      .attr('fill', '#111');
-  }
+  // function drawSubCategoryArc(
+  //   g: d3GSelection,
+  //   angleScale: d3.ScaleLinear<number, number>,
+  //   selectedColumnIds: ColumnKey[]
+  // ) {
+  //   g.select('.category-arc')
+  //     .data({
+  //       innerRadius: radius * 1.5 * innerRadiusPadding,
+  //       outerRadius: radius * 1.5,
+  //       startAngle: angleScale(0),
+  //       endAngle: angleScale(360),
+  //     })
+  //     .join('path')
+  //     .attr('class', 'category-arc')
+  //     .attr('d', arcGenerator)
+  //     .attr('fill', '#111');
+  // }
 
   function drawBackgroundArcs(
     g: d3GSelection,
@@ -212,25 +200,7 @@ export function useChartDrawArcs() {
 
         // Exit
         (exit) => exit.call((exit) => exit.transition().duration(0).attr('opacity', 0).remove())
-      )
-      .on('mouseover', function (event, d) {
-        d3.select(this).transition().duration(0).attr('opacity', 1).attr('stroke-width', 2);
-
-        createTextWithBackground(g!, {
-          x: 0,
-          y: 0,
-          text: `${d.player.id} - ${d.columnId} - ${d.stat}`,
-          textColor: '#fff',
-          backgroundColor: '#333',
-          padding: { x: 8, y: 4 },
-          borderRadius: 4,
-        });
-      })
-      .on('mouseout', function () {
-        d3.select(this).transition().duration(0).attr('opacity', 1).attr('stroke-width', 1);
-
-        g!.select('.text-with-background').remove();
-      });
+      );
   }
 
   function drawSeparators(
@@ -391,7 +361,7 @@ export function useChartDrawArcs() {
   }
 
   return {
-    drawSubCategoryArc,
+    // drawSubCategoryArc,
     drawInsideCircle,
     drawOutsideArcs,
     drawBackgroundArcs,

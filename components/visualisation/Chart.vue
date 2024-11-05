@@ -4,14 +4,13 @@ import type { d3GSelection, Player } from '@/types';
 
 const { width, height } = useChartDimensions();
 const {
-  drawSubCategoryArc,
   drawInsideCircle,
   drawOutsideArcs,
   // drawBackgroundArcs,
   drawValueArcs,
   drawSeparators,
 } = useChartDrawArcs();
-const { drawColumnLabels } = useChartDrawLabels();
+const { drawColumnLabels, drawColumnScales } = useChartDrawLabels();
 const { scales, updateScale } = useChartScales();
 
 const preferencesStore = usePreferencesStore();
@@ -68,9 +67,6 @@ function createVisualization() {
   drawOutsideArcs(g.value, scales.angle, selectedColumnIds.value);
   drawInsideCircle(g.value);
 
-  // Draw Labels
-  drawColumnLabels(g.value, scales.angle, selectedColumns.value);
-
   // drawBackgroundArcs(g.value, scales.angle, selectedColumnIds.value);
   drawValueArcs(
     g.value,
@@ -84,7 +80,11 @@ function createVisualization() {
     statGroupsWithselectedColumnIds.value,
     selectedColumnIdsCount.value
   );
-  drawSubCategoryArc(g.value, scales.angle, selectedColumnIds.value);
+  // drawSubCategoryArc(g.value, scales.angle, selectedColumnIds.value);
+  drawColumnScales(g.value, scales.angle, selectedColumns.value);
+
+  // Draw Labels
+  drawColumnLabels(g.value, scales.angle, selectedColumns.value);
 }
 
 function updateVisualization() {
