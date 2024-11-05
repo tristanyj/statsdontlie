@@ -610,7 +610,7 @@ export const useConfigStore = defineStore('config', () => {
               name: 'MVP Awards',
               meta: {
                 domainMin: 0,
-                domainMax: 5,
+                domainMax: 8,
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -631,7 +631,7 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Super Bowl MVP Awards',
               meta: {
                 domainMin: 0,
-                domainMax: 5,
+                domainMax: 8,
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -652,7 +652,7 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Pro Bowl Selections',
               meta: {
                 domainMin: 0,
-                domainMax: 15,
+                domainMax: 16,
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -673,7 +673,7 @@ export const useConfigStore = defineStore('config', () => {
               name: '1st Team All-Pro Selections',
               meta: {
                 domainMin: 0,
-                domainMax: 10,
+                domainMax: 8,
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -694,7 +694,7 @@ export const useConfigStore = defineStore('config', () => {
               name: '2nd Team All-Pro Selections',
               meta: {
                 domainMin: 0,
-                domainMax: 10,
+                domainMax: 8,
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -721,7 +721,7 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Super Bowl Appearances',
               meta: {
                 domainMin: 0,
-                domainMax: 10,
+                domainMax: 12,
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -742,7 +742,7 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Super Bowl Wins',
               meta: {
                 domainMin: 0,
-                domainMax: 10,
+                domainMax: 8,
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -792,7 +792,6 @@ export const useConfigStore = defineStore('config', () => {
               .domain([column.meta.domainMin, column.meta.domainMax])
               .range([0, 1])
               .exponent(0.5);
-
           default:
             return d3
               .scaleLinear()

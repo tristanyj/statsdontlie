@@ -103,7 +103,7 @@ export function useChartDrawArcs() {
     angleScale: d3.ScaleLinear<number, number>,
     selectedColumnIds: ColumnKey[]
   ) {
-    console.log('angle scale:', angleScale.domain());
+    // console.log('angle scale:', angleScale.domain());
     g.selectAll('.background-arc')
       .data(
         selectedColumnIds.map((data, i) => ({
@@ -146,7 +146,7 @@ export function useChartDrawArcs() {
               if (stat) {
                 const v = column.meta.scale(stat);
 
-                console.log({ v, stat, column });
+                // console.log({ v, stat, column });
                 arcData.push({
                   columnId: column.id,
                   columnIndex,

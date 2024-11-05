@@ -86,6 +86,8 @@ export interface Column {
   id: ColumnKey;
   name: string;
   meta: {
+    domain?: number[];
+    range?: number[];
     domainMin: number;
     domainMax: number;
     scaleType: 'linear' | 'log' | 'pow' | 'threshold' | 'quantile';

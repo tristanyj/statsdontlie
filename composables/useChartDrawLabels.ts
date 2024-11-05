@@ -163,8 +163,7 @@ export function useChartDrawLabels() {
         // const value = Math.round(valueAtPosition);
 
         // @ts-expect-error - TS doesn't know about the scale function
-        const value = Math.round(d.meta.scale.invert(label.position));
-        // const value = d.meta.scale(label.position * (d.meta.domainMax - d.meta.domainMin));
+        const value = d.meta.scale.invert(label.position);
 
         const tempText = g
           .append('text')
