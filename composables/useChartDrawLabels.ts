@@ -80,7 +80,7 @@ export function useChartDrawLabels() {
     columnLabels.each(function (d, i) {
       const angle = angleScale(i);
       const midAngle = angle + (angleScale(i + 1) - angle) / 2;
-      const labelRadius = radius * 1.06;
+      const labelRadius = radius * 1.08;
 
       const rotation = (midAngle * 180) / Math.PI - 90;
       const textAnchor = midAngle > Math.PI ? 'end' : 'start';
@@ -141,12 +141,12 @@ export function useChartDrawLabels() {
         const flipOffset = shouldFlip ? 7.5 : 0;
         const startOffset = label.position === 0.0 ? 5 : 0;
         const standardRadius = baseRadius + scaleOffset + flipOffset + startOffset;
-        const labelRadius = label.position === 1.0 ? standardRadius + 4 : standardRadius;
+        const labelRadius = label.position === 1.0 ? standardRadius + 3 : standardRadius;
         const backgroundRadius = shouldFlip ? labelRadius - 3.5 : labelRadius + 4;
 
         // @ts-expect-error - TS doesn't know about the scale function
         const value = formatNumber(d.meta.scale.invert(label.position));
-        const textContent = `${value} ${label.position === 1.0 ? d.meta.scaleType : ''}`;
+        const textContent = `${value}`;
 
         // Create the path for text positioning
         g.append('path')
@@ -189,18 +189,20 @@ export function useChartDrawLabels() {
         const bgEndAngle = midAngle + angleForArc / 2;
 
         // Create background path that's just wide enough for the text
-        g.append('path')
-          .attr(
-            'd',
-            arcGenerator({
-              innerRadius: backgroundRadius - (textHeight / 2 + padding),
-              outerRadius: backgroundRadius + (textHeight / 2 + padding),
-              startAngle: bgStartAngle,
-              endAngle: bgEndAngle,
-              data: label,
-            })
-          )
-          .attr('fill', '#f9fafb');
+        if (label.position !== 1.0) {
+          g.append('path')
+            .attr(
+              'd',
+              arcGenerator({
+                innerRadius: backgroundRadius - (textHeight / 2 + padding),
+                outerRadius: backgroundRadius + (textHeight / 2 + padding),
+                startAngle: bgStartAngle,
+                endAngle: bgEndAngle,
+                data: label,
+              })
+            )
+            .attr('fill', '#f9fafb');
+        }
 
         g.append('text')
           .append('textPath')

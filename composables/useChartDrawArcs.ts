@@ -65,6 +65,13 @@ export function useChartDrawArcs() {
       .attr('stroke-width', 1);
 
     g.append('circle')
+      .attr('r', radius * 1.035)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#000')
+      .attr('stroke-opacity', 0.1)
+      .attr('stroke-width', 1);
+
+    g.append('circle')
       .attr('r', radius * 1.5)
       .attr('fill', 'none') // Use 'none' instead of '#fff'
       .attr('stroke', '#000')
