@@ -62,6 +62,8 @@ export interface Player {
   height: string;
   weight: number;
   handedness: 'left' | 'right';
+  // colors are in hex format
+  colors: `#${string}`[];
   stats: Record<ColumnKey, number>;
 }
 

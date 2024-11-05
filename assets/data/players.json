@@ -10,6 +10,7 @@
       "height": "6-2",
       "weight": 225,
       "handedness": "right",
+      "colors": ["#ccd5ae", "#FFB612"],
       "stats": {
         "regular-season.general.games": 197,
         "regular-season.passing.completions": 4429,
@@ -57,6 +58,7 @@
       "height": "6-4",
       "weight": 225,
       "handedness": "right",
+      "colors": ["#778da9", "#C60C30", "#B0B7BC"],
       "stats": {
         "regular-season.general.games": 285,
         "regular-season.passing.completions": 6524,

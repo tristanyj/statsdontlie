@@ -1,5 +1,3 @@
-import * as d3 from 'd3';
-
 import type { d3GSelection, EnrichedColumn } from '~/types';
 
 export function useChartDrawLabels() {
@@ -77,20 +75,30 @@ export function useChartDrawLabels() {
       .attr('transform', (d, i) => `rotate(${angleScale(i)}) translate(0, 10)`);
 
     columnLabels.each(function (d, i) {
-      const midAngle = angleScale(i);
+      const angle = angleScale(i);
+      const midAngle = angle + (angleScale(i + 1) - angle) / 2;
+      const labelRadius = radius * 1.1;
+
+      const rotation = (midAngle * 180) / Math.PI - 90;
+      const textAnchor = midAngle > Math.PI ? 'end' : 'start';
+      const finalRotation = rotation + (midAngle > Math.PI ? 180 : 0);
 
       // Calculate position for group label
-      const labelRadius = radius * 1.3; // Place label outside the extended line
       const x = labelRadius * Math.cos(midAngle - Math.PI / 2);
       const y = labelRadius * Math.sin(midAngle - Math.PI / 2);
 
-      createTextWithBackground(d3.select(this), {
-        x,
-        y,
-        text: d.name,
-        textColor: '#fff',
-        padding: { x: 0, y: 0 },
-      });
+      const textGroup = g.append('g').attr('class', 'column-label');
+
+      textGroup
+        .append('text')
+        .attr('x', x)
+        .attr('y', y)
+        .attr('text-anchor', textAnchor)
+        .attr('dominant-baseline', 'middle')
+        .attr('fill', '#000')
+        .attr('font-size', 10)
+        .attr('transform', `rotate(${finalRotation},${x},${y})`)
+        .text(d.name);
     });
   }
 

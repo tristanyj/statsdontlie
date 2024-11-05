@@ -11,6 +11,15 @@ export interface ArcData {
   data: any;
 }
 
+const getRandomColor = () => {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 3; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+
 interface ArcDataExtended {
   columnId: string;
   columnIndex: number;
@@ -23,6 +32,83 @@ export function useChartDrawArcs() {
   const { arcGenerator } = useChartGenerators();
   const { radius, innerRadiusPadding } = useChartDimensions();
   const { createTextWithBackground } = useChartDrawLabels();
+
+  function drawOutsideArcs(
+    g: d3GSelection,
+    angleScale: d3.ScaleLinear<number, number>,
+    selectedColumnIds: ColumnKey[]
+  ) {
+    g.selectAll('.outside-arc')
+      .data(
+        selectedColumnIds.map((data, i) => ({
+          innerRadius: radius,
+          outerRadius: radius * 1.5,
+          startAngle: angleScale(i),
+          endAngle: angleScale(i + 1),
+          data,
+        }))
+      )
+      .join('path')
+      .attr('class', 'outside-arc')
+      .attr('d', arcGenerator)
+      .attr('fill', '#f0f0f0');
+  }
+
+  function drawInsideCircle(g: d3GSelection) {
+    g.append('circle')
+      .attr('r', radius * innerRadiusPadding * 0.9)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#000')
+      .attr('stroke-width', 1);
+
+    g.append('circle')
+      .attr('r', radius * innerRadiusPadding)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#000')
+      .attr('stroke-width', 2);
+
+    g.append('circle')
+      .attr('r', radius)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#000')
+      .attr('stroke-width', 1);
+
+    g.append('circle')
+      .attr('r', radius * 1.5)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#000')
+      .attr('stroke-width', 1);
+
+    g.append('circle')
+      .attr('r', radius * 1.6)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#000')
+      .attr('stroke-width', 1);
+
+    g.append('circle')
+      .attr('r', radius * 1.7)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#000')
+      .attr('stroke-width', 1);
+  }
+
+  function drawSubCategoryArc(
+    g: d3GSelection,
+    angleScale: d3.ScaleLinear<number, number>,
+    selectedColumnIds: ColumnKey[]
+  ) {
+    g.select('.category-arc')
+      .data({
+        innerRadius: radius * 1.5 * innerRadiusPadding,
+        outerRadius: radius * 1.5,
+        startAngle: angleScale(0),
+        endAngle: angleScale(360),
+      })
+      .join('path')
+      .attr('class', 'category-arc')
+      .attr('d', arcGenerator)
+      .attr('fill', '#111');
+  }
 
   function drawBackgroundArcs(
     g: d3GSelection,
@@ -102,9 +188,9 @@ export function useChartDrawArcs() {
                 data: d,
               })
             )
-            .attr('fill', '#123456')
+            .attr('fill', (d) => d.player.colors[0])
             .attr('opacity', 0)
-            .call((enter) => enter.transition().duration(0).attr('opacity', 0.8)),
+            .call((enter) => enter.transition().duration(0).attr('opacity', 1)),
 
         // Update
         (update) =>
@@ -141,7 +227,7 @@ export function useChartDrawArcs() {
         });
       })
       .on('mouseout', function () {
-        d3.select(this).transition().duration(0).attr('opacity', 0.8).attr('stroke-width', 1);
+        d3.select(this).transition().duration(0).attr('opacity', 1).attr('stroke-width', 1);
 
         g!.select('.text-with-background').remove();
       });
@@ -155,20 +241,30 @@ export function useChartDrawArcs() {
   ) {
     let columnIndex = 0;
     const groupStartIndices: number[] = [];
+    const subGroupStartIndices: number[] = [];
 
     // Collect group start indices
     statGroupsWithselectedColumnIds.forEach((group) => {
       groupStartIndices.push(columnIndex);
       group.subGroups.forEach((subGroup) => {
+        subGroupStartIndices.push(columnIndex);
         columnIndex += subGroup.columns.length;
       });
     });
+
+    const subGroups = statGroupsWithselectedColumnIds.flatMap((group) => group.subGroups);
 
     // Create all separators
     for (let i = 0; i <= selectedColumnIdsCount; i++) {
       const angle = angleScale(i);
       const isGroupSeparator = groupStartIndices.includes(i);
-      const lineLength = isGroupSeparator ? radius * 1.5 : radius; // 20% longer for group separators
+      const isSubGroupSeparator = subGroupStartIndices.includes(i);
+
+      const lineLength = isGroupSeparator
+        ? radius * 1.7
+        : isSubGroupSeparator
+        ? radius * 1.6
+        : radius * 1.5;
 
       g.append('line')
         .attr('class', `separator ${isGroupSeparator ? 'group-separator' : 'column-separator'}`)
@@ -177,57 +273,127 @@ export function useChartDrawArcs() {
         .attr('x2', 0)
         .attr('y2', lineLength)
         .attr('stroke', isGroupSeparator ? '#000' : '#000')
-        .attr('stroke-width', 1.5)
+        .attr('stroke-width', 1)
         .attr('transform', `rotate(${180 + (angle * 180) / Math.PI})`);
 
       // Add group labels for group separators
       if (isGroupSeparator && i < selectedColumnIdsCount) {
         const groupIndex = groupStartIndices.indexOf(i);
         const group = statGroupsWithselectedColumnIds[groupIndex];
+
         if (group) {
           const nextGroupStartIndex = groupStartIndices[groupIndex + 1] || selectedColumnIdsCount;
-          const midAngle = angleScale((i + nextGroupStartIndex) / 2);
+          const startAngle = angleScale(i);
+          const endAngle = angleScale(nextGroupStartIndex);
+          const midAngle = (startAngle + endAngle) / 2;
+          const shouldFlip = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
+          const offset = shouldFlip ? 21 : 13;
+          const labelRadius = radius * 1.6 + offset;
 
-          // Calculate position for group label
-          const labelRadius = radius * 1.3; // Place label outside the extended line
-          const x = labelRadius * Math.cos(midAngle - Math.PI / 2);
-          const y = labelRadius * Math.sin(midAngle - Math.PI / 2);
+          const textArc = arcGenerator({
+            innerRadius: labelRadius,
+            outerRadius: labelRadius,
+            startAngle: shouldFlip ? endAngle : startAngle,
+            endAngle: shouldFlip ? startAngle : endAngle,
+            data: group,
+          });
 
-          const textGroup = g.append('g').attr('class', 'category-label');
-
-          // Add the text first (but don't display it) to calculate its size
-          const textElement = textGroup
+          const tempText = g
             .append('text')
-            .attr('x', x)
-            .attr('y', y)
-            .attr('text-anchor', 'middle')
-            .attr('dominant-baseline', 'middle')
-            .attr('fill', '#fff')
-            .attr('font-size', 24)
+            .style('font-size', '12px')
+            .text(group.name)
+            .style('visibility', 'hidden');
+          const textLength = tempText.node()?.getComputedTextLength() || 0;
+          tempText.remove();
+
+          const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
+          const textPercentage = (textLength / arcLength) * 100;
+          const restPercentage = 100 - textPercentage;
+          const textOffsetPercentage = restPercentage / 4;
+
+          console.log({ textLength, arcLength, textOffsetPercentage });
+
+          console.log(`Group ${group.name}:`, {
+            startAngle: (startAngle * 180) / Math.PI,
+            endAngle: (endAngle * 180) / Math.PI,
+            startIndex: i,
+            endIndex: nextGroupStartIndex,
+          });
+
+          g.append('path').attr('id', `label-path-${group.id}`).attr('d', textArc);
+          // .attr('stroke', getRandomColor());
+
+          g.append('text')
+            .append('textPath')
+            .attr('href', `#label-path-${group.id}`)
+            .attr('startOffset', `${textOffsetPercentage}%`)
+            .style('font-size', '12px')
             .text(group.name);
+        }
+      }
 
-          // Get the bounding box of the text
-          const bbox = textElement.node()?.getBBox();
+      if (isSubGroupSeparator && i < selectedColumnIdsCount) {
+        const subGroupIndex = subGroupStartIndices.indexOf(i);
+        const subGroup = subGroups[subGroupIndex];
 
-          if (bbox) {
-            // Add the background rectangle
-            textGroup
-              .insert('rect', 'text') // Insert before text
-              .attr('x', bbox.x - 12)
-              .attr('y', bbox.y - 6)
-              .attr('width', bbox.width + 12 * 2)
-              .attr('height', bbox.height + 6 * 2)
-              .attr('rx', 4)
-              .attr('ry', 4)
-              .attr('fill', '#333')
-              .attr('opacity', 0.8);
-          }
+        if (subGroup) {
+          const nextSubGroupStartIndex =
+            subGroupStartIndices[subGroupIndex + 1] || selectedColumnIdsCount;
+          const startAngle = angleScale(i);
+          const endAngle = angleScale(nextSubGroupStartIndex);
+          const midAngle = (startAngle + endAngle) / 2;
+          const shouldFlip = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
+          const offset = shouldFlip ? 21 : 13;
+          const labelRadius = radius * 1.5 + offset;
+
+          const textArc = arcGenerator({
+            innerRadius: labelRadius,
+            outerRadius: labelRadius,
+            startAngle: shouldFlip ? endAngle : startAngle,
+            endAngle: shouldFlip ? startAngle : endAngle,
+            data: subGroup,
+          });
+
+          const tempText = g
+            .append('text')
+            .style('font-size', '12px')
+            .text(subGroup.name)
+            .style('visibility', 'hidden');
+          const textLength = tempText.node()?.getComputedTextLength() || 0;
+          tempText.remove();
+
+          const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
+          const textPercentage = (textLength / arcLength) * 100;
+          const restPercentage = 100 - textPercentage;
+          const textOffsetPercentage = restPercentage / 4;
+
+          console.log({ textLength, arcLength, textOffsetPercentage });
+
+          console.log(`subGroup ${subGroup.name}:`, {
+            startAngle: (startAngle * 180) / Math.PI,
+            endAngle: (endAngle * 180) / Math.PI,
+            startIndex: i,
+            endIndex: nextSubGroupStartIndex,
+          });
+
+          g.append('path').attr('id', `label-path-${subGroup.id}`).attr('d', textArc);
+          // .attr('stroke', getRandomColor());
+
+          g.append('text')
+            .append('textPath')
+            .attr('href', `#label-path-${subGroup.id}`)
+            .attr('startOffset', `${textOffsetPercentage}%`)
+            .style('font-size', '12px')
+            .text(subGroup.name);
         }
       }
     }
   }
 
   return {
+    drawSubCategoryArc,
+    drawInsideCircle,
+    drawOutsideArcs,
     drawBackgroundArcs,
     drawValueArcs,
     drawSeparators,
