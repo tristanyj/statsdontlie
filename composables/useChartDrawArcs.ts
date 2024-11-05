@@ -128,6 +128,9 @@ export function useChartDrawArcs() {
   ) {
     const arcData: Array<ArcDataExtended> = [];
 
+    const baseRadius = radius * innerRadiusPadding;
+    const fullRadius = radius * (1 - innerRadiusPadding);
+
     let columnIndex = 0;
     statGroupsWithselectedColumnIds.forEach((group) => {
       group.subGroups.forEach((subGroup) => {
@@ -141,12 +144,15 @@ export function useChartDrawArcs() {
             .forEach((player) => {
               const stat = player.stats[column.id];
               if (stat) {
+                const v = column.meta.scale(stat);
+
+                console.log({ v, stat, column });
                 arcData.push({
                   columnId: column.id,
                   columnIndex,
                   player,
                   stat,
-                  scaledValue: column.meta.scale(stat),
+                  scaledValue: v,
                 });
               }
             });
@@ -168,9 +174,8 @@ export function useChartDrawArcs() {
             .attr('class', (d) => `value-arc player-${d.player.id}`)
             .attr('d', (d) =>
               arcGenerator({
-                innerRadius: radius * innerRadiusPadding,
-                outerRadius:
-                  radius * innerRadiusPadding + radius * (1 - innerRadiusPadding) * d.scaledValue,
+                innerRadius: baseRadius,
+                outerRadius: baseRadius + fullRadius * d.scaledValue,
                 startAngle: angleScale(d.columnIndex),
                 endAngle: angleScale(d.columnIndex + 1),
                 data: d,
@@ -281,14 +286,14 @@ export function useChartDrawArcs() {
           const restPercentage = 100 - textPercentage;
           const textOffsetPercentage = restPercentage / 4;
 
-          console.log({ textLength, arcLength, textOffsetPercentage });
+          // console.log({ textLength, arcLength, textOffsetPercentage });
 
-          console.log(`Group ${group.name}:`, {
-            startAngle: (startAngle * 180) / Math.PI,
-            endAngle: (endAngle * 180) / Math.PI,
-            startIndex: i,
-            endIndex: nextGroupStartIndex,
-          });
+          // console.log(`Group ${group.name}:`, {
+          //   startAngle: (startAngle * 180) / Math.PI,
+          //   endAngle: (endAngle * 180) / Math.PI,
+          //   startIndex: i,
+          //   endIndex: nextGroupStartIndex,
+          // });
 
           g.append('path').attr('id', `label-path-${group.id}`).attr('d', textArc);
           // .attr('stroke', getRandomColor());
@@ -337,14 +342,14 @@ export function useChartDrawArcs() {
           const restPercentage = 100 - textPercentage;
           const textOffsetPercentage = restPercentage / 4;
 
-          console.log({ textLength, arcLength, textOffsetPercentage });
+          // console.log({ textLength, arcLength, textOffsetPercentage });
 
-          console.log(`subGroup ${subGroup.name}:`, {
-            startAngle: (startAngle * 180) / Math.PI,
-            endAngle: (endAngle * 180) / Math.PI,
-            startIndex: i,
-            endIndex: nextSubGroupStartIndex,
-          });
+          // console.log(`subGroup ${subGroup.name}:`, {
+          //   startAngle: (startAngle * 180) / Math.PI,
+          //   endAngle: (endAngle * 180) / Math.PI,
+          //   startIndex: i,
+          //   endIndex: nextSubGroupStartIndex,
+          // });
 
           g.append('path').attr('id', `label-path-${subGroup.id}`).attr('d', textArc);
           // .attr('stroke', getRandomColor());

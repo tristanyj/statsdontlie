@@ -1,13 +1,13 @@
 import type { d3GSelection, EnrichedColumn } from '~/types';
 
-const getRandomColor = () => {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 3; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-};
+// const getRandomColor = () => {
+//   const letters = '0123456789ABCDEF';
+//   let color = '#';
+//   for (let i = 0; i < 3; i++) {
+//     color += letters[Math.floor(Math.random() * 16)];
+//   }
+//   return color;
+// };
 
 export function useChartDrawLabels() {
   const { radius, innerRadiusPadding } = useChartDimensions();
@@ -119,6 +119,14 @@ export function useChartDrawLabels() {
   ) {
     g.selectAll('.column-scale').remove();
 
+    const labels = [
+      { position: 0.0 },
+      { position: 0.25 },
+      { position: 0.5 },
+      { position: 0.75 },
+      { position: 1.0 },
+    ];
+
     const columnScales = g
       .selectAll('.column-scale')
       .data(columns)
@@ -134,7 +142,7 @@ export function useChartDrawLabels() {
       const shouldFlip = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
       const baseRadius = radius * innerRadiusPadding;
 
-      d.meta.labels.forEach((label) => {
+      labels.forEach((label) => {
         const scaleOffset = label.position * (radius - baseRadius);
         const flipOffset = shouldFlip ? 8 : 0;
         const standardRadius = baseRadius + scaleOffset + flipOffset;
@@ -148,12 +156,15 @@ export function useChartDrawLabels() {
           data: label,
         });
 
-        console.log(
-          `label ${d.name}, ${label.position}:`,
-          label.value * (d.meta.domainMax - d.meta.domainMin)
-        );
+        // Calculate the actual value at this position
+        // if (label.position === 0.75) {
+        //   console.log({ valueAtPosition, column: d.name });
+        // }
+        // const value = Math.round(valueAtPosition);
 
-        const value = d.meta.scale(label.value * (d.meta.domainMax - d.meta.domainMin)).toFixed(0);
+        // @ts-expect-error - TS doesn't know about the scale function
+        const value = Math.round(d.meta.scale.invert(label.position));
+        // const value = d.meta.scale(label.position * (d.meta.domainMax - d.meta.domainMin));
 
         const tempText = g
           .append('text')
@@ -168,14 +179,14 @@ export function useChartDrawLabels() {
         const restPercentage = 100 - textPercentage;
         const textOffsetPercentage = restPercentage / 4;
 
-        console.log({ textLength, arcLength, textOffsetPercentage });
+        // console.log({ textLength, arcLength, textOffsetPercentage });
 
-        console.log(`label ${d.name}, ${label.position}:`, {
-          startAngle: (startAngle * 180) / Math.PI,
-          endAngle: (endAngle * 180) / Math.PI,
-          startIndex: i,
-          endIndex: i + 1,
-        });
+        // console.log(`label ${d.name}, ${label.position}:`, {
+        //   startAngle: (startAngle * 180) / Math.PI,
+        //   endAngle: (endAngle * 180) / Math.PI,
+        //   startIndex: i,
+        //   endIndex: i + 1,
+        // });
 
         g.append('path').attr('id', `label-path-${d.id}-${label.position}`).attr('d', textArc);
         // .attr('stroke', getRandomColor());

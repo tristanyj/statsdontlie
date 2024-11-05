@@ -24,11 +24,10 @@ export type ColumnKey =
   | 'regular-season.passing.interceptions'
   | 'regular-season.passing.rating'
   | 'regular-season.passing.sacks'
+  | 'regular-season.passing.fumbles'
   | 'regular-season.rushing.attempts'
   | 'regular-season.rushing.yards'
   | 'regular-season.rushing.touchdowns'
-  | 'regular-season.rushing.first-downs'
-  | 'regular-season.rushing.fumbles'
   | 'post-season.general.games'
   | 'post-season.passing.completions'
   | 'post-season.passing.attempts'
@@ -38,11 +37,10 @@ export type ColumnKey =
   | 'post-season.passing.interceptions'
   | 'post-season.passing.rating'
   | 'post-season.passing.sacks'
+  | 'post-season.passing.fumbles'
   | 'post-season.rushing.attempts'
   | 'post-season.rushing.yards'
   | 'post-season.rushing.touchdowns'
-  | 'post-season.rushing.first-downs'
-  | 'post-season.rushing.fumbles'
   | 'awards.individual.mvp'
   | 'awards.individual.sb-mvp'
   | 'awards.individual.pro-bowl'
@@ -90,19 +88,19 @@ export interface Column {
   meta: {
     domainMin: number;
     domainMax: number;
-    scaleType: 'linear' | 'log' | 'pow';
+    scaleType: 'linear' | 'log' | 'pow' | 'threshold' | 'quantile';
     formatType: 'number' | 'percent' | 'time';
-    labels: [
-      { value: number; position: 0.0 },
-      { value: number; position: 0.25 },
-      { value: number; position: 0.5 },
-      { value: number; position: 0.75 },
-      { value: number; position: 1.0 }
-    ];
   };
   record: {
-    value: number;
-    playerId: string;
+    qb: {
+      value: number;
+      name: string;
+    };
+    all: {
+      value: number;
+      name: string;
+      position: string;
+    };
   };
 }
 

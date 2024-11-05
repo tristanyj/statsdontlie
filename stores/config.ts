@@ -16,20 +16,20 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Games Played',
               meta: {
                 domainMin: 0,
-                domainMax: 300,
+                domainMax: 400,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 75, position: 0.25 },
-                  { value: 150, position: 0.5 },
-                  { value: 225, position: 0.75 },
-                  { value: 300, position: 1.0 },
-                ],
               },
               record: {
-                value: 197,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 335,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 382,
+                  name: 'Morten Andersen',
+                  position: 'K',
+                },
               },
             },
           ],
@@ -43,20 +43,20 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Completions',
               meta: {
                 domainMin: 0,
-                domainMax: 7000,
+                domainMax: 8000,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 1750, position: 0.25 },
-                  { value: 3500, position: 0.5 },
-                  { value: 5250, position: 0.75 },
-                  { value: 7000, position: 1.0 },
-                ],
               },
               record: {
-                value: 6125,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 7753,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 7753,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
             {
@@ -64,62 +64,62 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Attempts',
               meta: {
                 domainMin: 0,
-                domainMax: 11000,
+                domainMax: 13000,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 2750, position: 0.25 },
-                  { value: 5500, position: 0.5 },
-                  { value: 8250, position: 0.75 },
-                  { value: 11000, position: 1.0 },
-                ],
               },
               record: {
-                value: 9380,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 12050,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 12050,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
             {
               id: 'regular-season.passing.completion-percentage',
               name: 'Completion %',
               meta: {
-                domainMin: 55,
-                domainMax: 75,
+                domainMin: 50,
+                domainMax: 70,
                 scaleType: 'linear',
                 formatType: 'percent',
-                labels: [
-                  { value: 55, position: 0.0 },
-                  { value: 60, position: 0.25 },
-                  { value: 65, position: 0.5 },
-                  { value: 70, position: 0.75 },
-                  { value: 75, position: 1.0 },
-                ],
               },
               record: {
-                value: 64.9,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 68.3,
+                  name: 'Joe Burrow',
+                },
+                all: {
+                  value: 68.3,
+                  name: 'Joe Burrow',
+                  position: 'QB',
+                },
               },
             },
             {
               id: 'regular-season.passing.yards',
               name: 'Passing Yards',
               meta: {
-                domainMin: 30000,
+                domainMin: 1000,
                 domainMax: 90000,
-                scaleType: 'log',
+                scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 30000, position: 0.0 },
-                  { value: 45000, position: 0.25 },
-                  { value: 60000, position: 0.5 },
-                  { value: 75000, position: 0.75 },
-                  { value: 90000, position: 1.0 },
-                ],
               },
               record: {
-                value: 51255,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 89214,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 89214,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
             {
@@ -127,20 +127,20 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Passing Touchdowns',
               meta: {
                 domainMin: 0,
-                domainMax: 650,
+                domainMax: 700,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 162, position: 0.25 },
-                  { value: 325, position: 0.5 },
-                  { value: 487, position: 0.75 },
-                  { value: 650, position: 1.0 },
-                ],
               },
               record: {
-                value: 412,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 649,
+                  name: 'Peyton Manning',
+                },
+                all: {
+                  value: 649,
+                  name: 'Peyton Manning',
+                  position: 'QB',
+                },
               },
             },
             {
@@ -148,41 +148,41 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Interceptions',
               meta: {
                 domainMin: 0,
-                domainMax: 300,
+                domainMax: 400,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 75, position: 0.25 },
-                  { value: 150, position: 0.5 },
-                  { value: 225, position: 0.75 },
-                  { value: 300, position: 1.0 },
-                ],
               },
               record: {
-                value: 251,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 336,
+                  name: 'Brett Favre',
+                },
+                all: {
+                  value: 336,
+                  name: 'Brett Favre',
+                  position: 'QB',
+                },
               },
             },
             {
               id: 'regular-season.passing.rating',
               name: 'Passer Rating',
               meta: {
-                domainMin: 70,
-                domainMax: 130,
+                domainMin: 80,
+                domainMax: 110,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 70, position: 0.0 },
-                  { value: 85, position: 0.25 },
-                  { value: 100, position: 0.5 },
-                  { value: 115, position: 0.75 },
-                  { value: 130, position: 1.0 },
-                ],
               },
               record: {
-                value: 102.4,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 103.0,
+                  name: 'Aaron Rodgers',
+                },
+                all: {
+                  value: 103.0,
+                  name: 'Aaron Rodgers',
+                  position: 'QB',
+                },
               },
             },
             {
@@ -190,20 +190,41 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Sacks Taken',
               meta: {
                 domainMin: 0,
-                domainMax: 500,
+                domainMax: 600,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 125, position: 0.25 },
-                  { value: 250, position: 0.5 },
-                  { value: 375, position: 0.75 },
-                  { value: 500, position: 1.0 },
-                ],
               },
               record: {
-                value: 303,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 570,
+                  name: 'Fran Tarkenton',
+                },
+                all: {
+                  value: 570,
+                  name: 'Fran Tarkenton',
+                  position: 'QB',
+                },
+              },
+            },
+            {
+              id: 'regular-season.passing.fumbles',
+              name: 'Fumbles',
+              meta: {
+                domainMin: 0,
+                domainMax: 200,
+                scaleType: 'linear',
+                formatType: 'number',
+              },
+              record: {
+                qb: {
+                  value: 166,
+                  name: 'Brett Favre',
+                },
+                all: {
+                  value: 166,
+                  name: 'Brett Favre',
+                  position: 'QB',
+                },
               },
             },
           ],
@@ -217,20 +238,20 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Rushing Attempts',
               meta: {
                 domainMin: 0,
-                domainMax: 4000,
+                domainMax: 1200,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 1000, position: 0.25 },
-                  { value: 2000, position: 0.5 },
-                  { value: 3000, position: 0.75 },
-                  { value: 4000, position: 1.0 },
-                ],
               },
               record: {
-                value: 667,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 1118,
+                  name: 'Cam Newton',
+                },
+                all: {
+                  value: 4409,
+                  name: 'Emmitt Smith',
+                  position: 'RB',
+                },
               },
             },
             {
@@ -238,20 +259,20 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Rushing Yards',
               meta: {
                 domainMin: 0,
-                domainMax: 20000,
-                scaleType: 'log',
+                domainMax: 6200,
+                scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 5000, position: 0.25 },
-                  { value: 10000, position: 0.5 },
-                  { value: 15000, position: 0.75 },
-                  { value: 20000, position: 1.0 },
-                ],
               },
               record: {
-                value: 667,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 6109,
+                  name: 'Michael Vick',
+                },
+                all: {
+                  value: 18355,
+                  name: 'Emmitt Smith',
+                  position: 'RB',
+                },
               },
             },
             {
@@ -259,62 +280,20 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Rushing Touchdowns',
               meta: {
                 domainMin: 0,
-                domainMax: 200,
-                scaleType: 'linear',
-                formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 50, position: 0.25 },
-                  { value: 100, position: 0.5 },
-                  { value: 150, position: 0.75 },
-                  { value: 200, position: 1.0 },
-                ],
-              },
-              record: {
-                value: 18,
-                playerId: 'peyton-manning',
-              },
-            },
-            {
-              id: 'regular-season.rushing.first-downs',
-              name: 'Rushing First Downs',
-              meta: {
-                domainMin: 0,
-                domainMax: 500,
-                scaleType: 'linear',
-                formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 125, position: 0.25 },
-                  { value: 250, position: 0.5 },
-                  { value: 375, position: 0.75 },
-                  { value: 500, position: 1.0 },
-                ],
-              },
-              record: {
-                value: 103,
-                playerId: 'peyton-manning',
-              },
-            },
-            {
-              id: 'regular-season.rushing.fumbles',
-              name: 'Rushing Fumbles',
-              meta: {
-                domainMin: 0,
                 domainMax: 100,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 25, position: 0.25 },
-                  { value: 50, position: 0.5 },
-                  { value: 75, position: 0.75 },
-                  { value: 100, position: 1.0 },
-                ],
               },
               record: {
-                value: 31,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 75,
+                  name: 'Cam Newton',
+                },
+                all: {
+                  value: 164,
+                  name: 'Emmitt Smith',
+                  position: 'RB',
+                },
               },
             },
           ],
@@ -337,17 +316,17 @@ export const useConfigStore = defineStore('config', () => {
                 domainMax: 50,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 12.5, position: 0.25 },
-                  { value: 25, position: 0.5 },
-                  { value: 37.5, position: 0.75 },
-                  { value: 50, position: 1.0 },
-                ],
               },
               record: {
-                value: 45,
-                playerId: 'tom-brady',
+                qb: {
+                  value: 48,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 48,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
           ],
@@ -361,20 +340,20 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Completions',
               meta: {
                 domainMin: 0,
-                domainMax: 1200,
+                domainMax: 1300,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 300, position: 0.25 },
-                  { value: 600, position: 0.5 },
-                  { value: 900, position: 0.75 },
-                  { value: 1200, position: 1.0 },
-                ],
               },
               record: {
-                value: 1130,
-                playerId: 'tom-brady',
+                qb: {
+                  value: 1200,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 1200,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
             {
@@ -385,38 +364,38 @@ export const useConfigStore = defineStore('config', () => {
                 domainMax: 2000,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 500, position: 0.25 },
-                  { value: 1000, position: 0.5 },
-                  { value: 1500, position: 0.75 },
-                  { value: 2000, position: 1.0 },
-                ],
               },
               record: {
-                value: 1757,
-                playerId: 'tom-brady',
+                qb: {
+                  value: 1921,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 1921,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
             {
               id: 'post-season.passing.completion-percentage',
               name: 'Completion %',
               meta: {
-                domainMin: 55,
-                domainMax: 75,
+                domainMin: 50,
+                domainMax: 70,
                 scaleType: 'linear',
                 formatType: 'percent',
-                labels: [
-                  { value: 55, position: 0.0 },
-                  { value: 60, position: 0.25 },
-                  { value: 65, position: 0.5 },
-                  { value: 70, position: 0.75 },
-                  { value: 75, position: 1.0 },
-                ],
               },
               record: {
-                value: 64.2,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 68.1,
+                  name: 'Nick Foles',
+                },
+                all: {
+                  value: 68.1,
+                  name: 'Nick Foles',
+                  position: 'QB',
+                },
               },
             },
             {
@@ -424,20 +403,20 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Passing Yards',
               meta: {
                 domainMin: 0,
-                domainMax: 15000,
-                scaleType: 'log',
+                domainMax: 14000,
+                scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 3750, position: 0.25 },
-                  { value: 7500, position: 0.5 },
-                  { value: 11250, position: 0.75 },
-                  { value: 15000, position: 1.0 },
-                ],
               },
               record: {
-                value: 4630,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 13400,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 13400,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
             {
@@ -445,20 +424,20 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Passing Touchdowns',
               meta: {
                 domainMin: 0,
-                domainMax: 100,
+                domainMax: 90,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 25, position: 0.25 },
-                  { value: 50, position: 0.5 },
-                  { value: 75, position: 0.75 },
-                  { value: 100, position: 1.0 },
-                ],
               },
               record: {
-                value: 40,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 88,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 88,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
             {
@@ -469,38 +448,38 @@ export const useConfigStore = defineStore('config', () => {
                 domainMax: 50,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 12.5, position: 0.25 },
-                  { value: 25, position: 0.5 },
-                  { value: 37.5, position: 0.75 },
-                  { value: 50, position: 1.0 },
-                ],
               },
               record: {
-                value: 25,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 40,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 40,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
             {
               id: 'post-season.passing.rating',
               name: 'Passer Rating',
               meta: {
-                domainMin: 70,
-                domainMax: 130,
+                domainMin: 80,
+                domainMax: 110,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 70, position: 0.0 },
-                  { value: 85, position: 0.25 },
-                  { value: 100, position: 0.5 },
-                  { value: 115, position: 0.75 },
-                  { value: 130, position: 1.0 },
-                ],
               },
               record: {
-                value: 87.4,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 105.8,
+                  name: 'Patrick Mahomes',
+                },
+                all: {
+                  value: 105.8,
+                  name: 'Patrick Mahomes',
+                  position: 'QB',
+                },
               },
             },
             {
@@ -508,20 +487,41 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Sacks Taken',
               meta: {
                 domainMin: 0,
-                domainMax: 100,
+                domainMax: 90,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 25, position: 0.25 },
-                  { value: 50, position: 0.5 },
-                  { value: 75, position: 0.75 },
-                  { value: 100, position: 1.0 },
-                ],
               },
               record: {
-                value: 22,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 81,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 81,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
+              },
+            },
+            {
+              id: 'post-season.passing.fumbles',
+              name: 'Fumbles',
+              meta: {
+                domainMin: 0,
+                domainMax: 20,
+                scaleType: 'linear',
+                formatType: 'number',
+              },
+              record: {
+                qb: {
+                  value: 16,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 16,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
           ],
@@ -535,20 +535,20 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Rushing Attempts',
               meta: {
                 domainMin: 0,
-                domainMax: 300,
+                domainMax: 120,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 75, position: 0.25 },
-                  { value: 150, position: 0.5 },
-                  { value: 225, position: 0.75 },
-                  { value: 300, position: 1.0 },
-                ],
               },
               record: {
-                value: 45,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 114,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 400,
+                  name: 'Franco Harris',
+                  position: 'RB',
+                },
               },
             },
             {
@@ -556,20 +556,20 @@ export const useConfigStore = defineStore('config', () => {
               name: 'Rushing Yards',
               meta: {
                 domainMin: 0,
-                domainMax: 1100,
-                scaleType: 'log',
+                domainMax: 600,
+                scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 250, position: 0.25 },
-                  { value: 500, position: 0.5 },
-                  { value: 750, position: 0.75 },
-                  { value: 1100, position: 1.0 },
-                ],
               },
               record: {
-                value: 1049,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 594,
+                  name: 'Steve Young',
+                },
+                all: {
+                  value: 1586,
+                  name: 'Emmitt Smith',
+                  position: 'RB',
+                },
               },
             },
             {
@@ -580,59 +580,17 @@ export const useConfigStore = defineStore('config', () => {
                 domainMax: 20,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 5, position: 0.25 },
-                  { value: 10, position: 0.5 },
-                  { value: 15, position: 0.75 },
-                  { value: 20, position: 1.0 },
-                ],
               },
               record: {
-                value: 20,
-                playerId: 'tom-brady',
-              },
-            },
-            {
-              id: 'post-season.rushing.first-downs',
-              name: 'Rushing First Downs',
-              meta: {
-                domainMin: 0,
-                domainMax: 50,
-                scaleType: 'linear',
-                formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 12.5, position: 0.25 },
-                  { value: 25, position: 0.5 },
-                  { value: 37.5, position: 0.75 },
-                  { value: 50, position: 1.0 },
-                ],
-              },
-              record: {
-                value: 3,
-                playerId: 'peyton-manning',
-              },
-            },
-            {
-              id: 'post-season.rushing.fumbles',
-              name: 'Rushing Fumbles',
-              meta: {
-                domainMin: 0,
-                domainMax: 10,
-                scaleType: 'linear',
-                formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 2.5, position: 0.25 },
-                  { value: 5, position: 0.5 },
-                  { value: 7.5, position: 0.75 },
-                  { value: 10, position: 1.0 },
-                ],
-              },
-              record: {
-                value: 1,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 8,
+                  name: 'Steve Young',
+                },
+                all: {
+                  value: 19,
+                  name: 'Emmitt Smith',
+                  position: 'RB',
+                },
               },
             },
           ],
@@ -655,17 +613,17 @@ export const useConfigStore = defineStore('config', () => {
                 domainMax: 5,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 1, position: 0.25 },
-                  { value: 2, position: 0.5 },
-                  { value: 3, position: 0.75 },
-                  { value: 5, position: 1.0 },
-                ],
               },
               record: {
-                value: 3,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 5,
+                  name: 'Peyton Manning',
+                },
+                all: {
+                  value: 5,
+                  name: 'Peyton Manning',
+                  position: 'QB',
+                },
               },
             },
             {
@@ -676,17 +634,17 @@ export const useConfigStore = defineStore('config', () => {
                 domainMax: 5,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 1, position: 0.25 },
-                  { value: 2, position: 0.5 },
-                  { value: 3, position: 0.75 },
-                  { value: 5, position: 1.0 },
-                ],
               },
               record: {
-                value: 1,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 5,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 5,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
             {
@@ -697,17 +655,17 @@ export const useConfigStore = defineStore('config', () => {
                 domainMax: 15,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 4, position: 0.25 },
-                  { value: 8, position: 0.5 },
-                  { value: 12, position: 0.75 },
-                  { value: 15, position: 1.0 },
-                ],
               },
               record: {
-                value: 9,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 15,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 15,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
             {
@@ -718,17 +676,17 @@ export const useConfigStore = defineStore('config', () => {
                 domainMax: 10,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 2.5, position: 0.25 },
-                  { value: 5, position: 0.5 },
-                  { value: 7.5, position: 0.75 },
-                  { value: 10, position: 1.0 },
-                ],
               },
               record: {
-                value: 7,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 7,
+                  name: 'Peyton Manning',
+                },
+                all: {
+                  value: 10,
+                  name: 'Jerry Rice | Jim Otto',
+                  position: 'WR | C',
+                },
               },
             },
             {
@@ -739,17 +697,17 @@ export const useConfigStore = defineStore('config', () => {
                 domainMax: 10,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 2.5, position: 0.25 },
-                  { value: 5, position: 0.5 },
-                  { value: 7.5, position: 0.75 },
-                  { value: 10, position: 1.0 },
-                ],
               },
               record: {
-                value: 7,
-                playerId: 'peyton-manning',
+                qb: {
+                  value: 3,
+                  name: 'Many Players',
+                },
+                all: {
+                  value: 10,
+                  name: 'Ken Houston',
+                  position: 'S',
+                },
               },
             },
           ],
@@ -766,17 +724,17 @@ export const useConfigStore = defineStore('config', () => {
                 domainMax: 10,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 1, position: 0.25 },
-                  { value: 2, position: 0.5 },
-                  { value: 3, position: 0.75 },
-                  { value: 10, position: 1.0 },
-                ],
               },
               record: {
-                value: 10,
-                playerId: 'tom-brady',
+                qb: {
+                  value: 10,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 10,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
             {
@@ -787,17 +745,17 @@ export const useConfigStore = defineStore('config', () => {
                 domainMax: 10,
                 scaleType: 'linear',
                 formatType: 'number',
-                labels: [
-                  { value: 0, position: 0.0 },
-                  { value: 3, position: 0.25 },
-                  { value: 5, position: 0.5 },
-                  { value: 8, position: 0.75 },
-                  { value: 10, position: 1.0 },
-                ],
               },
               record: {
-                value: 7,
-                playerId: 'tom-brady',
+                qb: {
+                  value: 7,
+                  name: 'Tom Brady',
+                },
+                all: {
+                  value: 7,
+                  name: 'Tom Brady',
+                  position: 'QB',
+                },
               },
             },
           ],
@@ -806,7 +764,10 @@ export const useConfigStore = defineStore('config', () => {
     },
   ]);
 
-  const scaleCache = new Map<string, d3.ScaleContinuousNumeric<number, number>>();
+  const scaleCache = new Map<
+    string,
+    d3.ScaleContinuousNumeric<number, number> | d3.ScaleThreshold<number, number>
+  >();
   const formatCache = new Map<string, (n: number) => string>();
 
   const getScale = (column: Column) => {
@@ -823,8 +784,15 @@ export const useConfigStore = defineStore('config', () => {
           case 'log':
             return d3
               .scaleLog()
-              .domain([Math.max(1, column.meta.domainMin), column.meta.domainMax])
+              .domain([column.meta.domainMin, column.meta.domainMax])
               .range([0, 1]);
+          case 'pow':
+            return d3
+              .scalePow()
+              .domain([column.meta.domainMin, column.meta.domainMax])
+              .range([0, 1])
+              .exponent(0.5);
+
           default:
             return d3
               .scaleLinear()
