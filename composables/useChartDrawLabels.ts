@@ -1,13 +1,15 @@
 import type { d3GSelection, EnrichedColumn } from '~/types';
 
-// const getRandomColor = () => {
-//   const letters = '0123456789ABCDEF';
-//   let color = '#';
-//   for (let i = 0; i < 3; i++) {
-//     color += letters[Math.floor(Math.random() * 16)];
-//   }
-//   return color;
-// };
+import { formatNumber } from '~/utils/chart/formatters';
+
+const getRandomColor = () => {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 3; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
 
 export function useChartDrawLabels() {
   const { radius, innerRadiusPadding } = useChartDimensions();
@@ -148,22 +150,8 @@ export function useChartDrawLabels() {
         const standardRadius = baseRadius + scaleOffset + flipOffset;
         const labelRadius = label.position === 1.0 ? standardRadius + 3 : standardRadius;
 
-        const textArc = arcGenerator({
-          innerRadius: labelRadius,
-          outerRadius: labelRadius,
-          startAngle: shouldFlip ? endAngle : startAngle,
-          endAngle: shouldFlip ? startAngle : endAngle,
-          data: label,
-        });
-
-        // Calculate the actual value at this position
-        // if (label.position === 0.75) {
-        //   console.log({ valueAtPosition, column: d.name });
-        // }
-        // const value = Math.round(valueAtPosition);
-
         // @ts-expect-error - TS doesn't know about the scale function
-        const value = d.meta.scale.invert(label.position);
+        const value = formatNumber(d.meta.scale.invert(label.position));
 
         const tempText = g
           .append('text')
@@ -178,17 +166,19 @@ export function useChartDrawLabels() {
         const restPercentage = 100 - textPercentage;
         const textOffsetPercentage = restPercentage / 4;
 
-        // console.log({ textLength, arcLength, textOffsetPercentage });
-
-        // console.log(`label ${d.name}, ${label.position}:`, {
-        //   startAngle: (startAngle * 180) / Math.PI,
-        //   endAngle: (endAngle * 180) / Math.PI,
-        //   startIndex: i,
-        //   endIndex: i + 1,
-        // });
-
-        g.append('path').attr('id', `label-path-${d.id}-${label.position}`).attr('d', textArc);
-        // .attr('stroke', getRandomColor());
+        g.append('path')
+          .attr('id', `label-path-${d.id}-${label.position}`)
+          .attr(
+            'd',
+            arcGenerator({
+              innerRadius: labelRadius,
+              outerRadius: labelRadius,
+              startAngle: shouldFlip ? endAngle : startAngle,
+              endAngle: shouldFlip ? startAngle : endAngle,
+              data: label,
+            })
+          )
+          .attr('stroke', getRandomColor());
 
         g.append('text')
           .append('textPath')
