@@ -65,7 +65,6 @@ function createVisualization() {
 
   // Draw arcs
   drawOutsideArcs(g.value, scales.angle, selectedColumnIds.value);
-  drawInsideCircle(g.value);
 
   // drawBackgroundArcs(g.value, scales.angle, selectedColumnIds.value);
   drawValueArcs(
@@ -80,6 +79,7 @@ function createVisualization() {
     statGroupsWithselectedColumnIds.value,
     selectedColumnIdsCount.value
   );
+  drawInsideCircle(g.value);
   // drawSubCategoryArc(g.value, scales.angle, selectedColumnIds.value);
   drawColumnScales(g.value, scales.angle, selectedColumns.value);
 

@@ -2,15 +2,6 @@ import type { d3GSelection, EnrichedColumn } from '~/types';
 
 import { formatNumber } from '~/utils/chart/formatters';
 
-const getRandomColor = () => {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 3; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-};
-
 export function useChartDrawLabels() {
   const { radius, innerRadiusPadding } = useChartDimensions();
   const { arcGenerator } = useChartGenerators();
@@ -145,29 +136,21 @@ export function useChartDrawLabels() {
       const baseRadius = radius * innerRadiusPadding;
 
       labels.forEach((label) => {
+        const labelId = `label-path-${d.id}-${label.position}`;
         const scaleOffset = label.position * (radius - baseRadius);
-        const flipOffset = shouldFlip ? 8 : 0;
-        const standardRadius = baseRadius + scaleOffset + flipOffset;
-        const labelRadius = label.position === 1.0 ? standardRadius + 3 : standardRadius;
+        const flipOffset = shouldFlip ? 7.5 : 0;
+        const startOffset = label.position === 0.0 ? 5 : 0;
+        const standardRadius = baseRadius + scaleOffset + flipOffset + startOffset;
+        const labelRadius = label.position === 1.0 ? standardRadius + 4 : standardRadius;
+        const backgroundRadius = shouldFlip ? labelRadius - 3.5 : labelRadius + 4;
 
         // @ts-expect-error - TS doesn't know about the scale function
         const value = formatNumber(d.meta.scale.invert(label.position));
+        const textContent = `${value} ${label.position === 1.0 ? d.meta.scaleType : ''}`;
 
-        const tempText = g
-          .append('text')
-          .style('font-size', '12px')
-          .text(value)
-          .style('visibility', 'hidden');
-        const textLength = tempText.node()?.getComputedTextLength() || 0;
-        tempText.remove();
-
-        const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
-        const textPercentage = (textLength / arcLength) * 100;
-        const restPercentage = 100 - textPercentage;
-        const textOffsetPercentage = restPercentage / 4;
-
+        // Create the path for text positioning
         g.append('path')
-          .attr('id', `label-path-${d.id}-${label.position}`)
+          .attr('id', labelId)
           .attr(
             'd',
             arcGenerator({
@@ -177,15 +160,54 @@ export function useChartDrawLabels() {
               endAngle: shouldFlip ? startAngle : endAngle,
               data: label,
             })
+          );
+        // .attr('stroke', getRandomColor());
+
+        const tempText = g
+          .append('text')
+          .append('textPath')
+          .attr('href', `#${labelId}`)
+          .style('font-size', '10px')
+          .text(textContent);
+        const textHeight = 8; // Approximate height of the text
+        const textLength = tempText.node()?.getComputedTextLength() || 0;
+        tempText.remove();
+
+        // Calculate the arc length needed for this text
+        const padding = 1.5; // Padding around text
+        const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
+        const textPercentage = (textLength / arcLength) * 100;
+        const restPercentage = 100 - textPercentage;
+        const textOffsetPercentage = restPercentage / 4;
+
+        // Calculate the angle that corresponds to this arc length
+        const backgroundArcLength = textLength + padding * 2;
+        const angleForArc = backgroundArcLength / backgroundRadius;
+
+        // Calculate start and end angles for the background
+        const bgStartAngle = midAngle - angleForArc / 2;
+        const bgEndAngle = midAngle + angleForArc / 2;
+
+        // Create background path that's just wide enough for the text
+        g.append('path')
+          .attr(
+            'd',
+            arcGenerator({
+              innerRadius: backgroundRadius - (textHeight / 2 + padding),
+              outerRadius: backgroundRadius + (textHeight / 2 + padding),
+              startAngle: bgStartAngle,
+              endAngle: bgEndAngle,
+              data: label,
+            })
           )
-          .attr('stroke', getRandomColor());
+          .attr('fill', '#f9fafb');
 
         g.append('text')
           .append('textPath')
-          .attr('href', `#label-path-${d.id}-${label.position}`)
+          .attr('href', `#${labelId}`)
           .attr('startOffset', `${textOffsetPercentage}%`)
           .style('font-size', '10px')
-          .text(`${value} ${label.position === 1.0 ? d.meta.scaleType : ''}`);
+          .text(textContent);
       });
     });
   }

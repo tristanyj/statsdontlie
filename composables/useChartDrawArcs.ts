@@ -43,17 +43,20 @@ export function useChartDrawArcs() {
   }
 
   function drawInsideCircle(g: d3GSelection) {
+    const baseRadius = radius * innerRadiusPadding;
+    const restRadius = radius * (1 - innerRadiusPadding);
+
     g.append('circle')
-      .attr('r', radius * innerRadiusPadding * 0.9)
+      .attr('r', baseRadius * 0.9)
       .attr('fill', 'none') // Use 'none' instead of '#fff'
       .attr('stroke', '#000')
       .attr('stroke-width', 1);
 
     g.append('circle')
-      .attr('r', radius * innerRadiusPadding)
+      .attr('r', baseRadius)
       .attr('fill', 'none') // Use 'none' instead of '#fff'
       .attr('stroke', '#000')
-      .attr('stroke-width', 2);
+      .attr('stroke-width', 1);
 
     g.append('circle')
       .attr('r', radius)
@@ -77,6 +80,69 @@ export function useChartDrawArcs() {
       .attr('r', radius * 1.7)
       .attr('fill', 'none') // Use 'none' instead of '#fff'
       .attr('stroke', '#000')
+      .attr('stroke-width', 1);
+
+    g.append('circle')
+      .attr('r', baseRadius + restRadius * 0.1)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#111')
+      .attr('stroke-opacity', 0.1)
+      .attr('stroke-width', 1);
+
+    g.append('circle')
+      .attr('r', baseRadius + restRadius * 0.2)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#111')
+      .attr('stroke-opacity', 0.1)
+      .attr('stroke-width', 1);
+
+    g.append('circle')
+      .attr('r', baseRadius + restRadius * 0.3)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#111')
+      .attr('stroke-opacity', 0.1)
+      .attr('stroke-width', 1);
+
+    g.append('circle')
+      .attr('r', baseRadius + restRadius * 0.4)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#111')
+      .attr('stroke-opacity', 0.1)
+      .attr('stroke-width', 1);
+
+    g.append('circle')
+      .attr('r', baseRadius + restRadius * 0.5)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#111')
+      .attr('stroke-opacity', 0.1)
+      .attr('stroke-width', 1);
+
+    g.append('circle')
+      .attr('r', baseRadius + restRadius * 0.6)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#111')
+      .attr('stroke-opacity', 0.1)
+      .attr('stroke-width', 1);
+
+    g.append('circle')
+      .attr('r', baseRadius + restRadius * 0.7)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#111')
+      .attr('stroke-opacity', 0.1)
+      .attr('stroke-width', 1);
+
+    g.append('circle')
+      .attr('r', baseRadius + restRadius * 0.8)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#111')
+      .attr('stroke-opacity', 0.1)
+      .attr('stroke-width', 1);
+
+    g.append('circle')
+      .attr('r', baseRadius + restRadius * 0.9)
+      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('stroke', '#111')
+      .attr('stroke-opacity', 0.1)
       .attr('stroke-width', 1);
   }
 
@@ -250,6 +316,23 @@ export function useChartDrawArcs() {
         .attr('stroke', isGroupSeparator ? '#000' : '#000')
         .attr('stroke-width', 1)
         .attr('transform', `rotate(${180 + (angle * 180) / Math.PI})`);
+
+      // add line at center of each column, calculate center point of each column
+      if (!isGroupSeparator && !isSubGroupSeparator && i < selectedColumnIdsCount) {
+        const nextAngle = angleScale(i + 1);
+        const midAngle = (angle + nextAngle) / 2;
+
+        g.append('line')
+          .attr('class', 'column-center-separator')
+          .attr('x1', 0)
+          .attr('y1', radius * innerRadiusPadding)
+          .attr('x2', 0)
+          .attr('y2', radius)
+          .attr('stroke', '#000')
+          .attr('stroke-opacity', 0.1)
+          .attr('stroke-width', 1)
+          .attr('transform', `rotate(${180 + (midAngle * 180) / Math.PI})`);
+      }
 
       // Add group labels for group separators
       if (isGroupSeparator && i < selectedColumnIdsCount) {
