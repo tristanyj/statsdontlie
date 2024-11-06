@@ -108,7 +108,10 @@ export function useChartDrawArcs() {
   function drawSeparators(
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
-    statGroupsWithSelectedColumnIds: Group[],
+    groupStartIndices: number[],
+    subGroupStartIndices: number[],
+    selectedGroups: Group[],
+    selectedSubGroups: SubGroup[],
     selectedColumnIdsCount: number
   ) {
     const drawArc = (
@@ -124,8 +127,8 @@ export function useChartDrawArcs() {
 
       const startAngle = angleScale(index);
       const endAngle = angleScale(nextGroupStartIndex);
-
       const midAngle = (startAngle + endAngle) / 2;
+
       const shouldFlip = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
       const offset = shouldFlip ? 21 : 13;
       const labelRadius = radius * proportions[2 - modifier] + offset;
@@ -173,29 +176,15 @@ export function useChartDrawArcs() {
         .text(group.name);
     };
 
-    let columnIndex = 0;
-    const groupStartIndices: number[] = [];
-    const subGroupStartIndices: number[] = [];
-
-    statGroupsWithSelectedColumnIds.forEach((group) => {
-      groupStartIndices.push(columnIndex);
-      group.subGroups.forEach((subGroup) => {
-        subGroupStartIndices.push(columnIndex);
-        columnIndex += subGroup.columns.length;
-      });
-    });
-
-    const subGroups = statGroupsWithSelectedColumnIds.flatMap((group) => group.subGroups);
-
     for (let i = 0; i <= selectedColumnIdsCount; i++) {
       if (groupStartIndices.includes(i)) {
         const groupIndex = groupStartIndices.indexOf(i);
-        drawArc(groupStartIndices, i, groupIndex, statGroupsWithSelectedColumnIds[groupIndex], 0);
+        drawArc(groupStartIndices, i, groupIndex, selectedGroups[groupIndex], 0);
       }
 
       if (subGroupStartIndices.includes(i)) {
         const groupIndex = subGroupStartIndices.indexOf(i);
-        drawArc(subGroupStartIndices, i, groupIndex, subGroups[groupIndex], 1);
+        drawArc(subGroupStartIndices, i, groupIndex, selectedSubGroups[groupIndex], 1);
       }
     }
   }

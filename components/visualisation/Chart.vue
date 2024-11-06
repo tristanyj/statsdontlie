@@ -23,7 +23,7 @@ const selectedPlayers = computed(() =>
   props.players.filter((player) => selectedPlayerIds.value.includes(player.id))
 );
 
-const statGroupsWithselectedColumnIds = computed(() => {
+const selectedGroups = computed(() => {
   return statGroups?.value
     ? statGroups.value
         .map((group) => ({
@@ -41,12 +41,33 @@ const statGroupsWithselectedColumnIds = computed(() => {
     : [];
 });
 
+const selectedSubGroups = computed(() => {
+  return selectedGroups.value.flatMap((group) => group.subGroups);
+});
+
 const selectedColumns = computed(() => {
-  return statGroupsWithselectedColumnIds.value
-    .map((group) => group.subGroups)
-    .flat()
-    .map((subGroup) => subGroup.columns)
-    .flat();
+  return selectedGroups.value
+    .flatMap((group) => group.subGroups)
+    .flatMap((subGroup) => subGroup.columns);
+});
+
+const indices = computed(() => {
+  let currentIndex = 0;
+  const groupIndices: number[] = [];
+  const subGroupIndices: number[] = [];
+
+  selectedGroups.value.forEach((group) => {
+    groupIndices.push(currentIndex);
+    group.subGroups.forEach((subGroup) => {
+      subGroupIndices.push(currentIndex);
+      currentIndex += subGroup.columns.length;
+    });
+  });
+
+  return {
+    group: groupIndices,
+    subGroup: subGroupIndices,
+  };
 });
 
 updateScale('angle', [0, selectedColumnIdsCount.value]);
@@ -60,31 +81,23 @@ function createVisualization() {
 
   drawColumnLabelBackgrounds(g.value, scales.angle, selectedColumns.value);
 
-  // TODO: refactor
-  drawColumnBackgrounds(
-    g.value,
-    scales.angle,
-    statGroupsWithselectedColumnIds.value,
-    selectedPlayers.value
-  );
+  drawColumnBackgrounds(g.value, scales.angle, selectedGroups.value, selectedPlayers.value);
+
   drawSeparators(
     g.value,
     scales.angle,
-    statGroupsWithselectedColumnIds.value,
+    indices.value.group,
+    indices.value.subGroup,
+    selectedGroups.value,
+    selectedSubGroups.value,
     selectedColumnIdsCount.value
   );
-  // drawSubCategoryArc(g.value, scales.angle, selectedColumnIds.value);
+
   drawColumnScales(g.value, scales.angle, selectedColumns.value);
 
-  // Draw Labels
   drawColumnLabels(g.value, scales.angle, selectedColumns.value);
 
-  drawLinearSeparators(
-    g.value,
-    scales.angle,
-    statGroupsWithselectedColumnIds.value,
-    selectedColumnIdsCount.value
-  );
+  drawLinearSeparators(g.value, scales.angle, selectedGroups.value, selectedColumnIdsCount.value);
   drawCircularSeparators(g.value);
 }
 
