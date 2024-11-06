@@ -57,7 +57,7 @@ export function useChartDrawLines() {
     for (let i = 0; i < 10; i++) {
       // ticks for stats
       g.append('circle')
-        .attr('r', minRadius + restRadius * ((1 / 10) * i))
+        .attr('r', minRadius + restRadius * (i / 10))
         .attr('fill', 'none')
         .attr('stroke', modifier.color.separator.stroke)
         .attr('stroke-opacity', modifier.color.separator.lowOpacity);
@@ -98,18 +98,16 @@ export function useChartDrawLines() {
         transform: `rotate(${180 + (startAngle * 180) / Math.PI})`,
       });
 
-      if (i < selectedStatIdsCount) {
-        const nextAngle = circleScale(i + 1);
-        const midAngle = (startAngle + nextAngle) / 2;
+      const nextAngle = circleScale(i + 1);
+      const midAngle = (startAngle + nextAngle) / 2;
 
-        createLine(g, {
-          className: 'stat-center-separator',
-          y1: minRadius,
-          y2: radius * proportions[0],
-          opacity: modifier.color.separator.lowOpacity,
-          transform: `rotate(${180 + (midAngle * 180) / Math.PI})`,
-        });
-      }
+      createLine(g, {
+        className: 'stat-center-separator',
+        y1: minRadius,
+        y2: radius * proportions[0],
+        opacity: modifier.color.separator.lowOpacity,
+        transform: `rotate(${180 + (midAngle * 180) / Math.PI})`,
+      });
     }
   }
 

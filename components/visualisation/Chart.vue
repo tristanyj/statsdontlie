@@ -6,6 +6,7 @@ const { width, height } = useChartConfig();
 const { drawStatLabelArcs, drawStatArcs, drawGroupArcs } = useChartDrawArcs();
 const { drawCircularSeparators, drawLinearSeparators } = useChartDrawLines();
 const { drawStatLabels, drawScaleLabels, drawGroupLabels } = useChartDrawLabels();
+const { drawStatIntersectionPoints } = useChartDrawPoints();
 const { scales, updateScale } = useChartScales();
 
 const preferencesStore = usePreferencesStore();
@@ -110,6 +111,12 @@ function createVisualization() {
     selectedStatIdsCount.value
   );
   drawCircularSeparators(g.value);
+
+  // -----------------
+  // POINTS
+  // -----------------
+
+  drawStatIntersectionPoints(g.value, scales.circle, selectedStatIdsCount.value);
 }
 
 function updateVisualization() {
