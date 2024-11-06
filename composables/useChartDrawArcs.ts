@@ -6,7 +6,7 @@ export function useChartDrawArcs() {
 
   function drawStatArcs(
     g: d3GSelection,
-    angleScale: d3.ScaleLinear<number, number>,
+    circleScale: d3.ScaleLinear<number, number>,
     selectedStats: EnrichedStat[],
     selectedPlayers: Player[]
   ) {
@@ -44,8 +44,8 @@ export function useChartDrawArcs() {
             arcGenerator({
               innerRadius: minRadius,
               outerRadius: minRadius + restRadius * d.value,
-              startAngle: angleScale(d.index),
-              endAngle: angleScale(d.index + 1),
+              startAngle: circleScale(d.index),
+              endAngle: circleScale(d.index + 1),
               data: d,
             })
           )
@@ -57,7 +57,7 @@ export function useChartDrawArcs() {
 
   function drawStatLabelArcs(
     g: d3GSelection,
-    angleScale: d3.ScaleLinear<number, number>,
+    circleScale: d3.ScaleLinear<number, number>,
     selectedStats: EnrichedStat[]
   ) {
     const className = 'stat-label-arc';
@@ -67,8 +67,8 @@ export function useChartDrawArcs() {
         selectedStats.map((data, i) => ({
           innerRadius: radius * proportions[0],
           outerRadius: radius * proportions[1],
-          startAngle: angleScale(i),
-          endAngle: angleScale(i + 1),
+          startAngle: circleScale(i),
+          endAngle: circleScale(i + 1),
           data,
         }))
       )
@@ -80,7 +80,7 @@ export function useChartDrawArcs() {
 
   function drawGroupArcs(
     g: d3GSelection,
-    angleScale: d3.ScaleLinear<number, number>,
+    circleScale: d3.ScaleLinear<number, number>,
     indices: number[],
     groups: Group[] | SubGroup[],
     modifier: number
@@ -94,8 +94,8 @@ export function useChartDrawArcs() {
             ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.stats.length, 0)
             : group.stats.length);
 
-      const startAngle = angleScale(startIndex);
-      const endAngle = angleScale(nextGroupStartIndex);
+      const startAngle = circleScale(startIndex);
+      const endAngle = circleScale(nextGroupStartIndex);
 
       const backgroundArc = arcGenerator({
         innerRadius: radius * proportions[3 - modifier],

@@ -8,14 +8,14 @@ export function useChartDrawLabels() {
 
   function drawStatLabels(
     g: d3GSelection,
-    angleScale: d3.ScaleLinear<number, number>,
+    circleScale: d3.ScaleLinear<number, number>,
     stats: EnrichedStat[]
   ) {
     const className = 'stat-label';
 
     stats.forEach(function (d, i) {
-      const startAngle = angleScale(i);
-      const midAngle = startAngle + (angleScale(i + 1) - startAngle) / 2;
+      const startAngle = circleScale(i);
+      const midAngle = startAngle + (circleScale(i + 1) - startAngle) / 2;
       const labelRadius = radius * proportions[0] * modifier.radius.statLabel;
 
       const textGroup = g.append('g').attr('class', className);
@@ -45,7 +45,7 @@ export function useChartDrawLabels() {
 
   function drawGroupLabels(
     g: d3GSelection,
-    angleScale: d3.ScaleLinear<number, number>,
+    circleScale: d3.ScaleLinear<number, number>,
     indices: number[],
     groups: Group[] | SubGroup[],
     layerModifier: number
@@ -61,8 +61,8 @@ export function useChartDrawLabels() {
             ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.stats.length, 0)
             : group.stats.length);
 
-      const startAngle = angleScale(startIndex);
-      const endAngle = angleScale(nextGroupStartIndex);
+      const startAngle = circleScale(startIndex);
+      const endAngle = circleScale(nextGroupStartIndex);
       const midAngle = (startAngle + endAngle) / 2;
 
       const shouldFlip = shouldFlipText(midAngle);
@@ -110,12 +110,12 @@ export function useChartDrawLabels() {
 
   function drawScaleLabels(
     g: d3GSelection,
-    angleScale: d3.ScaleLinear<number, number>,
+    circleScale: d3.ScaleLinear<number, number>,
     stats: EnrichedStat[]
   ) {
     stats.forEach(function (d, i) {
-      const startAngle = angleScale(i);
-      const endAngle = angleScale(i + 1);
+      const startAngle = circleScale(i);
+      const endAngle = circleScale(i + 1);
       const midAngle = (startAngle + endAngle) / 2;
       const shouldFlip = shouldFlipText(midAngle);
 

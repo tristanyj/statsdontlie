@@ -64,7 +64,7 @@ const indices = computed(() => {
   return { group: groupIndices, subGroup: subGroupIndices };
 });
 
-updateScale('angle', [0, selectedStatIdsCount.value]);
+updateScale('circle', [0, selectedStatIdsCount.value]);
 
 const container = ref<HTMLElement | null>(null);
 const g = ref<d3GSelection | null>(null);
@@ -78,24 +78,24 @@ function createVisualization() {
   // -----------------
 
   // Draw group and sub-group arcs
-  drawGroupArcs(g.value, scales.angle, indices.value.group, selectedGroups.value, 0);
-  drawGroupArcs(g.value, scales.angle, indices.value.subGroup, selectedSubGroups.value, 1);
+  drawGroupArcs(g.value, scales.circle, indices.value.group, selectedGroups.value, 0);
+  drawGroupArcs(g.value, scales.circle, indices.value.subGroup, selectedSubGroups.value, 1);
 
   // Draw stat & stat label arcs
-  drawStatArcs(g.value, scales.angle, selectedStats.value, selectedPlayers.value);
-  drawStatLabelArcs(g.value, scales.angle, selectedStats.value);
+  drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value);
+  drawStatLabelArcs(g.value, scales.circle, selectedStats.value);
 
   // -----------------
   // LABELS
   // -----------------
 
   // Draw group and sub-group labels
-  drawGroupLabels(g.value, scales.angle, indices.value.group, selectedGroups.value, 0);
-  drawGroupLabels(g.value, scales.angle, indices.value.subGroup, selectedSubGroups.value, 1);
+  drawGroupLabels(g.value, scales.circle, indices.value.group, selectedGroups.value, 0);
+  drawGroupLabels(g.value, scales.circle, indices.value.subGroup, selectedSubGroups.value, 1);
 
   // Draw scale and stat labels
-  drawStatLabels(g.value, scales.angle, selectedStats.value);
-  drawScaleLabels(g.value, scales.angle, selectedStats.value);
+  drawStatLabels(g.value, scales.circle, selectedStats.value);
+  drawScaleLabels(g.value, scales.circle, selectedStats.value);
 
   // -----------------
   // LINES
@@ -104,7 +104,7 @@ function createVisualization() {
   // Draw linear and circular separators
   drawLinearSeparators(
     g.value,
-    scales.angle,
+    scales.circle,
     indices.value.group,
     indices.value.subGroup,
     selectedStatIdsCount.value
@@ -155,7 +155,7 @@ watch(
 watch(
   () => selectedStatIdsCount.value,
   (count) => {
-    updateScale('angle', [0, count]);
+    updateScale('circle', [0, count]);
     createVisualization();
   }
 );

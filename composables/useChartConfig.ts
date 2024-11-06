@@ -6,7 +6,6 @@ export function useChartConfig() {
   const width = 1400;
   const height = 1400;
   const margin = 1;
-  const padAngle = 0.001;
 
   // ------------------------------
   // Scale Positions
@@ -118,6 +117,5 @@ export function useChartConfig() {
     modifier,
     innerRadiusPadding,
     scalePositions,
-    padAngle,
   };
 }

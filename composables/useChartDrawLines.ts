@@ -1,7 +1,19 @@
-import type { d3GSelection } from '~/types';
+import type { d3GSelection, LineData } from '~/types';
+
+const createLine = (g: d3GSelection, params: LineData) => {
+  g.append('line')
+    .attr('class', params.className)
+    .attr('x1', 0)
+    .attr('y1', params.y1)
+    .attr('x2', 0)
+    .attr('y2', params.y2)
+    .attr('stroke', params.stroke ?? '#000')
+    .attr('opacity', params.opacity ?? 1)
+    .attr('stroke-width', 1)
+    .attr('transform', params.transform);
+};
 
 export function useChartDrawLines() {
-  const { createLine } = useChartGenerators();
   const { radius, minRadius, restRadius, proportions, modifier } = useChartConfig();
 
   function drawCircularSeparators(g: d3GSelection) {
@@ -54,13 +66,13 @@ export function useChartDrawLines() {
 
   function drawLinearSeparators(
     g: d3GSelection,
-    angleScale: d3.ScaleLinear<number, number>,
+    circleScale: d3.ScaleLinear<number, number>,
     groupIndices: number[],
     subGroupIndices: number[],
     selectedStatIdsCount: number
   ) {
     for (let i = 0; i <= selectedStatIdsCount; i++) {
-      const startAngle = angleScale(i);
+      const startAngle = circleScale(i);
       const isGroupSeparator = groupIndices.includes(i);
       const isSubGroupSeparator = subGroupIndices.includes(i);
 
@@ -87,7 +99,7 @@ export function useChartDrawLines() {
       });
 
       if (i < selectedStatIdsCount) {
-        const nextAngle = angleScale(i + 1);
+        const nextAngle = circleScale(i + 1);
         const midAngle = (startAngle + nextAngle) / 2;
 
         createLine(g, {
