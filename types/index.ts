@@ -79,7 +79,7 @@ export interface EnrichedStat extends Stat {
   color: `#${string}`;
   meta: Stat['meta'] & {
     scale: (value: number) => number;
-    format: (value: number) => string;
+    format: (value: number, decimals: number) => string;
   };
 }
 

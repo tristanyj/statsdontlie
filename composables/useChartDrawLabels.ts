@@ -134,8 +134,11 @@ export function useChartDrawLabels() {
           ? labelRadius + modifier.space.scaleLabel.background.flip
           : labelRadius + modifier.space.scaleLabel.background.standard;
 
-        // @ts-expect-error - TS doesn't know about the scale function
-        const value = d.meta.format(d.meta.scale.invert(position));
+        const value = d.meta.format(
+          // @ts-expect-error - TS doesn't know about the scale function
+          d.meta.scale.invert(position),
+          position === 0.0 ? 0 : position === 1.0 ? 3 : 1
+        );
 
         g.append('path')
           .attr('id', id)

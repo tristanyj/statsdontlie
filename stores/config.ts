@@ -19,7 +19,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.general.games',
               name: 'Games Played',
               meta: {
-                domain: [0, 350],
+                domain: [0, 335],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -46,7 +46,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.completions',
               name: 'Completions',
               meta: {
-                domain: [0, 8000],
+                domain: [0, 7753],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -66,7 +66,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.attempts',
               name: 'Attempts',
               meta: {
-                domain: [0, 12500],
+                domain: [0, 12050],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -86,7 +86,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.completion-percentage',
               name: 'Completion %',
               meta: {
-                domain: [50, 70],
+                domain: [55, 68.3],
                 scaleType: 'linear',
                 formatType: 'percent',
               },
@@ -106,7 +106,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.yards',
               name: 'Passing Yards',
               meta: {
-                domain: [1000, 90000],
+                domain: [1000, 89214],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -126,7 +126,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.touchdowns',
               name: 'Passing Touchdowns',
               meta: {
-                domain: [0, 650],
+                domain: [0, 649],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -146,7 +146,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.interceptions',
               name: 'Interceptions',
               meta: {
-                domain: [0, 350],
+                domain: [0, 336],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -166,7 +166,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.rating',
               name: 'Passer Rating',
               meta: {
-                domain: [80, 108],
+                domain: [80, 103.0],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -186,7 +186,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.sacks',
               name: 'Sacks Taken',
               meta: {
-                domain: [0, 600],
+                domain: [0, 570],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -206,7 +206,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.fumbles',
               name: 'Fumbles',
               meta: {
-                domain: [0, 180],
+                domain: [0, 166],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -233,7 +233,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.rushing.attempts',
               name: 'Rushing Attempts',
               meta: {
-                domain: [0, 1200],
+                domain: [0, 1118],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -253,7 +253,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.rushing.yards',
               name: 'Rushing Yards',
               meta: {
-                domain: [0, 6200],
+                domain: [0, 6109],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -273,7 +273,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.rushing.touchdowns',
               name: 'Rushing Touchdowns',
               meta: {
-                domain: [0, 80],
+                domain: [0, 75],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -307,7 +307,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.general.games',
               name: 'Games Played',
               meta: {
-                domain: [0, 50],
+                domain: [0, 48],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -354,7 +354,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.passing.attempts',
               name: 'Attempts',
               meta: {
-                domain: [0, 2000],
+                domain: [0, 1921],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -374,7 +374,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.passing.completion-percentage',
               name: 'Completion %',
               meta: {
-                domain: [50, 70],
+                domain: [55, 68.1],
                 scaleType: 'linear',
                 formatType: 'percent',
               },
@@ -394,7 +394,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.passing.yards',
               name: 'Passing Yards',
               meta: {
-                domain: [0, 14000],
+                domain: [0, 13400],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -414,7 +414,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.passing.touchdowns',
               name: 'Passing Touchdowns',
               meta: {
-                domain: [0, 90],
+                domain: [0, 88],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -454,7 +454,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.passing.rating',
               name: 'Passer Rating',
               meta: {
-                domain: [80, 108],
+                domain: [80, 105.8],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -474,7 +474,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.passing.sacks',
               name: 'Sacks Taken',
               meta: {
-                domain: [0, 90],
+                domain: [0, 81],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -494,7 +494,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.passing.fumbles',
               name: 'Fumbles',
               meta: {
-                domain: [0, 20],
+                domain: [0, 16],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -521,7 +521,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.rushing.attempts',
               name: 'Rushing Attempts',
               meta: {
-                domain: [0, 120],
+                domain: [0, 114],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -541,7 +541,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.rushing.yards',
               name: 'Rushing Yards',
               meta: {
-                domain: [0, 600],
+                domain: [0, 594],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -561,7 +561,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.rushing.touchdowns',
               name: 'Rushing Touchdowns',
               meta: {
-                domain: [0, 10],
+                domain: [0, 8],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -655,7 +655,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'awards.individual.all-pro-first',
               name: '1st Team All-Pro Selections',
               meta: {
-                domain: [0, 10],
+                domain: [0, 7],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -675,7 +675,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'awards.individual.all-pro-second',
               name: '2nd Team All-Pro Selections',
               meta: {
-                domain: [0, 5],
+                domain: [0, 3],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -722,7 +722,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'awards.team.sb-win',
               name: 'Super Bowl Wins',
               meta: {
-                domain: [0, 10],
+                domain: [0, 7],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -748,7 +748,7 @@ export const useConfigStore = defineStore('config', () => {
     string,
     d3.ScaleContinuousNumeric<number, number> | d3.ScaleThreshold<number, number>
   >();
-  const formatCache = new Map<string, (n: number) => string>();
+  const formatCache = new Map<string, (n: number, decimals: number) => string>();
 
   const getScale = (column: Stat) => {
     const cacheKey = `${column.id}-${column.meta.scaleType}-${column.meta.domain}`;
@@ -793,9 +793,9 @@ export const useConfigStore = defineStore('config', () => {
       const formatter = (() => {
         switch (column.meta.formatType) {
           case 'number':
-            return (n: number) => formatNumber(n);
+            return (n: number, decimals: number) => formatNumber(n, decimals);
           case 'percent':
-            return (n: number) => `${n.toFixed(0)}%`;
+            return (n: number, decimals: number) => `${n.toFixed(decimals ?? 1)}%`;
           default:
             return (n: number) => formatNumber(n);
         }
