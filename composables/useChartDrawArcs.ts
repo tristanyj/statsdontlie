@@ -1,4 +1,4 @@
-import type { d3GSelection, EnrichedColumn, EnrichedGroup, Group, Player, SubGroup } from '~/types';
+import type { d3GSelection, EnrichedStat, EnrichedGroup, Group, Player, SubGroup } from '~/types';
 
 export interface ArcData {
   innerRadius: number;
@@ -10,10 +10,9 @@ export interface ArcData {
 }
 
 interface ArcDataExtended {
-  columnId: string;
-  columnIndex: number;
+  statId: string;
+  statIndex: number;
   player: Player;
-  stat: number;
   scaledValue: number;
 }
 
@@ -27,44 +26,40 @@ export function useChartDrawArcs() {
     selectedGroups: EnrichedGroup[],
     selectedPlayers: Player[]
   ) {
-    const className = 'column-background';
+    const className = 'stat-background';
 
     const arcData: Array<ArcDataExtended> = [];
 
     // TODO: refactor this to use a single loop
-    let columnIndex = 0;
+    let statIndex = 0;
     selectedGroups.forEach((group) => {
       group.subGroups.forEach((subGroup) => {
-        subGroup.columns.forEach((column) => {
+        subGroup.stats.forEach((stat) => {
           selectedPlayers
             .sort((a, b) => {
-              const aStat = a.stats[column.id];
-              const bStat = b.stats[column.id];
+              const aStat = a.stats[stat.id];
+              const bStat = b.stats[stat.id];
               return (bStat || 0) - (aStat || 0);
             })
             .forEach((player) => {
-              const stat = player.stats[column.id];
-              if (stat) {
-                const v = column.meta.scale(stat);
+              const value = player.stats[stat.id];
+              if (value) {
+                const v = stat.meta.scale(value);
                 arcData.push({
-                  columnId: column.id,
-                  columnIndex,
+                  statId: stat.id,
+                  statIndex,
                   player,
-                  stat,
                   scaledValue: v,
                 });
               }
             });
-          columnIndex++;
+          statIndex++;
         });
       });
     });
 
     g.selectAll(`.${className}`)
-      .data(
-        arcData,
-        (d) => `${(d as ArcDataExtended).columnId}-${(d as ArcDataExtended).player.id}`
-      )
+      .data(arcData, (d) => `${(d as ArcDataExtended).statId}-${(d as ArcDataExtended).player.id}`)
       .join((enter) =>
         enter
           .append('path')
@@ -73,8 +68,8 @@ export function useChartDrawArcs() {
             arcGenerator({
               innerRadius: minRadius,
               outerRadius: minRadius + restRadius * d.scaledValue,
-              startAngle: angleScale(d.columnIndex),
-              endAngle: angleScale(d.columnIndex + 1),
+              startAngle: angleScale(d.statIndex),
+              endAngle: angleScale(d.statIndex + 1),
               data: d,
             })
           )
@@ -87,13 +82,13 @@ export function useChartDrawArcs() {
   function drawStatLabelArcs(
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
-    selectedColumn: EnrichedColumn[]
+    selectedStat: EnrichedStat[]
   ) {
-    const className = 'column-label-background';
+    const className = 'stat-label-background';
 
     g.selectAll(`.${className}`)
       .data(
-        selectedColumn.map((data, i) => ({
+        selectedStat.map((data, i) => ({
           innerRadius: radius * proportions[0],
           outerRadius: radius * proportions[1],
           startAngle: angleScale(i),
@@ -120,8 +115,8 @@ export function useChartDrawArcs() {
         indices[groupIndex + 1] ??
         startIndex +
           ('subGroups' in group
-            ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.columns.length, 0)
-            : group.columns.length);
+            ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.stats.length, 0)
+            : group.stats.length);
 
       const startAngle = angleScale(startIndex);
       const endAngle = angleScale(nextGroupStartIndex);

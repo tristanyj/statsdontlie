@@ -5,12 +5,11 @@ import type { d3GSelection, Player } from '@/types';
 const { width, height } = useChartDimensions();
 const { drawStatLabelArcs, drawStatArcs, drawGroupArcs } = useChartDrawArcs();
 const { drawCircularSeparators, drawLinearSeparators } = useChartDrawLines();
-const { drawColumnLabels, drawColumnScales, drawGroupLabels } = useChartDrawLabels();
+const { drawStatLabels, drawScaleLabels, drawGroupLabels } = useChartDrawLabels();
 const { scales, updateScale } = useChartScales();
 
 const preferencesStore = usePreferencesStore();
-const { selectedPlayerIds, selectedColumnIds, selectedColumnIdsCount } =
-  storeToRefs(preferencesStore);
+const { selectedPlayerIds, selectedStatIds, selectedStatIdsCount } = storeToRefs(preferencesStore);
 
 const configStore = useConfigStore();
 const { statGroups } = storeToRefs(configStore);
@@ -31,11 +30,9 @@ const selectedGroups = computed(() => {
           subGroups: group.subGroups
             .map((subGroup) => ({
               ...subGroup,
-              columns: subGroup.columns.filter((column) =>
-                selectedColumnIds.value.includes(column.id)
-              ),
+              stats: subGroup.stats.filter((column) => selectedStatIds.value.includes(column.id)),
             }))
-            .filter((subGroup) => subGroup.columns.length > 0),
+            .filter((subGroup) => subGroup.stats.length > 0),
         }))
         .filter((group) => group.subGroups.length > 0)
     : [];
@@ -45,10 +42,10 @@ const selectedSubGroups = computed(() => {
   return selectedGroups.value.flatMap((group) => group.subGroups);
 });
 
-const selectedColumns = computed(() => {
+const selectedStats = computed(() => {
   return selectedGroups.value
     .flatMap((group) => group.subGroups)
-    .flatMap((subGroup) => subGroup.columns);
+    .flatMap((subGroup) => subGroup.stats);
 });
 
 const indices = computed(() => {
@@ -60,7 +57,7 @@ const indices = computed(() => {
     groupIndices.push(currentIndex);
     group.subGroups.forEach((subGroup) => {
       subGroupIndices.push(currentIndex);
-      currentIndex += subGroup.columns.length;
+      currentIndex += subGroup.stats.length;
     });
   });
 
@@ -70,7 +67,7 @@ const indices = computed(() => {
   };
 });
 
-updateScale('angle', [0, selectedColumnIdsCount.value]);
+updateScale('angle', [0, selectedStatIdsCount.value]);
 
 const container = ref<HTMLElement | null>(null);
 const g = ref<d3GSelection | null>(null);
@@ -80,10 +77,10 @@ function createVisualization() {
   g.value.selectAll('*').remove();
 
   // -----------------
-  // Draw stat arcs and labels
+  // Draw stat & stat label arcs
   // -----------------
   drawStatArcs(g.value, scales.angle, selectedGroups.value, selectedPlayers.value);
-  drawStatLabelArcs(g.value, scales.angle, selectedColumns.value);
+  drawStatLabelArcs(g.value, scales.angle, selectedStats.value);
 
   // -----------------
   // Draw group and sub-group arcs
@@ -96,13 +93,14 @@ function createVisualization() {
   // -----------------
   drawGroupLabels(g.value, scales.angle, indices.value.group, selectedGroups.value, 0);
   drawGroupLabels(g.value, scales.angle, indices.value.subGroup, selectedSubGroups.value, 1);
+  drawScaleLabels(g.value, scales.angle, selectedStats.value);
+
+  drawStatLabels(g.value, scales.angle, selectedStats.value);
 
   // -----------------
   // TODO: refactor
   // -----------------
-  drawColumnScales(g.value, scales.angle, selectedColumns.value);
-  drawColumnLabels(g.value, scales.angle, selectedColumns.value);
-  drawLinearSeparators(g.value, scales.angle, selectedGroups.value, selectedColumnIdsCount.value);
+  drawLinearSeparators(g.value, scales.angle, selectedGroups.value, selectedStatIdsCount.value);
   drawCircularSeparators(g.value);
 }
 
@@ -131,7 +129,7 @@ const mountToContainer = () => {
 };
 
 watch(
-  () => selectedColumnIds.value,
+  () => selectedStatIds.value,
   () => {
     updateVisualization();
   },
@@ -147,7 +145,7 @@ watch(
 );
 
 watch(
-  () => selectedColumnIdsCount.value,
+  () => selectedStatIdsCount.value,
   (count) => {
     updateScale('angle', [0, count]);
     createVisualization();

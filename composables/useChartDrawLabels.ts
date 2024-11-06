@@ -1,6 +1,14 @@
-import type { d3GSelection, EnrichedColumn, Group, SubGroup } from '~/types';
+import type { d3GSelection, EnrichedStat, Group, SubGroup } from '~/types';
 
-import { formatNumber } from '~/utils/chart/formatters';
+// import { formatNumber } from '~/utils/chart/formatters';
+
+const formatNumber = (value: number) => {
+  // k for thousands, M for millions, B for billions
+  if (value < 1e3) return value;
+  if (value < 1e6) return `${(value / 1e3).toFixed(0)}k`;
+  if (value < 1e9) return `${value / 1e6}M`;
+  return `${value / 1e9}B`;
+};
 
 function wrapText(text: string, width: number): string[] {
   const words = text.split(/\s+/).reverse();
@@ -95,10 +103,10 @@ export function useChartDrawLabels() {
     return textGroup;
   }
 
-  function drawColumnLabels(
+  function drawStatLabels(
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
-    columns: EnrichedColumn[]
+    stats: EnrichedStat[]
   ) {
     g.selectAll('.column-label').remove();
 
@@ -107,7 +115,7 @@ export function useChartDrawLabels() {
 
     const columnLabels = g
       .selectAll('.column-label')
-      .data(columns)
+      .data(stats)
       .enter()
       .append('g')
       .attr('class', 'column-label')
@@ -162,8 +170,8 @@ export function useChartDrawLabels() {
         indices[groupIndex + 1] ??
         startIndex +
           ('subGroups' in group
-            ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.columns.length, 0)
-            : group.columns.length);
+            ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.stats.length, 0)
+            : group.stats.length);
 
       // TODO: refactor to helper function
       const startAngle = angleScale(startIndex);
@@ -206,10 +214,10 @@ export function useChartDrawLabels() {
     });
   }
 
-  function drawColumnScales(
+  function drawScaleLabels(
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
-    columns: EnrichedColumn[]
+    stats: EnrichedStat[]
   ) {
     g.selectAll('.column-scale').remove();
 
@@ -223,7 +231,7 @@ export function useChartDrawLabels() {
 
     const columnScales = g
       .selectAll('.column-scale')
-      .data(columns)
+      .data(stats)
       .enter()
       .append('g')
       .attr('class', 'column-scale')
@@ -318,7 +326,7 @@ export function useChartDrawLabels() {
   return {
     createTextWithBackground,
     drawGroupLabels,
-    drawColumnLabels,
-    drawColumnScales,
+    drawStatLabels,
+    drawScaleLabels,
   };
 }

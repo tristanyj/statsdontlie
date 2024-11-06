@@ -1,11 +1,11 @@
-import type { ColumnKey, PlayerKey } from '~/types';
+import type { StatKey, PlayerKey } from '~/types';
 
 export const usePreferencesStore = defineStore(
   'preferences',
   () => {
     const selectedPlayerIds = ref<PlayerKey[]>(['aaron-rodgers', 'tom-brady']);
 
-    const selectedColumnIds = ref<ColumnKey[]>([
+    const selectedStatIds = ref<StatKey[]>([
       'regular-season.general.games',
       'regular-season.passing.completions',
       'regular-season.passing.attempts',
@@ -45,18 +45,18 @@ export const usePreferencesStore = defineStore(
       selectedPlayerIds.value = newselectedPlayerIds;
     };
 
-    const updateSelectedColumnIds = (newselectedColumnIds: ColumnKey[]) => {
-      selectedColumnIds.value = newselectedColumnIds;
+    const updateSelectedStatIds = (newselectedStatIds: StatKey[]) => {
+      selectedStatIds.value = newselectedStatIds;
     };
 
-    const selectedColumnIdsCount = computed(() => selectedColumnIds.value.length);
+    const selectedStatIdsCount = computed(() => selectedStatIds.value.length);
 
     return {
       selectedPlayerIds,
-      selectedColumnIds,
-      selectedColumnIdsCount,
+      selectedStatIds,
+      selectedStatIdsCount,
       updateselectedPlayerIds,
-      updateSelectedColumnIds,
+      updateSelectedStatIds,
     };
   }
   // { persist: true }

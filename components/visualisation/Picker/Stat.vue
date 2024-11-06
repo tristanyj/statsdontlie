@@ -3,20 +3,20 @@ const configStore = useConfigStore();
 const { statGroups } = storeToRefs(configStore);
 
 const preferencesStore = usePreferencesStore();
-const { selectedColumnIds } = storeToRefs(preferencesStore);
-const { updateSelectedColumnIds } = preferencesStore;
+const { selectedStatIds } = storeToRefs(preferencesStore);
+const { updateSelectedStatIds } = preferencesStore;
 
 const selection = computed({
-  get: () => selectedColumnIds.value,
+  get: () => selectedStatIds.value,
   set: (newValue) => {
-    updateSelectedColumnIds(newValue);
+    updateSelectedStatIds(newValue);
   },
 });
 </script>
 
 <template>
   <div>
-    <h2 class="text-2xl font-bold text-center">Select Columns</h2>
+    <h2 class="text-2xl font-bold text-center">Select Stats</h2>
     <div class="flex justify-center p-5">
       <div class="grid grid-cols-3 gap-5 text-center">
         <div
@@ -33,7 +33,7 @@ const selection = computed({
               <h4 class="text-md font-bold">{{ subGroup.name }}</h4>
               <div class="">
                 <div
-                  v-for="(column, k) in subGroup.columns"
+                  v-for="(column, k) in subGroup.stats"
                   :key="`column-${k}`"
                   class=""
                 >

@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import type { Column, EnrichedColumn, EnrichedGroup, Group } from '~/types';
+import type { Stat, EnrichedStat, EnrichedGroup, Group } from '~/types';
 
 export const useConfigStore = defineStore('config', () => {
   const statGroups = ref<Group[]>([
@@ -12,7 +12,7 @@ export const useConfigStore = defineStore('config', () => {
           id: 'regular-season.general',
           name: 'General',
           color: '#ffe5d9',
-          columns: [
+          stats: [
             {
               id: 'regular-season.general.games',
               name: 'Games Played',
@@ -40,7 +40,7 @@ export const useConfigStore = defineStore('config', () => {
           id: 'regular-season.passing',
           name: 'Passing',
           color: '#d7e3fc',
-          columns: [
+          stats: [
             {
               id: 'regular-season.passing.completions',
               name: 'Completions',
@@ -236,7 +236,7 @@ export const useConfigStore = defineStore('config', () => {
           id: 'regular-season.rushing',
           name: 'Rushing',
           color: '#fad2e1',
-          columns: [
+          stats: [
             {
               id: 'regular-season.rushing.attempts',
               name: 'Rushing Attempts',
@@ -313,7 +313,7 @@ export const useConfigStore = defineStore('config', () => {
           id: 'post-season.general',
           name: 'General',
           color: '#ffe5d9',
-          columns: [
+          stats: [
             {
               id: 'post-season.general.games',
               name: 'Games Played',
@@ -341,7 +341,7 @@ export const useConfigStore = defineStore('config', () => {
           id: 'post-season.passing',
           name: 'Passing',
           color: '#d7e3fc',
-          columns: [
+          stats: [
             {
               id: 'post-season.passing.completions',
               name: 'Completions',
@@ -537,7 +537,7 @@ export const useConfigStore = defineStore('config', () => {
           id: 'post-season.rushing',
           name: 'Rushing',
           color: '#fad2e1',
-          columns: [
+          stats: [
             {
               id: 'post-season.rushing.attempts',
               name: 'Rushing Attempts',
@@ -614,7 +614,7 @@ export const useConfigStore = defineStore('config', () => {
           id: 'awards.individual',
           name: 'Individual Awards',
           color: '#c7eae4',
-          columns: [
+          stats: [
             {
               id: 'awards.individual.mvp',
               name: 'MVP Awards',
@@ -726,7 +726,7 @@ export const useConfigStore = defineStore('config', () => {
           id: 'awards.team',
           name: 'Team Awards',
           color: '#fbf2c0',
-          columns: [
+          stats: [
             {
               id: 'awards.team.sb-appearance',
               name: 'Super Bowl Appearances',
@@ -781,7 +781,7 @@ export const useConfigStore = defineStore('config', () => {
   >();
   const formatCache = new Map<string, (n: number) => string>();
 
-  const getScale = (column: Column) => {
+  const getScale = (column: Stat) => {
     const cacheKey = `${column.id}-${column.meta.scaleType}-${column.meta.domainMin}-${column.meta.domainMax}`;
 
     if (!scaleCache.has(cacheKey)) {
@@ -817,7 +817,7 @@ export const useConfigStore = defineStore('config', () => {
     return scaleCache.get(cacheKey)!;
   };
 
-  const getFormat = (column: Column) => {
+  const getFormat = (column: Stat) => {
     const cacheKey = `${column.id}-${column.meta.formatType}`;
 
     if (!formatCache.has(cacheKey)) {
@@ -836,23 +836,23 @@ export const useConfigStore = defineStore('config', () => {
     return formatCache.get(cacheKey)!;
   };
 
-  const selectableColumns = computed(() => {
+  const selectableStats = computed(() => {
     return statGroups.value.flatMap((group: Group) =>
-      group.subGroups.flatMap((subGroup) => subGroup.columns.map(({ id, name }) => ({ id, name })))
+      group.subGroups.flatMap((subGroup) => subGroup.stats.map(({ id, name }) => ({ id, name })))
     );
   });
 
-  const selectableColumnsGroupedByGroupKey = computed(() => {
+  const selectableStatsGroupedByGroupKey = computed(() => {
     return statGroups.value.map((group: Group) => ({
       id: group.id,
       name: group.name,
-      columns: group.subGroups.flatMap((subGroup) =>
-        subGroup.columns.map(({ id, name }) => ({ id, name }))
+      stats: group.subGroups.flatMap((subGroup) =>
+        subGroup.stats.map(({ id, name }) => ({ id, name }))
       ),
     }));
   });
 
-  const getEnrichedColumn = (column: Column, color: `#${string}`): EnrichedColumn => ({
+  const getEnrichedStat = (column: Stat, color: `#${string}`): EnrichedStat => ({
     ...column,
     color,
     meta: {
@@ -868,7 +868,7 @@ export const useConfigStore = defineStore('config', () => {
         ...group,
         subGroups: group.subGroups.map((subGroup) => ({
           ...subGroup,
-          columns: subGroup.columns.map((column) => getEnrichedColumn(column, subGroup.color)),
+          stats: subGroup.stats.map((column) => getEnrichedStat(column, subGroup.color)),
         })),
       })) as EnrichedGroup[]
   );
@@ -880,7 +880,7 @@ export const useConfigStore = defineStore('config', () => {
 
   return {
     statGroups: enrichedStatGroups,
-    selectableColumns,
-    selectableColumnsGroupedByGroupKey,
+    selectableStats,
+    selectableStatsGroupedByGroupKey,
   };
 });

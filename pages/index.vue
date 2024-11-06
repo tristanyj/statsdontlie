@@ -19,7 +19,7 @@ const playersPickerFormatted = DATASET.players.map((player) => ({
     <div class="grid grid-flow-col gap-10 justify-center">
       <VisualisationPickerPlayer :players="playersPickerFormatted" />
       <UDivider orientation="vertical" />
-      <VisualisationPickerColumn />
+      <VisualisationPickerStat />
     </div>
   </div>
 </template>

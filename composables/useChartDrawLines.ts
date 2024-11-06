@@ -57,23 +57,23 @@ export function useChartDrawLines() {
   const drawLinearSeparators = (
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
-    statGroupsWithSelectedColumnIds: Group[],
-    selectedColumnIdsCount: number
+    statGroupsWithSelectedStatIds: Group[],
+    selectedStatIdsCount: number
   ) => {
     let columnIndex = 0;
     const groupStartIndices: number[] = [];
     const subGroupStartIndices: number[] = [];
 
-    statGroupsWithSelectedColumnIds.forEach((group) => {
+    statGroupsWithSelectedStatIds.forEach((group) => {
       groupStartIndices.push(columnIndex);
       group.subGroups.forEach((subGroup) => {
         subGroupStartIndices.push(columnIndex);
-        columnIndex += subGroup.columns.length;
+        columnIndex += subGroup.stats.length;
       });
     });
 
     // Create all separators
-    for (let i = 0; i <= selectedColumnIdsCount; i++) {
+    for (let i = 0; i <= selectedStatIdsCount; i++) {
       const angle = angleScale(i);
       const isGroupSeparator = groupStartIndices.includes(i);
       const isSubGroupSeparator = subGroupStartIndices.includes(i);
@@ -91,7 +91,7 @@ export function useChartDrawLines() {
         transform: `rotate(${180 + (angle * 180) / Math.PI})`,
       });
 
-      if (i < selectedColumnIdsCount) {
+      if (i < selectedStatIdsCount) {
         const nextAngle = angleScale(i + 1);
         const midAngle = (angle + nextAngle) / 2;
 

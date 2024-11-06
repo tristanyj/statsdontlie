@@ -14,7 +14,7 @@ export type SubGroupKey =
   | 'awards.individual'
   | 'awards.team';
 
-export type ColumnKey =
+export type StatKey =
   | 'regular-season.general.games'
   | 'regular-season.passing.completions'
   | 'regular-season.passing.attempts'
@@ -63,10 +63,10 @@ export interface Player {
   handedness: 'left' | 'right';
   // colors are in hex format
   colors: `#${string}`[];
-  stats: Record<ColumnKey, number>;
+  stats: Record<StatKey, number>;
 }
 
-// const getEnrichedColumn = (column: Column) => ({
+// const getEnrichedStat = (column: Stat) => ({
 //   ...column,
 //   meta: {
 //     ...column.meta,
@@ -75,16 +75,16 @@ export interface Player {
 //   },
 // });
 
-export interface EnrichedColumn extends Column {
+export interface EnrichedStat extends Stat {
   color: `#${string}`;
-  meta: Column['meta'] & {
+  meta: Stat['meta'] & {
     scale: (value: number) => number;
     format: (value: number) => string;
   };
 }
 
-export interface Column {
-  id: ColumnKey;
+export interface Stat {
+  id: StatKey;
   name: string;
   meta: {
     domain?: number[];
@@ -119,14 +119,14 @@ export interface Group {
 }
 
 export interface EnrichedSubGroup extends SubGroup {
-  columns: EnrichedColumn[];
+  stats: EnrichedStat[];
 }
 
 export interface SubGroup {
   id: SubGroupKey;
   name: string;
   color: `#${string}`;
-  columns: Column[];
+  stats: Stat[];
 }
 
 export type d3GSelection = d3.Selection<SVGGElement, unknown, null, undefined>;
