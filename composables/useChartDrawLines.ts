@@ -14,7 +14,7 @@ const createLine = (g: d3GSelection, params: LineData) => {
 };
 
 export function useChartDrawLines() {
-  const { radius, minRadius, restRadius, proportions, modifier } = useChartConfig();
+  const { radius, minRadius, restRadius, proportions, layerCount, modifier } = useChartConfig();
 
   function drawCircularSeparators(g: d3GSelection) {
     // circle inside min radius
@@ -54,10 +54,10 @@ export function useChartDrawLines() {
         .attr('stroke-opacity', modifier.color.separator.highOpacity);
     }
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < layerCount; i++) {
       // ticks for stats
       g.append('circle')
-        .attr('r', minRadius + restRadius * (i / 10))
+        .attr('r', minRadius + restRadius * (i / layerCount))
         .attr('fill', 'none')
         .attr('stroke', modifier.color.separator.stroke)
         .attr('stroke-opacity', modifier.color.separator.lowOpacity);

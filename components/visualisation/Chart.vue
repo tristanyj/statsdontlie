@@ -3,7 +3,8 @@ import * as d3 from 'd3';
 import type { d3GSelection, Player } from '@/types';
 
 const { width, height } = useChartConfig();
-const { drawStatLabelArcs, drawStatArcs, drawGroupArcs } = useChartDrawArcs();
+const { drawStatLabelArcs, drawStatArcs, drawGroupArcs, drawOutsideMaxStatScaleArc } =
+  useChartDrawArcs();
 const { drawCircularSeparators, drawLinearSeparators } = useChartDrawLines();
 const { drawStatLabels, drawScaleLabels, drawGroupLabels } = useChartDrawLabels();
 const { drawStatIntersectionPoints } = useChartDrawPoints();
@@ -85,6 +86,8 @@ function createVisualization() {
   // Draw stat & stat label arcs
   drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value);
   drawStatLabelArcs(g.value, scales.circle, selectedStats.value);
+
+  drawOutsideMaxStatScaleArc(g.value);
 
   // -----------------
   // LABELS

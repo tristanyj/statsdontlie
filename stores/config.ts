@@ -19,7 +19,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.general.games',
               name: 'Games Played',
               meta: {
-                domain: [0, 400],
+                domain: [0, 350],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -66,7 +66,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.attempts',
               name: 'Attempts',
               meta: {
-                domain: [0, 13000],
+                domain: [0, 12500],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -126,18 +126,18 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.touchdowns',
               name: 'Passing Touchdowns',
               meta: {
-                domain: [0, 700],
+                domain: [0, 650],
                 scaleType: 'linear',
                 formatType: 'number',
               },
               record: {
                 qb: {
                   value: 649,
-                  name: 'Peyton Manning',
+                  name: 'Tom Brady',
                 },
                 all: {
                   value: 649,
-                  name: 'Peyton Manning',
+                  name: 'Tom Brady',
                   position: 'QB',
                 },
               },
@@ -146,7 +146,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.interceptions',
               name: 'Interceptions',
               meta: {
-                domain: [0, 400],
+                domain: [0, 350],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -166,7 +166,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.rating',
               name: 'Passer Rating',
               meta: {
-                domain: [80, 110],
+                domain: [80, 108],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -206,7 +206,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.passing.fumbles',
               name: 'Fumbles',
               meta: {
-                domain: [0, 200],
+                domain: [0, 180],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -273,7 +273,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'regular-season.rushing.touchdowns',
               name: 'Rushing Touchdowns',
               meta: {
-                domain: [0, 100],
+                domain: [0, 80],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -334,7 +334,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.passing.completions',
               name: 'Completions',
               meta: {
-                domain: [0, 1300],
+                domain: [0, 1200],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -434,7 +434,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.passing.interceptions',
               name: 'Interceptions',
               meta: {
-                domain: [0, 50],
+                domain: [0, 40],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -454,7 +454,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.passing.rating',
               name: 'Passer Rating',
               meta: {
-                domain: [80, 110],
+                domain: [80, 108],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -561,7 +561,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'post-season.rushing.touchdowns',
               name: 'Rushing Touchdowns',
               meta: {
-                domain: [0, 20],
+                domain: [0, 10],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -595,7 +595,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'awards.individual.mvp',
               name: 'MVP Awards',
               meta: {
-                domain: [0, 8],
+                domain: [0, 5],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -615,7 +615,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'awards.individual.sb-mvp',
               name: 'Super Bowl MVP Awards',
               meta: {
-                domain: [0, 8],
+                domain: [0, 5],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -635,7 +635,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'awards.individual.pro-bowl',
               name: 'Pro Bowl Selections',
               meta: {
-                domain: [0, 16],
+                domain: [0, 15],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -655,7 +655,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'awards.individual.all-pro-first',
               name: '1st Team All-Pro Selections',
               meta: {
-                domain: [0, 8],
+                domain: [0, 10],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -675,7 +675,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'awards.individual.all-pro-second',
               name: '2nd Team All-Pro Selections',
               meta: {
-                domain: [0, 8],
+                domain: [0, 5],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -702,7 +702,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'awards.team.sb-appearance',
               name: 'Super Bowl Appearances',
               meta: {
-                domain: [0, 12],
+                domain: [0, 10],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -722,7 +722,7 @@ export const useConfigStore = defineStore('config', () => {
               id: 'awards.team.sb-win',
               name: 'Super Bowl Wins',
               meta: {
-                domain: [0, 8],
+                domain: [0, 10],
                 scaleType: 'linear',
                 formatType: 'number',
               },
@@ -794,6 +794,8 @@ export const useConfigStore = defineStore('config', () => {
         switch (column.meta.formatType) {
           case 'number':
             return (n: number) => formatNumber(n);
+          case 'percent':
+            return (n: number) => `${n.toFixed(0)}%`;
           default:
             return (n: number) => formatNumber(n);
         }

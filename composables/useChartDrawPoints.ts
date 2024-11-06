@@ -1,7 +1,7 @@
 import type { d3GSelection } from '~/types';
 
 export function useChartDrawPoints() {
-  const { minRadius, restRadius, modifier } = useChartConfig();
+  const { minRadius, restRadius, modifier, layerCount } = useChartConfig();
 
   function drawStatIntersectionPoints(
     g: d3GSelection,
@@ -13,8 +13,8 @@ export function useChartDrawPoints() {
       const nextAngle = circleScale(i + 1);
       const midAngle = (startAngle + nextAngle) / 2 + (3 * Math.PI) / 2;
 
-      for (let j = 1; j <= 9; j++) {
-        const circleRadius = minRadius + restRadius * (j / 10);
+      for (let j = 1; j <= layerCount - 1; j++) {
+        const circleRadius = minRadius + restRadius * (j / layerCount);
 
         g.append('circle')
           .attr('r', 2)

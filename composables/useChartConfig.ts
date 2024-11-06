@@ -8,10 +8,11 @@ export function useChartConfig() {
   const margin = 1;
 
   // ------------------------------
-  // Scale Positions
+  // Positions
   // ------------------------------
 
-  const scalePositions = [0.0, 0.25, 0.5, 0.75, 1.0];
+  const scalePositions = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0];
+  const layerCount = 20;
 
   // ------------------------------
   // Proportions
@@ -58,7 +59,7 @@ export function useChartConfig() {
     },
     separator: {
       stroke: '#000',
-      lowOpacity: 0.1,
+      lowOpacity: 0.075,
       highOpacity: 0.7,
     },
   };
@@ -79,7 +80,7 @@ export function useChartConfig() {
       standard: 0,
       flip: 7.5,
       start: 5,
-      end: 3,
+      end: 4,
       text: {
         height: 8,
         padding: 1.5,
@@ -92,7 +93,7 @@ export function useChartConfig() {
   };
 
   const radiusModifier = {
-    outsideMaxStatScale: 1.035,
+    outsideMaxStatScale: 1.0325,
     insideMinStatScale: 0.9,
     statLabel: 1.08,
   };
@@ -114,6 +115,7 @@ export function useChartConfig() {
     restRadius,
     proportions,
     wrap,
+    layerCount,
     modifier,
     innerRadiusPadding,
     scalePositions,

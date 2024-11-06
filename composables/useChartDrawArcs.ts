@@ -2,7 +2,7 @@ import type { d3GSelection, EnrichedStat, Group, Player, SubGroup, StatArcData }
 
 export function useChartDrawArcs() {
   const { arcGenerator } = useChartGenerators();
-  const { radius, minRadius, proportions, restRadius } = useChartConfig();
+  const { radius, minRadius, proportions, restRadius, modifier } = useChartConfig();
 
   function drawStatArcs(
     g: d3GSelection,
@@ -111,9 +111,26 @@ export function useChartDrawArcs() {
     });
   }
 
+  function drawOutsideMaxStatScaleArc(g: d3GSelection) {
+    g.append('path')
+      .attr(
+        'd',
+        arcGenerator({
+          innerRadius: radius * proportions[0],
+          outerRadius: radius * proportions[0] * modifier.radius.outsideMaxStatScale,
+          startAngle: 0,
+          endAngle: Math.PI * 2,
+          data: null,
+        })
+      )
+      .attr('fill', '#f0f0f0')
+      .attr('opacity', 0.6);
+  }
+
   return {
     drawStatLabelArcs,
     drawStatArcs,
     drawGroupArcs,
+    drawOutsideMaxStatScaleArc,
   };
 }
