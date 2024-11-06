@@ -18,7 +18,7 @@ interface ArcDataExtended {
 }
 
 export function useChartDrawArcs() {
-  const { arcGenerator } = useChartGenerators();
+  const { arcGenerator, createLine } = useChartGenerators();
   const { radius, minRadius, proportions, restRadius } = useChartDimensions();
 
   function drawColumnLabelBackgrounds(
@@ -199,31 +199,25 @@ export function useChartDrawArcs() {
         ? radius * proportions[2]
         : radius * proportions[1];
 
-      g.append('line')
-        .attr('class', `separator ${isGroupSeparator ? 'group-separator' : 'column-separator'}`)
-        .attr('x1', 0)
-        .attr('y1', minRadius)
-        .attr('x2', 0)
-        .attr('y2', lineLength)
-        .attr('stroke', isGroupSeparator ? '#000' : '#000')
-        .attr('stroke-width', 1)
-        .attr('transform', `rotate(${180 + (angle * 180) / Math.PI})`);
+      createLine(g, {
+        className: `separator ${isGroupSeparator ? 'group-separator' : 'column-separator'}`,
+        y1: minRadius,
+        y2: lineLength,
+        transform: `rotate(${180 + (angle * 180) / Math.PI})`,
+      });
 
       // add line at center of each column, calculate center point of each column
-      if (!isGroupSeparator && !isSubGroupSeparator && i < selectedColumnIdsCount) {
+      if (i < selectedColumnIdsCount) {
         const nextAngle = angleScale(i + 1);
         const midAngle = (angle + nextAngle) / 2;
 
-        g.append('line')
-          .attr('class', 'column-center-separator')
-          .attr('x1', 0)
-          .attr('y1', minRadius)
-          .attr('x2', 0)
-          .attr('y2', radius * proportions[0])
-          .attr('stroke', '#000')
-          .attr('stroke-opacity', 0.1)
-          .attr('stroke-width', 1)
-          .attr('transform', `rotate(${180 + (midAngle * 180) / Math.PI})`);
+        createLine(g, {
+          className: 'column-center-separator',
+          y1: minRadius,
+          y2: radius * proportions[0],
+          opacity: 0.1,
+          transform: `rotate(${180 + (midAngle * 180) / Math.PI})`,
+        });
       }
 
       // Add group labels for group separators

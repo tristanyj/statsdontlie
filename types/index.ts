@@ -140,6 +140,15 @@ export interface ArcData {
   data: any;
 }
 
+export interface LineData {
+  className: string;
+  y1: number;
+  y2: number;
+  stroke?: string;
+  opacity?: number;
+  transform: string;
+}
+
 export interface ArcDataExtended {
   columnId: string;
   columnIndex: number;
