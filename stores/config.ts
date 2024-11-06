@@ -6,10 +6,12 @@ export const useConfigStore = defineStore('config', () => {
     {
       id: 'regular-season',
       name: 'Regular Season',
+      color: '#c6def1',
       subGroups: [
         {
           id: 'regular-season.general',
           name: 'General',
+          color: '#ffe5d9',
           columns: [
             {
               id: 'regular-season.general.games',
@@ -37,6 +39,7 @@ export const useConfigStore = defineStore('config', () => {
         {
           id: 'regular-season.passing',
           name: 'Passing',
+          color: '#d7e3fc',
           columns: [
             {
               id: 'regular-season.passing.completions',
@@ -232,6 +235,7 @@ export const useConfigStore = defineStore('config', () => {
         {
           id: 'regular-season.rushing',
           name: 'Rushing',
+          color: '#fad2e1',
           columns: [
             {
               id: 'regular-season.rushing.attempts',
@@ -303,10 +307,12 @@ export const useConfigStore = defineStore('config', () => {
     {
       id: 'post-season',
       name: 'Post Season',
+      color: '#dbcdf0',
       subGroups: [
         {
           id: 'post-season.general',
           name: 'General',
+          color: '#ffe5d9',
           columns: [
             {
               id: 'post-season.general.games',
@@ -334,6 +340,7 @@ export const useConfigStore = defineStore('config', () => {
         {
           id: 'post-season.passing',
           name: 'Passing',
+          color: '#d7e3fc',
           columns: [
             {
               id: 'post-season.passing.completions',
@@ -529,6 +536,7 @@ export const useConfigStore = defineStore('config', () => {
         {
           id: 'post-season.rushing',
           name: 'Rushing',
+          color: '#fad2e1',
           columns: [
             {
               id: 'post-season.rushing.attempts',
@@ -600,10 +608,12 @@ export const useConfigStore = defineStore('config', () => {
     {
       id: 'awards',
       name: 'Awards & Honors',
+      color: '#faedcb',
       subGroups: [
         {
           id: 'awards.individual',
           name: 'Individual Awards',
+          color: '#c7eae4',
           columns: [
             {
               id: 'awards.individual.mvp',
@@ -715,6 +725,7 @@ export const useConfigStore = defineStore('config', () => {
         {
           id: 'awards.team',
           name: 'Team Awards',
+          color: '#fbf2c0',
           columns: [
             {
               id: 'awards.team.sb-appearance',
@@ -841,8 +852,9 @@ export const useConfigStore = defineStore('config', () => {
     }));
   });
 
-  const getEnrichedColumn = (column: Column): EnrichedColumn => ({
+  const getEnrichedColumn = (column: Column, color: `#${string}`): EnrichedColumn => ({
     ...column,
+    color,
     meta: {
       ...column.meta,
       scale: getScale(column),
@@ -856,7 +868,7 @@ export const useConfigStore = defineStore('config', () => {
         ...group,
         subGroups: group.subGroups.map((subGroup) => ({
           ...subGroup,
-          columns: subGroup.columns.map(getEnrichedColumn),
+          columns: subGroup.columns.map((column) => getEnrichedColumn(column, subGroup.color)),
         })),
       })) as EnrichedGroup[]
   );

@@ -201,7 +201,8 @@ export function useChartDrawLabels() {
                 data: label,
               })
             )
-            .attr('fill', '#f9fafb');
+            .attr('fill', '#f9fafb')
+            .attr('opacity', 0.9);
         }
 
         g.append('text')

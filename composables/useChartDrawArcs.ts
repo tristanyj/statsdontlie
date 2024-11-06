@@ -1,4 +1,11 @@
-import type { ColumnKey, d3GSelection, EnrichedGroup, Group, Player } from '~/types';
+import type {
+  ColumnKey,
+  d3GSelection,
+  EnrichedColumn,
+  EnrichedGroup,
+  Group,
+  Player,
+} from '~/types';
 
 export interface ArcData {
   innerRadius: number;
@@ -24,11 +31,11 @@ export function useChartDrawArcs() {
   function drawOutsideArcs(
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
-    selectedColumnIds: ColumnKey[]
+    selectedColumn: EnrichedColumn[]
   ) {
     g.selectAll('.outside-arc')
       .data(
-        selectedColumnIds.map((data, i) => ({
+        selectedColumn.map((data, i) => ({
           innerRadius: radius,
           outerRadius: radius * 1.5,
           startAngle: angleScale(i),
@@ -39,7 +46,7 @@ export function useChartDrawArcs() {
       .join('path')
       .attr('class', 'outside-arc')
       .attr('d', arcGenerator)
-      .attr('fill', '#f0f0f0');
+      .attr('fill', (d) => d.data.color ?? '#f0f0f0');
   }
 
   function drawInsideCircle(g: d3GSelection) {
@@ -355,6 +362,18 @@ export function useChartDrawArcs() {
           const offset = shouldFlip ? 21 : 13;
           const labelRadius = radius * 1.6 + offset;
 
+          const backgroundArc = arcGenerator({
+            innerRadius: radius * 1.6,
+            outerRadius: radius * 1.7,
+            startAngle,
+            endAngle,
+            data: group,
+          });
+
+          g.append('path')
+            .attr('d', backgroundArc)
+            .attr('fill', group.color ?? '#f0f0f0');
+
           const textArc = arcGenerator({
             innerRadius: labelRadius,
             outerRadius: labelRadius,
@@ -410,6 +429,18 @@ export function useChartDrawArcs() {
           const shouldFlip = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
           const offset = shouldFlip ? 21 : 13;
           const labelRadius = radius * 1.5 + offset;
+
+          const backgroundArc = arcGenerator({
+            innerRadius: radius * 1.5,
+            outerRadius: radius * 1.6,
+            startAngle,
+            endAngle,
+            data: subGroup,
+          });
+
+          g.append('path')
+            .attr('d', backgroundArc)
+            .attr('fill', subGroup.color ?? '#f0f0f0');
 
           const textArc = arcGenerator({
             innerRadius: labelRadius,

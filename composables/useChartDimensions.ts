@@ -4,7 +4,7 @@ export function useChartDimensions() {
   const margin = 300;
   const radius = Math.min(width, height) / 2 - margin;
   const innerRadiusPadding = 0.25;
-  const padAngle = 0.0025;
+  const padAngle = 0.001;
 
   return {
     width,

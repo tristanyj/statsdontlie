@@ -76,6 +76,7 @@ export interface Player {
 // });
 
 export interface EnrichedColumn extends Column {
+  color: `#${string}`;
   meta: Column['meta'] & {
     scale: (value: number) => number;
     format: (value: number) => string;
@@ -113,6 +114,7 @@ export interface EnrichedGroup extends Group {
 export interface Group {
   id: GroupKey;
   name: string;
+  color: `#${string}`;
   subGroups: SubGroup[];
 }
 
@@ -123,6 +125,7 @@ export interface EnrichedSubGroup extends SubGroup {
 export interface SubGroup {
   id: SubGroupKey;
   name: string;
+  color: `#${string}`;
   columns: Column[];
 }
 

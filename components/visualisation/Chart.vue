@@ -64,7 +64,7 @@ function createVisualization() {
   g.value.selectAll('*').remove();
 
   // Draw arcs
-  drawOutsideArcs(g.value, scales.angle, selectedColumnIds.value);
+  drawOutsideArcs(g.value, scales.angle, selectedColumns.value);
 
   // drawBackgroundArcs(g.value, scales.angle, selectedColumnIds.value);
   drawValueArcs(
