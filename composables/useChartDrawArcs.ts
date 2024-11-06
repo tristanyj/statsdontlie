@@ -10,7 +10,7 @@ export function useChartDrawArcs() {
     selectedStats: EnrichedStat[],
     selectedPlayers: Player[]
   ) {
-    const className = 'stat-background';
+    const className = 'stat-arc';
 
     const arcData: Array<StatArcData> = [];
 
@@ -40,7 +40,7 @@ export function useChartDrawArcs() {
       .join((enter) =>
         enter
           .append('path')
-          .attr('class', `${className}`)
+          .attr('class', className)
           .attr('d', (d) =>
             arcGenerator({
               innerRadius: minRadius,
@@ -59,13 +59,13 @@ export function useChartDrawArcs() {
   function drawStatLabelArcs(
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
-    selectedStat: EnrichedStat[]
+    selectedStats: EnrichedStat[]
   ) {
-    const className = 'stat-label-background';
+    const className = 'stat-label-arc';
 
     g.selectAll(`.${className}`)
       .data(
-        selectedStat.map((data, i) => ({
+        selectedStats.map((data, i) => ({
           innerRadius: radius * proportions[0],
           outerRadius: radius * proportions[1],
           startAngle: angleScale(i),
