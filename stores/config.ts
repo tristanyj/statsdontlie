@@ -1,6 +1,8 @@
 import * as d3 from 'd3';
 import type { Stat, EnrichedStat, EnrichedGroup, Group } from '~/types';
 
+import { formatNumber } from '~/assets/scripts/utils';
+
 export const useConfigStore = defineStore('config', () => {
   const statGroups = ref<Group[]>([
     {
@@ -791,9 +793,9 @@ export const useConfigStore = defineStore('config', () => {
       const formatter = (() => {
         switch (column.meta.formatType) {
           case 'number':
-            return (n: number) => `${n}`;
+            return (n: number) => formatNumber(n);
           default:
-            return (n: number) => `${n}`;
+            return (n: number) => formatNumber(n);
         }
       })();
 

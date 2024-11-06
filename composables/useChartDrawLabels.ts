@@ -1,6 +1,6 @@
 import type { d3GSelection, EnrichedStat, Group, SubGroup } from '~/types';
 
-import { wrapText, formatNumber, shouldFlipText } from '~/assets/scripts/utils';
+import { wrapText, shouldFlipText } from '~/assets/scripts/utils';
 
 export function useChartDrawLabels() {
   const { radius, minRadius, scalePositions, proportions, wrap, modifier } = useChartConfig();
@@ -135,7 +135,7 @@ export function useChartDrawLabels() {
           : labelRadius + modifier.space.scaleLabel.background.standard;
 
         // @ts-expect-error - TS doesn't know about the scale function
-        const value = formatNumber(d.meta.scale.invert(position));
+        const value = d.meta.format(d.meta.scale.invert(position));
 
         g.append('path')
           .attr('id', id)

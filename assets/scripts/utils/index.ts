@@ -32,7 +32,7 @@ function wrapText(text: string, width: number): string[] {
 }
 
 function formatNumber(value: number) {
-  if (value < 1e3) return value;
+  if (value < 1e3) return value.toFixed(0);
   if (value < 1e6) return `${(value / 1e3).toFixed(0)}k`;
   if (value < 1e9) return `${value / 1e6}M`;
   return `${value / 1e9}B`;
