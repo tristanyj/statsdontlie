@@ -140,6 +140,13 @@ export interface ArcData {
   data: any;
 }
 
+export interface StatArcData {
+  id: string;
+  index: number;
+  color: `${string}`;
+  value: number;
+}
+
 export interface LineData {
   className: string;
   y1: number;
@@ -147,12 +154,4 @@ export interface LineData {
   stroke?: string;
   opacity?: number;
   transform: string;
-}
-
-export interface ArcDataExtended {
-  columnId: string;
-  columnIndex: number;
-  player: Player;
-  stat: number;
-  scaledValue: number;
 }

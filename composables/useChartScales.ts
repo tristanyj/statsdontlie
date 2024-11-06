@@ -9,8 +9,6 @@ export function useChartScales() {
   };
 
   function updateScale(key: keyof typeof scales, domain: [number, number]) {
-    // console.log('Updating scale:', domain);
-
     scales[key].domain(domain);
   }
 

@@ -1,20 +1,4 @@
-import type { d3GSelection, EnrichedStat, EnrichedGroup, Group, Player, SubGroup } from '~/types';
-
-export interface ArcData {
-  innerRadius: number;
-  outerRadius: number;
-  startAngle: number;
-  endAngle: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: any;
-}
-
-interface ArcDataExtended {
-  statId: string;
-  statIndex: number;
-  player: Player;
-  scaledValue: number;
-}
+import type { d3GSelection, EnrichedStat, Group, Player, SubGroup, StatArcData } from '~/types';
 
 export function useChartDrawArcs() {
   const { arcGenerator } = useChartGenerators();
@@ -23,57 +7,50 @@ export function useChartDrawArcs() {
   function drawStatArcs(
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
-    selectedGroups: EnrichedGroup[],
+    selectedStats: EnrichedStat[],
     selectedPlayers: Player[]
   ) {
     const className = 'stat-background';
 
-    const arcData: Array<ArcDataExtended> = [];
+    const arcData: Array<StatArcData> = [];
 
-    // TODO: refactor this to use a single loop
-    let statIndex = 0;
-    selectedGroups.forEach((group) => {
-      group.subGroups.forEach((subGroup) => {
-        subGroup.stats.forEach((stat) => {
-          selectedPlayers
-            .sort((a, b) => {
-              const aStat = a.stats[stat.id];
-              const bStat = b.stats[stat.id];
-              return (bStat || 0) - (aStat || 0);
-            })
-            .forEach((player) => {
-              const value = player.stats[stat.id];
-              if (value) {
-                const v = stat.meta.scale(value);
-                arcData.push({
-                  statId: stat.id,
-                  statIndex,
-                  player,
-                  scaledValue: v,
-                });
-              }
+    selectedStats.forEach((stat, i) => {
+      selectedPlayers
+        .sort((a, b) => {
+          const aStat = a.stats[stat.id];
+          const bStat = b.stats[stat.id];
+          return (bStat || 0) - (aStat || 0);
+        })
+        .forEach((player) => {
+          const s = player.stats[stat.id];
+          if (s) {
+            const value = stat.meta.scale(s);
+            arcData.push({
+              id: `${stat.id}-${player.id}`,
+              index: i,
+              color: player.colors[0],
+              value,
             });
-          statIndex++;
+          }
         });
-      });
     });
 
     g.selectAll(`.${className}`)
-      .data(arcData, (d) => `${(d as ArcDataExtended).statId}-${(d as ArcDataExtended).player.id}`)
+      .data(arcData, (d) => (d as StatArcData).id)
       .join((enter) =>
         enter
           .append('path')
-          .attr('class', (d) => `${className} player-${d.player.id}`)
+          .attr('class', `${className}`)
           .attr('d', (d) =>
             arcGenerator({
               innerRadius: minRadius,
-              outerRadius: minRadius + restRadius * d.scaledValue,
-              startAngle: angleScale(d.statIndex),
-              endAngle: angleScale(d.statIndex + 1),
+              outerRadius: minRadius + restRadius * d.value,
+              startAngle: angleScale(d.index),
+              endAngle: angleScale(d.index + 1),
               data: d,
             })
           )
-          .attr('fill', (d) => d.player.colors[0])
+          .attr('fill', (d) => d.color)
           .attr('opacity', 0)
           .call((enter) => enter.transition().duration(0).attr('opacity', 1))
       );

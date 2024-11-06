@@ -82,7 +82,7 @@ function createVisualization() {
   drawGroupArcs(g.value, scales.angle, indices.value.subGroup, selectedSubGroups.value, 1);
 
   // Draw stat & stat label arcs
-  drawStatArcs(g.value, scales.angle, selectedGroups.value, selectedPlayers.value);
+  drawStatArcs(g.value, scales.angle, selectedStats.value, selectedPlayers.value);
   drawStatLabelArcs(g.value, scales.angle, selectedStats.value);
 
   // -----------------
