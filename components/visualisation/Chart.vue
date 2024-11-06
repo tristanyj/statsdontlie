@@ -2,7 +2,7 @@
 import * as d3 from 'd3';
 import type { d3GSelection, Player } from '@/types';
 
-const { width, height } = useChartDimensions();
+const { width, height } = useChartConfig();
 const { drawStatLabelArcs, drawStatArcs, drawGroupArcs } = useChartDrawArcs();
 const { drawCircularSeparators, drawLinearSeparators } = useChartDrawLines();
 const { drawStatLabels, drawScaleLabels, drawGroupLabels } = useChartDrawLabels();

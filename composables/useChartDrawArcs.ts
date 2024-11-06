@@ -2,7 +2,7 @@ import type { d3GSelection, EnrichedStat, Group, Player, SubGroup, StatArcData }
 
 export function useChartDrawArcs() {
   const { arcGenerator } = useChartGenerators();
-  const { radius, minRadius, proportions, restRadius } = useChartDimensions();
+  const { radius, minRadius, proportions, restRadius } = useChartConfig();
 
   function drawStatArcs(
     g: d3GSelection,
@@ -11,7 +11,6 @@ export function useChartDrawArcs() {
     selectedPlayers: Player[]
   ) {
     const className = 'stat-arc';
-
     const arcData: Array<StatArcData> = [];
 
     selectedStats.forEach((stat, i) => {

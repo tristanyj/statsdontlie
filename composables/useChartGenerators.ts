@@ -2,7 +2,7 @@ import { arc } from 'd3';
 import type { ArcData, d3GSelection, LineData } from '~/types';
 
 export function useChartGenerators() {
-  const { padAngle } = useChartDimensions();
+  const { padAngle } = useChartConfig();
 
   const arcGenerator = arc<ArcData>()
     .padAngle(padAngle)

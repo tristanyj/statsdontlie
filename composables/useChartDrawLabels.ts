@@ -1,156 +1,43 @@
 import type { d3GSelection, EnrichedStat, Group, SubGroup } from '~/types';
 
-// import { formatNumber } from '~/utils/chart/formatters';
-
-const formatNumber = (value: number) => {
-  // k for thousands, M for millions, B for billions
-  if (value < 1e3) return value;
-  if (value < 1e6) return `${(value / 1e3).toFixed(0)}k`;
-  if (value < 1e9) return `${value / 1e6}M`;
-  return `${value / 1e9}B`;
-};
-
-function wrapText(text: string, width: number): string[] {
-  const words = text.split(/\s+/).reverse();
-  const lines: string[] = [];
-  let line: string[] = [];
-  let lineLength = 0;
-  const spaceWidth = 4; // Approximate space width
-
-  while (words.length > 0) {
-    const word = words.pop()!;
-    const wordWidth = word.length * 5.5; // Approximate width per character
-
-    if (lineLength + wordWidth + (line.length > 0 ? spaceWidth : 0) > width) {
-      if (line.length > 0) {
-        lines.push(line.join(' '));
-        line = [word];
-        lineLength = wordWidth;
-      } else {
-        // If single word is too long, just add it
-        lines.push(word);
-      }
-    } else {
-      line.push(word);
-      lineLength += wordWidth + (line.length > 0 ? spaceWidth : 0);
-    }
-  }
-
-  if (line.length > 0) {
-    lines.push(line.join(' '));
-  }
-
-  return lines;
-}
+import { wrapText, formatNumber } from '~/assets/scripts/utils';
 
 export function useChartDrawLabels() {
-  const { radius, minRadius, proportions } = useChartDimensions();
+  const { radius, minRadius, proportions, wrap, modifier } = useChartConfig();
   const { arcGenerator } = useChartGenerators();
-
-  function createTextWithBackground(
-    selection: d3.Selection<SVGGElement, unknown, null, undefined>,
-    options: {
-      x: number;
-      y: number;
-      text: string;
-      textColor?: string;
-      backgroundColor?: string;
-      padding?: { x: number; y: number };
-      borderRadius?: number;
-    }
-  ) {
-    const {
-      x,
-      y,
-      text,
-      textColor = '#fff',
-      backgroundColor = '#000',
-      padding = { x: 5, y: 3 },
-      borderRadius = 3,
-    } = options;
-
-    // Create a group for the background and text
-    const textGroup = selection.append('g').attr('class', 'text-with-background');
-
-    // Add the text first (but don't display it) to calculate its size
-    const textElement = textGroup
-      .append('text')
-      .attr('x', x)
-      .attr('y', y)
-      .attr('text-anchor', 'middle')
-      .attr('dominant-baseline', 'middle')
-      .attr('fill', textColor)
-      .attr('font-size', 24)
-      .text(text);
-
-    // Get the bounding box of the text
-    const bbox = textElement.node()?.getBBox();
-
-    if (bbox) {
-      // Add the background rectangle
-      textGroup
-        .insert('rect', 'text') // Insert before text
-        .attr('x', bbox.x - padding.x)
-        .attr('y', bbox.y - padding.y)
-        .attr('width', bbox.width + padding.x * 2)
-        .attr('height', bbox.height + padding.y * 2)
-        .attr('rx', borderRadius)
-        .attr('ry', borderRadius)
-        .attr('fill', backgroundColor)
-        .attr('opacity', 0.8);
-    }
-
-    return textGroup;
-  }
 
   function drawStatLabels(
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
     stats: EnrichedStat[]
   ) {
-    g.selectAll('.column-label').remove();
+    const className = 'stat-label';
 
-    const maxWidth = 100; // Adjust this value based on your needs
-    const lineHeight = 14; // Adjust line height as needed
+    stats.forEach(function (d, i) {
+      const startAngle = angleScale(i);
+      const midAngle = startAngle + (angleScale(i + 1) - startAngle) / 2;
+      const labelRadius = radius * proportions[0] * modifier.radius.statLabel;
 
-    const columnLabels = g
-      .selectAll('.column-label')
-      .data(stats)
-      .enter()
-      .append('g')
-      .attr('class', 'column-label')
-      .attr('transform', (d, i) => `rotate(${angleScale(i)}) translate(0, 10)`);
+      const textGroup = g.append('g').attr('class', className);
+      const lines = wrapText(d.name, wrap.maxWidth);
 
-    columnLabels.each(function (d, i) {
-      const angle = angleScale(i);
-      const midAngle = angle + (angleScale(i + 1) - angle) / 2;
-      const labelRadius = radius * proportions[0] * 1.08;
-
-      const rotation = (midAngle * 180) / Math.PI - 90;
       const textAnchor = midAngle > Math.PI ? 'end' : 'start';
-      const finalRotation = rotation + (midAngle > Math.PI ? 180 : 0);
-
-      // Calculate position for group label
+      const rotation = (midAngle * 180) / Math.PI - 90 + (midAngle > Math.PI ? 180 : 0);
       const x = labelRadius * Math.cos(midAngle - Math.PI / 2);
       const y = labelRadius * Math.sin(midAngle - Math.PI / 2);
+      const totalHeight = lines.length * wrap.lineHeight;
+      const startY = y - totalHeight / 2 + wrap.lineHeight / 2;
 
-      const textGroup = g.append('g').attr('class', 'column-label');
-
-      const lines = wrapText(d.name, maxWidth);
-
-      const totalHeight = lines.length * lineHeight;
-      const startY = y - totalHeight / 2 + lineHeight / 2;
-
-      lines.forEach((line, lineIndex) => {
+      lines.forEach((line, i) => {
         textGroup
           .append('text')
           .attr('x', x)
-          .attr('y', startY + lineIndex * lineHeight)
+          .attr('y', startY + i * wrap.lineHeight)
           .attr('text-anchor', textAnchor)
           .attr('dominant-baseline', 'middle')
           .attr('fill', '#000')
           .attr('font-size', 11)
-          .attr('transform', `rotate(${finalRotation},${x},${y})`)
+          .attr('transform', `rotate(${rotation},${x},${y})`)
           .text(line);
       });
     });
@@ -324,7 +211,6 @@ export function useChartDrawLabels() {
   }
 
   return {
-    createTextWithBackground,
     drawGroupLabels,
     drawStatLabels,
     drawScaleLabels,

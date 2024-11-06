@@ -2,7 +2,7 @@ import type { d3GSelection, Group } from '~/types';
 
 export function useChartDrawLines() {
   const { createLine } = useChartGenerators();
-  const { radius, minRadius, restRadius, proportions } = useChartDimensions();
+  const { radius, minRadius, restRadius, proportions } = useChartConfig();
 
   function drawCircularSeparators(g: d3GSelection) {
     // circle inside min radius
@@ -74,7 +74,7 @@ export function useChartDrawLines() {
 
     // Create all separators
     for (let i = 0; i <= selectedStatIdsCount; i++) {
-      const angle = angleScale(i);
+      const startAngle = angleScale(i);
       const isGroupSeparator = groupStartIndices.includes(i);
       const isSubGroupSeparator = subGroupStartIndices.includes(i);
 
@@ -88,12 +88,12 @@ export function useChartDrawLines() {
         className: `separator ${isGroupSeparator ? 'group-separator' : 'column-separator'}`,
         y1: minRadius,
         y2: lineLength,
-        transform: `rotate(${180 + (angle * 180) / Math.PI})`,
+        transform: `rotate(${180 + (startAngle * 180) / Math.PI})`,
       });
 
       if (i < selectedStatIdsCount) {
         const nextAngle = angleScale(i + 1);
-        const midAngle = (angle + nextAngle) / 2;
+        const midAngle = (startAngle + nextAngle) / 2;
 
         // add line at center of each column, calculate center point of each column
         createLine(g, {
