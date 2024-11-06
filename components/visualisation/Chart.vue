@@ -3,9 +3,9 @@ import * as d3 from 'd3';
 import type { d3GSelection, Player } from '@/types';
 
 const { width, height } = useChartDimensions();
-const { drawColumnLabelBackgrounds, drawColumnBackgrounds, drawSeparators } = useChartDrawArcs();
+const { drawStatLabelArcs, drawStatArcs, drawGroupArcs } = useChartDrawArcs();
 const { drawCircularSeparators, drawLinearSeparators } = useChartDrawLines();
-const { drawColumnLabels, drawColumnScales } = useChartDrawLabels();
+const { drawColumnLabels, drawColumnScales, drawGroupLabels } = useChartDrawLabels();
 const { scales, updateScale } = useChartScales();
 
 const preferencesStore = usePreferencesStore();
@@ -79,24 +79,29 @@ function createVisualization() {
   if (!g.value) return;
   g.value.selectAll('*').remove();
 
-  drawColumnLabelBackgrounds(g.value, scales.angle, selectedColumns.value);
+  // -----------------
+  // Draw stat arcs and labels
+  // -----------------
+  drawStatArcs(g.value, scales.angle, selectedGroups.value, selectedPlayers.value);
+  drawStatLabelArcs(g.value, scales.angle, selectedColumns.value);
 
-  drawColumnBackgrounds(g.value, scales.angle, selectedGroups.value, selectedPlayers.value);
+  // -----------------
+  // Draw group and sub-group arcs
+  // -----------------
+  drawGroupArcs(g.value, scales.angle, indices.value.group, selectedGroups.value, 0);
+  drawGroupArcs(g.value, scales.angle, indices.value.subGroup, selectedSubGroups.value, 1);
 
-  drawSeparators(
-    g.value,
-    scales.angle,
-    indices.value.group,
-    indices.value.subGroup,
-    selectedGroups.value,
-    selectedSubGroups.value,
-    selectedColumnIdsCount.value
-  );
+  // -----------------
+  // Draw group and sub-group labels
+  // -----------------
+  drawGroupLabels(g.value, scales.angle, indices.value.group, selectedGroups.value, 0);
+  drawGroupLabels(g.value, scales.angle, indices.value.subGroup, selectedSubGroups.value, 1);
 
+  // -----------------
+  // TODO: refactor
+  // -----------------
   drawColumnScales(g.value, scales.angle, selectedColumns.value);
-
   drawColumnLabels(g.value, scales.angle, selectedColumns.value);
-
   drawLinearSeparators(g.value, scales.angle, selectedGroups.value, selectedColumnIdsCount.value);
   drawCircularSeparators(g.value);
 }

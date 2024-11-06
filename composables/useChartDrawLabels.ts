@@ -1,4 +1,4 @@
-import type { d3GSelection, EnrichedColumn } from '~/types';
+import type { d3GSelection, EnrichedColumn, Group, SubGroup } from '~/types';
 
 import { formatNumber } from '~/utils/chart/formatters';
 
@@ -148,6 +148,64 @@ export function useChartDrawLabels() {
     });
   }
 
+  function drawGroupLabels(
+    g: d3GSelection,
+    angleScale: d3.ScaleLinear<number, number>,
+    indices: number[],
+    groups: Group[] | SubGroup[],
+    modifier: number
+  ) {
+    indices.forEach((startIndex, groupIndex) => {
+      const group = groups[groupIndex];
+      // TODO: refactor to helper function
+      const nextGroupStartIndex =
+        indices[groupIndex + 1] ??
+        startIndex +
+          ('subGroups' in group
+            ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.columns.length, 0)
+            : group.columns.length);
+
+      // TODO: refactor to helper function
+      const startAngle = angleScale(startIndex);
+      const endAngle = angleScale(nextGroupStartIndex);
+      const midAngle = (startAngle + endAngle) / 2;
+
+      const shouldFlip = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
+      const offset = shouldFlip ? 21 : 13;
+      const labelRadius = radius * proportions[2 - modifier] + offset;
+
+      const textArc = arcGenerator({
+        innerRadius: labelRadius,
+        outerRadius: labelRadius,
+        startAngle: shouldFlip ? endAngle : startAngle,
+        endAngle: shouldFlip ? startAngle : endAngle,
+        data: group,
+      });
+
+      const tempText = g
+        .append('text')
+        .style('font-size', '12px')
+        .text(group.name)
+        .style('visibility', 'hidden');
+      const textLength = tempText.node()?.getComputedTextLength() || 0;
+      tempText.remove();
+
+      const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
+      const textPercentage = (textLength / arcLength) * 100;
+      const restPercentage = 100 - textPercentage;
+      const textOffsetPercentage = restPercentage / 4;
+
+      g.append('path').attr('id', `label-path-${group.id}`).attr('d', textArc);
+
+      g.append('text')
+        .append('textPath')
+        .attr('href', `#label-path-${group.id}`)
+        .attr('startOffset', `${textOffsetPercentage}%`)
+        .style('font-size', '12px')
+        .text(group.name);
+    });
+  }
+
   function drawColumnScales(
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
@@ -259,6 +317,7 @@ export function useChartDrawLabels() {
 
   return {
     createTextWithBackground,
+    drawGroupLabels,
     drawColumnLabels,
     drawColumnScales,
   };

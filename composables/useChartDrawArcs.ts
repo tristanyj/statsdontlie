@@ -21,40 +21,19 @@ export function useChartDrawArcs() {
   const { arcGenerator } = useChartGenerators();
   const { radius, minRadius, proportions, restRadius } = useChartDimensions();
 
-  function drawColumnLabelBackgrounds(
+  function drawStatArcs(
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
-    selectedColumn: EnrichedColumn[]
-  ) {
-    const className = 'column-label-background';
-
-    g.selectAll(`.${className}`)
-      .data(
-        selectedColumn.map((data, i) => ({
-          innerRadius: radius * proportions[0],
-          outerRadius: radius * proportions[1],
-          startAngle: angleScale(i),
-          endAngle: angleScale(i + 1),
-          data,
-        }))
-      )
-      .join('path')
-      .attr('class', className)
-      .attr('d', arcGenerator)
-      .attr('fill', (d) => d.data.color ?? '#f0f0f0');
-  }
-
-  function drawColumnBackgrounds(
-    g: d3GSelection,
-    angleScale: d3.ScaleLinear<number, number>,
-    statGroupsWithSelectedColumnIds: EnrichedGroup[],
+    selectedGroups: EnrichedGroup[],
     selectedPlayers: Player[]
   ) {
     const className = 'column-background';
+
     const arcData: Array<ArcDataExtended> = [];
 
+    // TODO: refactor this to use a single loop
     let columnIndex = 0;
-    statGroupsWithSelectedColumnIds.forEach((group) => {
+    selectedGroups.forEach((group) => {
       group.subGroups.forEach((subGroup) => {
         subGroup.columns.forEach((column) => {
           selectedPlayers
@@ -105,37 +84,51 @@ export function useChartDrawArcs() {
       );
   }
 
-  function drawSeparators(
+  function drawStatLabelArcs(
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
-    groupStartIndices: number[],
-    subGroupStartIndices: number[],
-    selectedGroups: Group[],
-    selectedSubGroups: SubGroup[],
-    selectedColumnIdsCount: number
+    selectedColumn: EnrichedColumn[]
   ) {
-    const drawArc = (
-      indices: number[],
-      index: number,
-      groupIndex: number,
-      group: Group | SubGroup,
-      modifier: number
-    ) => {
-      if (!group) return;
+    const className = 'column-label-background';
 
-      const nextGroupStartIndex = indices[groupIndex + 1] ?? selectedColumnIdsCount;
+    g.selectAll(`.${className}`)
+      .data(
+        selectedColumn.map((data, i) => ({
+          innerRadius: radius * proportions[0],
+          outerRadius: radius * proportions[1],
+          startAngle: angleScale(i),
+          endAngle: angleScale(i + 1),
+          data,
+        }))
+      )
+      .join('path')
+      .attr('class', className)
+      .attr('d', arcGenerator)
+      .attr('fill', (d) => d.data.color ?? '#f0f0f0');
+  }
 
-      const startAngle = angleScale(index);
+  function drawGroupArcs(
+    g: d3GSelection,
+    angleScale: d3.ScaleLinear<number, number>,
+    indices: number[],
+    groups: Group[] | SubGroup[],
+    modifier: number
+  ) {
+    indices.forEach((startIndex, groupIndex) => {
+      const group = groups[groupIndex];
+      const nextGroupStartIndex =
+        indices[groupIndex + 1] ??
+        startIndex +
+          ('subGroups' in group
+            ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.columns.length, 0)
+            : group.columns.length);
+
+      const startAngle = angleScale(startIndex);
       const endAngle = angleScale(nextGroupStartIndex);
-      const midAngle = (startAngle + endAngle) / 2;
-
-      const shouldFlip = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
-      const offset = shouldFlip ? 21 : 13;
-      const labelRadius = radius * proportions[2 - modifier] + offset;
 
       const backgroundArc = arcGenerator({
-        innerRadius: radius * proportions[2 - modifier],
-        outerRadius: radius * proportions[3 - modifier],
+        innerRadius: radius * proportions[3 - modifier],
+        outerRadius: radius * proportions[2 - modifier],
         startAngle,
         endAngle,
         data: group,
@@ -144,54 +137,12 @@ export function useChartDrawArcs() {
       g.append('path')
         .attr('d', backgroundArc)
         .attr('fill', group.color ?? '#f0f0f0');
-
-      const textArc = arcGenerator({
-        innerRadius: labelRadius,
-        outerRadius: labelRadius,
-        startAngle: shouldFlip ? endAngle : startAngle,
-        endAngle: shouldFlip ? startAngle : endAngle,
-        data: group,
-      });
-
-      const tempText = g
-        .append('text')
-        .style('font-size', '12px')
-        .text(group.name)
-        .style('visibility', 'hidden');
-      const textLength = tempText.node()?.getComputedTextLength() || 0;
-      tempText.remove();
-
-      const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
-      const textPercentage = (textLength / arcLength) * 100;
-      const restPercentage = 100 - textPercentage;
-      const textOffsetPercentage = restPercentage / 4;
-
-      g.append('path').attr('id', `label-path-${group.id}`).attr('d', textArc);
-
-      g.append('text')
-        .append('textPath')
-        .attr('href', `#label-path-${group.id}`)
-        .attr('startOffset', `${textOffsetPercentage}%`)
-        .style('font-size', '12px')
-        .text(group.name);
-    };
-
-    for (let i = 0; i <= selectedColumnIdsCount; i++) {
-      if (groupStartIndices.includes(i)) {
-        const groupIndex = groupStartIndices.indexOf(i);
-        drawArc(groupStartIndices, i, groupIndex, selectedGroups[groupIndex], 0);
-      }
-
-      if (subGroupStartIndices.includes(i)) {
-        const groupIndex = subGroupStartIndices.indexOf(i);
-        drawArc(subGroupStartIndices, i, groupIndex, selectedSubGroups[groupIndex], 1);
-      }
-    }
+    });
   }
 
   return {
-    drawColumnLabelBackgrounds,
-    drawColumnBackgrounds,
-    drawSeparators,
+    drawStatLabelArcs,
+    drawStatArcs,
+    drawGroupArcs,
   };
 }

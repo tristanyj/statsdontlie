@@ -34,29 +34,17 @@ export function useChartDrawLines() {
       .attr('stroke-opacity', 0.1)
       .attr('stroke-width', 1);
 
-    // circle max radius for column labels
-    g.append('circle')
-      .attr('r', radius * proportions[1])
-      .attr('fill', 'none')
-      .attr('stroke', '#000')
-      .attr('stroke-width', 1);
+    for (let i = 0; i < 3; i++) {
+      // circles for radius proportions
+      g.append('circle')
+        .attr('r', radius * proportions[i + 1])
+        .attr('fill', 'none')
+        .attr('stroke', '#000')
+        .attr('stroke-width', 1);
+    }
 
-    // circle max radius for sub groups
-    g.append('circle')
-      .attr('r', radius * proportions[2])
-      .attr('fill', 'none')
-      .attr('stroke', '#000')
-      .attr('stroke-width', 1);
-
-    // circle max radius for groups
-    g.append('circle')
-      .attr('r', radius * proportions[3])
-      .attr('fill', 'none')
-      .attr('stroke', '#000')
-      .attr('stroke-width', 1);
-
-    // circles graduations for stats
     for (let i = 0; i < 10; i++) {
+      // circles graduations for stats
       g.append('circle')
         .attr('r', minRadius + restRadius * ((1 / 10) * i))
         .attr('fill', 'none')
