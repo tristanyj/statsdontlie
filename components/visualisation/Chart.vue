@@ -3,8 +3,8 @@ import * as d3 from 'd3';
 import type { d3GSelection, Player } from '@/types';
 
 const { width, height } = useChartDimensions();
-const { drawInsideCircle, drawColumnLabelBackgrounds, drawColumnBackgrounds, drawSeparators } =
-  useChartDrawArcs();
+const { drawColumnLabelBackgrounds, drawColumnBackgrounds, drawSeparators } = useChartDrawArcs();
+const { drawCircularSeparators, drawLinearSeparators } = useChartDrawLines();
 const { drawColumnLabels, drawColumnScales } = useChartDrawLabels();
 const { scales, updateScale } = useChartScales();
 
@@ -73,12 +73,19 @@ function createVisualization() {
     statGroupsWithselectedColumnIds.value,
     selectedColumnIdsCount.value
   );
-  drawInsideCircle(g.value);
   // drawSubCategoryArc(g.value, scales.angle, selectedColumnIds.value);
   drawColumnScales(g.value, scales.angle, selectedColumns.value);
 
   // Draw Labels
   drawColumnLabels(g.value, scales.angle, selectedColumns.value);
+
+  drawLinearSeparators(
+    g.value,
+    scales.angle,
+    statGroupsWithselectedColumnIds.value,
+    selectedColumnIdsCount.value
+  );
+  drawCircularSeparators(g.value);
 }
 
 function updateVisualization() {
