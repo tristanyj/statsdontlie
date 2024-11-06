@@ -36,7 +36,7 @@ function wrapText(text: string, width: number): string[] {
 }
 
 export function useChartDrawLabels() {
-  const { radius, innerRadiusPadding } = useChartDimensions();
+  const { radius, minRadius, proportions } = useChartDimensions();
   const { arcGenerator } = useChartGenerators();
 
   function createTextWithBackground(
@@ -116,7 +116,7 @@ export function useChartDrawLabels() {
     columnLabels.each(function (d, i) {
       const angle = angleScale(i);
       const midAngle = angle + (angleScale(i + 1) - angle) / 2;
-      const labelRadius = radius * 1.08;
+      const labelRadius = radius * proportions[0] * 1.08;
 
       const rotation = (midAngle * 180) / Math.PI - 90;
       const textAnchor = midAngle > Math.PI ? 'end' : 'start';
@@ -176,14 +176,13 @@ export function useChartDrawLabels() {
       const endAngle = angleScale(i + 1);
       const midAngle = (startAngle + endAngle) / 2;
       const shouldFlip = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
-      const baseRadius = radius * innerRadiusPadding;
 
       labels.forEach((label) => {
         const labelId = `label-path-${d.id}-${label.position}`;
-        const scaleOffset = label.position * (radius - baseRadius);
+        const scaleOffset = label.position * (radius * proportions[0] - minRadius);
         const flipOffset = shouldFlip ? 7.5 : 0;
         const startOffset = label.position === 0.0 ? 5 : 0;
-        const standardRadius = baseRadius + scaleOffset + flipOffset + startOffset;
+        const standardRadius = minRadius + scaleOffset + flipOffset + startOffset;
         const labelRadius = label.position === 1.0 ? standardRadius + 3 : standardRadius;
         const backgroundRadius = shouldFlip ? labelRadius - 3.5 : labelRadius + 4;
 

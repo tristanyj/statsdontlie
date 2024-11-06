@@ -1,11 +1,4 @@
-import type {
-  ColumnKey,
-  d3GSelection,
-  EnrichedColumn,
-  EnrichedGroup,
-  Group,
-  Player,
-} from '~/types';
+import type { d3GSelection, EnrichedColumn, EnrichedGroup, Group, Player } from '~/types';
 
 export interface ArcData {
   innerRadius: number;
@@ -26,190 +19,101 @@ interface ArcDataExtended {
 
 export function useChartDrawArcs() {
   const { arcGenerator } = useChartGenerators();
-  const { radius, innerRadiusPadding } = useChartDimensions();
+  const { radius, minRadius, proportions, restRadius } = useChartDimensions();
 
-  function drawOutsideArcs(
+  function drawColumnLabelBackgrounds(
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
     selectedColumn: EnrichedColumn[]
   ) {
-    g.selectAll('.outside-arc')
+    const className = 'column-label-background';
+
+    g.selectAll(`.${className}`)
       .data(
         selectedColumn.map((data, i) => ({
-          innerRadius: radius,
-          outerRadius: radius * 1.5,
+          innerRadius: radius * proportions[0],
+          outerRadius: radius * proportions[1],
           startAngle: angleScale(i),
           endAngle: angleScale(i + 1),
           data,
         }))
       )
       .join('path')
-      .attr('class', 'outside-arc')
+      .attr('class', className)
       .attr('d', arcGenerator)
       .attr('fill', (d) => d.data.color ?? '#f0f0f0');
   }
 
   function drawInsideCircle(g: d3GSelection) {
-    const baseRadius = radius * innerRadiusPadding;
-    const restRadius = radius * (1 - innerRadiusPadding);
-
+    // circle inside min radius
     g.append('circle')
-      .attr('r', baseRadius * 0.9)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('r', minRadius * 0.9)
+      .attr('fill', 'none')
       .attr('stroke', '#000')
       .attr('stroke-width', 1);
 
+    // circle min radius
     g.append('circle')
-      .attr('r', baseRadius)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('r', minRadius)
+      .attr('fill', 'none')
       .attr('stroke', '#000')
       .attr('stroke-width', 1);
 
+    // circle max radius for stats
     g.append('circle')
-      .attr('r', radius)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('r', radius * proportions[0])
+      .attr('fill', 'none')
       .attr('stroke', '#000')
       .attr('stroke-width', 1);
 
+    // circle outside max scale
     g.append('circle')
-      .attr('r', radius * 1.035)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('r', radius * proportions[0] * 1.035)
+      .attr('fill', 'none')
       .attr('stroke', '#000')
       .attr('stroke-opacity', 0.1)
       .attr('stroke-width', 1);
 
+    // circle max radius for column labels
     g.append('circle')
-      .attr('r', radius * 1.5)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('r', radius * proportions[1])
+      .attr('fill', 'none')
       .attr('stroke', '#000')
       .attr('stroke-width', 1);
 
+    // circle max radius for sub groups
     g.append('circle')
-      .attr('r', radius * 1.6)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('r', radius * proportions[2])
+      .attr('fill', 'none')
       .attr('stroke', '#000')
       .attr('stroke-width', 1);
 
+    // circle max radius for groups
     g.append('circle')
-      .attr('r', radius * 1.7)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
+      .attr('r', radius * proportions[3])
+      .attr('fill', 'none')
       .attr('stroke', '#000')
       .attr('stroke-width', 1);
 
-    g.append('circle')
-      .attr('r', baseRadius + restRadius * 0.1)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
-      .attr('stroke', '#111')
-      .attr('stroke-opacity', 0.1)
-      .attr('stroke-width', 1);
-
-    g.append('circle')
-      .attr('r', baseRadius + restRadius * 0.2)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
-      .attr('stroke', '#111')
-      .attr('stroke-opacity', 0.1)
-      .attr('stroke-width', 1);
-
-    g.append('circle')
-      .attr('r', baseRadius + restRadius * 0.3)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
-      .attr('stroke', '#111')
-      .attr('stroke-opacity', 0.1)
-      .attr('stroke-width', 1);
-
-    g.append('circle')
-      .attr('r', baseRadius + restRadius * 0.4)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
-      .attr('stroke', '#111')
-      .attr('stroke-opacity', 0.1)
-      .attr('stroke-width', 1);
-
-    g.append('circle')
-      .attr('r', baseRadius + restRadius * 0.5)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
-      .attr('stroke', '#111')
-      .attr('stroke-opacity', 0.1)
-      .attr('stroke-width', 1);
-
-    g.append('circle')
-      .attr('r', baseRadius + restRadius * 0.6)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
-      .attr('stroke', '#111')
-      .attr('stroke-opacity', 0.1)
-      .attr('stroke-width', 1);
-
-    g.append('circle')
-      .attr('r', baseRadius + restRadius * 0.7)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
-      .attr('stroke', '#111')
-      .attr('stroke-opacity', 0.1)
-      .attr('stroke-width', 1);
-
-    g.append('circle')
-      .attr('r', baseRadius + restRadius * 0.8)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
-      .attr('stroke', '#111')
-      .attr('stroke-opacity', 0.1)
-      .attr('stroke-width', 1);
-
-    g.append('circle')
-      .attr('r', baseRadius + restRadius * 0.9)
-      .attr('fill', 'none') // Use 'none' instead of '#fff'
-      .attr('stroke', '#111')
-      .attr('stroke-opacity', 0.1)
-      .attr('stroke-width', 1);
+    // circles graduations for stats
+    for (let i = 0; i < 10; i++) {
+      g.append('circle')
+        .attr('r', minRadius + restRadius * ((1 / 10) * i))
+        .attr('fill', 'none')
+        .attr('stroke', '#111')
+        .attr('stroke-opacity', 0.1)
+        .attr('stroke-width', 1);
+    }
   }
 
-  // function drawSubCategoryArc(
-  //   g: d3GSelection,
-  //   angleScale: d3.ScaleLinear<number, number>,
-  //   selectedColumnIds: ColumnKey[]
-  // ) {
-  //   g.select('.category-arc')
-  //     .data({
-  //       innerRadius: radius * 1.5 * innerRadiusPadding,
-  //       outerRadius: radius * 1.5,
-  //       startAngle: angleScale(0),
-  //       endAngle: angleScale(360),
-  //     })
-  //     .join('path')
-  //     .attr('class', 'category-arc')
-  //     .attr('d', arcGenerator)
-  //     .attr('fill', '#111');
-  // }
-
-  function drawBackgroundArcs(
-    g: d3GSelection,
-    angleScale: d3.ScaleLinear<number, number>,
-    selectedColumnIds: ColumnKey[]
-  ) {
-    // console.log('angle scale:', angleScale.domain());
-    g.selectAll('.background-arc')
-      .data(
-        selectedColumnIds.map((data, i) => ({
-          innerRadius: radius * innerRadiusPadding,
-          outerRadius: radius,
-          startAngle: angleScale(i),
-          endAngle: angleScale(i + 1),
-          data,
-        }))
-      )
-      .join('path')
-      .attr('class', 'background-arc')
-      .attr('d', arcGenerator)
-      .attr('fill', '#f0f0f0');
-  }
-
-  function drawValueArcs(
+  function drawColumnBackgrounds(
     g: d3GSelection,
     angleScale: d3.ScaleLinear<number, number>,
     statGroupsWithselectedColumnIds: EnrichedGroup[],
     selectedPlayers: Player[]
   ) {
+    const className = 'column-background';
     const arcData: Array<ArcDataExtended> = [];
-
-    const baseRadius = radius * innerRadiusPadding;
-    const fullRadius = radius * (1 - innerRadiusPadding);
 
     let columnIndex = 0;
     statGroupsWithselectedColumnIds.forEach((group) => {
@@ -225,8 +129,6 @@ export function useChartDrawArcs() {
               const stat = player.stats[column.id];
               if (stat) {
                 const v = column.meta.scale(stat);
-
-                // console.log({ v, stat, column });
                 arcData.push({
                   columnId: column.id,
                   columnIndex,
@@ -241,50 +143,27 @@ export function useChartDrawArcs() {
       });
     });
 
-    g.selectAll('.value-arc')
+    g.selectAll(`.${className}`)
       .data(
         arcData,
         (d) => `${(d as ArcDataExtended).columnId}-${(d as ArcDataExtended).player.id}`
       )
-      .join(
-        // Enter
-        (enter) =>
-          enter
-            .append('path')
-            .attr('class', (d) => `value-arc player-${d.player.id}`)
-            .attr('d', (d) =>
-              arcGenerator({
-                innerRadius: baseRadius,
-                outerRadius: baseRadius + fullRadius * d.scaledValue,
-                startAngle: angleScale(d.columnIndex),
-                endAngle: angleScale(d.columnIndex + 1),
-                data: d,
-              })
-            )
-            .attr('fill', (d) => d.player.colors[0])
-            .attr('opacity', 0)
-            .call((enter) => enter.transition().duration(0).attr('opacity', 1)),
-
-        // Update
-        (update) =>
-          update.call((update) =>
-            update
-              .transition()
-              .duration(0)
-              .attr('d', (d) =>
-                arcGenerator({
-                  innerRadius: radius * innerRadiusPadding,
-                  outerRadius:
-                    radius * innerRadiusPadding + radius * (1 - innerRadiusPadding) * d.scaledValue,
-                  startAngle: angleScale(d.columnIndex),
-                  endAngle: angleScale(d.columnIndex + 1),
-                  data: d,
-                })
-              )
-          ),
-
-        // Exit
-        (exit) => exit.call((exit) => exit.transition().duration(0).attr('opacity', 0).remove())
+      .join((enter) =>
+        enter
+          .append('path')
+          .attr('class', (d) => `${className} player-${d.player.id}`)
+          .attr('d', (d) =>
+            arcGenerator({
+              innerRadius: minRadius,
+              outerRadius: minRadius + restRadius * d.scaledValue,
+              startAngle: angleScale(d.columnIndex),
+              endAngle: angleScale(d.columnIndex + 1),
+              data: d,
+            })
+          )
+          .attr('fill', (d) => d.player.colors[0])
+          .attr('opacity', 0)
+          .call((enter) => enter.transition().duration(0).attr('opacity', 1))
       );
   }
 
@@ -298,7 +177,6 @@ export function useChartDrawArcs() {
     const groupStartIndices: number[] = [];
     const subGroupStartIndices: number[] = [];
 
-    // Collect group start indices
     statGroupsWithselectedColumnIds.forEach((group) => {
       groupStartIndices.push(columnIndex);
       group.subGroups.forEach((subGroup) => {
@@ -316,15 +194,15 @@ export function useChartDrawArcs() {
       const isSubGroupSeparator = subGroupStartIndices.includes(i);
 
       const lineLength = isGroupSeparator
-        ? radius * 1.7
+        ? radius * proportions[3]
         : isSubGroupSeparator
-        ? radius * 1.6
-        : radius * 1.5;
+        ? radius * proportions[2]
+        : radius * proportions[1];
 
       g.append('line')
         .attr('class', `separator ${isGroupSeparator ? 'group-separator' : 'column-separator'}`)
         .attr('x1', 0)
-        .attr('y1', radius * innerRadiusPadding)
+        .attr('y1', minRadius)
         .attr('x2', 0)
         .attr('y2', lineLength)
         .attr('stroke', isGroupSeparator ? '#000' : '#000')
@@ -339,9 +217,9 @@ export function useChartDrawArcs() {
         g.append('line')
           .attr('class', 'column-center-separator')
           .attr('x1', 0)
-          .attr('y1', radius * innerRadiusPadding)
+          .attr('y1', minRadius)
           .attr('x2', 0)
-          .attr('y2', radius)
+          .attr('y2', radius * proportions[0])
           .attr('stroke', '#000')
           .attr('stroke-opacity', 0.1)
           .attr('stroke-width', 1)
@@ -360,11 +238,11 @@ export function useChartDrawArcs() {
           const midAngle = (startAngle + endAngle) / 2;
           const shouldFlip = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
           const offset = shouldFlip ? 21 : 13;
-          const labelRadius = radius * 1.6 + offset;
+          const labelRadius = radius * proportions[2] + offset;
 
           const backgroundArc = arcGenerator({
-            innerRadius: radius * 1.6,
-            outerRadius: radius * 1.7,
+            innerRadius: radius * proportions[2],
+            outerRadius: radius * proportions[3],
             startAngle,
             endAngle,
             data: group,
@@ -428,11 +306,11 @@ export function useChartDrawArcs() {
           const midAngle = (startAngle + endAngle) / 2;
           const shouldFlip = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
           const offset = shouldFlip ? 21 : 13;
-          const labelRadius = radius * 1.5 + offset;
+          const labelRadius = radius * proportions[1] + offset;
 
           const backgroundArc = arcGenerator({
-            innerRadius: radius * 1.5,
-            outerRadius: radius * 1.6,
+            innerRadius: radius * proportions[1],
+            outerRadius: radius * proportions[2],
             startAngle,
             endAngle,
             data: subGroup,
@@ -487,11 +365,9 @@ export function useChartDrawArcs() {
   }
 
   return {
-    // drawSubCategoryArc,
     drawInsideCircle,
-    drawOutsideArcs,
-    drawBackgroundArcs,
-    drawValueArcs,
+    drawColumnLabelBackgrounds,
+    drawColumnBackgrounds,
     drawSeparators,
   };
 }
