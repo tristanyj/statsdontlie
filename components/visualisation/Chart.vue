@@ -61,10 +61,7 @@ const indices = computed(() => {
     });
   });
 
-  return {
-    group: groupIndices,
-    subGroup: subGroupIndices,
-  };
+  return { group: groupIndices, subGroup: subGroupIndices };
 });
 
 updateScale('angle', [0, selectedStatIdsCount.value]);
@@ -77,29 +74,34 @@ function createVisualization() {
   g.value.selectAll('*').remove();
 
   // -----------------
-  // Draw stat & stat label arcs
+  // ARCS
   // -----------------
+
+  // Draw group and sub-group arcs
+  drawGroupArcs(g.value, scales.angle, indices.value.group, selectedGroups.value, 0);
+  drawGroupArcs(g.value, scales.angle, indices.value.subGroup, selectedSubGroups.value, 1);
+
+  // Draw stat & stat label arcs
   drawStatArcs(g.value, scales.angle, selectedGroups.value, selectedPlayers.value);
   drawStatLabelArcs(g.value, scales.angle, selectedStats.value);
 
   // -----------------
-  // Draw group and sub-group arcs
+  // LABELS
   // -----------------
-  drawGroupArcs(g.value, scales.angle, indices.value.group, selectedGroups.value, 0);
-  drawGroupArcs(g.value, scales.angle, indices.value.subGroup, selectedSubGroups.value, 1);
 
-  // -----------------
   // Draw group and sub-group labels
-  // -----------------
   drawGroupLabels(g.value, scales.angle, indices.value.group, selectedGroups.value, 0);
   drawGroupLabels(g.value, scales.angle, indices.value.subGroup, selectedSubGroups.value, 1);
+
+  // Draw scale and stat labels
+  drawStatLabels(g.value, scales.angle, selectedStats.value);
   drawScaleLabels(g.value, scales.angle, selectedStats.value);
 
-  drawStatLabels(g.value, scales.angle, selectedStats.value);
+  // -----------------
+  // LINES
+  // -----------------
 
-  // -----------------
-  // TODO: refactor
-  // -----------------
+  // Draw linear and circular separators
   drawLinearSeparators(g.value, scales.angle, selectedGroups.value, selectedStatIdsCount.value);
   drawCircularSeparators(g.value);
 }
