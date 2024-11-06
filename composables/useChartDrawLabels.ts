@@ -2,6 +2,39 @@ import type { d3GSelection, EnrichedColumn } from '~/types';
 
 import { formatNumber } from '~/utils/chart/formatters';
 
+function wrapText(text: string, width: number): string[] {
+  const words = text.split(/\s+/).reverse();
+  const lines: string[] = [];
+  let line: string[] = [];
+  let lineLength = 0;
+  const spaceWidth = 4; // Approximate space width
+
+  while (words.length > 0) {
+    const word = words.pop()!;
+    const wordWidth = word.length * 5.5; // Approximate width per character
+
+    if (lineLength + wordWidth + (line.length > 0 ? spaceWidth : 0) > width) {
+      if (line.length > 0) {
+        lines.push(line.join(' '));
+        line = [word];
+        lineLength = wordWidth;
+      } else {
+        // If single word is too long, just add it
+        lines.push(word);
+      }
+    } else {
+      line.push(word);
+      lineLength += wordWidth + (line.length > 0 ? spaceWidth : 0);
+    }
+  }
+
+  if (line.length > 0) {
+    lines.push(line.join(' '));
+  }
+
+  return lines;
+}
+
 export function useChartDrawLabels() {
   const { radius, innerRadiusPadding } = useChartDimensions();
   const { arcGenerator } = useChartGenerators();
@@ -69,6 +102,9 @@ export function useChartDrawLabels() {
   ) {
     g.selectAll('.column-label').remove();
 
+    const maxWidth = 100; // Adjust this value based on your needs
+    const lineHeight = 14; // Adjust line height as needed
+
     const columnLabels = g
       .selectAll('.column-label')
       .data(columns)
@@ -92,16 +128,23 @@ export function useChartDrawLabels() {
 
       const textGroup = g.append('g').attr('class', 'column-label');
 
-      textGroup
-        .append('text')
-        .attr('x', x)
-        .attr('y', y)
-        .attr('text-anchor', textAnchor)
-        .attr('dominant-baseline', 'middle')
-        .attr('fill', '#000')
-        .attr('font-size', 10)
-        .attr('transform', `rotate(${finalRotation},${x},${y})`)
-        .text(d.name);
+      const lines = wrapText(d.name, maxWidth);
+
+      const totalHeight = lines.length * lineHeight;
+      const startY = y - totalHeight / 2 + lineHeight / 2;
+
+      lines.forEach((line, lineIndex) => {
+        textGroup
+          .append('text')
+          .attr('x', x)
+          .attr('y', startY + lineIndex * lineHeight)
+          .attr('text-anchor', textAnchor)
+          .attr('dominant-baseline', 'middle')
+          .attr('fill', '#000')
+          .attr('font-size', 11)
+          .attr('transform', `rotate(${finalRotation},${x},${y})`)
+          .text(line);
+      });
     });
   }
 
