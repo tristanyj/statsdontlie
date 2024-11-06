@@ -1,9 +1,9 @@
 import type { d3GSelection, EnrichedStat, Group, SubGroup } from '~/types';
 
-import { wrapText, formatNumber } from '~/assets/scripts/utils';
+import { wrapText, formatNumber, shouldFlipText } from '~/assets/scripts/utils';
 
 export function useChartDrawLabels() {
-  const { radius, minRadius, proportions, wrap, modifier } = useChartConfig();
+  const { radius, minRadius, scalePositions, proportions, wrap, modifier } = useChartConfig();
   const { arcGenerator } = useChartGenerators();
 
   function drawStatLabels(
@@ -36,7 +36,7 @@ export function useChartDrawLabels() {
           .attr('text-anchor', textAnchor)
           .attr('dominant-baseline', 'middle')
           .attr('fill', '#000')
-          .attr('font-size', 11)
+          .attr('font-size', modifier.font.statLabel)
           .attr('transform', `rotate(${rotation},${x},${y})`)
           .text(line);
       });
@@ -48,11 +48,12 @@ export function useChartDrawLabels() {
     angleScale: d3.ScaleLinear<number, number>,
     indices: number[],
     groups: Group[] | SubGroup[],
-    modifier: number
+    layerModifier: number
   ) {
     indices.forEach((startIndex, groupIndex) => {
       const group = groups[groupIndex];
-      // TODO: refactor to helper function
+      const id = `label-path-${group.id}`;
+
       const nextGroupStartIndex =
         indices[groupIndex + 1] ??
         startIndex +
@@ -60,14 +61,15 @@ export function useChartDrawLabels() {
             ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.stats.length, 0)
             : group.stats.length);
 
-      // TODO: refactor to helper function
       const startAngle = angleScale(startIndex);
       const endAngle = angleScale(nextGroupStartIndex);
       const midAngle = (startAngle + endAngle) / 2;
 
-      const shouldFlip = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
-      const offset = shouldFlip ? 21 : 13;
-      const labelRadius = radius * proportions[2 - modifier] + offset;
+      const shouldFlip = shouldFlipText(midAngle);
+      const offset = shouldFlip
+        ? modifier.space.groupLabel.flip
+        : modifier.space.groupLabel.standard;
+      const labelRadius = radius * proportions[2 - layerModifier] + offset;
 
       const textArc = arcGenerator({
         innerRadius: labelRadius,
@@ -79,7 +81,10 @@ export function useChartDrawLabels() {
 
       const tempText = g
         .append('text')
-        .style('font-size', '12px')
+        .style(
+          'font-size',
+          layerModifier !== 0 ? modifier.font.subGroupLabel : modifier.font.groupLabel
+        )
         .text(group.name)
         .style('visibility', 'hidden');
       const textLength = tempText.node()?.getComputedTextLength() || 0;
@@ -87,16 +92,18 @@ export function useChartDrawLabels() {
 
       const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
       const textPercentage = (textLength / arcLength) * 100;
-      const restPercentage = 100 - textPercentage;
-      const textOffsetPercentage = restPercentage / 4;
+      const textOffsetPercentage = (100 - textPercentage) / 4;
 
-      g.append('path').attr('id', `label-path-${group.id}`).attr('d', textArc);
+      g.append('path').attr('id', id).attr('d', textArc);
 
       g.append('text')
         .append('textPath')
-        .attr('href', `#label-path-${group.id}`)
+        .attr('href', `#${id}`)
         .attr('startOffset', `${textOffsetPercentage}%`)
-        .style('font-size', '12px')
+        .style(
+          'font-size',
+          layerModifier !== 0 ? modifier.font.subGroupLabel : modifier.font.groupLabel
+        )
         .text(group.name);
     });
   }
@@ -106,46 +113,32 @@ export function useChartDrawLabels() {
     angleScale: d3.ScaleLinear<number, number>,
     stats: EnrichedStat[]
   ) {
-    g.selectAll('.column-scale').remove();
-
-    const labels = [
-      { position: 0.0 },
-      { position: 0.25 },
-      { position: 0.5 },
-      { position: 0.75 },
-      { position: 1.0 },
-    ];
-
-    const columnScales = g
-      .selectAll('.column-scale')
-      .data(stats)
-      .enter()
-      .append('g')
-      .attr('class', 'column-scale')
-      .attr('transform', (d, i) => `rotate(${angleScale(i)}) translate(0, 10)`);
-
-    columnScales.each(function (d, i) {
+    stats.forEach(function (d, i) {
       const startAngle = angleScale(i);
       const endAngle = angleScale(i + 1);
       const midAngle = (startAngle + endAngle) / 2;
-      const shouldFlip = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
+      const shouldFlip = shouldFlipText(midAngle);
 
-      labels.forEach((label) => {
-        const labelId = `label-path-${d.id}-${label.position}`;
-        const scaleOffset = label.position * (radius * proportions[0] - minRadius);
-        const flipOffset = shouldFlip ? 7.5 : 0;
-        const startOffset = label.position === 0.0 ? 5 : 0;
-        const standardRadius = minRadius + scaleOffset + flipOffset + startOffset;
-        const labelRadius = label.position === 1.0 ? standardRadius + 3 : standardRadius;
-        const backgroundRadius = shouldFlip ? labelRadius - 3.5 : labelRadius + 4;
+      scalePositions.forEach((position) => {
+        const id = `label-path-${d.id}-${position}`;
+
+        const scaleOffset = position * (radius * proportions[0] - minRadius);
+        const flipOffset = shouldFlip
+          ? modifier.space.scaleLabel.flip
+          : modifier.space.scaleLabel.standard;
+        const startOffset = position === 0.0 ? modifier.space.scaleLabel.start : 0;
+        const endOffset = position === 1.0 ? modifier.space.scaleLabel.end : 0;
+
+        const labelRadius = minRadius + scaleOffset + flipOffset + startOffset + endOffset;
+        const backgroundRadius = shouldFlip
+          ? labelRadius + modifier.space.scaleLabel.background.flip
+          : labelRadius + modifier.space.scaleLabel.background.standard;
 
         // @ts-expect-error - TS doesn't know about the scale function
-        const value = formatNumber(d.meta.scale.invert(label.position));
-        const textContent = `${value}`;
+        const value = formatNumber(d.meta.scale.invert(position));
 
-        // Create the path for text positioning
         g.append('path')
-          .attr('id', labelId)
+          .attr('id', id)
           .attr(
             'd',
             arcGenerator({
@@ -153,23 +146,22 @@ export function useChartDrawLabels() {
               outerRadius: labelRadius,
               startAngle: shouldFlip ? endAngle : startAngle,
               endAngle: shouldFlip ? startAngle : endAngle,
-              data: label,
+              data: position,
             })
           );
-        // .attr('stroke', getRandomColor());
 
         const tempText = g
           .append('text')
           .append('textPath')
-          .attr('href', `#${labelId}`)
-          .style('font-size', '10px')
-          .text(textContent);
-        const textHeight = 8; // Approximate height of the text
+          .attr('href', `#${id}`)
+          .style('font-size', modifier.font.scaleLabel)
+          .text(value);
+        const textHeight = modifier.space.scaleLabel.text.height;
         const textLength = tempText.node()?.getComputedTextLength() || 0;
         tempText.remove();
 
         // Calculate the arc length needed for this text
-        const padding = 1.5; // Padding around text
+        const padding = modifier.space.scaleLabel.text.padding;
         const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
         const textPercentage = (textLength / arcLength) * 100;
         const restPercentage = 100 - textPercentage;
@@ -183,8 +175,7 @@ export function useChartDrawLabels() {
         const bgStartAngle = midAngle - angleForArc / 2;
         const bgEndAngle = midAngle + angleForArc / 2;
 
-        // Create background path that's just wide enough for the text
-        if (label.position !== 1.0) {
+        if (position !== 1.0) {
           g.append('path')
             .attr(
               'd',
@@ -193,19 +184,19 @@ export function useChartDrawLabels() {
                 outerRadius: backgroundRadius + (textHeight / 2 + padding),
                 startAngle: bgStartAngle,
                 endAngle: bgEndAngle,
-                data: label,
+                data: position,
               })
             )
-            .attr('fill', '#f9fafb')
-            .attr('opacity', 0.9);
+            .attr('fill', modifier.color.scaleLabel.background.color)
+            .attr('opacity', modifier.color.scaleLabel.background.opacity);
         }
 
         g.append('text')
           .append('textPath')
-          .attr('href', `#${labelId}`)
+          .attr('href', `#${id}`)
           .attr('startOffset', `${textOffsetPercentage}%`)
-          .style('font-size', '10px')
-          .text(textContent);
+          .style('font-size', modifier.font.scaleLabel)
+          .text(value);
       });
     });
   }

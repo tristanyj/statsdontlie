@@ -38,4 +38,8 @@ function formatNumber(value: number) {
   return `${value / 1e9}B`;
 }
 
-export { wrapText, formatNumber };
+function shouldFlipText(midAngle: number) {
+  return midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
+}
+
+export { wrapText, formatNumber, shouldFlipText };

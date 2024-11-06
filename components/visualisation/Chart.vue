@@ -102,7 +102,13 @@ function createVisualization() {
   // -----------------
 
   // Draw linear and circular separators
-  drawLinearSeparators(g.value, scales.angle, selectedGroups.value, selectedStatIdsCount.value);
+  drawLinearSeparators(
+    g.value,
+    scales.angle,
+    indices.value.group,
+    indices.value.subGroup,
+    selectedStatIdsCount.value
+  );
   drawCircularSeparators(g.value);
 }
 
