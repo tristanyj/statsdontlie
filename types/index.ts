@@ -87,10 +87,8 @@ export interface Stat {
   id: StatKey;
   name: string;
   meta: {
-    domain?: number[];
+    domain: number[];
     range?: number[];
-    domainMin: number;
-    domainMax: number;
     scaleType: 'linear' | 'log' | 'pow' | 'threshold' | 'quantile';
     formatType: 'number' | 'percent' | 'time';
   };
