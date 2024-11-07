@@ -1,6 +1,6 @@
 import type { d3GSelection, EnrichedStat, Group, SubGroup } from '~/types';
 
-import { wrapText, shouldFlipText } from '~/assets/scripts/utils';
+import { wrapText, shouldFlipText, calcTextLength } from '~/assets/scripts/utils';
 
 export function useChartDrawLabels() {
   const { radius, minRadius, scalePositions, proportions, wrap, modifier } = useChartConfig();
@@ -80,31 +80,20 @@ export function useChartDrawLabels() {
         data: group,
       });
 
-      const tempText = g
-        .append('text')
-        .style(
-          'font-size',
-          layerModifier !== 0 ? modifier.font.subGroupLabel : modifier.font.groupLabel
-        )
-        .text(group.name)
-        .style('visibility', 'hidden');
-      const textLength = tempText.node()?.getComputedTextLength() || 0;
-      tempText.remove();
+      const fontSize = layerModifier !== 0 ? modifier.font.subGroupLabel : modifier.font.groupLabel;
+      const textLength = calcTextLength(g, id, group.name, fontSize);
 
       const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
       const textPercentage = (textLength / arcLength) * 100;
       const textOffsetPercentage = (100 - textPercentage) / 4;
 
-      g.append('path').attr('id', id).attr('d', textArc).attr('fill', 'none');
+      g.append('path').attr('id', id).attr('d', textArc);
 
       g.append('text')
         .append('textPath')
         .attr('href', `#${id}`)
         .attr('startOffset', `${textOffsetPercentage}%`)
-        .style(
-          'font-size',
-          layerModifier !== 0 ? modifier.font.subGroupLabel : modifier.font.groupLabel
-        )
+        .style('font-size', fontSize)
         .text(group.name);
     });
   }
@@ -154,15 +143,9 @@ export function useChartDrawLabels() {
             })
           );
 
-        const tempText = g
-          .append('text')
-          .append('textPath')
-          .attr('href', `#${id}`)
-          .style('font-size', modifier.font.scaleLabel)
-          .text(value);
+        const fontSize = modifier.font.scaleLabel;
+        const textLength = calcTextLength(g, id, value, fontSize);
         const textHeight = modifier.space.scaleLabel.text.height;
-        const textLength = tempText.node()?.getComputedTextLength() || 0;
-        tempText.remove();
 
         // Calculate the arc length needed for this text
         const padding = modifier.space.scaleLabel.text.padding;
@@ -199,7 +182,7 @@ export function useChartDrawLabels() {
           .append('textPath')
           .attr('href', `#${id}`)
           .attr('startOffset', `${textOffsetPercentage}%`)
-          .style('font-size', modifier.font.scaleLabel)
+          .style('font-size', fontSize)
           .text(value);
       });
     });

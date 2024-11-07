@@ -1,3 +1,5 @@
+import type { d3GSelection } from '~/types';
+
 function wrapText(text: string, width: number): string[] {
   const words = text.split(/\s+/).reverse();
   const lines: string[] = [];
@@ -42,4 +44,17 @@ function shouldFlipText(midAngle: number) {
   return midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
 }
 
-export { wrapText, formatNumber, shouldFlipText };
+function calcTextLength(g: d3GSelection, id: string, text: string, fontSize: number) {
+  const tempText = g
+    .append('text')
+    .append('textPath')
+    .attr('href', `#${id}`)
+    .style('font-size', fontSize)
+    .text(text)
+    .style('visibility', 'hidden');
+  const textLength = tempText.node()?.getComputedTextLength() || 0;
+  tempText.remove();
+  return textLength;
+}
+
+export { wrapText, formatNumber, shouldFlipText, calcTextLength };

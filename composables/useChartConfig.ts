@@ -72,6 +72,12 @@ export function useChartConfig() {
   };
 
   const spaceModifier = {
+    center: {
+      arc: {
+        top: 18,
+        bottom: 10,
+      },
+    },
     groupLabel: {
       standard: 25,
       flip: 33,
