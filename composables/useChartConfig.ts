@@ -29,11 +29,17 @@ export function useChartConfig() {
   // ------------------------------
 
   const legend = {
-    columnCount: 1,
+    columnCount: 2,
     statLabel: 'Statistic Name',
     groupLabel: 'Legend',
     subGroupLabel: 'Category',
     scaleLabel: 'Scale Label',
+    scales: scalePositions.reduce((acc, curr) => {
+      return {
+        ...acc,
+        [curr]: curr === 1 ? '100% : NFL Record among QBs' : `${(curr * 100).toString()}%`,
+      };
+    }, {}),
   };
 
   // ------------------------------

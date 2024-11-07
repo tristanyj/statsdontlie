@@ -112,6 +112,7 @@ export function useChartDrawLabels() {
         .attr('href', `#${id}`)
         .attr('startOffset', `${textOffsetPercentage}%`)
         .style('font-size', fontSize)
+        .style('font-weight', isGroup && isLegend ? 'bold' : 'normal')
         .text(text);
     }
   }
@@ -121,14 +122,17 @@ export function useChartDrawLabels() {
     circleScale: d3.ScaleLinear<number, number>,
     stats: EnrichedStat[]
   ) {
-    stats.forEach(function (d, i) {
+    for (let i = 0; i < stats.length + 1; i++) {
+      const d = stats[i];
+      const isLegend = i === stats.length;
+
       const startAngle = circleScale(i);
-      const endAngle = circleScale(i + 1);
+      const endAngle = circleScale(isLegend ? i + legend.columnCount : i + 1);
       const midAngle = (startAngle + endAngle) / 2;
       const shouldFlip = shouldFlipText(midAngle);
 
       scalePositions.forEach((position) => {
-        const id = `label-path-${d.id}-${position}`;
+        const id = `label-path-${d?.id ?? 'legend'}-${position}`;
 
         const scaleOffset = position * (radius * proportions[0] - minRadius);
         const flipOffset = shouldFlip
@@ -142,12 +146,13 @@ export function useChartDrawLabels() {
           ? labelRadius + modifier.space.scaleLabel.background.flip
           : labelRadius + modifier.space.scaleLabel.background.standard;
 
-        const value =
-          position === 1.0
-            ? // @ts-expect-error - TS doesn't know about the scale function
-              withUnit(d.meta.scale.invert(position), d.meta.formatType)
-            : // @ts-expect-error - TS doesn't know about the scale function
-              d.meta.format(d.meta.scale.invert(position), position === 0.0 ? 0 : 1);
+        const value = isLegend
+          ? legend.scales[position as keyof typeof legend.scales]
+          : position === 1.0
+          ? // @ts-expect-error - TS doesn't know about the scale function
+            withUnit(d.meta.scale.invert(position), d.meta.formatType)
+          : // @ts-expect-error - TS doesn't know about the scale function
+            d.meta.format(d.meta.scale.invert(position), position === 0.0 ? 0 : 1);
 
         g.append('path')
           .attr('id', id)
@@ -167,7 +172,6 @@ export function useChartDrawLabels() {
         const textLength = calcTextLength(g, id, value, fontSize);
         const textHeight = modifier.space.scaleLabel.text.height;
 
-        // Calculate the arc length needed for this text
         const padding = modifier.space.scaleLabel.text.padding;
         const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
         const textPercentage = (textLength / arcLength) * 100;
@@ -203,7 +207,7 @@ export function useChartDrawLabels() {
           .style('font-size', fontSize)
           .text(value);
       });
-    });
+    }
   }
 
   return {
