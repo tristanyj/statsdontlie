@@ -8,13 +8,6 @@ export function useChartConfig() {
   const margin = 1;
 
   // ------------------------------
-  // Positions
-  // ------------------------------
-
-  const scalePositions = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0];
-  const layerCount = 20;
-
-  // ------------------------------
   // Proportions
   // ------------------------------
 
@@ -23,6 +16,23 @@ export function useChartConfig() {
     (acc, curr) => [...acc, (acc[acc.length - 1] || 0) + curr / 100],
     []
   );
+
+  // ------------------------------
+  // Radius
+  // ------------------------------
+
+  const radius = Math.min(width, height) / 2 - margin;
+  const innerRadiusPadding = 0.25;
+  const minRadius = radius * proportions[0] * innerRadiusPadding;
+  const restRadius = radius * proportions[0] * (1 - innerRadiusPadding);
+  const maxRadius = radius;
+
+  // ------------------------------
+  // Positions
+  // ------------------------------
+
+  const scalePositions = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0];
+  const layerCount = 20;
 
   // ------------------------------
   // Legend
@@ -37,20 +47,10 @@ export function useChartConfig() {
     scales: scalePositions.reduce((acc, curr) => {
       return {
         ...acc,
-        [curr]: curr === 1 ? '100% : NFL Record among QBs' : `${(curr * 100).toString()}%`,
+        [curr]: curr === 1 ? 'NFL Record among QBs' : `${(curr * 100).toString()}%`,
       };
     }, {}),
   };
-
-  // ------------------------------
-  // Radius
-  // ------------------------------
-
-  const radius = Math.min(width, height) / 2 - margin;
-  const innerRadiusPadding = 0.2;
-  const minRadius = radius * proportions[0] * innerRadiusPadding;
-  const restRadius = radius * proportions[0] * (1 - innerRadiusPadding);
-  const maxRadius = radius;
 
   // ------------------------------
   // Text wrapping
@@ -68,15 +68,44 @@ export function useChartConfig() {
   // Modifiers
   // ------------------------------
 
+  const colors = {
+    default: '#f0f0f0',
+    white: '#fff',
+    black: '#000',
+  };
+
   const colorModifier = {
-    scaleLabel: {
+    default: colors.default,
+    white: colors.white,
+    groupLabel: {
       background: {
-        color: '#f9fafb',
+        opacity: 0.7,
+      },
+    },
+    subGroupLabel: {
+      background: {
+        opacity: 0.7,
+      },
+    },
+    statLabel: {
+      background: {
+        opacity: 0.7,
+      },
+    },
+    scaleLabel: {
+      last: {
+        background: {
+          color: colors.white,
+          opacity: 0.6,
+        },
+      },
+      background: {
+        color: colors.white,
         opacity: 0.9,
       },
     },
     separator: {
-      stroke: '#000',
+      stroke: colors.black,
       lowOpacity: 0.075,
       highOpacity: 0.7,
     },

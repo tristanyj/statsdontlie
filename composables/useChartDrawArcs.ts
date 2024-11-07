@@ -6,7 +6,7 @@ import type { d3GSelection, EnrichedStat, Group, Player, SubGroup, StatArcData }
 export function useChartDrawArcs() {
   const { setHoveredStat } = useInteractionStore();
   const { arcGenerator } = useChartGenerators();
-  const { radius, minRadius, proportions, restRadius, modifier } = useChartConfig();
+  const { radius, minRadius, proportions, restRadius, modifier, legend } = useChartConfig();
 
   function drawStatArcs(
     g: d3GSelection,
@@ -85,6 +85,26 @@ export function useChartDrawArcs() {
             enter.transition().duration(0).attr('opacity', 1);
           })
       );
+
+    // Draw legend arc
+    g.append('path')
+      .attr('class', 'legend-arc')
+      .attr(
+        'd',
+        arcGenerator({
+          innerRadius: minRadius,
+          outerRadius: minRadius + restRadius * 0.75,
+          startAngle: circleScale(selectedStats.length),
+          endAngle: circleScale(selectedStats.length + legend.columnCount),
+          data: null,
+        })
+      )
+      .attr('fill', modifier.color.default)
+      .attr('opacity', 0)
+      .call((enter) => {
+        if (interaction) return;
+        enter.transition().duration(0).attr('opacity', 1);
+      });
   }
 
   function drawStatLabelArcs(
@@ -96,18 +116,29 @@ export function useChartDrawArcs() {
 
     g.selectAll(`.${className}`)
       .data(
-        selectedStats.map((data, i) => ({
-          innerRadius: radius * proportions[0],
-          outerRadius: radius * proportions[1],
-          startAngle: circleScale(i),
-          endAngle: circleScale(i + 1),
-          data,
-        }))
+        selectedStats
+          .map((data, i) => ({
+            innerRadius: radius * proportions[0],
+            outerRadius: radius * proportions[1],
+            startAngle: circleScale(i),
+            endAngle: circleScale(i + 1),
+            data,
+          }))
+          .concat([
+            {
+              innerRadius: radius * proportions[0],
+              outerRadius: radius * proportions[1],
+              startAngle: circleScale(selectedStats.length),
+              endAngle: circleScale(selectedStats.length + legend.columnCount),
+              data: null as unknown as EnrichedStat,
+            },
+          ])
       )
       .join('path')
       .attr('class', className)
       .attr('d', arcGenerator)
-      .attr('fill', (d) => d.data.color ?? '#f0f0f0');
+      .attr('fill', (d) => d.data?.color ?? modifier.color.default)
+      .attr('opacity', modifier.color.statLabel.background.opacity);
   }
 
   function drawGroupArcs(
@@ -115,7 +146,7 @@ export function useChartDrawArcs() {
     circleScale: d3.ScaleLinear<number, number>,
     indices: number[],
     groups: Group[] | SubGroup[],
-    modifier: number
+    layerModifier: number
   ) {
     indices.forEach((startIndex, groupIndex) => {
       const group = groups[groupIndex];
@@ -130,8 +161,8 @@ export function useChartDrawArcs() {
       const endAngle = circleScale(nextGroupStartIndex);
 
       const backgroundArc = arcGenerator({
-        innerRadius: radius * proportions[3 - modifier],
-        outerRadius: radius * proportions[2 - modifier],
+        innerRadius: radius * proportions[3 - layerModifier],
+        outerRadius: radius * proportions[2 - layerModifier],
         startAngle,
         endAngle,
         data: group,
@@ -139,7 +170,8 @@ export function useChartDrawArcs() {
 
       g.append('path')
         .attr('d', backgroundArc)
-        .attr('fill', group.color ?? '#f0f0f0');
+        .attr('fill', group?.color ?? modifier.color.default)
+        .attr('opacity', modifier.color.groupLabel.background.opacity);
     });
   }
 
@@ -155,8 +187,8 @@ export function useChartDrawArcs() {
           data: null,
         })
       )
-      .attr('fill', '#f0f0f0')
-      .attr('opacity', 0.6);
+      .attr('fill', modifier.color.white)
+      .attr('opacity', modifier.color.scaleLabel.last.background.opacity);
   }
 
   return {
