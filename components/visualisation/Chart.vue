@@ -98,8 +98,22 @@ function createVisualization() {
   // -----------------
 
   // Draw group and sub-group labels
-  drawGroupLabels(g.value, scales.circle, indices.value.group, selectedGroups.value, true);
-  drawGroupLabels(g.value, scales.circle, indices.value.subGroup, selectedSubGroups.value, false);
+  drawGroupLabels(
+    g.value,
+    scales.circle,
+    indices.value.group,
+    selectedStatIdsCount.value,
+    selectedGroups.value,
+    true
+  );
+  drawGroupLabels(
+    g.value,
+    scales.circle,
+    indices.value.subGroup,
+    selectedStatIdsCount.value,
+    selectedSubGroups.value,
+    false
+  );
 
   // Draw scale and stat labels
   drawStatLabels(g.value, scales.circle, selectedStats.value);

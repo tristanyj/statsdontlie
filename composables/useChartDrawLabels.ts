@@ -3,7 +3,8 @@ import type { d3GSelection, EnrichedStat, Group, SubGroup } from '~/types';
 import { wrapText, shouldFlipText, calcTextLength, withUnit } from '~/assets/scripts/utils';
 
 export function useChartDrawLabels() {
-  const { radius, minRadius, scalePositions, proportions, wrap, modifier } = useChartConfig();
+  const { radius, minRadius, scalePositions, proportions, wrap, modifier, legend } =
+    useChartConfig();
   const { arcGenerator } = useChartGenerators();
 
   function drawStatLabels(
@@ -13,13 +14,16 @@ export function useChartDrawLabels() {
   ) {
     const className = 'stat-label';
 
-    stats.forEach(function (d, i) {
+    for (let i = 0; i < stats.length + 1; i++) {
+      const isLegend = i === stats.length;
+      const text = isLegend ? legend.statLabel : stats[i]?.name;
       const startAngle = circleScale(i);
-      const midAngle = startAngle + (circleScale(i + 1) - startAngle) / 2;
+      const endAngle = circleScale(isLegend ? i + 2 : i + 1);
+      const midAngle = (startAngle + endAngle) / 2;
       const labelRadius = radius * proportions[0] * modifier.radius.statLabel;
 
       const textGroup = g.append('g').attr('class', className);
-      const lines = wrapText(d.name, wrap.maxWidth);
+      const lines = wrapText(text, wrap.maxWidth);
 
       const textAnchor = midAngle > Math.PI ? 'end' : 'start';
       const rotation = (midAngle * 180) / Math.PI - 90 + (midAngle > Math.PI ? 180 : 0);
@@ -40,29 +44,43 @@ export function useChartDrawLabels() {
           .attr('transform', `rotate(${rotation},${x},${y})`)
           .text(line);
       });
-    });
+    }
   }
 
   function drawGroupLabels(
     g: d3GSelection,
     circleScale: d3.ScaleLinear<number, number>,
     indices: number[],
+    selectedStatIdsCount: number,
     groups: Group[] | SubGroup[],
     isGroup: boolean
   ) {
     const layerModifier = isGroup ? 0 : 1;
     const spaceModifier = isGroup ? modifier.space.groupLabel : modifier.space.subGroupLabel;
 
-    indices.forEach((startIndex, groupIndex) => {
-      const group = groups[groupIndex];
-      const id = `label-path-${group.id}`;
+    for (let groupIndex = 0; groupIndex < indices.length + 1; groupIndex++) {
+      const isLegend = groupIndex === indices.length;
+      const startIndex = isLegend ? selectedStatIdsCount : indices[groupIndex];
+      const group = isLegend ? null : groups[groupIndex];
+      const text = isLegend
+        ? isGroup
+          ? legend.groupLabel
+          : legend.subGroupLabel
+        : group?.name ?? '';
 
-      const nextGroupStartIndex =
-        indices[groupIndex + 1] ??
-        startIndex +
-          (isGroup
-            ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.stats.length, 0)
-            : (group as SubGroup).stats.length);
+      const id = `label-path-${group?.id ?? `legend-${isGroup ? 'group' : 'sub-group'}`}`;
+
+      if (isLegend) {
+        console.log({ layerModifier });
+      }
+
+      const nextGroupStartIndex = isLegend
+        ? startIndex + legend.columnCount
+        : indices[groupIndex + 1] ??
+          startIndex +
+            (isGroup
+              ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.stats.length, 0)
+              : (group as SubGroup).stats.length);
 
       const startAngle = circleScale(startIndex);
       const endAngle = circleScale(nextGroupStartIndex);
@@ -81,7 +99,7 @@ export function useChartDrawLabels() {
       });
 
       const fontSize = layerModifier !== 0 ? modifier.font.subGroupLabel : modifier.font.groupLabel;
-      const textLength = calcTextLength(g, id, group.name, fontSize);
+      const textLength = calcTextLength(g, id, text, fontSize);
 
       const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
       const textPercentage = (textLength / arcLength) * 100;
@@ -94,8 +112,8 @@ export function useChartDrawLabels() {
         .attr('href', `#${id}`)
         .attr('startOffset', `${textOffsetPercentage}%`)
         .style('font-size', fontSize)
-        .text(group.name);
-    });
+        .text(text);
+    }
   }
 
   function drawScaleLabels(
@@ -156,11 +174,9 @@ export function useChartDrawLabels() {
         const restPercentage = 100 - textPercentage;
         const textOffsetPercentage = restPercentage / 4;
 
-        // Calculate the angle that corresponds to this arc length
         const backgroundArcLength = textLength + padding * 2;
         const angleForArc = backgroundArcLength / backgroundRadius;
 
-        // Calculate start and end angles for the background
         const bgStartAngle = midAngle - angleForArc / 2;
         const bgEndAngle = midAngle + angleForArc / 2;
 

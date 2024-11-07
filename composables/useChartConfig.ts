@@ -30,6 +30,10 @@ export function useChartConfig() {
 
   const legend = {
     columnCount: 2,
+    statLabel: 'Statistic Name',
+    groupLabel: 'Legend',
+    subGroupLabel: 'Category',
+    scaleLabel: 'Scale Label',
   };
 
   // ------------------------------
