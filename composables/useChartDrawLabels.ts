@@ -48,8 +48,11 @@ export function useChartDrawLabels() {
     circleScale: d3.ScaleLinear<number, number>,
     indices: number[],
     groups: Group[] | SubGroup[],
-    layerModifier: number
+    isGroup: boolean
   ) {
+    const layerModifier = isGroup ? 0 : 1;
+    const spaceModifier = isGroup ? modifier.space.groupLabel : modifier.space.subGroupLabel;
+
     indices.forEach((startIndex, groupIndex) => {
       const group = groups[groupIndex];
       const id = `label-path-${group.id}`;
@@ -57,18 +60,16 @@ export function useChartDrawLabels() {
       const nextGroupStartIndex =
         indices[groupIndex + 1] ??
         startIndex +
-          ('subGroups' in group
+          (isGroup
             ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.stats.length, 0)
-            : group.stats.length);
+            : (group as SubGroup).stats.length);
 
       const startAngle = circleScale(startIndex);
       const endAngle = circleScale(nextGroupStartIndex);
       const midAngle = (startAngle + endAngle) / 2;
 
       const shouldFlip = shouldFlipText(midAngle);
-      const offset = shouldFlip
-        ? modifier.space.groupLabel.flip
-        : modifier.space.groupLabel.standard;
+      const offset = shouldFlip ? spaceModifier.flip : spaceModifier.standard;
       const labelRadius = radius * proportions[2 - layerModifier] + offset;
 
       const textArc = arcGenerator({
@@ -94,7 +95,7 @@ export function useChartDrawLabels() {
       const textPercentage = (textLength / arcLength) * 100;
       const textOffsetPercentage = (100 - textPercentage) / 4;
 
-      g.append('path').attr('id', id).attr('d', textArc);
+      g.append('path').attr('id', id).attr('d', textArc).attr('fill', 'none');
 
       g.append('text')
         .append('textPath')

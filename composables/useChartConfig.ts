@@ -18,7 +18,7 @@ export function useChartConfig() {
   // Proportions
   // ------------------------------
 
-  const percentages = [68, 22, 5, 5];
+  const percentages = [64, 23, 5, 8];
   const proportions = percentages.reduce<number[]>(
     (acc, curr) => [...acc, (acc[acc.length - 1] || 0) + curr / 100],
     []
@@ -73,6 +73,10 @@ export function useChartConfig() {
 
   const spaceModifier = {
     groupLabel: {
+      standard: 25,
+      flip: 33,
+    },
+    subGroupLabel: {
       standard: 12,
       flip: 20,
     },
