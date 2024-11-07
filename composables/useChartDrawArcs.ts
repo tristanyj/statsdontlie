@@ -28,9 +28,9 @@ export function useChartDrawArcs() {
             arcData.push({
               id: `${stat.id}-${player.id}`,
               index: i,
-              color: player.colors[0],
               value,
-              data: stat,
+              stat,
+              player,
             });
           }
         });
@@ -51,11 +51,11 @@ export function useChartDrawArcs() {
               data: d,
             })
           )
-          .attr('fill', (d) => d.color)
+          .attr('fill', (d) => d.player.colors[0])
           .attr('opacity', 0)
-          .on('mouseenter', (event) => {
-            console.log('mouseenter');
-            setHoveredStat(event);
+          .on('mouseenter', (_, d) => {
+            console.log('mouseenter', d);
+            setHoveredStat(d);
           })
           .on('mouseleave', () => {
             console.log('mouseleave');

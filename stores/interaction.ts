@@ -1,36 +1,45 @@
-import type { EnrichedStat } from '~/types';
+import type { StatArcData } from '~/types';
 
 export const useInteractionStore = defineStore(
   'interaction',
   () => {
     const isStatHovered = ref(false);
-    const hoveredStat = ref<EnrichedStat | null>(null);
+    const hoveredStatArc = ref<StatArcData | null>(null);
 
-    const setHoveredStat = (stat: EnrichedStat | null) => {
+    const setHoveredStat = (stat: StatArcData | null) => {
       if (!stat) {
         isStatHovered.value = false;
-        hoveredStat.value = null;
+        hoveredStatArc.value = null;
         return;
       }
 
       isStatHovered.value = true;
-      hoveredStat.value = stat;
+      hoveredStatArc.value = stat;
     };
 
     const parsedHoveredStat = computed(() => {
-      if (!hoveredStat.value) return null;
+      if (!hoveredStatArc.value) return null;
 
       return {
-        id: hoveredStat.value.id,
-        name: hoveredStat.value.name,
-        color: hoveredStat.value.color,
-        record: hoveredStat.value.record,
+        id: hoveredStatArc.value.id,
+        stat: {
+          id: hoveredStatArc.value.stat.id,
+          name: hoveredStatArc.value.stat.name,
+          color: hoveredStatArc.value.stat.color,
+          record: hoveredStatArc.value.stat.record,
+        },
+        player: {
+          id: hoveredStatArc.value.player.id,
+          name: hoveredStatArc.value.player.name,
+          colors: hoveredStatArc.value.player.colors,
+          stat: hoveredStatArc.value.player.stats[hoveredStatArc.value.stat.id],
+        },
       };
     });
 
     return {
       isStatHovered,
-      hoveredStat: parsedHoveredStat,
+      hoveredStatArc: parsedHoveredStat,
       setHoveredStat,
     };
   }

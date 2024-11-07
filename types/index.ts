@@ -72,15 +72,6 @@ export interface Player {
   >;
 }
 
-// const getEnrichedStat = (column: Stat) => ({
-//   ...column,
-//   meta: {
-//     ...column.meta,
-//     scale: getScale(column),
-//     format: getFormat(column),
-//   },
-// });
-
 export interface EnrichedStat extends Stat {
   color: `#${string}`;
   meta: Stat['meta'] & {
@@ -147,9 +138,41 @@ export interface ArcData {
 export interface StatArcData {
   id: string;
   index: number;
-  color: `${string}`;
   value: number;
-  data: EnrichedStat;
+  stat: EnrichedStat;
+  player: Player;
+}
+
+export interface HoveredStatArc {
+  id: string;
+  stat: {
+    id: StatKey;
+    name: string;
+    color: `#${string}`;
+    record: {
+      qb: {
+        value: number;
+        name: string;
+      };
+      all: {
+        value: number;
+        name: string;
+        position: string;
+      };
+    };
+  };
+  player: {
+    id: PlayerKey;
+    name: string;
+    colors: `#${string}`[];
+    stats: Record<
+      StatKey,
+      {
+        value: number;
+        rank: [number, number];
+      }
+    >;
+  };
 }
 
 export interface LineData {

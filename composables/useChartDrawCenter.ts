@@ -1,8 +1,10 @@
-import type { d3GSelection } from '~/types';
+import type { d3GSelection, HoveredStatArc } from '~/types';
 
 export function useChartDrawCenter() {
-  function drawCenter(g: d3GSelection) {
+  function drawCenter(g: d3GSelection, hoveredStatArc: HoveredStatArc | null) {
     g.selectAll('.center').remove();
+
+    if (!hoveredStatArc) return;
 
     g.append('circle')
       .attr('class', 'center')
