@@ -1,3 +1,6 @@
+import { group as d3Group } from 'd3-array';
+//
+
 import type { d3GSelection, EnrichedStat, Group, Player, SubGroup, StatArcData } from '~/types';
 
 export function useChartDrawArcs() {
@@ -15,26 +18,41 @@ export function useChartDrawArcs() {
     const className = `stat-arc-${interaction ? 'hover' : 'normal'}`;
     const arcData: Array<StatArcData> = [];
 
-    selectedStats.forEach((stat, i) => {
-      selectedPlayers
-        .sort((a, b) => {
-          const aStat = a.stats[stat.id];
-          const bStat = b.stats[stat.id];
-          return (bStat.value || 0) - (aStat.value || 0);
-        })
-        .forEach((player) => {
-          const s = player.stats[stat.id];
-          if (s) {
-            const value = stat.meta.scale(s.value);
-            arcData.push({
-              id: `${stat.id}-${player.id}`,
-              index: i,
-              value,
-              stat,
-              player,
-            });
-          }
+    selectedStats.forEach((stat, statIndex) => {
+      const playerGroupsByIdenticalStat = d3Group(
+        selectedPlayers,
+        (player) => player.stats[stat.id]?.value
+      );
+
+      const sortedValues = Array.from(playerGroupsByIdenticalStat.keys())
+        .filter((value) => value !== undefined)
+        .sort((a, b) => (b || 0) - (a || 0));
+
+      sortedValues.forEach((statValue) => {
+        const playersWithValue = playerGroupsByIdenticalStat.get(statValue) || [];
+        const playerCount = playersWithValue.length;
+
+        const startAngle = circleScale(statIndex);
+        const endAngle = circleScale(statIndex + 1);
+        const individualArcWidth = (endAngle - startAngle) / playerCount;
+
+        playersWithValue.forEach((player, playerIndex) => {
+          const arcStartAngle = startAngle + individualArcWidth * playerIndex;
+          const arcEndAngle = arcStartAngle + individualArcWidth;
+
+          const value = stat.meta.scale(statValue);
+
+          arcData.push({
+            id: `${stat.id}-${player.id}`,
+            index: statIndex,
+            value,
+            stat,
+            player,
+            startAngle: arcStartAngle,
+            endAngle: arcEndAngle,
+          });
         });
+      });
     });
 
     g.selectAll(`.${className}`)
@@ -47,8 +65,8 @@ export function useChartDrawArcs() {
             arcGenerator({
               innerRadius: minRadius,
               outerRadius: minRadius + restRadius * d.value,
-              startAngle: circleScale(d.index),
-              endAngle: circleScale(d.index + 1),
+              startAngle: d.startAngle,
+              endAngle: d.endAngle,
               data: d,
             })
           )

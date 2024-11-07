@@ -50,7 +50,7 @@ export type StatKey =
   | 'awards.team.sb-appearance'
   | 'awards.team.sb-win';
 
-export type PlayerKey = 'aaron-rodgers' | 'tom-brady';
+export type PlayerKey = 'aaron-rodgers' | 'tom-brady' | 'patrick-mahomes';
 
 export type StatRecord = {
   qb: {
@@ -143,6 +143,8 @@ export interface StatArcData {
   value: number;
   stat: EnrichedStat;
   player: Player;
+  startAngle: number;
+  endAngle: number;
 }
 
 export interface HoveredStatArc {

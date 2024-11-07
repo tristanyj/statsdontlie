@@ -3,7 +3,7 @@ import type { StatKey, PlayerKey } from '~/types';
 export const usePreferencesStore = defineStore(
   'preferences',
   () => {
-    const selectedPlayerIds = ref<PlayerKey[]>(['aaron-rodgers', 'tom-brady']);
+    const selectedPlayerIds = ref<PlayerKey[]>(['aaron-rodgers', 'tom-brady', 'patrick-mahomes']);
 
     const selectedStatIds = ref<StatKey[]>([
       'regular-season.general.games',
