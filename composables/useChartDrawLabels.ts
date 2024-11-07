@@ -18,7 +18,7 @@ export function useChartDrawLabels() {
       const isLegend = i === stats.length;
       const text = isLegend ? legend.statLabel : stats[i]?.name;
       const startAngle = circleScale(i);
-      const endAngle = circleScale(isLegend ? i + 2 : i + 1);
+      const endAngle = circleScale(isLegend ? i + legend.columnCount : i + 1);
       const midAngle = (startAngle + endAngle) / 2;
       const labelRadius = radius * proportions[0] * modifier.radius.statLabel;
 
