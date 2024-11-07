@@ -12,7 +12,7 @@ export function useChartScales() {
   function updateScale(key: keyof typeof scales, selectedColumnsCount: number) {
     const totalColumns = selectedColumnsCount + legend.columnCount;
     const columnWidth = (2 * Math.PI) / totalColumns;
-    const rotationOffset = Math.PI * 2 + (legend.columnCount * columnWidth) / 2;
+    const rotationOffset = 0 + (legend.columnCount * columnWidth) / 2;
 
     scales[key].domain([0, totalColumns]).range([rotationOffset, 2 * Math.PI + rotationOffset]);
   }

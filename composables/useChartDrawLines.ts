@@ -46,7 +46,7 @@ export function useChartDrawLines() {
       .attr('stroke', modifier.color.separator.stroke)
       .attr('stroke-opacity', modifier.color.separator.lowOpacity);
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 2; i++) {
       // layers - stats, subgroups, groups
       g.append('circle')
         .attr('r', radius * proportions[i + 1])

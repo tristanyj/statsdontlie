@@ -137,7 +137,7 @@ export function useChartDrawArcs() {
       .join('path')
       .attr('class', className)
       .attr('d', arcGenerator)
-      .attr('fill', (d) => d.data?.color ?? modifier.color.default)
+      .attr('fill', (d) => d.data?.color ?? 'none')
       .attr('opacity', modifier.color.statLabel.background.opacity);
   }
 

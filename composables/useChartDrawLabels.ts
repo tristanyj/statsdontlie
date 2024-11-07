@@ -20,6 +20,7 @@ export function useChartDrawLabels() {
       const startAngle = circleScale(i);
       const endAngle = circleScale(isLegend ? i + legend.columnCount : i + 1);
       const midAngle = (startAngle + endAngle) / 2;
+      const textAnchor = midAngle > Math.PI ? 'end' : 'start';
       const labelRadius = radius * proportions[0] * modifier.radius.statLabel;
 
       const textGroup = g.append('g').attr('class', className);
@@ -36,7 +37,7 @@ export function useChartDrawLabels() {
           .append('text')
           .attr('x', x)
           .attr('y', startY + i * wrap.lineHeight)
-          .attr('text-anchor', 'end')
+          .attr('text-anchor', textAnchor)
           .attr('dominant-baseline', 'middle')
           .attr('fill', '#000')
           .attr('font-size', modifier.font.statLabel)
@@ -111,7 +112,7 @@ export function useChartDrawLabels() {
         .attr('href', `#${id}`)
         .attr('startOffset', `${textOffsetPercentage}%`)
         .style('font-size', fontSize)
-        .style('font-weight', isGroup && isLegend ? 'bold' : 'normal')
+        .style('font-weight', isGroup ? 'bold' : 'normal')
         .text(text);
     }
   }

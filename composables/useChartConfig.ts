@@ -11,7 +11,7 @@ export function useChartConfig() {
   // Proportions
   // ------------------------------
 
-  const percentages = [64, 23, 5, 8];
+  const percentages = [66, 22, 5, 7];
   const proportions = percentages.reduce<number[]>(
     (acc, curr) => [...acc, (acc[acc.length - 1] || 0) + curr / 100],
     []
@@ -22,7 +22,7 @@ export function useChartConfig() {
   // ------------------------------
 
   const radius = Math.min(width, height) / 2 - margin;
-  const innerRadiusPadding = 0.25;
+  const innerRadiusPadding = 0.225;
   const minRadius = radius * proportions[0] * innerRadiusPadding;
   const restRadius = radius * proportions[0] * (1 - innerRadiusPadding);
   const maxRadius = radius;
@@ -113,7 +113,7 @@ export function useChartConfig() {
 
   const fontModifier = {
     statLabel: 11,
-    groupLabel: 11,
+    groupLabel: 12,
     subGroupLabel: 11,
     scaleLabel: 10,
   };
@@ -130,8 +130,8 @@ export function useChartConfig() {
       },
     },
     groupLabel: {
-      standard: 25,
-      flip: 33,
+      standard: 20,
+      flip: 28,
     },
     subGroupLabel: {
       standard: 12,
