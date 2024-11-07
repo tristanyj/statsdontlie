@@ -12,39 +12,138 @@
       "handedness": "right",
       "colors": ["#ccd5ae", "#FFB612"],
       "stats": {
-        "regular-season.general.games": 240,
-        "regular-season.passing.completions": 5198,
-        "regular-season.passing.attempts": 7977,
-        "regular-season.passing.completion-percentage": 65.2,
-        "regular-season.passing.yards": 61162,
-        "regular-season.passing.touchdowns": 490,
-        "regular-season.passing.interceptions": 112,
-        "regular-season.passing.rating": 103.0,
-        "regular-season.passing.sacks": 551,
-        "regular-season.passing.fumbles": 26,
-        "regular-season.rushing.attempts": 731,
-        "regular-season.rushing.yards": 3509,
-        "regular-season.rushing.touchdowns": 35,
-        "post-season.general.games": 21,
-        "post-season.passing.completions": 501,
-        "post-season.passing.attempts": 775,
-        "post-season.passing.completion-percentage": 64.7,
-        "post-season.passing.yards": 5894,
-        "post-season.passing.touchdowns": 45,
-        "post-season.passing.interceptions": 13,
-        "post-season.passing.rating": 100.1,
-        "post-season.passing.sacks": 55,
-        "post-season.passing.fumbles": 13,
-        "post-season.rushing.attempts": 56,
-        "post-season.rushing.yards": 285,
-        "post-season.rushing.touchdowns": 4,
-        "awards.individual.mvp": 4,
-        "awards.individual.sb-mvp": 1,
-        "awards.individual.pro-bowl": 10,
-        "awards.individual.all-pro-first": 4,
-        "awards.individual.all-pro-second": 1,
-        "awards.team.sb-appearance": 1,
-        "awards.team.sb-win": 1
+        "regular-season.general.games": {
+          "value": 240,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.completions": {
+          "value": 5198,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.attempts": {
+          "value": 7977,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.completion-percentage": {
+          "value": 65.2,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.yards": {
+          "value": 61162,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.touchdowns": {
+          "value": 490,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.interceptions": {
+          "value": 112,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.rating": {
+          "value": 103.0,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.sacks": {
+          "value": 551,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.fumbles": {
+          "value": 26,
+          "rank": [1, 1]
+        },
+        "regular-season.rushing.attempts": {
+          "value": 731,
+          "rank": [1, 1]
+        },
+        "regular-season.rushing.yards": {
+          "value": 3509,
+          "rank": [1, 1]
+        },
+        "regular-season.rushing.touchdowns": {
+          "value": 35,
+          "rank": [1, 1]
+        },
+        "post-season.general.games": {
+          "value": 21,
+          "rank": [1, 1]
+        },
+        "post-season.passing.completions": {
+          "value": 501,
+          "rank": [1, 1]
+        },
+        "post-season.passing.attempts": {
+          "value": 775,
+          "rank": [1, 1]
+        },
+        "post-season.passing.completion-percentage": {
+          "value": 64.7,
+          "rank": [1, 1]
+        },
+        "post-season.passing.yards": {
+          "value": 5894,
+          "rank": [1, 1]
+        },
+        "post-season.passing.touchdowns": {
+          "value": 45,
+          "rank": [1, 1]
+        },
+        "post-season.passing.interceptions": {
+          "value": 13,
+          "rank": [1, 1]
+        },
+        "post-season.passing.rating": {
+          "value": 100.1,
+          "rank": [1, 1]
+        },
+        "post-season.passing.sacks": {
+          "value": 55,
+          "rank": [1, 1]
+        },
+        "post-season.passing.fumbles": {
+          "value": 13,
+          "rank": [1, 1]
+        },
+        "post-season.rushing.attempts": {
+          "value": 56,
+          "rank": [1, 1]
+        },
+        "post-season.rushing.yards": {
+          "value": 285,
+          "rank": [1, 1]
+        },
+        "post-season.rushing.touchdowns": {
+          "value": 4,
+          "rank": [1, 1]
+        },
+        "awards.individual.mvp": {
+          "value": 4,
+          "rank": [1, 1]
+        },
+        "awards.individual.sb-mvp": {
+          "value": 1,
+          "rank": [1, 1]
+        },
+        "awards.individual.pro-bowl": {
+          "value": 10,
+          "rank": [1, 1]
+        },
+        "awards.individual.all-pro-first": {
+          "value": 4,
+          "rank": [1, 1]
+        },
+        "awards.individual.all-pro-second": {
+          "value": 1,
+          "rank": [1, 1]
+        },
+        "awards.team.sb-appearance": {
+          "value": 1,
+          "rank": [1, 1]
+        },
+        "awards.team.sb-win": {
+          "value": 1,
+          "rank": [1, 1]
+        }
       }
     },
     {
@@ -59,39 +158,138 @@
       "handedness": "right",
       "colors": ["#778da9", "#C60C30", "#B0B7BC"],
       "stats": {
-        "regular-season.general.games": 335,
-        "regular-season.passing.completions": 7753,
-        "regular-season.passing.attempts": 12050,
-        "regular-season.passing.completion-percentage": 64.3,
-        "regular-season.passing.yards": 89214,
-        "regular-season.passing.touchdowns": 649,
-        "regular-season.passing.interceptions": 212,
-        "regular-season.passing.rating": 97.2,
-        "regular-season.passing.sacks": 565,
-        "regular-season.passing.fumbles": 35,
-        "regular-season.rushing.attempts": 693,
-        "regular-season.rushing.yards": 1123,
-        "regular-season.rushing.touchdowns": 28,
-        "post-season.general.games": 48,
-        "post-season.passing.completions": 1200,
-        "post-season.passing.attempts": 1921,
-        "post-season.passing.completion-percentage": 62.5,
-        "post-season.passing.yards": 13400,
-        "post-season.passing.touchdowns": 88,
-        "post-season.passing.interceptions": 40,
-        "post-season.passing.rating": 89.8,
-        "post-season.passing.sacks": 81,
-        "post-season.passing.fumbles": 16,
-        "post-season.rushing.attempts": 114,
-        "post-season.rushing.yards": 133,
-        "post-season.rushing.touchdowns": 7,
-        "awards.individual.mvp": 3,
-        "awards.individual.sb-mvp": 5,
-        "awards.individual.pro-bowl": 15,
-        "awards.individual.all-pro-first": 3,
-        "awards.individual.all-pro-second": 3,
-        "awards.team.sb-appearance": 10,
-        "awards.team.sb-win": 7
+        "regular-season.general.games": {
+          "value": 335,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.completions": {
+          "value": 7753,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.attempts": {
+          "value": 12050,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.completion-percentage": {
+          "value": 64.3,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.yards": {
+          "value": 89214,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.touchdowns": {
+          "value": 649,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.interceptions": {
+          "value": 212,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.rating": {
+          "value": 97.2,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.sacks": {
+          "value": 565,
+          "rank": [1, 1]
+        },
+        "regular-season.passing.fumbles": {
+          "value": 35,
+          "rank": [1, 1]
+        },
+        "regular-season.rushing.attempts": {
+          "value": 693,
+          "rank": [1, 1]
+        },
+        "regular-season.rushing.yards": {
+          "value": 1123,
+          "rank": [1, 1]
+        },
+        "regular-season.rushing.touchdowns": {
+          "value": 28,
+          "rank": [1, 1]
+        },
+        "post-season.general.games": {
+          "value": 48,
+          "rank": [1, 1]
+        },
+        "post-season.passing.completions": {
+          "value": 1200,
+          "rank": [1, 1]
+        },
+        "post-season.passing.attempts": {
+          "value": 1921,
+          "rank": [1, 1]
+        },
+        "post-season.passing.completion-percentage": {
+          "value": 62.5,
+          "rank": [1, 1]
+        },
+        "post-season.passing.yards": {
+          "value": 13400,
+          "rank": [1, 1]
+        },
+        "post-season.passing.touchdowns": {
+          "value": 88,
+          "rank": [1, 1]
+        },
+        "post-season.passing.interceptions": {
+          "value": 40,
+          "rank": [1, 1]
+        },
+        "post-season.passing.rating": {
+          "value": 89.8,
+          "rank": [1, 1]
+        },
+        "post-season.passing.sacks": {
+          "value": 81,
+          "rank": [1, 1]
+        },
+        "post-season.passing.fumbles": {
+          "value": 16,
+          "rank": [1, 1]
+        },
+        "post-season.rushing.attempts": {
+          "value": 114,
+          "rank": [1, 1]
+        },
+        "post-season.rushing.yards": {
+          "value": 133,
+          "rank": [1, 1]
+        },
+        "post-season.rushing.touchdowns": {
+          "value": 7,
+          "rank": [1, 1]
+        },
+        "awards.individual.mvp": {
+          "value": 3,
+          "rank": [1, 1]
+        },
+        "awards.individual.sb-mvp": {
+          "value": 5,
+          "rank": [1, 1]
+        },
+        "awards.individual.pro-bowl": {
+          "value": 15,
+          "rank": [1, 1]
+        },
+        "awards.individual.all-pro-first": {
+          "value": 3,
+          "rank": [1, 1]
+        },
+        "awards.individual.all-pro-second": {
+          "value": 3,
+          "rank": [1, 1]
+        },
+        "awards.team.sb-appearance": {
+          "value": 10,
+          "rank": [1, 1]
+        },
+        "awards.team.sb-win": {
+          "value": 7,
+          "rank": [1, 1]
+        }
       }
     }
   ]

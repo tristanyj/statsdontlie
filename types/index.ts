@@ -63,7 +63,13 @@ export interface Player {
   handedness: 'left' | 'right';
   // colors are in hex format
   colors: `#${string}`[];
-  stats: Record<StatKey, number>;
+  stats: Record<
+    StatKey,
+    {
+      value: number;
+      rank: [number, number];
+    }
+  >;
 }
 
 // const getEnrichedStat = (column: Stat) => ({
@@ -143,6 +149,7 @@ export interface StatArcData {
   index: number;
   color: `${string}`;
   value: number;
+  data: EnrichedStat;
 }
 
 export interface LineData {

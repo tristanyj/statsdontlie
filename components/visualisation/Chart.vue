@@ -8,7 +8,11 @@ const { drawStatLabelArcs, drawStatArcs, drawGroupArcs, drawOutsideMaxStatScaleA
 const { drawCircularSeparators, drawLinearSeparators } = useChartDrawLines();
 const { drawStatLabels, drawScaleLabels, drawGroupLabels } = useChartDrawLabels();
 const { drawStatIntersectionPoints } = useChartDrawPoints();
+const { drawCenter } = useChartDrawCenter();
 const { scales, updateScale } = useChartScales();
+
+const interactionStore = useInteractionStore();
+const { hoveredStat } = storeToRefs(interactionStore);
 
 const preferencesStore = usePreferencesStore();
 const { selectedPlayerIds, selectedStatIds, selectedStatIdsCount } = storeToRefs(preferencesStore);
@@ -122,6 +126,12 @@ function createVisualization() {
   drawStatIntersectionPoints(g.value, scales.circle, selectedStatIdsCount.value);
 }
 
+function updateDonutCenter() {
+  if (!g.value) return;
+
+  drawCenter(g.value);
+}
+
 function updateVisualization() {
   if (!container.value) return;
 
@@ -145,6 +155,13 @@ const mountToContainer = () => {
 
   createVisualization();
 };
+
+watch(
+  () => hoveredStat.value,
+  () => {
+    updateDonutCenter();
+  }
+);
 
 watch(
   () => selectedStatIds.value,

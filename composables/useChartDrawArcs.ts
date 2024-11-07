@@ -1,6 +1,7 @@
 import type { d3GSelection, EnrichedStat, Group, Player, SubGroup, StatArcData } from '~/types';
 
 export function useChartDrawArcs() {
+  const { setHoveredStat } = useInteractionStore();
   const { arcGenerator } = useChartGenerators();
   const { radius, minRadius, proportions, restRadius, modifier } = useChartConfig();
 
@@ -18,17 +19,18 @@ export function useChartDrawArcs() {
         .sort((a, b) => {
           const aStat = a.stats[stat.id];
           const bStat = b.stats[stat.id];
-          return (bStat || 0) - (aStat || 0);
+          return (bStat.value || 0) - (aStat.value || 0);
         })
         .forEach((player) => {
           const s = player.stats[stat.id];
           if (s) {
-            const value = stat.meta.scale(s);
+            const value = stat.meta.scale(s.value);
             arcData.push({
               id: `${stat.id}-${player.id}`,
               index: i,
               color: player.colors[0],
               value,
+              data: stat,
             });
           }
         });
@@ -51,6 +53,14 @@ export function useChartDrawArcs() {
           )
           .attr('fill', (d) => d.color)
           .attr('opacity', 0)
+          .on('mouseenter', (event) => {
+            console.log('mouseenter');
+            setHoveredStat(event);
+          })
+          .on('mouseleave', () => {
+            console.log('mouseleave');
+            setHoveredStat(null);
+          })
           .call((enter) => enter.transition().duration(0).attr('opacity', 1))
       );
   }
