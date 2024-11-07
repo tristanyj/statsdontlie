@@ -1,6 +1,6 @@
 import type { d3GSelection, HoveredStatArc } from '~/types';
 
-import { calcTextLength } from '~/assets/scripts/utils';
+import { calcTextLength, withUnit } from '~/assets/scripts/utils';
 
 export function useChartDrawCenter() {
   const { arcGenerator } = useChartGenerators();
@@ -11,6 +11,7 @@ export function useChartDrawCenter() {
 
     if (!hoveredStatArc) return;
 
+    const fontSize = 10;
     const arcGroup = g.append('g').attr('class', 'center');
 
     const arcs = [
@@ -41,7 +42,6 @@ export function useChartDrawCenter() {
         data: null,
       });
 
-      const fontSize = 11;
       const textLength = calcTextLength(g, arc.id, arc.text, fontSize);
 
       const arcLength = Math.abs(arc.endAngle - arc.startAngle) * arc.radius;
@@ -58,6 +58,28 @@ export function useChartDrawCenter() {
         .style('font-size', fontSize)
         .text(arc.text);
     });
+
+    const statValue = hoveredStatArc.player.stat.value;
+
+    arcGroup
+      .append('text')
+      .attr('x', 0)
+      .attr('y', 0 - 10)
+      .attr('text-anchor', 'middle')
+      .attr('dominant-baseline', 'middle')
+      .attr('fill', '#000')
+      .attr('font-size', fontSize)
+      .text(withUnit(statValue, hoveredStatArc.stat.formatType));
+
+    arcGroup
+      .append('text')
+      .attr('x', 0)
+      .attr('y', 0 + 10)
+      .attr('text-anchor', 'middle')
+      .attr('dominant-baseline', 'middle')
+      .attr('fill', '#000')
+      .attr('font-size', fontSize)
+      .text(hoveredStatArc.stat.name);
   }
 
   return {

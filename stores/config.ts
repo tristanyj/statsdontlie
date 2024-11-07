@@ -44,7 +44,7 @@ export const useConfigStore = defineStore('config', () => {
           stats: [
             {
               id: 'regular-season.passing.completions',
-              name: 'Completions',
+              name: 'Passing Completions',
               meta: {
                 domain: [0, 7753],
                 scaleType: 'linear',
@@ -64,7 +64,7 @@ export const useConfigStore = defineStore('config', () => {
             },
             {
               id: 'regular-season.passing.attempts',
-              name: 'Attempts',
+              name: 'Passing Attempts',
               meta: {
                 domain: [0, 12050],
                 scaleType: 'linear',
@@ -84,7 +84,7 @@ export const useConfigStore = defineStore('config', () => {
             },
             {
               id: 'regular-season.passing.completion-percentage',
-              name: 'Completion %',
+              name: 'Completion Percentage',
               meta: {
                 domain: [55, 68.3],
                 scaleType: 'linear',
@@ -332,7 +332,7 @@ export const useConfigStore = defineStore('config', () => {
           stats: [
             {
               id: 'post-season.passing.completions',
-              name: 'Completions',
+              name: 'Passing Completions',
               meta: {
                 domain: [0, 1200],
                 scaleType: 'linear',
@@ -352,7 +352,7 @@ export const useConfigStore = defineStore('config', () => {
             },
             {
               id: 'post-season.passing.attempts',
-              name: 'Attempts',
+              name: 'Passing Attempts',
               meta: {
                 domain: [0, 1921],
                 scaleType: 'linear',
@@ -372,7 +372,7 @@ export const useConfigStore = defineStore('config', () => {
             },
             {
               id: 'post-season.passing.completion-percentage',
-              name: 'Completion %',
+              name: 'Completion Percentage',
               meta: {
                 domain: [55, 68.1],
                 scaleType: 'linear',

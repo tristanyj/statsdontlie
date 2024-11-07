@@ -1,6 +1,6 @@
 import type { d3GSelection, EnrichedStat, Group, SubGroup } from '~/types';
 
-import { wrapText, shouldFlipText, calcTextLength } from '~/assets/scripts/utils';
+import { wrapText, shouldFlipText, calcTextLength, withUnit } from '~/assets/scripts/utils';
 
 export function useChartDrawLabels() {
   const { radius, minRadius, scalePositions, proportions, wrap, modifier } = useChartConfig();
@@ -87,7 +87,7 @@ export function useChartDrawLabels() {
       const textPercentage = (textLength / arcLength) * 100;
       const textOffsetPercentage = (100 - textPercentage) / 4;
 
-      g.append('path').attr('id', id).attr('d', textArc);
+      g.append('path').attr('id', id).attr('d', textArc).attr('fill', 'none');
 
       g.append('text')
         .append('textPath')
@@ -124,11 +124,12 @@ export function useChartDrawLabels() {
           ? labelRadius + modifier.space.scaleLabel.background.flip
           : labelRadius + modifier.space.scaleLabel.background.standard;
 
-        const value = d.meta.format(
-          // @ts-expect-error - TS doesn't know about the scale function
-          d.meta.scale.invert(position),
-          position === 0.0 ? 0 : position === 1.0 ? 3 : 1
-        );
+        const value =
+          position === 1.0
+            ? // @ts-expect-error - TS doesn't know about the scale function
+              withUnit(d.meta.scale.invert(position), d.meta.formatType)
+            : // @ts-expect-error - TS doesn't know about the scale function
+              d.meta.format(d.meta.scale.invert(position), position === 0.0 ? 0 : 1);
 
         g.append('path')
           .attr('id', id)
@@ -141,7 +142,8 @@ export function useChartDrawLabels() {
               endAngle: shouldFlip ? startAngle : endAngle,
               data: position,
             })
-          );
+          )
+          .attr('fill', 'none');
 
         const fontSize = modifier.font.scaleLabel;
         const textLength = calcTextLength(g, id, value, fontSize);

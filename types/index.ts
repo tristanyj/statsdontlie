@@ -2,6 +2,7 @@
 // Dataset Definition
 //////////////////////////
 
+export type FormatType = 'number' | 'percent' | 'time';
 export type GroupKey = 'regular-season' | 'post-season' | 'awards';
 
 export type SubGroupKey =
@@ -51,6 +52,23 @@ export type StatKey =
 
 export type PlayerKey = 'aaron-rodgers' | 'tom-brady';
 
+export type StatRecord = {
+  qb: {
+    value: number;
+    name: string;
+  };
+  all: {
+    value: number;
+    name: string;
+    position: string;
+  };
+};
+
+export type StatValue = {
+  value: number;
+  rank: [number, number];
+};
+
 export interface Player {
   id: PlayerKey;
   name: string;
@@ -63,13 +81,7 @@ export interface Player {
   handedness: 'left' | 'right';
   // colors are in hex format
   colors: `#${string}`[];
-  stats: Record<
-    StatKey,
-    {
-      value: number;
-      rank: [number, number];
-    }
-  >;
+  stats: Record<StatKey, StatValue>;
 }
 
 export interface EnrichedStat extends Stat {
@@ -87,19 +99,9 @@ export interface Stat {
     domain: number[];
     range?: number[];
     scaleType: 'linear' | 'log' | 'pow' | 'threshold' | 'quantile';
-    formatType: 'number' | 'percent' | 'time';
+    formatType: FormatType;
   };
-  record: {
-    qb: {
-      value: number;
-      name: string;
-    };
-    all: {
-      value: number;
-      name: string;
-      position: string;
-    };
-  };
+  record: StatRecord;
 }
 
 export interface EnrichedGroup extends Group {
@@ -149,29 +151,15 @@ export interface HoveredStatArc {
     id: StatKey;
     name: string;
     color: `#${string}`;
-    record: {
-      qb: {
-        value: number;
-        name: string;
-      };
-      all: {
-        value: number;
-        name: string;
-        position: string;
-      };
-    };
+    format: (value: number, decimals: number) => string;
+    formatType: FormatType;
+    record: StatRecord;
   };
   player: {
     id: PlayerKey;
     name: string;
     colors: `#${string}`[];
-    stats: Record<
-      StatKey,
-      {
-        value: number;
-        rank: [number, number];
-      }
-    >;
+    stat: StatValue;
   };
 }
 

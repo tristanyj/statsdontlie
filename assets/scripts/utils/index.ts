@@ -1,4 +1,4 @@
-import type { d3GSelection } from '~/types';
+import type { d3GSelection, FormatType } from '~/types';
 
 function wrapText(text: string, width: number): string[] {
   const words = text.split(/\s+/).reverse();
@@ -57,4 +57,13 @@ function calcTextLength(g: d3GSelection, id: string, text: string, fontSize: num
   return textLength;
 }
 
-export { wrapText, formatNumber, shouldFlipText, calcTextLength };
+function withUnit(value: number, formatType: FormatType) {
+  switch (formatType) {
+    case 'percent':
+      return `${value}%`;
+    default:
+      return `${value}`;
+  }
+}
+
+export { wrapText, formatNumber, shouldFlipText, calcTextLength, withUnit };

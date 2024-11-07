@@ -1,4 +1,4 @@
-import type { StatArcData } from '~/types';
+import type { HoveredStatArc, StatArcData } from '~/types';
 
 export const useInteractionStore = defineStore(
   'interaction',
@@ -17,7 +17,7 @@ export const useInteractionStore = defineStore(
       hoveredStatArc.value = stat;
     };
 
-    const parsedHoveredStat = computed(() => {
+    const parsedHoveredStat = computed<HoveredStatArc | null>(() => {
       if (!hoveredStatArc.value) return null;
 
       return {
@@ -26,6 +26,8 @@ export const useInteractionStore = defineStore(
           id: hoveredStatArc.value.stat.id,
           name: hoveredStatArc.value.stat.name,
           color: hoveredStatArc.value.stat.color,
+          format: hoveredStatArc.value.stat.meta.format,
+          formatType: hoveredStatArc.value.stat.meta.formatType,
           record: hoveredStatArc.value.stat.record,
         },
         player: {
@@ -34,7 +36,7 @@ export const useInteractionStore = defineStore(
           colors: hoveredStatArc.value.player.colors,
           stat: hoveredStatArc.value.player.stats[hoveredStatArc.value.stat.id],
         },
-      };
+      } as HoveredStatArc;
     });
 
     return {
