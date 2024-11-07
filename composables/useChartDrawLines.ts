@@ -9,7 +9,7 @@ const createLine = (g: d3GSelection, params: LineData) => {
     .attr('y2', params.y2)
     .attr('stroke', params.stroke ?? '#000')
     .attr('opacity', params.opacity ?? 1)
-    .attr('stroke-width', 1)
+    .attr('stroke-width', params.strokeWidth ?? 1)
     .attr('transform', params.transform);
 };
 
@@ -98,6 +98,7 @@ export function useChartDrawLines() {
         className,
         y1: minRadius,
         y2: lineLength,
+        strokeWidth: isGroupSeparator || isLastStat ? 1.5 : 1,
         opacity: modifier.color.separator.highOpacity,
         transform: `rotate(${180 + (startAngle * 180) / Math.PI})`,
       });

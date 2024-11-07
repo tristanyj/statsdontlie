@@ -170,6 +170,7 @@ export interface LineData {
   y1: number;
   y2: number;
   stroke?: string;
+  strokeWidth?: number;
   opacity?: number;
   transform: string;
 }
