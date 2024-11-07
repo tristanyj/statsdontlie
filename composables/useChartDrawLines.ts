@@ -14,7 +14,8 @@ const createLine = (g: d3GSelection, params: LineData) => {
 };
 
 export function useChartDrawLines() {
-  const { radius, minRadius, restRadius, proportions, layerCount, modifier } = useChartConfig();
+  const { radius, minRadius, restRadius, proportions, layerCount, modifier, legend } =
+    useChartConfig();
 
   function drawCircularSeparators(g: d3GSelection) {
     // circle inside min radius
@@ -76,6 +77,8 @@ export function useChartDrawLines() {
       const isGroupSeparator = groupIndices.includes(i);
       const isSubGroupSeparator = subGroupIndices.includes(i);
 
+      const isLastStat = i === selectedStatIdsCount;
+
       const className = `separator ${
         isGroupSeparator
           ? 'group-separator'
@@ -84,11 +87,12 @@ export function useChartDrawLines() {
           : 'stat-separator'
       }`;
 
-      const lineLength = isGroupSeparator
-        ? radius * proportions[3]
-        : isSubGroupSeparator
-        ? radius * proportions[2]
-        : radius * proportions[1];
+      const lineLength =
+        isGroupSeparator || isLastStat
+          ? radius * proportions[3]
+          : isSubGroupSeparator
+          ? radius * proportions[2]
+          : radius * proportions[1];
 
       createLine(g, {
         className,
@@ -98,7 +102,7 @@ export function useChartDrawLines() {
         transform: `rotate(${180 + (startAngle * 180) / Math.PI})`,
       });
 
-      const nextAngle = circleScale(i + 1);
+      const nextAngle = circleScale(isLastStat ? i + legend.columnCount : i + 1);
       const midAngle = (startAngle + nextAngle) / 2;
 
       createLine(g, {

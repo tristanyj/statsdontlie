@@ -25,6 +25,14 @@ export function useChartConfig() {
   );
 
   // ------------------------------
+  // Legend
+  // ------------------------------
+
+  const legend = {
+    columnCount: 2,
+  };
+
+  // ------------------------------
   // Radius
   // ------------------------------
 
@@ -130,6 +138,7 @@ export function useChartConfig() {
     proportions,
     wrap,
     layerCount,
+    legend,
     modifier,
     innerRadiusPadding,
     scalePositions,

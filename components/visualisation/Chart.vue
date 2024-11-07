@@ -70,7 +70,7 @@ const indices = computed(() => {
   return { group: groupIndices, subGroup: subGroupIndices };
 });
 
-updateScale('circle', [0, selectedStatIdsCount.value]);
+updateScale('circle', selectedStatIdsCount.value);
 
 const container = ref<HTMLElement | null>(null);
 const g = ref<d3GSelection | null>(null);
@@ -188,7 +188,7 @@ watch(
 watch(
   () => selectedStatIdsCount.value,
   (count) => {
-    updateScale('circle', [0, count]);
+    updateScale('circle', count);
     createVisualization();
   }
 );
