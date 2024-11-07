@@ -9,9 +9,10 @@ export function useChartDrawArcs() {
     g: d3GSelection,
     circleScale: d3.ScaleLinear<number, number>,
     selectedStats: EnrichedStat[],
-    selectedPlayers: Player[]
+    selectedPlayers: Player[],
+    interaction = false
   ) {
-    const className = 'stat-arc';
+    const className = `stat-arc-${interaction ? 'hover' : 'normal'}`;
     const arcData: Array<StatArcData> = [];
 
     selectedStats.forEach((stat, i) => {
@@ -54,14 +55,17 @@ export function useChartDrawArcs() {
           .attr('fill', (d) => d.player.colors[0])
           .attr('opacity', 0)
           .on('mouseenter', (_, d) => {
-            console.log('mouseenter', d);
+            if (!interaction) return;
             setHoveredStat(d);
           })
           .on('mouseleave', () => {
-            console.log('mouseleave');
+            if (!interaction) return;
             setHoveredStat(null);
           })
-          .call((enter) => enter.transition().duration(0).attr('opacity', 1))
+          .call((enter) => {
+            if (interaction) return;
+            enter.transition().duration(0).attr('opacity', 1);
+          })
       );
   }
 

@@ -124,6 +124,12 @@ function createVisualization() {
   // -----------------
 
   drawStatIntersectionPoints(g.value, scales.circle, selectedStatIdsCount.value);
+
+  // -----------------
+  // HIDDEN
+  // -----------------
+
+  drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value, true);
 }
 
 function updateDonutCenter() {
@@ -159,7 +165,6 @@ const mountToContainer = () => {
 watch(
   () => hoveredStatArc.value,
   () => {
-    console.log(hoveredStatArc.value);
     updateDonutCenter();
   }
 );
