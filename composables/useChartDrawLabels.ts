@@ -25,7 +25,6 @@ export function useChartDrawLabels() {
       const textGroup = g.append('g').attr('class', className);
       const lines = wrapText(text, wrap.maxWidth);
 
-      const textAnchor = midAngle > Math.PI ? 'end' : 'start';
       const rotation = (midAngle * 180) / Math.PI - 90 + (midAngle > Math.PI ? 180 : 0);
       const x = labelRadius * Math.cos(midAngle - Math.PI / 2);
       const y = labelRadius * Math.sin(midAngle - Math.PI / 2);
@@ -37,7 +36,7 @@ export function useChartDrawLabels() {
           .append('text')
           .attr('x', x)
           .attr('y', startY + i * wrap.lineHeight)
-          .attr('text-anchor', textAnchor)
+          .attr('text-anchor', 'end')
           .attr('dominant-baseline', 'middle')
           .attr('fill', '#000')
           .attr('font-size', modifier.font.statLabel)

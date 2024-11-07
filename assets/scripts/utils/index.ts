@@ -40,6 +40,14 @@ function formatNumber(value: number, decimals?: number): string {
   return `${value / 1e9}B`;
 }
 
+// function updateScale(key: keyof typeof scales, selectedColumnsCount: number) {
+//   const totalColumns = selectedColumnsCount + legend.columnCount;
+//   const columnWidth = (2 * Math.PI) / totalColumns;
+//   const rotationOffset = Math.PI * 2 + (legend.columnCount * columnWidth) / 2;
+
+//   scales[key].domain([0, totalColumns]).range([rotationOffset, 2 * Math.PI + rotationOffset]);
+// }
+
 function shouldFlipText(midAngle: number) {
   return midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
 }
