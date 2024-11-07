@@ -11,22 +11,22 @@ export function useChartDrawCenter() {
 
     if (!hoveredStatArc) return;
 
-    const fontSize = 10;
+    const fontSize = 11;
     const arcGroup = g.append('g').attr('class', 'center');
 
     const arcs = [
       {
         id: 'top-arc',
         text: `${hoveredStatArc.player.name}`,
-        radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.center.arc.top,
+        radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.donut.arc.top,
         startAngle: (3 * Math.PI) / 2,
         endAngle: (5 * Math.PI) / 2,
         color: '#000',
       },
       {
         id: 'bottom-arc',
-        text: `${hoveredStatArc.stat.name}`,
-        radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.center.arc.bottom,
+        text: `# ${hoveredStatArc.player.stat.rank[0]} among QBs / # ${hoveredStatArc.player.stat.rank[1]} overall`,
+        radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.donut.arc.bottom,
         startAngle: (3 * Math.PI) / 2,
         endAngle: Math.PI / 2,
         color: '#000',
@@ -64,17 +64,17 @@ export function useChartDrawCenter() {
     arcGroup
       .append('text')
       .attr('x', 0)
-      .attr('y', 0 - 10)
+      .attr('y', 0 + modifier.space.donut.center.top)
       .attr('text-anchor', 'middle')
       .attr('dominant-baseline', 'middle')
       .attr('fill', '#000')
-      .attr('font-size', fontSize)
+      .attr('font-size', fontSize + 5)
       .text(withUnit(statValue, hoveredStatArc.stat.formatType));
 
     arcGroup
       .append('text')
       .attr('x', 0)
-      .attr('y', 0 + 10)
+      .attr('y', 0 + modifier.space.donut.center.bottom)
       .attr('text-anchor', 'middle')
       .attr('dominant-baseline', 'middle')
       .attr('fill', '#000')
