@@ -1,6 +1,7 @@
 library(tidyverse)
 library(rvest)
 library(chromote)
+library(stringr)
 
 b <- ChromoteSession$new()
 
@@ -116,10 +117,28 @@ extract_player_info <- function(page) {
 # Extractors
 # ----------------------------
 
+is_first_row_header <- function(footer) {
+  th_count <- footer %>%
+    html_nodes("tr:nth-child(1) th") %>%
+    length()
+
+  print(th_count)
+
+  return(th_count > 5)
+}
+
 extract_from_row <- function(page, selector, stat_ids, prefix) {
   tryCatch({
+    footer <- page %>%
+      html_node(selector)
+
+    row_index <- if (is_first_row_header(footer)) 2 else 1
+
+    row_selector <- paste0(selector, " tr:nth-child(", row_index, ")")
+    print(row_selector)
+
     row <- page %>%
-      html_nodes(selector)
+      html_nodes(paste0(selector, " tr:nth-child(", row_index, ") td"))
 
     stat_ids_with_prefix <- create_stat_ids_with_prefix(stat_ids, prefix)
 
@@ -131,13 +150,113 @@ extract_from_row <- function(page, selector, stat_ids, prefix) {
       if (stat_id %in% names(stat_ids_with_prefix)) {
         stat_value <- stat %>% html_text()
 
-        result[[stat_ids_with_prefix[stat_id]]] <- c(process_stat_value(stat_value), 0)
+        result[[stat_ids_with_prefix[stat_id]]] <- process_stat_value(stat_value)
       }
     }
 
     return(result)
   }, error = function(e) {
     warning(paste("Error extracting total stats:", e$message))
+    return(NULL)
+  })
+}
+
+extract_conf_championships <- function(page) {
+  tryCatch({
+    text <- page %>%
+      html_nodes("#playoffs-series tbody tr[data-row] td[data-stat='round_id'] a") %>%
+      html_text() %>%
+      str_trim()
+
+    conference_championships <- 0
+
+    for (entry in text) {
+      if (str_detect(entry, "FIN")) {
+        conference_championships <- conference_championships + 1
+      }
+    }
+
+    return(conference_championships)
+  }, error = function(e) {
+    warning(paste("Error extracting conference championships:", e$message))
+    return(NULL)
+  })
+}
+
+extract_all_team_awards <- function(page) {
+  tryCatch({
+    text <- page %>%
+      html_nodes("#leaderboard_all_league tbody td") %>%
+      html_text() %>%
+      str_trim()
+
+    all_nba <- 0
+    all_nba_first <- 0
+    all_nba_second <- 0
+    all_nba_third <- 0
+    all_defensive <- 0
+    all_defensive_first <- 0
+    all_defensive_second <- 0
+
+    for (entry in text) {
+      team_type <- str_extract(entry, "All-NBA|All-Defensive")
+
+      if (is.na(team_type)) {
+        next
+      }
+
+      team_rank <- entry %>%
+        str_extract("\\(([1-3])[a-z]{2}\\)") %>%
+        str_extract("\\d") %>%
+        as.numeric()
+
+      if (is.na(team_rank)) {
+        next
+      }
+
+      if (team_type == "All-NBA") {
+        all_nba <- all_nba + 1
+        if (team_rank == 1) {
+          all_nba_first <- all_nba_first + 1
+        } else if (team_rank == 2) {
+          all_nba_second <- all_nba_second + 1
+        } else if (team_rank == 3) {
+          all_nba_third <- all_nba_third + 1
+        }
+      } else if (team_type == "All-Defensive") {
+        all_defensive <- all_defensive + 1
+        if (team_rank == 1) {
+          all_defensive_first <- all_defensive_first + 1
+        } else if (team_rank == 2) {
+          all_defensive_second <- all_defensive_second + 1
+        }
+      }
+    }
+
+    return(list(
+      all_nba = all_nba,
+      all_nba_first = all_nba_first,
+      all_nba_second = all_nba_second,
+      all_nba_third = all_nba_third,
+      all_defensive = all_defensive,
+      all_defensive_first = all_defensive_first,
+      all_defensive_second = all_defensive_second
+    ))
+  }, error = function(e) {
+    warning(paste("Error extracting all-team awards:", e$message))
+    return(NULL)
+  })
+}
+
+extract_selection_count <- function(page, selector) {
+  tryCatch({
+    count <- page %>%
+      html_nodes(selector) %>%
+      length()
+
+    return(count)
+  }, error = function(e) {
+    warning(paste("Error extracting selections:", e$message))
     return(NULL)
   })
 }
@@ -149,10 +268,10 @@ extract_from_row <- function(page, selector, stat_ids, prefix) {
 extract_regular_season_stats <- function(page) {
   tryCatch({
     prefix <- "regular_season"
-    total_stats = extract_from_row(page, "#totals tfoot tr:nth-child(1) td", total_stat_ids, prefix)
-    per_game_stats = extract_from_row(page, "#per_game_stats tfoot tr:nth-child(2) td", per_games_stat_ids, prefix)
-    advanced_stats = extract_from_row(page, "#advanced tfoot tr:nth-child(2) td", advanced_stat_ids, prefix)
-    game_high_stats = extract_from_row(page, "#highs-reg-season tfoot tr:nth-child(1) td", game_high_stat_ids, prefix)
+    total_stats <- extract_from_row(page, "#totals tfoot", total_stat_ids, prefix)
+    per_game_stats <- extract_from_row(page, "#per_game_stats tfoot", per_games_stat_ids, prefix)
+    advanced_stats <- extract_from_row(page, "#advanced tfoot", advanced_stat_ids, prefix)
+    game_high_stats <- extract_from_row(page, "#highs-reg-season tfoot", game_high_stat_ids, prefix)
 
     result <- c(total_stats, per_game_stats, advanced_stats, game_high_stats)
 
@@ -166,10 +285,10 @@ extract_regular_season_stats <- function(page) {
 extract_post_season_stats <- function(page) {
   tryCatch({
     prefix <- "post_season"
-    total_stats = extract_from_row(page, "#playoffs_totals tfoot tr:nth-child(1) td", total_stat_ids, prefix)
-    per_game_stats = extract_from_row(page, "#per_game_stats_post tfoot tr:nth-child(1) td", per_games_stat_ids, prefix)
-    advanced_stats = extract_from_row(page, "#advanced_post tfoot tr:nth-child(1) td", advanced_stat_ids, prefix)
-    game_high_stats = extract_from_row(page, "#highs-playoffs tfoot tr:nth-child(1) td", game_high_stat_ids, prefix)
+    total_stats <- extract_from_row(page, "#playoffs_totals tfoot", total_stat_ids, prefix)
+    per_game_stats <- extract_from_row(page, "#per_game_stats_post tfoot", per_games_stat_ids, prefix)
+    advanced_stats <- extract_from_row(page, "#advanced_post tfoot", advanced_stat_ids, prefix)
+    game_high_stats <- extract_from_row(page, "#highs-playoffs tfoot", game_high_stat_ids, prefix)
 
     result <- c(total_stats, per_game_stats, advanced_stats, game_high_stats)
 
@@ -180,24 +299,35 @@ extract_post_season_stats <- function(page) {
   })
 }
 
-extract_advanced_stats <- function(page) {
-  tryCatch({
-    stats <- page %>%
-      html_node("div#all_advanced") %>%
-      html_table()
-
-    return(stats)
-  }, error = function(e) {
-    warning(paste("Error extracting advanced stats:", e$message))
-    return(NULL)
-  })
-}
-
 extract_awards <- function(page) {
   tryCatch({
-    awards <- page %>%
-      html_node("div#bling") %>%
-      html_table()
+    mvp <- extract_selection_count(page, "#leaderboard_notable-awards td a[href='/awards/mvp.html']")
+    finals_mvp <- extract_selection_count(page, "#leaderboard_notable-awards td a[href='/awards/finals_mvp.html']")
+    dpoy <- extract_selection_count(page, "#leaderboard_notable-awards td a[href='/awards/dpoy.html']")
+    all_star <- extract_selection_count(page, "#leaderboard_allstar tbody td")
+    player_of_the_week <- extract_selection_count(page, "#leaderboard_weekly_awards tbody td")
+    player_of_the_month <- extract_selection_count(page, "#leaderboard_monthly_awards tbody td")
+    nba_championships <- extract_selection_count(page, "#leaderboard_championships tbody td")
+    all_team <- extract_all_team_awards(page)
+    conference_championships <- extract_conf_championships(page)
+
+    awards <- list(
+      awards.individual.mvp = mvp,
+      awards.individual.finals_mvp = finals_mvp,
+      awards.individual.dpoy = dpoy,
+      awards.individual.all_star = all_star,
+      awards.individual.all_nba = all_team$all_nba,
+      awards.individual.all_nba_first = all_team$all_nba_first,
+      awards.individual.all_nba_second = all_team$all_nba_second,
+      awards.individual.all_nba_third = all_team$all_nba_third,
+      awards.individual.all_defensive = all_team$all_defensive,
+      awards.individual.all_defensive_first = all_team$all_defensive_first,
+      awards.individual.all_defensive_second = all_team$all_defensive_second,
+      awards.individual.player_week = player_of_the_week,
+      awards.individual.player_month = player_of_the_month,
+      awards.team.nba_championships = nba_championships,
+      awards.team.conference_championships = conference_championships
+    )
 
     return(awards)
   }, error = function(e) {
@@ -213,24 +343,19 @@ scrape_player <- function(id, url) {
     b$Page$navigate(url)
     Sys.sleep(3)
 
-    # Scroll down
-    b$Runtime$evaluate('window.scrollTo(0, document.body.scrollHeight)')
+    b$Runtime$evaluate("window.scrollTo(0, document.body.scrollHeight)")
     Sys.sleep(2)
 
-    # Get page content - fixed syntax
-    html_content <- b$Runtime$evaluate('document.documentElement.outerHTML')$result$value
+    html_content <- b$Runtime$evaluate("document.documentElement.outerHTML")$result$value
 
-    # Parse HTML
     page <- read_html(html_content)
 
     info <- extract_player_info(page)
     regular_season_stats <- extract_regular_season_stats(page)
     post_season_stats <- extract_post_season_stats(page)
-    # advanced_stats <- extract_advanced_stats(page)
-    # awards <- extract_awards(page)
+    awards <- extract_awards(page)
 
-    #,advanced_stats, awards
-    stats <- c(regular_season_stats, post_season_stats)
+    stats <- c(regular_season_stats, post_season_stats, awards)
 
     player_data <- list(
       id = id,
@@ -256,13 +381,10 @@ if (file.exists("r/output/players_base.rds")) {
 all_players_data <- list()
 all_players_data$players <- list()
 
-for (i in 1:3) {
+for (i in 1:5) {
   player_data <- scrape_player(players$id[i], players$bbref_url[i])
   all_players_data$players[[i]] <- player_data
 }
-
-# test_player <- scrape_player(players$id[1], players$bbref_url[1])
-# all_players_data$players[[1]] <- test_player
 
 json_data <- jsonlite::toJSON(all_players_data, pretty = TRUE, auto_unbox = TRUE)
 write(json_data, "r/output/players.json")
