@@ -2,6 +2,7 @@
   "players": [
     {
       "id": "player-id",
+      "color": "#000000",
       "info": {
         "name": "Player Name"
       },
@@ -16,5 +17,6 @@
         "awards.team.championships": 0
       }
     }
-  ]
+  ],
+  "config": {}
 }

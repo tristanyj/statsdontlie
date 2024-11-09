@@ -200,8 +200,6 @@ extract_nickname <- function(p) {
       str_remove("\\(") %>%
       str_remove(",")
 
-    print(p %>% html_text()) # Debugging
-
     return(nickname)
   }, error = function(e) {
     warning(paste("Error extracting nickname:", e$message))
@@ -531,7 +529,7 @@ extract_awards <- function(page) {
 # Scrape entry point
 # ----------------------------
 
-scrape_player <- function(id, url) {
+scrape_player <- function(id, url, color) {
   Sys.sleep(3)
 
   tryCatch({
@@ -554,6 +552,7 @@ scrape_player <- function(id, url) {
 
     player_data <- list(
       id = id,
+      color = color,
       info = info,
       stats = stats
     )
@@ -569,25 +568,34 @@ scrape_player <- function(id, url) {
 # Main execution
 # ----------------------------
 
-if (file.exists("r/output/players_base.rds")) {
-  players <- readRDS("r/output/players_base.rds")
+if (file.exists("r/input/dataref.rds")) {
+  players <- readRDS("r/input/dataref.rds")
   print("Successfully loaded players data")
 } else {
-  stop("Cannot find players_base.rds. Make sure to run 1_read_players.R first")
+  stop("Cannot find dataref.rds. Make sure to run 1_read.R first")
 }
 
-all_players_data <- list()
-all_players_data$players <- list()
+dataset <- list()
+dataset$players <- list()
 
-for (i in 1:2) {
-  player_data <- scrape_player(players$id[i], players$bbref_url[i])
-  all_players_data$players[[i]] <- player_data
+max <- 2
+
+for (i in 1:max) {
+  id <- players$id[i]
+  url <- players$bbref_url[i]
+  color <- players$color[i]
+
+  print(paste("[", i, "/", max, "] Scraping player ", id, " at ", url, sep = ""))
+
+  player_data <- scrape_player(id, url, color)
+
+  dataset$players[[i]] <- player_data
 }
 
-json_data <- jsonlite::toJSON(all_players_data, pretty = TRUE, auto_unbox = TRUE)
-write(json_data, "r/output/players.json")
+json_data <- jsonlite::toJSON(dataset, pretty = TRUE, auto_unbox = TRUE)
+write(json_data, "r/output/dataset.json")
 
 print("Done scraping players data")
-print("Check output/players.json for the result")
+print("Check output/dataset.json for the result")
 
 b$close()

@@ -6,9 +6,8 @@ library(jsonlite)
 
 print(getwd())
 
-players <- read.csv("r/input/references.csv")
+players <- read.csv("r/input/dataref.csv")
 
 print(players)
 
-saveRDS(players, "r/output/players_base.rds")
-
+saveRDS(players, "r/input/dataref.rds")
