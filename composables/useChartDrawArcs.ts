@@ -160,8 +160,8 @@ export function useChartDrawArcs() {
       const nextGroupStartIndex =
         indices[groupIndex + 1] ??
         startIndex +
-          ('subGroups' in group
-            ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.stats.length, 0)
+          ('subCategories' in group
+            ? (group as Group).subCategories.reduce((sum, sg) => sum + sg.stats.length, 0)
             : group.stats.length);
 
       const startAngle = circleScale(startIndex);

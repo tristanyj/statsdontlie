@@ -70,16 +70,12 @@ export function useChartDrawLabels() {
 
       const id = `label-path-${group?.id ?? `legend-${isGroup ? 'group' : 'sub-group'}`}`;
 
-      if (isLegend) {
-        console.log({ layerModifier });
-      }
-
       const nextGroupStartIndex = isLegend
         ? startIndex + legend.columnCount
         : indices[groupIndex + 1] ??
           startIndex +
             (isGroup
-              ? (group as Group).subGroups.reduce((sum, sg) => sum + sg.stats.length, 0)
+              ? (group as Group).subCategories.reduce((sum, sg) => sum + sg.stats.length, 0)
               : (group as SubGroup).stats.length);
 
       const startAngle = circleScale(startIndex);

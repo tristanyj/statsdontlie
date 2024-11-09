@@ -1,88 +1,14 @@
+import type { StatKey, CategoryKey, SubCategoryKey, Player, StatMeta } from './dataset';
+
+export * from './dataset';
+
 //////////////////////////
 // Dataset Definition
 //////////////////////////
 
-export type FormatType = 'number' | 'percent' | 'time';
-export type GroupKey = 'regular-season' | 'post-season' | 'awards';
-
-export type SubGroupKey =
-  | 'regular-season.general'
-  | 'regular-season.passing'
-  | 'regular-season.rushing'
-  | 'post-season.general'
-  | 'post-season.passing'
-  | 'post-season.rushing'
-  | 'awards.individual'
-  | 'awards.team';
-
-export type StatKey =
-  | 'regular-season.general.games'
-  | 'regular-season.passing.completions'
-  | 'regular-season.passing.attempts'
-  | 'regular-season.passing.completion-percentage'
-  | 'regular-season.passing.yards'
-  | 'regular-season.passing.touchdowns'
-  | 'regular-season.passing.interceptions'
-  | 'regular-season.passing.rating'
-  | 'regular-season.passing.sacks'
-  | 'regular-season.passing.fumbles'
-  | 'regular-season.rushing.attempts'
-  | 'regular-season.rushing.yards'
-  | 'regular-season.rushing.touchdowns'
-  | 'post-season.general.games'
-  | 'post-season.passing.completions'
-  | 'post-season.passing.attempts'
-  | 'post-season.passing.completion-percentage'
-  | 'post-season.passing.yards'
-  | 'post-season.passing.touchdowns'
-  | 'post-season.passing.interceptions'
-  | 'post-season.passing.rating'
-  | 'post-season.passing.sacks'
-  | 'post-season.passing.fumbles'
-  | 'post-season.rushing.attempts'
-  | 'post-season.rushing.yards'
-  | 'post-season.rushing.touchdowns'
-  | 'awards.individual.mvp'
-  | 'awards.individual.sb-mvp'
-  | 'awards.individual.pro-bowl'
-  | 'awards.individual.all-pro-first'
-  | 'awards.individual.all-pro-second'
-  | 'awards.team.sb-appearance'
-  | 'awards.team.sb-win';
+export type FormatType = 'number' | 'percent';
 
 export type PlayerKey = 'aaron-rodgers' | 'tom-brady' | 'patrick-mahomes';
-
-export type StatRecord = {
-  qb: {
-    value: number;
-    name: string;
-  };
-  all: {
-    value: number;
-    name: string;
-    position: string;
-  };
-};
-
-export type StatValue = {
-  value: number;
-  rank: [number, number];
-};
-
-export interface Player {
-  id: PlayerKey;
-  name: string;
-  position: string;
-  teams: string[];
-  years: [number, number | null];
-  numbers: number[];
-  height: string;
-  weight: number;
-  handedness: 'left' | 'right';
-  // colors are in hex format
-  colors: `#${string}`[];
-  stats: Record<StatKey, StatValue>;
-}
 
 export interface EnrichedStat extends Stat {
   color: `#${string}`;
@@ -95,24 +21,22 @@ export interface EnrichedStat extends Stat {
 export interface Stat {
   id: StatKey;
   name: string;
-  meta: {
-    domain: number[];
-    range?: number[];
-    scaleType: 'linear' | 'log' | 'pow' | 'threshold' | 'quantile';
-    formatType: FormatType;
+  meta: StatMeta;
+  record: {
+    value: number;
+    name: string;
   };
-  record: StatRecord;
 }
 
 export interface EnrichedGroup extends Group {
-  subGroups: EnrichedSubGroup[];
+  subCategories: EnrichedSubGroup[];
 }
 
 export interface Group {
-  id: GroupKey;
+  id: CategoryKey;
   name: string;
   color: `#${string}`;
-  subGroups: SubGroup[];
+  subCategories: SubGroup[];
 }
 
 export interface EnrichedSubGroup extends SubGroup {
@@ -120,7 +44,7 @@ export interface EnrichedSubGroup extends SubGroup {
 }
 
 export interface SubGroup {
-  id: SubGroupKey;
+  id: SubCategoryKey;
   name: string;
   color: `#${string}`;
   stats: Stat[];

@@ -26,7 +26,7 @@ const selection = computed({
           <h3 class="text-lg font-bold">{{ group.name }}</h3>
           <div class="">
             <div
-              v-for="(subGroup, j) in group.subGroups"
+              v-for="(subGroup, j) in group.subCategories"
               :key="`sub-group-${j}`"
               class=""
             >

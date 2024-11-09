@@ -33,24 +33,24 @@ const selectedGroups = computed(() => {
     ? statGroups.value
         .map((group) => ({
           ...group,
-          subGroups: group.subGroups
+          subCategories: group.subCategories
             .map((subGroup) => ({
               ...subGroup,
               stats: subGroup.stats.filter((column) => selectedStatIds.value.includes(column.id)),
             }))
             .filter((subGroup) => subGroup.stats.length > 0),
         }))
-        .filter((group) => group.subGroups.length > 0)
+        .filter((group) => group.subCategories.length > 0)
     : [];
 });
 
 const selectedSubGroups = computed(() => {
-  return selectedGroups.value.flatMap((group) => group.subGroups);
+  return selectedGroups.value.flatMap((group) => group.subCategories);
 });
 
 const selectedStats = computed(() => {
   return selectedGroups.value
-    .flatMap((group) => group.subGroups)
+    .flatMap((group) => group.subCategories)
     .flatMap((subGroup) => subGroup.stats);
 });
 
@@ -61,7 +61,7 @@ const indices = computed(() => {
 
   selectedGroups.value.forEach((group) => {
     groupIndices.push(currentIndex);
-    group.subGroups.forEach((subGroup) => {
+    group.subCategories.forEach((subGroup) => {
       subGroupIndices.push(currentIndex);
       currentIndex += subGroup.stats.length;
     });

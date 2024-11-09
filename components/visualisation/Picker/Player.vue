@@ -1,17 +1,17 @@
 <script setup lang="ts">
-const preferencesStore = usePreferencesStore();
-const { selectedPlayerIds } = storeToRefs(preferencesStore);
-const { updateselectedPlayerIds } = preferencesStore;
-
-defineProps<{
-  players: { id: string; name: string }[];
-}>();
+const configStore = useConfigStore();
+const { selectedPlayerIds, players } = storeToRefs(configStore);
+const { updateselectedPlayerIds } = configStore;
 
 const selection = computed({
   get: () => selectedPlayerIds.value,
   set: (newValue) => {
     updateselectedPlayerIds(newValue);
   },
+});
+
+onMounted(() => {
+  console.log('players', players.value);
 });
 </script>
 
@@ -29,7 +29,7 @@ const selection = computed({
             <UCheckbox
               v-model="selection"
               :value="player.id"
-              :label="player.name"
+              :label="player.info.name"
             />
           </div>
         </div>
