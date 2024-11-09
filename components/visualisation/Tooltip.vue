@@ -22,27 +22,27 @@ const tooltipStyle = computed<CSSProperties>(() => {
 </script>
 
 <template>
-  <Transition
+  <!-- <Transition
     name="fade"
     mode="out-in"
+  > -->
+  <div
+    v-show="tooltipData"
+    class="stat-tooltip p-4 bg-white border-1 rounded-md z-100 text-sm"
+    :style="tooltipStyle"
   >
-    <div
-      v-show="tooltipData"
-      class="stat-tooltip p-4 bg-white border-1 rounded-md z-100 text-sm"
-      :style="tooltipStyle"
-    >
-      <div class="tooltip-header">
-        <div class="player-name">{{ tooltipData?.id }}</div>
-        <!-- <div class="player-team">{{ tooltipData.player.team }}</div> -->
-      </div>
-      <div class="tooltip-content">
-        <div class="stat-row">
-          <!-- <span class="stat-label">{{ tooltipData.stat.name }}</span> -->
-          <span class="stat-value">
-            <!-- {{ tooltipData.stat.formatValue(tooltipData.value) }} -->
-          </span>
-        </div>
+    <div class="tooltip-header">
+      <div class="player-name">{{ tooltipData?.id }}</div>
+      <!-- <div class="player-team">{{ tooltipData.player.team }}</div> -->
+    </div>
+    <div class="tooltip-content">
+      <div class="stat-row">
+        <!-- <span class="stat-label">{{ tooltipData.stat.name }}</span> -->
+        <span class="stat-value">
+          <!-- {{ tooltipData.stat.formatValue(tooltipData.value) }} -->
+        </span>
       </div>
     </div>
-  </Transition>
+  </div>
+  <!-- </Transition> -->
 </template>

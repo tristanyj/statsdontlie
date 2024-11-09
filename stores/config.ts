@@ -19,12 +19,22 @@ export const useConfigStore = defineStore('config', () => {
   const categories = ref<Category[]>([]);
   const players = ref<Player[]>([]);
 
-  const selectedPlayerIds = ref<PlayerKey[]>([]);
-  const selectedStatIds = ref<StatKey[]>([]);
+  const selectedPlayerIds = ref<PlayerKey[]>(['abdulka01']);
+  const selectedStatIds = ref<StatKey[]>([
+    'awards.individual.mvp',
+    'awards.team.nba_championships',
+    'regular_season.total.points',
+    'regular_season.total.total_rebounds',
+    'regular_season.total.assists',
+    'regular_season.total.steals',
+    'regular_season.total.blocks',
+  ]);
 
   // --------------------------------
   // Computed
   // --------------------------------
+
+  const isLoaded = computed(() => categories.value.length > 0 && players.value.length > 0);
 
   const selectedPlayers = computed(() =>
     players.value.filter((player) => selectedPlayerIds.value.includes(player.id))
@@ -111,6 +121,7 @@ export const useConfigStore = defineStore('config', () => {
     (selectedStatIds.value = newselectedStatIds);
 
   return {
+    isLoaded,
     selectedPlayerIds,
     selectedStatIds,
     selectedPlayerIdsCount,

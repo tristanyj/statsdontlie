@@ -1,7 +1,7 @@
-import * as d3 from 'd3';
-import { formatNumber } from '~/assets/scripts/utils';
-
+import { scaleLinear, scaleLog } from 'd3';
 import type { Stat } from '~/types';
+
+import { formatNumber } from '~/assets/scripts/utils';
 
 export const useCacheStore = defineStore('cache', () => {
   const scaleCache = new Map<
@@ -17,11 +17,11 @@ export const useCacheStore = defineStore('cache', () => {
       const scale = (() => {
         switch (column.meta.scaleType) {
           case 'linear':
-            return d3.scaleLinear().domain(column.meta.domain).range([0, 1]);
+            return scaleLinear().domain(column.meta.domain).range([0, 1]);
           case 'log':
-            return d3.scaleLog().domain(column.meta.domain).range([0, 1]);
+            return scaleLog().domain(column.meta.domain).range([0, 1]);
           default:
-            return d3.scaleLinear().domain(column.meta.domain).range([0, 1]);
+            return scaleLinear().domain(column.meta.domain).range([0, 1]);
         }
       })();
 
