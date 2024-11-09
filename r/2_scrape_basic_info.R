@@ -5,6 +5,10 @@ library(stringr)
 
 b <- ChromoteSession$new()
 
+# ----------------------------
+# Helper functions
+# ----------------------------
+
 process_stat_value <- function(value) {
   if (is.na(value) || value == "") {
     return(0)
@@ -18,38 +22,41 @@ process_stat_value <- function(value) {
   return(num_value)
 }
 
-# team_abbr_to_full <- c(
-#   "ATL" = "Atlanta Hawks",
-#   "BOS" = "Boston Celtics",
-#   "BRK" = "Brooklyn Nets",
-#   "CHA" = "Charlotte Hornets",
-#   "CHI" = "Chicago Bulls",
-#   "CLE" = "Cleveland Cavaliers",
-#   "DAL" = "Dallas Mavericks",
-#   "DEN" = "Denver Nuggets",
-#   "DET" = "Detroit Pistons",
-#   "GSW" = "Golden State Warriors",
-#   "HOU" = "Houston Rockets",
-#   "IND" = "Indiana Pacers",
-#   "LAC" = "Los Angeles Clippers",
-#   "LAL" = "Los Angeles Lakers",
-#   "MEM" = "Memphis Grizzlies",
-#   "MIA" = "Miami Heat",
-#   "MIL" = "Milwaukee Bucks",
-#   "MIN" = "Minnesota Timberwolves",
-#   "NOP" = "New Orleans Pelicans",
-#   "NYK" = "New York Knicks",
-#   "OKC" = "Oklahoma City Thunder",
-#   "ORL" = "Orlando Magic",
-#   "PHI" = "Philadelphia 76ers",
-#   "PHO" = "Phoenix Suns",
-#   "POR" = "Portland Trail Blazers",
-#   "SAC" = "Sacramento Kings",
-#   "SAS" = "San Antonio Spurs",
-#   "TOR" = "Toronto Raptors",
-#   "UTA" = "Utah Jazz",
-#   "WAS" = "Washington Wizards"
-# )
+is_first_row_header <- function(footer) {
+  th_count <- footer %>%
+    html_nodes("tr:nth-child(1) th") %>%
+    length()
+
+  return(th_count > 5)
+}
+
+create_stat_ids_with_prefix <- function(stat_ids, prefix) {
+  setNames(
+    paste(prefix, stat_ids, sep = "."),
+    names(stat_ids)
+  )
+}
+
+get_nicknames_p <- function(all_paragraphs) {
+  nicknames_p <- NULL
+
+  for (p in all_paragraphs) {
+    text <- html_text(p) %>% str_trim()
+    has_desc_span <- length(html_nodes(p, "span.desc")) > 0
+    if (str_detect(text, "^\\s*\\(") &&
+          !str_detect(text, "Formerly known as") &&
+          !has_desc_span) {
+      nicknames_p <- p
+      break
+    }
+  }
+
+  return(nicknames_p)
+}
+
+# ----------------------------
+# Constants
+# ----------------------------
 
 total_stat_ids <- c(
   "g" = "total.games_played",
@@ -121,11 +128,52 @@ game_high_stat_ids <- c(
   "pts" = "game_high.points"
 )
 
-create_stat_ids_with_prefix <- function(stat_ids, prefix) {
-  setNames(
-    paste(prefix, stat_ids, sep = "."),
-    names(stat_ids)
-  )
+# ----------------------------
+# Extractors
+# ----------------------------
+
+extract_from_row <- function(page, selector, stat_ids, prefix) {
+  tryCatch({
+    footer <- page %>%
+      html_node(selector)
+
+    row_index <- if (is_first_row_header(footer)) 2 else 1
+
+    row <- page %>%
+      html_nodes(paste0(selector, " tr:nth-child(", row_index, ") td"))
+
+    stat_ids_with_prefix <- create_stat_ids_with_prefix(stat_ids, prefix)
+
+    result <- list()
+
+    for (stat in row) {
+      stat_id <- stat %>% html_attr("data-stat")
+
+      if (stat_id %in% names(stat_ids_with_prefix)) {
+        stat_value <- stat %>% html_text()
+
+        result[[stat_ids_with_prefix[stat_id]]] <- process_stat_value(stat_value)
+      }
+    }
+
+    return(result)
+  }, error = function(e) {
+    warning(paste("Error extracting total stats:", e$message))
+    return(NULL)
+  })
+}
+
+extract_selection_count <- function(page, selector) {
+  tryCatch({
+    count <- page %>%
+      html_nodes(selector) %>%
+      length()
+
+    return(count)
+  }, error = function(e) {
+    warning(paste("Error extracting selections:", e$message))
+    return(NULL)
+  })
 }
 
 extract_teams_played_for <- function(page) {
@@ -228,12 +276,11 @@ extract_main_position <- function(p) {
     text <- p %>%
       html_text() %>%
       str_trim() %>%
-      str_replace_all("\\s+", " ")  # Replace all whitespace sequences with single space
+      str_replace_all("\\s+", " ")
 
-    # Extract everything after "Position:" and before "▪", "Shoots:", "and", or comma
     main_position <- text %>%
-      str_extract("Position:\\s*(.*?)(?=\\s*▪|\\s*Shoots:|\\s*,|\\s+and\\s+)") %>%  # Added stops at comma and "and"
-      str_remove("Position:\\s*") %>%  # Remove "Position:" part
+      str_extract("Position:\\s*(.*?)(?=\\s*▪|\\s*Shoots:|\\s*,|\\s+and\\s+)") %>%
+      str_remove("Position:\\s*") %>%
       str_trim()
 
     return(main_position)
@@ -247,8 +294,8 @@ extract_shooting_hand <- function(p) {
   tryCatch({
     shooting_hand <- p %>%
       html_text() %>%
-      str_extract("Shoots:\\s*([A-Za-z]+)") %>%  # Get "Shoots:" and the following word
-      str_remove("Shoots:\\s*") %>%  # Remove "Shoots:" part
+      str_extract("Shoots:\\s*([A-Za-z]+)") %>%
+      str_remove("Shoots:\\s*") %>%
       str_trim()
 
     return(shooting_hand)
@@ -268,111 +315,6 @@ extract_experience <- function(p) {
     return(experience)
   }, error = function(e) {
     warning(paste("Error extracting experience:", e$message))
-    return(NULL)
-  })
-}
-
-extract_player_info <- function(page) {
-  tryCatch({
-    find_paragraph <- function(nodes, pattern) {
-      text_contents <- html_text(nodes)
-      matching_index <- which(str_detect(text_contents, pattern))
-      if (length(matching_index) > 0) {
-        nodes[[matching_index[1]]]
-      } else {
-        NULL
-      }
-    }
-
-    all_paragraphs <- page %>%
-      html_nodes("#meta div:nth-child(2) p")
-
-    name <- page %>%
-      html_node("#meta h1 span") %>%
-      html_text()
-
-    nicknames_p <- NULL
-    for (p in all_paragraphs) {
-      text <- html_text(p) %>% str_trim()
-      has_desc_span <- length(html_nodes(p, "span.desc")) > 0
-
-      if (str_detect(text, "^\\s*\\(") &&
-            !str_detect(text, "Formerly known as") &&
-            !has_desc_span) {
-        nicknames_p <- p
-        break
-      }
-    }
-
-    position_p <- find_paragraph(all_paragraphs, "Position:")
-    measurements_p <- find_paragraph(all_paragraphs, "\\d+-\\d+.*\\d+lb")
-    birth_p <- html_node(page, "span#necro-birth")
-    draft_p <- find_paragraph(all_paragraphs, "Draft:")
-    experience_p <- find_paragraph(all_paragraphs, "(Experience|Career Length):.*years")
-
-    print(nicknames_p)
-    # print(position_p)
-    # print(experience_p)
-
-    teams <- extract_teams_played_for(page)
-
-    return(list(
-      name = name,
-      nickname = if (!is.null(nicknames_p)) extract_nickname(nicknames_p) else NA,
-      position = if (!is.null(position_p)) extract_main_position(position_p) else NULL,
-      shooting_hand = if (!is.null(position_p)) extract_shooting_hand(position_p) else NA,
-      height = if (!is.null(measurements_p)) extract_height(measurements_p) else NA,
-      weight = if (!is.null(measurements_p)) extract_weight(measurements_p) else NA,
-      birth_date = if (!is.null(birth_p)) extract_birth_date(birth_p) else NA,
-      draft = if (!is.null(draft_p)) extract_draft_info(draft_p) else NA,
-      experience = if (!is.null(experience_p)) extract_experience(experience_p) else NA,
-      teams = teams
-    ))
-  }, error = function(e) {
-    warning(paste("Error extracting player info:", e$message))
-    return(NULL)
-  })
-}
-
-# ----------------------------
-# Extractors
-# ----------------------------
-
-is_first_row_header <- function(footer) {
-  th_count <- footer %>%
-    html_nodes("tr:nth-child(1) th") %>%
-    length()
-
-  return(th_count > 5)
-}
-
-extract_from_row <- function(page, selector, stat_ids, prefix) {
-  tryCatch({
-    footer <- page %>%
-      html_node(selector)
-
-    row_index <- if (is_first_row_header(footer)) 2 else 1
-
-    row <- page %>%
-      html_nodes(paste0(selector, " tr:nth-child(", row_index, ") td"))
-
-    stat_ids_with_prefix <- create_stat_ids_with_prefix(stat_ids, prefix)
-
-    result <- list()
-
-    for (stat in row) {
-      stat_id <- stat %>% html_attr("data-stat")
-
-      if (stat_id %in% names(stat_ids_with_prefix)) {
-        stat_value <- stat %>% html_text()
-
-        result[[stat_ids_with_prefix[stat_id]]] <- process_stat_value(stat_value)
-      }
-    }
-
-    return(result)
-  }, error = function(e) {
-    warning(paste("Error extracting total stats:", e$message))
     return(NULL)
   })
 }
@@ -464,22 +406,55 @@ extract_all_team_awards <- function(page) { # nolint
   })
 }
 
-extract_selection_count <- function(page, selector) {
-  tryCatch({
-    count <- page %>%
-      html_nodes(selector) %>%
-      length()
-
-    return(count)
-  }, error = function(e) {
-    warning(paste("Error extracting selections:", e$message))
-    return(NULL)
-  })
-}
-
 # ----------------------------
 # Extract By Group
 # ----------------------------
+
+extract_player_info <- function(page) {
+  tryCatch({
+    find_paragraph <- function(nodes, pattern) {
+      text_contents <- html_text(nodes)
+      matching_index <- which(str_detect(text_contents, pattern))
+      if (length(matching_index) > 0) {
+        nodes[[matching_index[1]]]
+      } else {
+        NULL
+      }
+    }
+
+    all_paragraphs <- page %>%
+      html_nodes("#meta div:nth-child(2) p")
+
+    name <- page %>%
+      html_node("#meta h1 span") %>%
+      html_text()
+
+    nicknames_p <- get_nicknames_p(all_paragraphs)
+    position_p <- find_paragraph(all_paragraphs, "Position:")
+    measurements_p <- find_paragraph(all_paragraphs, "\\d+-\\d+.*\\d+lb")
+    birth_p <- html_node(page, "span#necro-birth")
+    draft_p <- find_paragraph(all_paragraphs, "Draft:")
+    experience_p <- find_paragraph(all_paragraphs, "(Experience|Career Length):.*years")
+
+    teams <- extract_teams_played_for(page)
+
+    return(list(
+      name = name,
+      nickname = if (!is.null(nicknames_p)) extract_nickname(nicknames_p) else NA,
+      position = if (!is.null(position_p)) extract_main_position(position_p) else NULL,
+      shooting_hand = if (!is.null(position_p)) extract_shooting_hand(position_p) else NA,
+      height = if (!is.null(measurements_p)) extract_height(measurements_p) else NA,
+      weight = if (!is.null(measurements_p)) extract_weight(measurements_p) else NA,
+      birth_date = if (!is.null(birth_p)) extract_birth_date(birth_p) else NA,
+      draft = if (!is.null(draft_p)) extract_draft_info(draft_p) else NA,
+      experience = if (!is.null(experience_p)) extract_experience(experience_p) else NA,
+      teams = teams
+    ))
+  }, error = function(e) {
+    warning(paste("Error extracting player info:", e$message))
+    return(NULL)
+  })
+}
 
 extract_regular_season_stats <- function(page) {
   tryCatch({
@@ -552,6 +527,10 @@ extract_awards <- function(page) {
   })
 }
 
+# ----------------------------
+# Scrape entry point
+# ----------------------------
+
 scrape_player <- function(id, url) {
   Sys.sleep(3)
 
@@ -586,7 +565,10 @@ scrape_player <- function(id, url) {
   })
 }
 
+# ----------------------------
 # Main execution
+# ----------------------------
+
 if (file.exists("r/output/players_base.rds")) {
   players <- readRDS("r/output/players_base.rds")
   print("Successfully loaded players data")
