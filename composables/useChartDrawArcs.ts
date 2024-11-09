@@ -164,10 +164,12 @@ export function useChartDrawArcs() {
   ) {
     indices.forEach((startIndex, groupIndex) => {
       const group = groups[groupIndex];
+      const isGroup = 'subCategories' in group;
+
       const nextGroupStartIndex =
         indices[groupIndex + 1] ??
         startIndex +
-          ('subCategories' in group
+          (isGroup
             ? (group as Category).subCategories.reduce((sum, sg) => sum + sg.stats.length, 0)
             : group.stats.length);
 
@@ -182,10 +184,9 @@ export function useChartDrawArcs() {
         data: group,
       });
 
-      g.append('path')
-        .attr('d', backgroundArc)
-        .attr('fill', group?.color ?? modifier.color.default)
-        .attr('opacity', modifier.color.groupLabel.background.opacity);
+      g.append('path').attr('d', backgroundArc).attr('fill', group?.color);
+      // .attr('fill', group?.color ?? modifier.color.default)
+      // .attr('opacity', modifier.color.groupLabel.background.opacity);
     });
   }
 

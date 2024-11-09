@@ -109,7 +109,7 @@ export function useChartDrawLabels() {
         .attr('href', `#${id}`)
         .attr('startOffset', `${textOffsetPercentage}%`)
         .style('font-size', fontSize)
-        .style('font-weight', isGroup ? 'bold' : 'normal')
+        .style('font-weight', isGroup ? 'normal' : 'normal')
         .text(text);
     }
   }

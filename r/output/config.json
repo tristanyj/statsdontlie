@@ -4,16 +4,17 @@
       {
         "id": "regular_season",
         "name": "Regular Season",
-        "color": "#faedcb",
+        "color": "#ade8f4",
         "subCategories": [
           {
             "id": "regular_season.total",
             "name": "Career Totals",
-            "color": "#c7eae4",
+            "color": "#DEF6FB",
             "stats": [
               {
                 "id": "regular_season.total.games_played",
                 "name": "Games Played",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 1611],
                   "scaleType": "linear",
@@ -27,6 +28,7 @@
               {
                 "id": "regular_season.total.games_started",
                 "name": "Games Started",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 1499],
                   "scaleType": "linear",
@@ -40,6 +42,7 @@
               {
                 "id": "regular_season.total.minutes_played",
                 "name": "Minutes Played",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 57446],
                   "scaleType": "linear",
@@ -53,6 +56,7 @@
               {
                 "id": "regular_season.total.field_goals_made",
                 "name": "Field Goals Made",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 15837],
                   "scaleType": "linear",
@@ -66,6 +70,7 @@
               {
                 "id": "regular_season.total.field_goal_attempts",
                 "name": "Field Goal Attempts",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 28307],
                   "scaleType": "linear",
@@ -79,6 +84,7 @@
               {
                 "id": "regular_season.total.field_goal_percentage",
                 "name": "Field Goal Percentage",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0.3, 0.559],
                   "scaleType": "linear",
@@ -92,6 +98,7 @@
               {
                 "id": "regular_season.total.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 402],
                   "scaleType": "linear",
@@ -105,6 +112,7 @@
               {
                 "id": "regular_season.total.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 886],
                   "scaleType": "linear",
@@ -118,6 +126,7 @@
               {
                 "id": "regular_season.total.three_point_field_goal_percentage",
                 "name": "Three Point Field Goal Percentage",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 0.454],
                   "scaleType": "linear",
@@ -131,6 +140,7 @@
               {
                 "id": "regular_season.total.free_throws_made",
                 "name": "Free Throws Made",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 978],
                   "scaleType": "linear",
@@ -144,6 +154,7 @@
               {
                 "id": "regular_season.total.free_throw_attempts",
                 "name": "Free Throw Attempts",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 13169],
                   "scaleType": "linear",
@@ -157,6 +168,7 @@
               {
                 "id": "regular_season.total.free_throw_percentage",
                 "name": "Free Throw Percentage",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0.5, 0.9],
                   "scaleType": "linear",
@@ -170,6 +182,7 @@
               {
                 "id": "regular_season.total.offensive_rebounds",
                 "name": "Offensive Rebounds",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 4401],
                   "scaleType": "linear",
@@ -183,6 +196,7 @@
               {
                 "id": "regular_season.total.defensive_rebounds",
                 "name": "Defensive Rebounds",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 11719],
                   "scaleType": "linear",
@@ -196,6 +210,7 @@
               {
                 "id": "regular_season.total.total_rebounds",
                 "name": "Total Rebounds",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 17440],
                   "scaleType": "linear",
@@ -209,6 +224,7 @@
               {
                 "id": "regular_season.total.assists",
                 "name": "Assists",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 15806],
                   "scaleType": "linear",
@@ -222,6 +238,7 @@
               {
                 "id": "regular_season.total.steals",
                 "name": "Steals",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 3265],
                   "scaleType": "linear",
@@ -235,6 +252,7 @@
               {
                 "id": "regular_season.total.blocks",
                 "name": "Blocks",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 3830],
                   "scaleType": "linear",
@@ -248,6 +266,7 @@
               {
                 "id": "regular_season.total.turnovers",
                 "name": "Turnovers",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 4643],
                   "scaleType": "linear",
@@ -261,6 +280,7 @@
               {
                 "id": "regular_season.total.personal_fouls",
                 "name": "Personal Fouls",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 4657],
                   "scaleType": "linear",
@@ -274,6 +294,7 @@
               {
                 "id": "regular_season.total.points",
                 "name": "Points",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 38387],
                   "scaleType": "linear",
@@ -287,6 +308,7 @@
               {
                 "id": "regular_season.total.triple_doubles",
                 "name": "Triple Doubles",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 181],
                   "scaleType": "linear",
@@ -302,11 +324,12 @@
           {
             "id": "regular_season.per_game",
             "name": "Per Game",
-            "color": "#f1e2cc",
+            "color": "#EFFAFD",
             "stats": [
               {
                 "id": "regular_season.per_game.minutes_played",
                 "name": "Minutes Played",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 45.8],
                   "scaleType": "linear",
@@ -320,6 +343,7 @@
               {
                 "id": "regular_season.per_game.field_goals_made",
                 "name": "Field Goals Made",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 12.7],
                   "scaleType": "linear",
@@ -333,6 +357,7 @@
               {
                 "id": "regular_season.per_game.field_goal_attempts",
                 "name": "Field Goal Attempts",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 24.5],
                   "scaleType": "linear",
@@ -346,6 +371,7 @@
               {
                 "id": "regular_season.per_game.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 0],
                   "scaleType": "linear",
@@ -359,6 +385,7 @@
               {
                 "id": "regular_season.per_game.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 0],
                   "scaleType": "linear",
@@ -372,6 +399,7 @@
               {
                 "id": "regular_season.per_game.free_throws_made",
                 "name": "Free Throws Made",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 11.9],
                   "scaleType": "linear",
@@ -385,6 +413,7 @@
               {
                 "id": "regular_season.per_game.free_throw_attempts",
                 "name": "Free Throw Attempts",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 18.2],
                   "scaleType": "linear",
@@ -398,6 +427,7 @@
               {
                 "id": "regular_season.per_game.offensive_rebounds",
                 "name": "Offensive Rebounds",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 5.4],
                   "scaleType": "linear",
@@ -411,6 +441,7 @@
               {
                 "id": "regular_season.per_game.defensive_rebounds",
                 "name": "Defensive Rebounds",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 14.8],
                   "scaleType": "linear",
@@ -424,6 +455,7 @@
               {
                 "id": "regular_season.per_game.total_rebounds",
                 "name": "Total Rebounds",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 27.2],
                   "scaleType": "linear",
@@ -437,6 +469,7 @@
               {
                 "id": "regular_season.per_game.assists",
                 "name": "Assists",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 11.2],
                   "scaleType": "linear",
@@ -450,6 +483,7 @@
               {
                 "id": "regular_season.per_game.steals",
                 "name": "Steals",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 3.5],
                   "scaleType": "linear",
@@ -463,6 +497,7 @@
               {
                 "id": "regular_season.per_game.blocks",
                 "name": "Blocks",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 5.4],
                   "scaleType": "linear",
@@ -476,6 +511,7 @@
               {
                 "id": "regular_season.per_game.turnovers",
                 "name": "Turnovers",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 5.7],
                   "scaleType": "linear",
@@ -489,6 +525,7 @@
               {
                 "id": "regular_season.per_game.personal_fouls",
                 "name": "Personal Fouls",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 5.1],
                   "scaleType": "linear",
@@ -502,6 +539,7 @@
               {
                 "id": "regular_season.per_game.points",
                 "name": "Points",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 50.4],
                   "scaleType": "linear",
@@ -517,11 +555,12 @@
           {
             "id": "regular_season.advanced",
             "name": "Advanced Stats",
-            "color": "#f1e2cc",
+            "color": "#DEF6FB",
             "stats": [
               {
                 "id": "regular_season.advanced.player_efficiency_rating",
                 "name": "Player Efficiency Rating",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 31.9],
                   "scaleType": "linear",
@@ -535,6 +574,7 @@
               {
                 "id": "regular_season.advanced.true_shooting_percentage",
                 "name": "True Shooting Percentage",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0.5, 0.707],
                   "scaleType": "linear",
@@ -548,6 +588,7 @@
               {
                 "id": "regular_season.advanced.usage_percentage",
                 "name": "Usage Percentage",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 40.9],
                   "scaleType": "linear",
@@ -561,6 +602,7 @@
               {
                 "id": "regular_season.advanced.win_shares",
                 "name": "Win Shares",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 273.4],
                   "scaleType": "linear",
@@ -574,6 +616,7 @@
               {
                 "id": "regular_season.advanced.box_plus_minus",
                 "name": "Box Plus/Minus",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [-11.1, 12.4],
                   "scaleType": "linear",
@@ -587,6 +630,7 @@
               {
                 "id": "regular_season.advanced.value_over_replacement_player",
                 "name": "Value Over Replacement Player",
+                "color": "#DEF6FB",
                 "meta": {
                   "domain": [0, 85.7],
                   "scaleType": "linear",
@@ -602,11 +646,12 @@
           {
             "id": "regular_season.game_high",
             "name": "Game Highs",
-            "color": "#f1e2cc",
+            "color": "#EFFAFD",
             "stats": [
               {
                 "id": "regular_season.game_high.field_goals_made",
                 "name": "Field Goals Made",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 24],
                   "scaleType": "linear",
@@ -620,6 +665,7 @@
               {
                 "id": "regular_season.game_high.field_goal_attempts",
                 "name": "Field Goal Attempts",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 39],
                   "scaleType": "linear",
@@ -633,6 +679,7 @@
               {
                 "id": "regular_season.game_high.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 12],
                   "scaleType": "linear",
@@ -646,6 +693,7 @@
               {
                 "id": "regular_season.game_high.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 22],
                   "scaleType": "linear",
@@ -659,6 +707,7 @@
               {
                 "id": "regular_season.game_high.free_throws_made",
                 "name": "Free Throws Made",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 28],
                   "scaleType": "linear",
@@ -672,6 +721,7 @@
               {
                 "id": "regular_season.game_high.free_throw_attempts",
                 "name": "Free Throw Attempts",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 32],
                   "scaleType": "linear",
@@ -685,6 +735,7 @@
               {
                 "id": "regular_season.game_high.offensive_rebounds",
                 "name": "Offensive Rebounds",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 18],
                   "scaleType": "linear",
@@ -698,6 +749,7 @@
               {
                 "id": "regular_season.game_high.defensive_rebounds",
                 "name": "Defensive Rebounds",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 29],
                   "scaleType": "linear",
@@ -711,6 +763,7 @@
               {
                 "id": "regular_season.game_high.total_rebounds",
                 "name": "Total Rebounds",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 34],
                   "scaleType": "linear",
@@ -724,6 +777,7 @@
               {
                 "id": "regular_season.game_high.assists",
                 "name": "Assists",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 30],
                   "scaleType": "linear",
@@ -737,6 +791,7 @@
               {
                 "id": "regular_season.game_high.steals",
                 "name": "Steals",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 11],
                   "scaleType": "linear",
@@ -750,6 +805,7 @@
               {
                 "id": "regular_season.game_high.blocks",
                 "name": "Blocks",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 17],
                   "scaleType": "linear",
@@ -763,6 +819,7 @@
               {
                 "id": "regular_season.game_high.turnovers",
                 "name": "Turnovers",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 14],
                   "scaleType": "linear",
@@ -776,6 +833,7 @@
               {
                 "id": "regular_season.game_high.points",
                 "name": "Points",
+                "color": "#EFFAFD",
                 "meta": {
                   "domain": [0, 81],
                   "scaleType": "linear",
@@ -793,16 +851,17 @@
       {
         "id": "post_season",
         "name": "Post Season",
-        "color": "#f0e68c",
+        "color": "#ce796b",
         "subCategories": [
           {
             "id": "post_season.total",
             "name": "Career Totals",
-            "color": "#c7eae4",
+            "color": "#EBC9C4",
             "stats": [
               {
                 "id": "post_season.total.games_played",
                 "name": "Games Played",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 259],
                   "scaleType": "linear",
@@ -816,6 +875,7 @@
               {
                 "id": "post_season.total.games_started",
                 "name": "Games Started",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 259],
                   "scaleType": "linear",
@@ -829,6 +889,7 @@
               {
                 "id": "post_season.total.minutes_played",
                 "name": "Minutes Played",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 10447],
                   "scaleType": "linear",
@@ -842,6 +903,7 @@
               {
                 "id": "post_season.total.field_goals_made",
                 "name": "Field Goals Made",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 3852],
                   "scaleType": "linear",
@@ -855,6 +917,7 @@
               {
                 "id": "post_season.total.field_goal_attempts",
                 "name": "Field Goal Attempts",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 8106],
                   "scaleType": "linear",
@@ -868,6 +931,7 @@
               {
                 "id": "post_season.total.field_goal_percentage",
                 "name": "Field Goal Percentage",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0.3, 0.61],
                   "scaleType": "linear",
@@ -881,6 +945,7 @@
               {
                 "id": "post_season.total.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 385],
                   "scaleType": "linear",
@@ -894,6 +959,7 @@
               {
                 "id": "post_season.total.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 582],
                   "scaleType": "linear",
@@ -907,6 +973,7 @@
               {
                 "id": "post_season.total.three_point_field_goal_percentage",
                 "name": "Three Point Field Goal Percentage",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 0.5],
                   "scaleType": "linear",
@@ -920,6 +987,7 @@
               {
                 "id": "post_season.total.free_throws_made",
                 "name": "Free Throws Made",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 1111],
                   "scaleType": "linear",
@@ -933,6 +1001,7 @@
               {
                 "id": "post_season.total.free_throw_attempts",
                 "name": "Free Throw Attempts",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 1489],
                   "scaleType": "linear",
@@ -946,6 +1015,7 @@
               {
                 "id": "post_season.total.free_throw_percentage",
                 "name": "Free Throw Percentage",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0.5, 0.94],
                   "scaleType": "linear",
@@ -959,6 +1029,7 @@
               {
                 "id": "post_season.total.offensive_rebounds",
                 "name": "Offensive Rebounds",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 502],
                   "scaleType": "linear",
@@ -972,6 +1043,7 @@
               {
                 "id": "post_season.total.defensive_rebounds",
                 "name": "Defensive Rebounds",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 1640],
                   "scaleType": "linear",
@@ -985,6 +1057,7 @@
               {
                 "id": "post_season.total.total_rebounds",
                 "name": "Total Rebounds",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 2481],
                   "scaleType": "linear",
@@ -998,6 +1071,7 @@
               {
                 "id": "post_season.total.assists",
                 "name": "Assists",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 2346],
                   "scaleType": "linear",
@@ -1011,6 +1085,7 @@
               {
                 "id": "post_season.total.steals",
                 "name": "Steals",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 395],
                   "scaleType": "linear",
@@ -1024,6 +1099,7 @@
               {
                 "id": "post_season.total.blocks",
                 "name": "Blocks",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 338],
                   "scaleType": "linear",
@@ -1037,6 +1113,7 @@
               {
                 "id": "post_season.total.turnovers",
                 "name": "Turnovers",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 702],
                   "scaleType": "linear",
@@ -1050,6 +1127,7 @@
               {
                 "id": "post_season.total.personal_fouls",
                 "name": "Personal Fouls",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 797],
                   "scaleType": "linear",
@@ -1063,6 +1141,7 @@
               {
                 "id": "post_season.total.points",
                 "name": "Points",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 5987],
                   "scaleType": "linear",
@@ -1076,6 +1155,7 @@
               {
                 "id": "post_season.total.triple_doubles",
                 "name": "Triple Doubles",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 11],
                   "scaleType": "linear",
@@ -1091,11 +1171,12 @@
           {
             "id": "post_season.per_game",
             "name": "Per Game",
-            "color": "#f1e2cc",
+            "color": "#F5E4E1",
             "stats": [
               {
                 "id": "post_season.per_game.minutes_played",
                 "name": "Minutes Played",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 46.3],
                   "scaleType": "linear",
@@ -1109,6 +1190,7 @@
               {
                 "id": "post_season.per_game.field_goals_made",
                 "name": "Field Goals Made",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 13.6],
                   "scaleType": "linear",
@@ -1122,6 +1204,7 @@
               {
                 "id": "post_season.per_game.field_goal_attempts",
                 "name": "Field Goal Attempts",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 25.7],
                   "scaleType": "linear",
@@ -1135,6 +1218,7 @@
               {
                 "id": "post_season.per_game.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 0],
                   "scaleType": "linear",
@@ -1148,6 +1232,7 @@
               {
                 "id": "post_season.per_game.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 0],
                   "scaleType": "linear",
@@ -1161,6 +1246,7 @@
               {
                 "id": "post_season.per_game.free_throws_made",
                 "name": "Free Throws Made",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 11.9],
                   "scaleType": "linear",
@@ -1174,6 +1260,7 @@
               {
                 "id": "post_season.per_game.free_throw_attempts",
                 "name": "Free Throw Attempts",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 18.2],
                   "scaleType": "linear",
@@ -1187,6 +1274,7 @@
               {
                 "id": "post_season.per_game.offensive_rebounds",
                 "name": "Offensive Rebounds",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 5.4],
                   "scaleType": "linear",
@@ -1200,6 +1288,7 @@
               {
                 "id": "post_season.per_game.defensive_rebounds",
                 "name": "Defensive Rebounds",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 14.8],
                   "scaleType": "linear",
@@ -1213,6 +1302,7 @@
               {
                 "id": "post_season.per_game.total_rebounds",
                 "name": "Total Rebounds",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 27.2],
                   "scaleType": "linear",
@@ -1226,6 +1316,7 @@
               {
                 "id": "post_season.per_game.assists",
                 "name": "Assists",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 11.2],
                   "scaleType": "linear",
@@ -1239,6 +1330,7 @@
               {
                 "id": "post_season.per_game.steals",
                 "name": "Steals",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 3.5],
                   "scaleType": "linear",
@@ -1252,6 +1344,7 @@
               {
                 "id": "post_season.per_game.blocks",
                 "name": "Blocks",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 5.4],
                   "scaleType": "linear",
@@ -1265,6 +1358,7 @@
               {
                 "id": "post_season.per_game.turnovers",
                 "name": "Turnovers",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 5.7],
                   "scaleType": "linear",
@@ -1278,6 +1372,7 @@
               {
                 "id": "post_season.per_game.personal_fouls",
                 "name": "Personal Fouls",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 5.1],
                   "scaleType": "linear",
@@ -1291,6 +1386,7 @@
               {
                 "id": "post_season.per_game.points",
                 "name": "Points",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 46.3],
                   "scaleType": "linear",
@@ -1306,11 +1402,12 @@
           {
             "id": "post_season.advanced",
             "name": "Advanced Stats",
-            "color": "#f1e2cc",
+            "color": "#EBC9C4",
             "stats": [
               {
                 "id": "post_season.advanced.player_efficiency_rating",
                 "name": "Player Efficiency Rating",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 37.4],
                   "scaleType": "linear",
@@ -1324,6 +1421,7 @@
               {
                 "id": "post_season.advanced.true_shooting_percentage",
                 "name": "True Shooting Percentage",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0.5, 0.707],
                   "scaleType": "linear",
@@ -1337,6 +1435,7 @@
               {
                 "id": "post_season.advanced.usage_percentage",
                 "name": "Usage Percentage",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 40.9],
                   "scaleType": "linear",
@@ -1350,6 +1449,7 @@
               {
                 "id": "post_season.advanced.win_shares",
                 "name": "Win Shares",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 35.6],
                   "scaleType": "linear",
@@ -1363,6 +1463,7 @@
               {
                 "id": "post_season.advanced.box_plus_minus",
                 "name": "Box Plus/Minus",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [-11.1, 12.4],
                   "scaleType": "linear",
@@ -1376,6 +1477,7 @@
               {
                 "id": "post_season.advanced.value_over_replacement_player",
                 "name": "Value Over Replacement Player",
+                "color": "#EBC9C4",
                 "meta": {
                   "domain": [0, 13],
                   "scaleType": "linear",
@@ -1391,11 +1493,12 @@
           {
             "id": "post_season.game_high",
             "name": "Game Highs",
-            "color": "#f1e2cc",
+            "color": "#F5E4E1",
             "stats": [
               {
                 "id": "post_season.game_high.field_goals_made",
                 "name": "Field Goals Made",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 22],
                   "scaleType": "linear",
@@ -1409,6 +1512,7 @@
               {
                 "id": "post_season.game_high.field_goal_attempts",
                 "name": "Field Goal Attempts",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 35],
                   "scaleType": "linear",
@@ -1422,6 +1526,7 @@
               {
                 "id": "post_season.game_high.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 8],
                   "scaleType": "linear",
@@ -1435,6 +1540,7 @@
               {
                 "id": "post_season.game_high.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 15],
                   "scaleType": "linear",
@@ -1448,6 +1554,7 @@
               {
                 "id": "post_season.game_high.free_throws_made",
                 "name": "Free Throws Made",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 24],
                   "scaleType": "linear",
@@ -1461,6 +1568,7 @@
               {
                 "id": "post_season.game_high.free_throw_attempts",
                 "name": "Free Throw Attempts",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 27],
                   "scaleType": "linear",
@@ -1474,6 +1582,7 @@
               {
                 "id": "post_season.game_high.offensive_rebounds",
                 "name": "Offensive Rebounds",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 11],
                   "scaleType": "linear",
@@ -1487,6 +1596,7 @@
               {
                 "id": "post_season.game_high.defensive_rebounds",
                 "name": "Defensive Rebounds",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 24],
                   "scaleType": "linear",
@@ -1500,6 +1610,7 @@
               {
                 "id": "post_season.game_high.total_rebounds",
                 "name": "Total Rebounds",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 31],
                   "scaleType": "linear",
@@ -1513,6 +1624,7 @@
               {
                 "id": "post_season.game_high.assists",
                 "name": "Assists",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 19],
                   "scaleType": "linear",
@@ -1526,6 +1638,7 @@
               {
                 "id": "post_season.game_high.steals",
                 "name": "Steals",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 10],
                   "scaleType": "linear",
@@ -1539,6 +1652,7 @@
               {
                 "id": "post_season.game_high.blocks",
                 "name": "Blocks",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 8],
                   "scaleType": "linear",
@@ -1552,6 +1666,7 @@
               {
                 "id": "post_season.game_high.turnovers",
                 "name": "Turnovers",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 9],
                   "scaleType": "linear",
@@ -1565,6 +1680,7 @@
               {
                 "id": "post_season.game_high.points",
                 "name": "Points",
+                "color": "#F5E4E1",
                 "meta": {
                   "domain": [0, 63],
                   "scaleType": "linear",
@@ -1582,16 +1698,17 @@
       {
         "id": "awards",
         "name": "Awards & Milestones",
-        "color": "#d3d3d3",
+        "color": "#e9c46a",
         "subCategories": [
           {
             "id": "awards.individual",
             "name": "Individual Awards",
-            "color": "#c7eae4",
+            "color": "#F6E7C3",
             "stats": [
               {
                 "id": "awards.individual.mvp",
                 "name": "MVP",
+                "color": "#F6E7C3",
                 "meta": {
                   "domain": [0, 6],
                   "scaleType": "linear",
@@ -1605,6 +1722,7 @@
               {
                 "id": "awards.individual.finals_mvp",
                 "name": "Finals MVP",
+                "color": "#F6E7C3",
                 "meta": {
                   "domain": [0, 6],
                   "scaleType": "linear",
@@ -1618,6 +1736,7 @@
               {
                 "id": "awards.individual.dpoy",
                 "name": "Defensive Player of the Year",
+                "color": "#F6E7C3",
                 "meta": {
                   "domain": [0, 4],
                   "scaleType": "linear",
@@ -1631,6 +1750,7 @@
               {
                 "id": "awards.individual.all_star",
                 "name": "All-Star Selections",
+                "color": "#F6E7C3",
                 "meta": {
                   "domain": [0, 19],
                   "scaleType": "linear",
@@ -1644,6 +1764,7 @@
               {
                 "id": "awards.individual.all_nba",
                 "name": "All-NBA Selections",
+                "color": "#F6E7C3",
                 "meta": {
                   "domain": [0, 15],
                   "scaleType": "linear",
@@ -1657,6 +1778,7 @@
               {
                 "id": "awards.individual.all_nba_first",
                 "name": "All-NBA First Team Selections",
+                "color": "#F6E7C3",
                 "meta": {
                   "domain": [0, 10],
                   "scaleType": "linear",
@@ -1670,6 +1792,7 @@
               {
                 "id": "awards.individual.all_nba_second",
                 "name": "All-NBA Second Team Selections",
+                "color": "#F6E7C3",
                 "meta": {
                   "domain": [0, 6],
                   "scaleType": "linear",
@@ -1683,6 +1806,7 @@
               {
                 "id": "awards.individual.all_nba_third",
                 "name": "All-NBA Third Team Selections",
+                "color": "#F6E7C3",
                 "meta": {
                   "domain": [0, 2],
                   "scaleType": "linear",
@@ -1696,6 +1820,7 @@
               {
                 "id": "awards.individual.all_defensive",
                 "name": "All-Defensive Selections",
+                "color": "#F6E7C3",
                 "meta": {
                   "domain": [0, 11],
                   "scaleType": "linear",
@@ -1709,6 +1834,7 @@
               {
                 "id": "awards.individual.all_defensive_first",
                 "name": "All-Defensive First Team Selections",
+                "color": "#F6E7C3",
                 "meta": {
                   "domain": [0, 5],
                   "scaleType": "linear",
@@ -1722,6 +1848,7 @@
               {
                 "id": "awards.individual.all_defensive_second",
                 "name": "All-Defensive Second Team Selections",
+                "color": "#F6E7C3",
                 "meta": {
                   "domain": [0, 6],
                   "scaleType": "linear",
@@ -1735,6 +1862,7 @@
               {
                 "id": "awards.individual.player_week",
                 "name": "Player of the Week Awards",
+                "color": "#F6E7C3",
                 "meta": {
                   "domain": [0, 7],
                   "scaleType": "linear",
@@ -1748,6 +1876,7 @@
               {
                 "id": "awards.individual.player_month",
                 "name": "Player of the Month Awards",
+                "color": "#F6E7C3",
                 "meta": {
                   "domain": [0, 2],
                   "scaleType": "linear",
@@ -1763,11 +1892,12 @@
           {
             "id": "awards.team",
             "name": "Team Awards",
-            "color": "#fbf2c0",
+            "color": "#FBF3E1",
             "stats": [
               {
                 "id": "awards.team.nba_championships",
                 "name": "NBA Championships",
+                "color": "#FBF3E1",
                 "meta": {
                   "domain": [0, 11],
                   "scaleType": "linear",
@@ -1781,6 +1911,7 @@
               {
                 "id": "awards.team.conference_championships",
                 "name": "Conference Championships",
+                "color": "#FBF3E1",
                 "meta": {
                   "domain": [0, 11],
                   "scaleType": "linear",

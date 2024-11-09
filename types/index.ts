@@ -44,6 +44,7 @@ export interface SubCategory {
 export interface Stat {
   id: StatKey;
   name: string;
+  color: `#${string}`;
   meta: {
     domain: [number, number];
     scaleType: ScaleType;
@@ -64,7 +65,6 @@ export interface EnrichedSubCategory extends SubCategory {
 }
 
 export interface EnrichedStat extends Stat {
-  color: `#${string}`;
   meta: Stat['meta'] & {
     scale: (value: number) => number;
     format: (value: number, decimals: number) => string;

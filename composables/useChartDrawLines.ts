@@ -98,7 +98,7 @@ export function useChartDrawLines() {
         className,
         y1: minRadius,
         y2: lineLength,
-        strokeWidth: isGroupSeparator || isLastStat ? 1.5 : 1,
+        strokeWidth: isGroupSeparator || isLastStat ? 1 : 1,
         opacity: modifier.color.separator.highOpacity,
         transform: `rotate(${180 + (startAngle * 180) / Math.PI})`,
       });

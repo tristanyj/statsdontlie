@@ -55,7 +55,7 @@ function createVisualization() {
   // -----------------
 
   // Draw group and sub-group arcs
-  // drawGroupArcs(g.value, scales.circle, indices.value.group, selectedCategories.value, 0);
+  drawGroupArcs(g.value, scales.circle, indices.value.group, selectedCategories.value, 0);
   drawGroupArcs(g.value, scales.circle, indices.value.subCategory, selectedSubCategories.value, 1);
 
   // Draw stat & stat label arcs
