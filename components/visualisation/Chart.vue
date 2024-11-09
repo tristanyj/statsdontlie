@@ -12,7 +12,7 @@ const { drawCenter } = useChartDrawCenter();
 const { scales, updateScale } = useChartScales();
 
 const interactionStore = useInteractionStore();
-const { hoveredStatArc } = storeToRefs(interactionStore);
+const { hoveredPlayer } = storeToRefs(interactionStore);
 
 const preferencesStore = usePreferencesStore();
 const { selectedPlayerIds, selectedStatIds, selectedStatIdsCount } = storeToRefs(preferencesStore);
@@ -149,7 +149,7 @@ function createVisualization() {
 function updateDonutCenter() {
   if (!g.value) return;
 
-  drawCenter(g.value, hoveredStatArc.value);
+  drawCenter(g.value, hoveredPlayer.value);
 }
 
 function updateVisualization() {
@@ -177,7 +177,7 @@ const mountToContainer = () => {
 };
 
 watch(
-  () => hoveredStatArc.value,
+  () => hoveredPlayer.value,
   () => {
     updateDonutCenter();
   }

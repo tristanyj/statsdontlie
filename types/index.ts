@@ -147,24 +147,6 @@ export interface StatArcData {
   endAngle: number;
 }
 
-export interface HoveredStatArc {
-  id: string;
-  stat: {
-    id: StatKey;
-    name: string;
-    color: `#${string}`;
-    format: (value: number, decimals: number) => string;
-    formatType: FormatType;
-    record: StatRecord;
-  };
-  player: {
-    id: PlayerKey;
-    name: string;
-    colors: `#${string}`[];
-    stat: StatValue;
-  };
-}
-
 export interface LineData {
   className: string;
   y1: number;

@@ -4,7 +4,7 @@ import { group as d3Group } from 'd3-array';
 import type { d3GSelection, EnrichedStat, Group, Player, SubGroup, StatArcData } from '~/types';
 
 export function useChartDrawArcs() {
-  const { setHoveredStat } = useInteractionStore();
+  const { setHoveredPlayer } = useInteractionStore();
   const { arcGenerator } = useChartGenerators();
   const { radius, minRadius, proportions, restRadius, modifier, legend } = useChartConfig();
 
@@ -74,11 +74,11 @@ export function useChartDrawArcs() {
           .attr('opacity', 0)
           .on('mouseenter', (_, d) => {
             if (!interaction) return;
-            setHoveredStat(d);
+            setHoveredPlayer(d.player);
           })
           .on('mouseleave', () => {
             if (!interaction) return;
-            setHoveredStat(null);
+            setHoveredPlayer(null);
           })
           .call((enter) => {
             if (interaction) return;

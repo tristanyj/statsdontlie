@@ -1,15 +1,15 @@
-import type { d3GSelection, HoveredStatArc } from '~/types';
+import type { d3GSelection, Player } from '~/types';
 
-import { calcTextLength, withUnit } from '~/assets/scripts/utils';
+import { calcTextLength } from '~/assets/scripts/utils';
 
 export function useChartDrawCenter() {
   const { arcGenerator } = useChartGenerators();
   const { minRadius, modifier } = useChartConfig();
 
-  function drawCenter(g: d3GSelection, hoveredStatArc: HoveredStatArc | null) {
+  function drawCenter(g: d3GSelection, hoveredPlayer: Player | null) {
     g.selectAll('.center').remove();
 
-    if (!hoveredStatArc) return;
+    if (!hoveredPlayer) return;
 
     const fontSize = 11;
     const arcGroup = g.append('g').attr('class', 'center');
@@ -17,7 +17,7 @@ export function useChartDrawCenter() {
     const arcs = [
       {
         id: 'top-arc',
-        text: `${hoveredStatArc.player.name}`,
+        text: `${hoveredPlayer.name}`,
         radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.donut.arc.top,
         startAngle: (3 * Math.PI) / 2,
         endAngle: (5 * Math.PI) / 2,
@@ -25,7 +25,7 @@ export function useChartDrawCenter() {
       },
       {
         id: 'bottom-arc',
-        text: `# ${hoveredStatArc.player.stat.rank[0]} among QBs / # ${hoveredStatArc.player.stat.rank[1]} overall`,
+        text: `#1 overall`,
         radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.donut.arc.bottom,
         startAngle: (3 * Math.PI) / 2,
         endAngle: Math.PI / 2,
@@ -59,7 +59,7 @@ export function useChartDrawCenter() {
         .text(arc.text);
     });
 
-    const statValue = hoveredStatArc.player.stat.value;
+    const statValue = 12;
 
     arcGroup
       .append('text')
@@ -69,7 +69,7 @@ export function useChartDrawCenter() {
       .attr('dominant-baseline', 'middle')
       .attr('fill', '#000')
       .attr('font-size', fontSize + 5)
-      .text(withUnit(statValue, hoveredStatArc.stat.formatType));
+      .text(statValue);
 
     arcGroup
       .append('text')
@@ -79,7 +79,7 @@ export function useChartDrawCenter() {
       .attr('dominant-baseline', 'middle')
       .attr('fill', '#000')
       .attr('font-size', fontSize)
-      .text(hoveredStatArc.stat.name);
+      .text(hoveredPlayer.name);
   }
 
   return {
