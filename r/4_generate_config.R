@@ -6,11 +6,11 @@ library(stringr)
 # Helper functions
 # ----------------------------
 
-create_meta <- function(stat_id, record_value) {
+create_meta <- function(scale_type, format_type, domain_min, record_value) {
   list(
-    domain = c(0, record_value),
-    scaleType = "linear",
-    formatType = if (str_detect(stat_id, "percentage")) "percent" else "number"
+    domain = c(domain_min, record_value),
+    scaleType = scale_type,
+    formatType = format_type
   )
 }
 
@@ -20,6 +20,7 @@ create_meta <- function(stat_id, record_value) {
 
 build_config <- function(categories, subcategories, stats) {
   config <- list()
+  config$categories <- list()
 
   for (i in seq_len(nrow(categories))) {
     cat_id <- categories[i, "id"][[1]]
@@ -28,7 +29,7 @@ build_config <- function(categories, subcategories, stats) {
       id = cat_id,
       name = categories[i, "name"][[1]],
       color = categories[i, "color"][[1]],
-      subGroups = list()
+      subCategories = list()
     )
 
     cat_subcategories <- subcategories[
@@ -39,15 +40,17 @@ build_config <- function(categories, subcategories, stats) {
       sub_id <- cat_subcategories[j, "id"][[1]]
 
       sub_stats <- stats[
-        startsWith(stats[["stat_id"]], paste0(sub_id, ".")),
+        startsWith(stats[["id"]], paste0(sub_id, ".")),
       ]
 
       stats_list <- lapply(seq_len(nrow(sub_stats)), function(k) {
         list(
-          id = sub_stats[k, "stat_id"][[1]],
-          name = sub_stats[k, "stat_name"][[1]],
+          id = sub_stats[k, "id"][[1]],
+          name = sub_stats[k, "name"][[1]],
           meta = create_meta(
-            sub_stats[k, "stat_id"][[1]],
+            sub_stats[k, "scale_type"][[1]],
+            sub_stats[k, "format_type"][[1]],
+            sub_stats[k, "domain_min"][[1]],
             sub_stats[k, "record_value"][[1]]
           ),
           record = list(
@@ -57,7 +60,7 @@ build_config <- function(categories, subcategories, stats) {
         )
       })
 
-      category$subGroups[[length(category$subGroups) + 1]] <- list(
+      category$subCategories[[length(category$subCategories) + 1]] <- list(
         id = sub_id,
         name = cat_subcategories[j, "name"][[1]],
         color = cat_subcategories[j, "color"][[1]],
@@ -65,40 +68,10 @@ build_config <- function(categories, subcategories, stats) {
       )
     }
 
-    config[[length(config) + 1]] <- category
+    config$categories[[length(config$categories) + 1]] <- category
   }
 
   return(config)
-}
-
-# ----------------------------
-# Validation functions
-# ----------------------------
-
-validate_subcategories <- function(categories, subcategories) {
-  parent_ids <- vapply(
-    strsplit(subcategories[["id"]], "\\."),
-    function(x) x[1],
-    character(1)
-  )
-
-  invalid_parents <- setdiff(parent_ids, categories[["id"]])
-  if (length(invalid_parents) > 0) {
-    stop("Invalid parent categories found: ", paste(invalid_parents, collapse = ", "))
-  }
-}
-
-validate_stats <- function(subcategories, stats) {
-  parent_ids <- vapply(
-    strsplit(stats[["stat_id"]], "\\."),
-    function(x) paste(x[1:2], collapse = "."),
-    character(1)
-  )
-
-  invalid_parents <- setdiff(parent_ids, subcategories[["id"]])
-  if (length(invalid_parents) > 0) {
-    stop("Invalid parent subcategories found: ", paste(invalid_parents, collapse = ", "))
-  }
 }
 
 # ----------------------------
@@ -125,9 +98,6 @@ if (file.exists("r/input/stats.rds")) {
 } else {
   stop("Cannot find stats.rds. Make sure to run 1_prepare_input.R first")
 }
-
-validate_subcategories(categories, subcategories)
-validate_stats(subcategories, stats)
 
 output <- list()
 output$config <- build_config(categories, subcategories, stats)

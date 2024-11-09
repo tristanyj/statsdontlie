@@ -1,1804 +1,1806 @@
 {
-  "config": [
-    {
-      "id": "regular_season",
-      "name": "Regular Season",
-      "color": "#faedcb",
-      "subGroups": [
-        {
-          "id": "regular_season.total",
-          "name": "Career Totals",
-          "color": "#c7eae4",
-          "stats": [
-            {
-              "id": "regular_season.total.games_played",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.games_started",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.minutes_played",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.field_goals_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.field_goal_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.field_goal_percentage",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "percent"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.three_point_field_goals_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.three_point_field_goal_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.three_point_field_goal_percentage",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "percent"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.free_throws_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.free_throw_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.free_throw_percentage",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "percent"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.offensive_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.defensive_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.total_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.assists",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.steals",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.blocks",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.turnovers",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.personal_fouls",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.points",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.total.triple_doubles",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            }
-          ]
-        },
-        {
-          "id": "regular_season.per_game",
-          "name": "Per Game",
-          "color": "#f1e2cc",
-          "stats": [
-            {
-              "id": "regular_season.per_game.minutes_played",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.field_goals_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.field_goal_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.three_point_field_goals_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.three_point_field_goal_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.free_throws_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.free_throw_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.offensive_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.defensive_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.total_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.assists",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.steals",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.blocks",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.turnovers",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.personal_fouls",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.per_game.points",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            }
-          ]
-        },
-        {
-          "id": "regular_season.advanced",
-          "name": "Advanced Stats",
-          "color": "#f1e2cc",
-          "stats": [
-            {
-              "id": "regular_season.advanced.player_efficiency_rating",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.advanced.true_shooting_percentage",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "percent"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.advanced.usage_percentage",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "percent"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.advanced.win_shares",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.advanced.box_plus_minus",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.advanced.value_over_replacement_player",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            }
-          ]
-        },
-        {
-          "id": "regular_season.game_high",
-          "name": "Game Highs",
-          "color": "#f1e2cc",
-          "stats": [
-            {
-              "id": "regular_season.game_high.field_goals_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.game_high.field_goal_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.game_high.three_point_field_goals_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.game_high.three_point_field_goal_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.game_high.free_throws_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.game_high.free_throw_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.game_high.offensive_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.game_high.defensive_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.game_high.total_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.game_high.assists",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.game_high.steals",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.game_high.blocks",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.game_high.turnovers",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "regular_season.game_high.points",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "post_season",
-      "name": "Post Season",
-      "color": "#f0e68c",
-      "subGroups": [
-        {
-          "id": "post_season.total",
-          "name": "Career Totals",
-          "color": "#c7eae4",
-          "stats": [
-            {
-              "id": "post_season.total.games_played",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.games_started",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.minutes_played",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.field_goals_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.field_goal_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.field_goal_percentage",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "percent"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.three_point_field_goals_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.three_point_field_goal_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.three_point_field_goal_percentage",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "percent"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.free_throws_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.free_throw_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.free_throw_percentage",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "percent"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.offensive_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.defensive_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.total_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.assists",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.steals",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.blocks",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.turnovers",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.personal_fouls",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.points",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.total.triple_doubles",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            }
-          ]
-        },
-        {
-          "id": "post_season.per_game",
-          "name": "Per Game",
-          "color": "#f1e2cc",
-          "stats": [
-            {
-              "id": "post_season.per_game.minutes_played",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.field_goals_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.field_goal_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.three_point_field_goals_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.three_point_field_goal_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.free_throws_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.free_throw_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.offensive_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.defensive_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.total_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.assists",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.steals",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.blocks",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.turnovers",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.personal_fouls",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.per_game.points",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            }
-          ]
-        },
-        {
-          "id": "post_season.advanced",
-          "name": "Advanced Stats",
-          "color": "#f1e2cc",
-          "stats": [
-            {
-              "id": "post_season.advanced.player_efficiency_rating",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.advanced.true_shooting_percentage",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "percent"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.advanced.usage_percentage",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "percent"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.advanced.win_shares",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.advanced.box_plus_minus",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.advanced.value_over_replacement_player",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            }
-          ]
-        },
-        {
-          "id": "post_season.game_high",
-          "name": "Game Highs",
-          "color": "#f1e2cc",
-          "stats": [
-            {
-              "id": "post_season.game_high.field_goals_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.game_high.field_goal_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.game_high.three_point_field_goals_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.game_high.three_point_field_goal_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.game_high.free_throws_made",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.game_high.free_throw_attempts",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.game_high.offensive_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.game_high.defensive_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.game_high.total_rebounds",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.game_high.assists",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.game_high.steals",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.game_high.blocks",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.game_high.turnovers",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "post_season.game_high.points",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "awards",
-      "name": "Awards & Milestones",
-      "color": "#d3d3d3",
-      "subGroups": [
-        {
-          "id": "awards.individual",
-          "name": "Individual Awards",
-          "color": "#c7eae4",
-          "stats": [
-            {
-              "id": "awards.individual.mvp",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "awards.individual.finals_mvp",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "awards.individual.dpoy",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "awards.individual.all_star",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "awards.individual.all_nba",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "awards.individual.all_nba_first",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "awards.individual.all_nba_second",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "awards.individual.all_nba_third",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "awards.individual.all_defensive",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "awards.individual.all_defensive_first",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "awards.individual.all_defensive_second",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "awards.individual.player_week",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "awards.individual.player_month",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            }
-          ]
-        },
-        {
-          "id": "awards.team",
-          "name": "Team Awards",
-          "color": "#fbf2c0",
-          "stats": [
-            {
-              "id": "awards.team.nba_championships",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            },
-            {
-              "id": "awards.team.conference_championships",
-              "name": {},
-              "meta": {
-                "domain": [0, 82],
-                "scaleType": "linear",
-                "formatType": "number"
-              },
-              "record": {
-                "value": 82,
-                "name": "westbru01"
-              }
-            }
-          ]
-        }
-      ]
-    }
-  ],
+  "config": {
+    "categories": [
+      {
+        "id": "regular_season",
+        "name": "Regular Season",
+        "color": "#faedcb",
+        "subCategories": [
+          {
+            "id": "regular_season.total",
+            "name": "Career Totals",
+            "color": "#c7eae4",
+            "stats": [
+              {
+                "id": "regular_season.total.games_played",
+                "name": "Games Played",
+                "meta": {
+                  "domain": [0, 1611],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 1611,
+                  "name": "Robert Parish"
+                }
+              },
+              {
+                "id": "regular_season.total.games_started",
+                "name": "Games Started",
+                "meta": {
+                  "domain": [0, 1499],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 1499,
+                  "name": "LeBron James"
+                }
+              },
+              {
+                "id": "regular_season.total.minutes_played",
+                "name": "Minutes Played",
+                "meta": {
+                  "domain": [0, 57446],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 57446,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "regular_season.total.field_goals_made",
+                "name": "Field Goals Made",
+                "meta": {
+                  "domain": [0, 15837],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 15837,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "regular_season.total.field_goal_attempts",
+                "name": "Field Goal Attempts",
+                "meta": {
+                  "domain": [0, 28307],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 28307,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "regular_season.total.field_goal_percentage",
+                "name": "Field Goal Percentage",
+                "meta": {
+                  "domain": [0.3, 0.559],
+                  "scaleType": "linear",
+                  "formatType": "percentage"
+                },
+                "record": {
+                  "value": 0.559,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "regular_season.total.three_point_field_goals_made",
+                "name": "Three Point Field Goals Made",
+                "meta": {
+                  "domain": [0, 402],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 402,
+                  "name": "Stephen Curry"
+                }
+              },
+              {
+                "id": "regular_season.total.three_point_field_goal_attempts",
+                "name": "Three Point Field Goal Attempts",
+                "meta": {
+                  "domain": [0, 886],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 886,
+                  "name": "Stephen Curry"
+                }
+              },
+              {
+                "id": "regular_season.total.three_point_field_goal_percentage",
+                "name": "Three Point Field Goal Percentage",
+                "meta": {
+                  "domain": [0, 0.454],
+                  "scaleType": "linear",
+                  "formatType": "percentage"
+                },
+                "record": {
+                  "value": 0.454,
+                  "name": "Steve Kerr"
+                }
+              },
+              {
+                "id": "regular_season.total.free_throws_made",
+                "name": "Free Throws Made",
+                "meta": {
+                  "domain": [0, 978],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 978,
+                  "name": "Karl Malone"
+                }
+              },
+              {
+                "id": "regular_season.total.free_throw_attempts",
+                "name": "Free Throw Attempts",
+                "meta": {
+                  "domain": [0, 13169],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 13169,
+                  "name": "Karl Malone"
+                }
+              },
+              {
+                "id": "regular_season.total.free_throw_percentage",
+                "name": "Free Throw Percentage",
+                "meta": {
+                  "domain": [0.5, 0.9],
+                  "scaleType": "linear",
+                  "formatType": "percentage"
+                },
+                "record": {
+                  "value": 0.9,
+                  "name": "Steve Nash"
+                }
+              },
+              {
+                "id": "regular_season.total.offensive_rebounds",
+                "name": "Offensive Rebounds",
+                "meta": {
+                  "domain": [0, 4401],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 4401,
+                  "name": "Moses Malone"
+                }
+              },
+              {
+                "id": "regular_season.total.defensive_rebounds",
+                "name": "Defensive Rebounds",
+                "meta": {
+                  "domain": [0, 11719],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 11719,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "regular_season.total.total_rebounds",
+                "name": "Total Rebounds",
+                "meta": {
+                  "domain": [0, 17440],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 17440,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "regular_season.total.assists",
+                "name": "Assists",
+                "meta": {
+                  "domain": [0, 15806],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 15806,
+                  "name": "John Stockton"
+                }
+              },
+              {
+                "id": "regular_season.total.steals",
+                "name": "Steals",
+                "meta": {
+                  "domain": [0, 3265],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 3265,
+                  "name": "John Stockton"
+                }
+              },
+              {
+                "id": "regular_season.total.blocks",
+                "name": "Blocks",
+                "meta": {
+                  "domain": [0, 3830],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 3830,
+                  "name": "Hakeem Olajuwon"
+                }
+              },
+              {
+                "id": "regular_season.total.turnovers",
+                "name": "Turnovers",
+                "meta": {
+                  "domain": [0, 4643],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 4643,
+                  "name": "Karl Malone"
+                }
+              },
+              {
+                "id": "regular_season.total.personal_fouls",
+                "name": "Personal Fouls",
+                "meta": {
+                  "domain": [0, 4657],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 4657,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "regular_season.total.points",
+                "name": "Points",
+                "meta": {
+                  "domain": [0, 38387],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 38387,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "regular_season.total.triple_doubles",
+                "name": "Triple Doubles",
+                "meta": {
+                  "domain": [0, 181],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 181,
+                  "name": "Magic Johnson"
+                }
+              }
+            ]
+          },
+          {
+            "id": "regular_season.per_game",
+            "name": "Per Game",
+            "color": "#f1e2cc",
+            "stats": [
+              {
+                "id": "regular_season.per_game.minutes_played",
+                "name": "Minutes Played",
+                "meta": {
+                  "domain": [0, 45.8],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 45.8,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.per_game.field_goals_made",
+                "name": "Field Goals Made",
+                "meta": {
+                  "domain": [0, 12.7],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 12.7,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.per_game.field_goal_attempts",
+                "name": "Field Goal Attempts",
+                "meta": {
+                  "domain": [0, 24.5],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 24.5,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.per_game.three_point_field_goals_made",
+                "name": "Three Point Field Goals Made",
+                "meta": {
+                  "domain": [0, 0],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 0,
+                  "name": "Various Players"
+                }
+              },
+              {
+                "id": "regular_season.per_game.three_point_field_goal_attempts",
+                "name": "Three Point Field Goal Attempts",
+                "meta": {
+                  "domain": [0, 0],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 0,
+                  "name": "Various Players"
+                }
+              },
+              {
+                "id": "regular_season.per_game.free_throws_made",
+                "name": "Free Throws Made",
+                "meta": {
+                  "domain": [0, 11.9],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 11.9,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.per_game.free_throw_attempts",
+                "name": "Free Throw Attempts",
+                "meta": {
+                  "domain": [0, 18.2],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 18.2,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.per_game.offensive_rebounds",
+                "name": "Offensive Rebounds",
+                "meta": {
+                  "domain": [0, 5.4],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 5.4,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.per_game.defensive_rebounds",
+                "name": "Defensive Rebounds",
+                "meta": {
+                  "domain": [0, 14.8],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 14.8,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.per_game.total_rebounds",
+                "name": "Total Rebounds",
+                "meta": {
+                  "domain": [0, 27.2],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 27.2,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.per_game.assists",
+                "name": "Assists",
+                "meta": {
+                  "domain": [0, 11.2],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 11.2,
+                  "name": "Magic Johnson"
+                }
+              },
+              {
+                "id": "regular_season.per_game.steals",
+                "name": "Steals",
+                "meta": {
+                  "domain": [0, 3.5],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 3.5,
+                  "name": "Alvin Robertson"
+                }
+              },
+              {
+                "id": "regular_season.per_game.blocks",
+                "name": "Blocks",
+                "meta": {
+                  "domain": [0, 5.4],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 5.4,
+                  "name": "Mark Eaton"
+                }
+              },
+              {
+                "id": "regular_season.per_game.turnovers",
+                "name": "Turnovers",
+                "meta": {
+                  "domain": [0, 5.7],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 5.7,
+                  "name": "Artis Gilmore"
+                }
+              },
+              {
+                "id": "regular_season.per_game.personal_fouls",
+                "name": "Personal Fouls",
+                "meta": {
+                  "domain": [0, 5.1],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 5.1,
+                  "name": "Mark Eaton"
+                }
+              },
+              {
+                "id": "regular_season.per_game.points",
+                "name": "Points",
+                "meta": {
+                  "domain": [0, 50.4],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 50.4,
+                  "name": "Wilt Chamberlain"
+                }
+              }
+            ]
+          },
+          {
+            "id": "regular_season.advanced",
+            "name": "Advanced Stats",
+            "color": "#f1e2cc",
+            "stats": [
+              {
+                "id": "regular_season.advanced.player_efficiency_rating",
+                "name": "Player Efficiency Rating",
+                "meta": {
+                  "domain": [0, 31.9],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 31.9,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "regular_season.advanced.true_shooting_percentage",
+                "name": "True Shooting Percentage",
+                "meta": {
+                  "domain": [0.5, 0.707],
+                  "scaleType": "linear",
+                  "formatType": "percentage"
+                },
+                "record": {
+                  "value": 0.707,
+                  "name": "DeAndre Jordan"
+                }
+              },
+              {
+                "id": "regular_season.advanced.usage_percentage",
+                "name": "Usage Percentage",
+                "meta": {
+                  "domain": [0, 40.9],
+                  "scaleType": "linear",
+                  "formatType": "percentage"
+                },
+                "record": {
+                  "value": 40.9,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "regular_season.advanced.win_shares",
+                "name": "Win Shares",
+                "meta": {
+                  "domain": [0, 273.4],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 273.4,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "regular_season.advanced.box_plus_minus",
+                "name": "Box Plus/Minus",
+                "meta": {
+                  "domain": [-11.1, 12.4],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 12.4,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "regular_season.advanced.value_over_replacement_player",
+                "name": "Value Over Replacement Player",
+                "meta": {
+                  "domain": [0, 85.7],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 85.7,
+                  "name": "Michael Jordan"
+                }
+              }
+            ]
+          },
+          {
+            "id": "regular_season.game_high",
+            "name": "Game Highs",
+            "color": "#f1e2cc",
+            "stats": [
+              {
+                "id": "regular_season.game_high.field_goals_made",
+                "name": "Field Goals Made",
+                "meta": {
+                  "domain": [0, 24],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 24,
+                  "name": "Kobe Bryant"
+                }
+              },
+              {
+                "id": "regular_season.game_high.field_goal_attempts",
+                "name": "Field Goal Attempts",
+                "meta": {
+                  "domain": [0, 39],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 39,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.game_high.three_point_field_goals_made",
+                "name": "Three Point Field Goals Made",
+                "meta": {
+                  "domain": [0, 12],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 12,
+                  "name": "Kobe Bryant"
+                }
+              },
+              {
+                "id": "regular_season.game_high.three_point_field_goal_attempts",
+                "name": "Three Point Field Goal Attempts",
+                "meta": {
+                  "domain": [0, 22],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 22,
+                  "name": "Kobe Bryant"
+                }
+              },
+              {
+                "id": "regular_season.game_high.free_throws_made",
+                "name": "Free Throws Made",
+                "meta": {
+                  "domain": [0, 28],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 28,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.game_high.free_throw_attempts",
+                "name": "Free Throw Attempts",
+                "meta": {
+                  "domain": [0, 32],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 32,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.game_high.offensive_rebounds",
+                "name": "Offensive Rebounds",
+                "meta": {
+                  "domain": [0, 18],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 18,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.game_high.defensive_rebounds",
+                "name": "Defensive Rebounds",
+                "meta": {
+                  "domain": [0, 29],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 29,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.game_high.total_rebounds",
+                "name": "Total Rebounds",
+                "meta": {
+                  "domain": [0, 34],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 34,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.game_high.assists",
+                "name": "Assists",
+                "meta": {
+                  "domain": [0, 30],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 30,
+                  "name": "Scott Skiles"
+                }
+              },
+              {
+                "id": "regular_season.game_high.steals",
+                "name": "Steals",
+                "meta": {
+                  "domain": [0, 11],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 11,
+                  "name": "Manu Ginobili"
+                }
+              },
+              {
+                "id": "regular_season.game_high.blocks",
+                "name": "Blocks",
+                "meta": {
+                  "domain": [0, 17],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 17,
+                  "name": "Elmore Smith"
+                }
+              },
+              {
+                "id": "regular_season.game_high.turnovers",
+                "name": "Turnovers",
+                "meta": {
+                  "domain": [0, 14],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 14,
+                  "name": "Jason Kidd"
+                }
+              },
+              {
+                "id": "regular_season.game_high.points",
+                "name": "Points",
+                "meta": {
+                  "domain": [0, 81],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 81,
+                  "name": "Kobe Bryant"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "post_season",
+        "name": "Post Season",
+        "color": "#f0e68c",
+        "subCategories": [
+          {
+            "id": "post_season.total",
+            "name": "Career Totals",
+            "color": "#c7eae4",
+            "stats": [
+              {
+                "id": "post_season.total.games_played",
+                "name": "Games Played",
+                "meta": {
+                  "domain": [0, 259],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 259,
+                  "name": "Derek Fisher"
+                }
+              },
+              {
+                "id": "post_season.total.games_started",
+                "name": "Games Started",
+                "meta": {
+                  "domain": [0, 259],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 259,
+                  "name": "Derek Fisher"
+                }
+              },
+              {
+                "id": "post_season.total.minutes_played",
+                "name": "Minutes Played",
+                "meta": {
+                  "domain": [0, 10447],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 10447,
+                  "name": "Tim Duncan"
+                }
+              },
+              {
+                "id": "post_season.total.field_goals_made",
+                "name": "Field Goals Made",
+                "meta": {
+                  "domain": [0, 3852],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 3852,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "post_season.total.field_goal_attempts",
+                "name": "Field Goal Attempts",
+                "meta": {
+                  "domain": [0, 8106],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 8106,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "post_season.total.field_goal_percentage",
+                "name": "Field Goal Percentage",
+                "meta": {
+                  "domain": [0.3, 0.61],
+                  "scaleType": "linear",
+                  "formatType": "percentage"
+                },
+                "record": {
+                  "value": 0.61,
+                  "name": "James Worthy"
+                }
+              },
+              {
+                "id": "post_season.total.three_point_field_goals_made",
+                "name": "Three Point Field Goals Made",
+                "meta": {
+                  "domain": [0, 385],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 385,
+                  "name": "Ray Allen"
+                }
+              },
+              {
+                "id": "post_season.total.three_point_field_goal_attempts",
+                "name": "Three Point Field Goal Attempts",
+                "meta": {
+                  "domain": [0, 582],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 582,
+                  "name": "Stephen Curry"
+                }
+              },
+              {
+                "id": "post_season.total.three_point_field_goal_percentage",
+                "name": "Three Point Field Goal Percentage",
+                "meta": {
+                  "domain": [0, 0.5],
+                  "scaleType": "linear",
+                  "formatType": "percentage"
+                },
+                "record": {
+                  "value": 0.5,
+                  "name": "Steve Kerr"
+                }
+              },
+              {
+                "id": "post_season.total.free_throws_made",
+                "name": "Free Throws Made",
+                "meta": {
+                  "domain": [0, 1111],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 1111,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "post_season.total.free_throw_attempts",
+                "name": "Free Throw Attempts",
+                "meta": {
+                  "domain": [0, 1489],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 1489,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "post_season.total.free_throw_percentage",
+                "name": "Free Throw Percentage",
+                "meta": {
+                  "domain": [0.5, 0.94],
+                  "scaleType": "linear",
+                  "formatType": "percentage"
+                },
+                "record": {
+                  "value": 0.94,
+                  "name": "Steve Nash"
+                }
+              },
+              {
+                "id": "post_season.total.offensive_rebounds",
+                "name": "Offensive Rebounds",
+                "meta": {
+                  "domain": [0, 502],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 502,
+                  "name": "Dennis Rodman"
+                }
+              },
+              {
+                "id": "post_season.total.defensive_rebounds",
+                "name": "Defensive Rebounds",
+                "meta": {
+                  "domain": [0, 1640],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 1640,
+                  "name": "Tim Duncan"
+                }
+              },
+              {
+                "id": "post_season.total.total_rebounds",
+                "name": "Total Rebounds",
+                "meta": {
+                  "domain": [0, 2481],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 2481,
+                  "name": "Tim Duncan"
+                }
+              },
+              {
+                "id": "post_season.total.assists",
+                "name": "Assists",
+                "meta": {
+                  "domain": [0, 2346],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 2346,
+                  "name": "LeBron James"
+                }
+              },
+              {
+                "id": "post_season.total.steals",
+                "name": "Steals",
+                "meta": {
+                  "domain": [0, 395],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 395,
+                  "name": "Scottie Pippen"
+                }
+              },
+              {
+                "id": "post_season.total.blocks",
+                "name": "Blocks",
+                "meta": {
+                  "domain": [0, 338],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 338,
+                  "name": "Tim Duncan"
+                }
+              },
+              {
+                "id": "post_season.total.turnovers",
+                "name": "Turnovers",
+                "meta": {
+                  "domain": [0, 702],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 702,
+                  "name": "LeBron James"
+                }
+              },
+              {
+                "id": "post_season.total.personal_fouls",
+                "name": "Personal Fouls",
+                "meta": {
+                  "domain": [0, 797],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 797,
+                  "name": "LeBron James"
+                }
+              },
+              {
+                "id": "post_season.total.points",
+                "name": "Points",
+                "meta": {
+                  "domain": [0, 5987],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 5987,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "post_season.total.triple_doubles",
+                "name": "Triple Doubles",
+                "meta": {
+                  "domain": [0, 11],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 11,
+                  "name": "LeBron James"
+                }
+              }
+            ]
+          },
+          {
+            "id": "post_season.per_game",
+            "name": "Per Game",
+            "color": "#f1e2cc",
+            "stats": [
+              {
+                "id": "post_season.per_game.minutes_played",
+                "name": "Minutes Played",
+                "meta": {
+                  "domain": [0, 46.3],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 46.3,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "post_season.per_game.field_goals_made",
+                "name": "Field Goals Made",
+                "meta": {
+                  "domain": [0, 13.6],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 13.6,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "post_season.per_game.field_goal_attempts",
+                "name": "Field Goal Attempts",
+                "meta": {
+                  "domain": [0, 25.7],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 25.7,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "post_season.per_game.three_point_field_goals_made",
+                "name": "Three Point Field Goals Made",
+                "meta": {
+                  "domain": [0, 0],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 0,
+                  "name": "Various Players"
+                }
+              },
+              {
+                "id": "post_season.per_game.three_point_field_goal_attempts",
+                "name": "Three Point Field Goal Attempts",
+                "meta": {
+                  "domain": [0, 0],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 0,
+                  "name": "Various Players"
+                }
+              },
+              {
+                "id": "post_season.per_game.free_throws_made",
+                "name": "Free Throws Made",
+                "meta": {
+                  "domain": [0, 11.9],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 11.9,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "post_season.per_game.free_throw_attempts",
+                "name": "Free Throw Attempts",
+                "meta": {
+                  "domain": [0, 18.2],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 18.2,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "post_season.per_game.offensive_rebounds",
+                "name": "Offensive Rebounds",
+                "meta": {
+                  "domain": [0, 5.4],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 5.4,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "post_season.per_game.defensive_rebounds",
+                "name": "Defensive Rebounds",
+                "meta": {
+                  "domain": [0, 14.8],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 14.8,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "post_season.per_game.total_rebounds",
+                "name": "Total Rebounds",
+                "meta": {
+                  "domain": [0, 27.2],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 27.2,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "post_season.per_game.assists",
+                "name": "Assists",
+                "meta": {
+                  "domain": [0, 11.2],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 11.2,
+                  "name": "Magic Johnson"
+                }
+              },
+              {
+                "id": "post_season.per_game.steals",
+                "name": "Steals",
+                "meta": {
+                  "domain": [0, 3.5],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 3.5,
+                  "name": "Alvin Robertson"
+                }
+              },
+              {
+                "id": "post_season.per_game.blocks",
+                "name": "Blocks",
+                "meta": {
+                  "domain": [0, 5.4],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 5.4,
+                  "name": "Mark Eaton"
+                }
+              },
+              {
+                "id": "post_season.per_game.turnovers",
+                "name": "Turnovers",
+                "meta": {
+                  "domain": [0, 5.7],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 5.7,
+                  "name": "Artis Gilmore"
+                }
+              },
+              {
+                "id": "post_season.per_game.personal_fouls",
+                "name": "Personal Fouls",
+                "meta": {
+                  "domain": [0, 5.1],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 5.1,
+                  "name": "Mark Eaton"
+                }
+              },
+              {
+                "id": "post_season.per_game.points",
+                "name": "Points",
+                "meta": {
+                  "domain": [0, 46.3],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 46.3,
+                  "name": "Wilt Chamberlain"
+                }
+              }
+            ]
+          },
+          {
+            "id": "post_season.advanced",
+            "name": "Advanced Stats",
+            "color": "#f1e2cc",
+            "stats": [
+              {
+                "id": "post_season.advanced.player_efficiency_rating",
+                "name": "Player Efficiency Rating",
+                "meta": {
+                  "domain": [0, 37.4],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 37.4,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "post_season.advanced.true_shooting_percentage",
+                "name": "True Shooting Percentage",
+                "meta": {
+                  "domain": [0.5, 0.707],
+                  "scaleType": "linear",
+                  "formatType": "percentage"
+                },
+                "record": {
+                  "value": 0.707,
+                  "name": "DeAndre Jordan"
+                }
+              },
+              {
+                "id": "post_season.advanced.usage_percentage",
+                "name": "Usage Percentage",
+                "meta": {
+                  "domain": [0, 40.9],
+                  "scaleType": "linear",
+                  "formatType": "percentage"
+                },
+                "record": {
+                  "value": 40.9,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "post_season.advanced.win_shares",
+                "name": "Win Shares",
+                "meta": {
+                  "domain": [0, 35.6],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 35.6,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "post_season.advanced.box_plus_minus",
+                "name": "Box Plus/Minus",
+                "meta": {
+                  "domain": [-11.1, 12.4],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 12.4,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "post_season.advanced.value_over_replacement_player",
+                "name": "Value Over Replacement Player",
+                "meta": {
+                  "domain": [0, 13],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 13,
+                  "name": "Michael Jordan"
+                }
+              }
+            ]
+          },
+          {
+            "id": "post_season.game_high",
+            "name": "Game Highs",
+            "color": "#f1e2cc",
+            "stats": [
+              {
+                "id": "post_season.game_high.field_goals_made",
+                "name": "Field Goals Made",
+                "meta": {
+                  "domain": [0, 22],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 22,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "post_season.game_high.field_goal_attempts",
+                "name": "Field Goal Attempts",
+                "meta": {
+                  "domain": [0, 35],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 35,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "post_season.game_high.three_point_field_goals_made",
+                "name": "Three Point Field Goals Made",
+                "meta": {
+                  "domain": [0, 8],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 8,
+                  "name": "Ray Allen"
+                }
+              },
+              {
+                "id": "post_season.game_high.three_point_field_goal_attempts",
+                "name": "Three Point Field Goal Attempts",
+                "meta": {
+                  "domain": [0, 15],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 15,
+                  "name": "Stephen Curry"
+                }
+              },
+              {
+                "id": "post_season.game_high.free_throws_made",
+                "name": "Free Throws Made",
+                "meta": {
+                  "domain": [0, 24],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 24,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "post_season.game_high.free_throw_attempts",
+                "name": "Free Throw Attempts",
+                "meta": {
+                  "domain": [0, 27],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 27,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "post_season.game_high.offensive_rebounds",
+                "name": "Offensive Rebounds",
+                "meta": {
+                  "domain": [0, 11],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 11,
+                  "name": "Elvin Hayes"
+                }
+              },
+              {
+                "id": "post_season.game_high.defensive_rebounds",
+                "name": "Defensive Rebounds",
+                "meta": {
+                  "domain": [0, 24],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 24,
+                  "name": "Robert Parish"
+                }
+              },
+              {
+                "id": "post_season.game_high.total_rebounds",
+                "name": "Total Rebounds",
+                "meta": {
+                  "domain": [0, 31],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 31,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "post_season.game_high.assists",
+                "name": "Assists",
+                "meta": {
+                  "domain": [0, 19],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 19,
+                  "name": "Magic Johnson"
+                }
+              },
+              {
+                "id": "post_season.game_high.steals",
+                "name": "Steals",
+                "meta": {
+                  "domain": [0, 10],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 10,
+                  "name": "Isiah Thomas"
+                }
+              },
+              {
+                "id": "post_season.game_high.blocks",
+                "name": "Blocks",
+                "meta": {
+                  "domain": [0, 8],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 8,
+                  "name": "Mark Eaton"
+                }
+              },
+              {
+                "id": "post_season.game_high.turnovers",
+                "name": "Turnovers",
+                "meta": {
+                  "domain": [0, 9],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 9,
+                  "name": "Magic Johnson"
+                }
+              },
+              {
+                "id": "post_season.game_high.points",
+                "name": "Points",
+                "meta": {
+                  "domain": [0, 63],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 63,
+                  "name": "Michael Jordan"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "awards",
+        "name": "Awards & Milestones",
+        "color": "#d3d3d3",
+        "subCategories": [
+          {
+            "id": "awards.individual",
+            "name": "Individual Awards",
+            "color": "#c7eae4",
+            "stats": [
+              {
+                "id": "awards.individual.mvp",
+                "name": "MVP",
+                "meta": {
+                  "domain": [0, 6],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 6,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "awards.individual.finals_mvp",
+                "name": "Finals MVP",
+                "meta": {
+                  "domain": [0, 6],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 6,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "awards.individual.dpoy",
+                "name": "Defensive Player of the Year",
+                "meta": {
+                  "domain": [0, 4],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 4,
+                  "name": "Dwight Howard"
+                }
+              },
+              {
+                "id": "awards.individual.all_star",
+                "name": "All-Star Selections",
+                "meta": {
+                  "domain": [0, 19],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 19,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "awards.individual.all_nba",
+                "name": "All-NBA Selections",
+                "meta": {
+                  "domain": [0, 15],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 15,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "awards.individual.all_nba_first",
+                "name": "All-NBA First Team Selections",
+                "meta": {
+                  "domain": [0, 10],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 10,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "awards.individual.all_nba_second",
+                "name": "All-NBA Second Team Selections",
+                "meta": {
+                  "domain": [0, 6],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 6,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "awards.individual.all_nba_third",
+                "name": "All-NBA Third Team Selections",
+                "meta": {
+                  "domain": [0, 2],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 2,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "awards.individual.all_defensive",
+                "name": "All-Defensive Selections",
+                "meta": {
+                  "domain": [0, 11],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 11,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "awards.individual.all_defensive_first",
+                "name": "All-Defensive First Team Selections",
+                "meta": {
+                  "domain": [0, 5],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 5,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "awards.individual.all_defensive_second",
+                "name": "All-Defensive Second Team Selections",
+                "meta": {
+                  "domain": [0, 6],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 6,
+                  "name": "Kareem Abdul-Jabbar"
+                }
+              },
+              {
+                "id": "awards.individual.player_week",
+                "name": "Player of the Week Awards",
+                "meta": {
+                  "domain": [0, 7],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 7,
+                  "name": "Michael Jordan"
+                }
+              },
+              {
+                "id": "awards.individual.player_month",
+                "name": "Player of the Month Awards",
+                "meta": {
+                  "domain": [0, 2],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 2,
+                  "name": "Michael Jordan"
+                }
+              }
+            ]
+          },
+          {
+            "id": "awards.team",
+            "name": "Team Awards",
+            "color": "#fbf2c0",
+            "stats": [
+              {
+                "id": "awards.team.nba_championships",
+                "name": "NBA Championships",
+                "meta": {
+                  "domain": [0, 11],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 11,
+                  "name": "Bill Russell"
+                }
+              },
+              {
+                "id": "awards.team.conference_championships",
+                "name": "Conference Championships",
+                "meta": {
+                  "domain": [0, 11],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 11,
+                  "name": "Bill Russell"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "players": [
     {
       "id": "abdulka01",
-      "color": "#123456",
+      "color": "#000",
       "info": {
         "name": "Kareem Abdul-Jabbar",
         "nickname": "Lew",
