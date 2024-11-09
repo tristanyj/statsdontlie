@@ -1,17 +1,13 @@
 <script setup lang="ts">
 const configStore = useConfigStore();
-const { selectedPlayerIds, players } = storeToRefs(configStore);
-const { updateselectedPlayerIds } = configStore;
+const { selectedPlayerIds, selectablePlayers } = storeToRefs(configStore);
+const { setSelectedPlayerIds } = configStore;
 
 const selection = computed({
   get: () => selectedPlayerIds.value,
   set: (newValue) => {
-    updateselectedPlayerIds(newValue);
+    setSelectedPlayerIds(newValue);
   },
-});
-
-onMounted(() => {
-  console.log('players', players.value);
 });
 </script>
 
@@ -21,7 +17,7 @@ onMounted(() => {
     <div class="flex justify-center p-5">
       <div class="grid grid-flow-col gap-5 text-center">
         <div
-          v-for="(player, i) in players"
+          v-for="(player, i) in selectablePlayers"
           :key="`player-${i}`"
           class=""
         >

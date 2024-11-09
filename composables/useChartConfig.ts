@@ -42,7 +42,7 @@ export function useChartConfig() {
     columnCount: 2,
     statLabel: 'Statistic Name',
     groupLabel: 'Legend',
-    subGroupLabel: 'Category',
+    subCategoryLabel: 'Category',
     scaleLabel: 'Scale Label',
     scales: scalePositions.reduce((acc, curr) => {
       return {
@@ -82,7 +82,7 @@ export function useChartConfig() {
         opacity: 0.7,
       },
     },
-    subGroupLabel: {
+    subCategoryLabel: {
       background: {
         opacity: 0.7,
       },
@@ -114,7 +114,7 @@ export function useChartConfig() {
   const fontModifier = {
     statLabel: 11,
     groupLabel: 12,
-    subGroupLabel: 11,
+    subCategoryLabel: 11,
     scaleLabel: 10,
   };
 
@@ -133,7 +133,7 @@ export function useChartConfig() {
       standard: 20,
       flip: 28,
     },
-    subGroupLabel: {
+    subCategoryLabel: {
       standard: 12,
       flip: 20,
     },

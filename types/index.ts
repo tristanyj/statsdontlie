@@ -55,11 +55,11 @@ export interface Stat {
   };
 }
 
-export interface EnrichedGroup extends Category {
-  subCategories: EnrichedSubGroup[];
+export interface EnrichedCategory extends Category {
+  subCategories: EnrichedSubCategory[];
 }
 
-export interface EnrichedSubGroup extends SubCategory {
+export interface EnrichedSubCategory extends SubCategory {
   stats: EnrichedStat[];
 }
 

@@ -68,21 +68,21 @@ export function useChartDrawLines() {
   function drawLinearSeparators(
     g: d3GSelection,
     circleScale: d3.ScaleLinear<number, number>,
-    groupIndices: number[],
-    subGroupIndices: number[],
+    categoryIndices: number[],
+    subCategoryIndices: number[],
     selectedStatIdsCount: number
   ) {
     for (let i = 0; i <= selectedStatIdsCount; i++) {
       const startAngle = circleScale(i);
-      const isGroupSeparator = groupIndices.includes(i);
-      const isSubGroupSeparator = subGroupIndices.includes(i);
+      const isGroupSeparator = categoryIndices.includes(i);
+      const isSubCategorySeparator = subCategoryIndices.includes(i);
 
       const isLastStat = i === selectedStatIdsCount;
 
       const className = `separator ${
         isGroupSeparator
           ? 'group-separator'
-          : isSubGroupSeparator
+          : isSubCategorySeparator
           ? 'sub-group-separator'
           : 'stat-separator'
       }`;
@@ -90,7 +90,7 @@ export function useChartDrawLines() {
       const lineLength =
         isGroupSeparator || isLastStat
           ? radius * proportions[3]
-          : isSubGroupSeparator
+          : isSubCategorySeparator
           ? radius * proportions[2]
           : radius * proportions[1];
 

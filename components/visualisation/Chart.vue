@@ -20,25 +20,25 @@ const {
   selectedPlayerIds,
   selectedStatIds,
   selectedStatIdsCount,
-  selectedGroups,
-  selectedSubGroups,
+  selectedCategories,
+  selectedSubCategories,
   selectedStats,
 } = storeToRefs(configStore);
 
 const indices = computed(() => {
   let currentIndex = 0;
-  const groupIndices: number[] = [];
-  const subGroupIndices: number[] = [];
+  const categoryIndices: number[] = [];
+  const subCategoryIndices: number[] = [];
 
-  selectedGroups.value.forEach((group) => {
-    groupIndices.push(currentIndex);
-    group.subCategories.forEach((subGroup) => {
-      subGroupIndices.push(currentIndex);
-      currentIndex += subGroup.stats.length;
+  selectedCategories.value.forEach((category) => {
+    categoryIndices.push(currentIndex);
+    category.subCategories.forEach((subCategory) => {
+      subCategoryIndices.push(currentIndex);
+      currentIndex += subCategory.stats.length;
     });
   });
 
-  return { group: groupIndices, subGroup: subGroupIndices };
+  return { group: categoryIndices, subCategory: subCategoryIndices };
 });
 
 updateScale('circle', selectedStatIdsCount.value);
@@ -55,8 +55,8 @@ function createVisualization() {
   // -----------------
 
   // Draw group and sub-group arcs
-  // drawGroupArcs(g.value, scales.circle, indices.value.group, selectedGroups.value, 0);
-  drawGroupArcs(g.value, scales.circle, indices.value.subGroup, selectedSubGroups.value, 1);
+  // drawGroupArcs(g.value, scales.circle, indices.value.group, selectedCategories.value, 0);
+  drawGroupArcs(g.value, scales.circle, indices.value.subCategory, selectedSubCategories.value, 1);
 
   // Draw stat & stat label arcs
   drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value);
@@ -74,15 +74,15 @@ function createVisualization() {
     scales.circle,
     indices.value.group,
     selectedStatIdsCount.value,
-    selectedGroups.value,
+    selectedCategories.value,
     true
   );
   drawGroupLabels(
     g.value,
     scales.circle,
-    indices.value.subGroup,
+    indices.value.subCategory,
     selectedStatIdsCount.value,
-    selectedSubGroups.value,
+    selectedSubCategories.value,
     false
   );
 
@@ -99,7 +99,7 @@ function createVisualization() {
     g.value,
     scales.circle,
     indices.value.group,
-    indices.value.subGroup,
+    indices.value.subCategory,
     selectedStatIdsCount.value
   );
   drawCircularSeparators(g.value);

@@ -3,10 +3,10 @@ import dataset from '@/assets/data/dataset.json';
 import type { Category, Player } from './types';
 
 const configStore = useConfigStore();
-const { setStatGroups, setPlayers } = configStore;
+const { setCategories, setPlayers } = configStore;
 
 onMounted(() => {
-  setStatGroups(dataset.config.categories as unknown as Category[]);
+  setCategories(dataset.config.categories as unknown as Category[]);
   setPlayers(dataset.players as unknown as Player[]);
 });
 </script>

@@ -26,17 +26,17 @@ export function useChartDrawArcs() {
     const arcData: Array<StatArcData> = [];
 
     selectedStats.forEach((stat, statIndex) => {
-      const playerGroupsByIdenticalStat = d3Group(
+      const playerCategoriesByIdenticalStat = d3Group(
         selectedPlayers,
         (player) => player.stats[stat.id]
       );
 
-      const sortedValues = Array.from(playerGroupsByIdenticalStat.keys())
+      const sortedValues = Array.from(playerCategoriesByIdenticalStat.keys())
         .filter((value) => value !== undefined)
         .sort((a, b) => (b || 0) - (a || 0));
 
       sortedValues.forEach((statValue) => {
-        const playersWithValue = playerGroupsByIdenticalStat.get(statValue) || [];
+        const playersWithValue = playerCategoriesByIdenticalStat.get(statValue) || [];
         const playerCount = playersWithValue.length;
 
         const startAngle = circleScale(statIndex);
@@ -96,7 +96,7 @@ export function useChartDrawArcs() {
           })
           .call((enter) => {
             if (interaction) return;
-            enter.transition().duration(100).attr('opacity', 1);
+            enter.transition().duration(0).attr('opacity', 1);
           })
       );
 
