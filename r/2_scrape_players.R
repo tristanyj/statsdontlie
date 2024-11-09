@@ -568,17 +568,17 @@ scrape_player <- function(id, url, color) {
 # Main execution
 # ----------------------------
 
-if (file.exists("r/input/dataref.rds")) {
-  players <- readRDS("r/input/dataref.rds")
+if (file.exists("r/input/players.rds")) {
+  players <- readRDS("r/input/players.rds")
   print("Successfully loaded players data")
 } else {
-  stop("Cannot find dataref.rds. Make sure to run 1_read.R first")
+  stop("Cannot find players.rds. Make sure to run 1_prepare_input.R first")
 }
 
-dataset <- list()
-dataset$players <- list()
+output <- list()
+output$players <- list()
 
-max <- 2
+max <- 1
 
 for (i in 1:max) {
   id <- players$id[i]
@@ -589,13 +589,13 @@ for (i in 1:max) {
 
   player_data <- scrape_player(id, url, color)
 
-  dataset$players[[i]] <- player_data
+  output$players[[i]] <- player_data
 }
 
-json_data <- jsonlite::toJSON(dataset, pretty = TRUE, auto_unbox = TRUE)
-write(json_data, "r/output/dataset.json")
+json_data <- jsonlite::toJSON(output, pretty = TRUE, auto_unbox = TRUE)
+write(json_data, "r/output/players.json")
 
 print("Done scraping players data")
-print("Check output/dataset.json for the result")
+print("Check output/players.json for the result")
 
 b$close()

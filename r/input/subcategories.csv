@@ -1,0 +1,11 @@
+id,name,color
+regular_season.total,Career Totals,#c7eae4
+regular_season.per_game,Per Game,#f1e2cc
+regular_season.advanced,Advanced Stats,#f1e2cc
+regular_season.game_high,Game Highs,#f1e2cc
+post_season.total,Career Totals,#c7eae4
+post_season.per_game,Per Game,#f1e2cc
+post_season.advanced,Advanced Stats,#f1e2cc
+post_season.game_high,Game Highs,#f1e2cc
+awards.individual,Individual Awards,#c7eae4
+awards.team,Team Awards,#fbf2c0

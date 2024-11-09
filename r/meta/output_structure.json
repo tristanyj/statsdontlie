@@ -1,0 +1,84 @@
+{
+  "players": [
+    {
+      "id": "player-id",
+      "color": "#000000",
+      "info": {
+        "name": "Player Name"
+      },
+      "stats": {
+        "regular-season.total.games-played": 0,
+        "regular-season.per-game.points": 0,
+        "regular-season.advanced.win-shares": 0,
+        "post-season.total.games-played": 0,
+        "post-season.per-game.points": 0,
+        "post-season.advanced.win-shares": 0,
+        "awards.individual.mvp": 0,
+        "awards.team.championships": 0
+      }
+    }
+  ],
+  "config": [
+    {
+      "id": "awards",
+      "name": "Awards & Honors",
+      "color": "#faedcb",
+      "subGroups": [
+        {
+          "id": "awards.individual",
+          "name": "Individual Awards",
+          "color": "#c7eae4",
+          "stats": [
+            {
+              "id": "awards.individual.all-pro-second",
+              "name": "2nd Team All-Pro Selections",
+              "meta": {
+                "domain": [0, 3],
+                "scaleType": "linear",
+                "formatType": "number"
+              },
+              "record": {
+                "qb": {
+                  "value": 3,
+                  "name": "Many Players"
+                },
+                "all": {
+                  "value": 10,
+                  "name": "Ken Houston",
+                  "position": "S"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "awards.team",
+          "name": "Team Awards",
+          "color": "#fbf2c0",
+          "stats": [
+            {
+              "id": "awards.team.sb-appearance",
+              "name": "Super Bowl Appearances",
+              "meta": {
+                "domain": [0, 10],
+                "scaleType": "linear",
+                "formatType": "number"
+              },
+              "record": {
+                "qb": {
+                  "value": 10,
+                  "name": "Tom Brady"
+                },
+                "all": {
+                  "value": 10,
+                  "name": "Tom Brady",
+                  "position": "QB"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
