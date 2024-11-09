@@ -156,3 +156,7 @@ export interface LineData {
   opacity?: number;
   transform: string;
 }
+
+export interface TooltipData {
+  id: string;
+}

@@ -12,7 +12,7 @@ const { drawCenter } = useChartDrawCenter();
 const { scales, updateScale } = useChartScales();
 
 const interactionStore = useInteractionStore();
-const { hoveredPlayer } = storeToRefs(interactionStore);
+const { hoveredPlayer, mousePosition, tooltipData } = storeToRefs(interactionStore);
 
 const preferencesStore = usePreferencesStore();
 const { selectedPlayerIds, selectedStatIds, selectedStatIdsCount } = storeToRefs(preferencesStore);
@@ -213,8 +213,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    id="container"
-    ref="container"
-  />
+  <div>
+    <VisualisationTooltip
+      :tooltip-data="tooltipData"
+      :mouse-position="mousePosition"
+    />
+    <div
+      id="container"
+      ref="container"
+    />
+  </div>
 </template>

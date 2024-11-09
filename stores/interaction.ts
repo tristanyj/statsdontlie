@@ -1,10 +1,13 @@
-import type { Player } from '~/types';
+import type { Player, TooltipData } from '~/types';
 
 export const useInteractionStore = defineStore(
   'interaction',
   () => {
     const isPlayerHovered = ref(false);
     const hoveredPlayer = ref<Player | null>(null);
+
+    const tooltipData = ref<TooltipData | null>();
+    const mousePosition = ref({ x: 0, y: 0 });
 
     const setHoveredPlayer = (player: Player | null) => {
       if (!player) {
@@ -17,10 +20,22 @@ export const useInteractionStore = defineStore(
       hoveredPlayer.value = player;
     };
 
+    const updateMousePosition = (event: MouseEvent) => {
+      mousePosition.value = { x: event.clientX, y: event.clientY };
+    };
+
+    const setTooltipData = (data: TooltipData | null) => {
+      tooltipData.value = data;
+    };
+
     return {
       isPlayerHovered,
       hoveredPlayer,
+      mousePosition,
+      tooltipData,
       setHoveredPlayer,
+      updateMousePosition,
+      setTooltipData,
     };
   }
   // { persist: true }

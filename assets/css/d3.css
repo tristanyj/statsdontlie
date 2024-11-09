@@ -4,12 +4,21 @@
   margin: 0 auto;
 }
 
-.background-arc:hover {
+.start-arc-hover:hover {
   opacity: 0.8;
   cursor: pointer;
 }
 
-.value-arc:hover {
-  opacity: 0.8;
-  cursor: pointer;
+.start-arc-normal:hover {
+  pointer-events: none;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
