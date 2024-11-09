@@ -1,10 +1,18 @@
 import * as d3 from 'd3';
-import type { Stat, EnrichedStat, EnrichedGroup, Group, Player, StatKey, PlayerKey } from '~/types';
+import type {
+  Stat,
+  EnrichedStat,
+  EnrichedGroup,
+  Category,
+  Player,
+  StatKey,
+  PlayerKey,
+} from '~/types';
 
 import { formatNumber } from '~/assets/scripts/utils';
 
 export const useConfigStore = defineStore('config', () => {
-  const statGroups = ref<Group[]>([]);
+  const statGroups = ref<Category[]>([]);
   const players = ref<Player[]>([]);
 
   const selectedPlayerIds = ref<PlayerKey[]>([]);
@@ -82,7 +90,7 @@ export const useConfigStore = defineStore('config', () => {
   });
 
   const selectableStats = computed(() => {
-    return statGroups.value.flatMap((group: Group) =>
+    return statGroups.value.flatMap((group: Category) =>
       group.subCategories.flatMap((subGroup) =>
         subGroup.stats.map(({ id, name }) => ({ id, name }))
       )
@@ -90,7 +98,7 @@ export const useConfigStore = defineStore('config', () => {
   });
 
   const selectableStatsGroupedByGroupKey = computed(() => {
-    return statGroups.value.map((group: Group) => ({
+    return statGroups.value.map((group: Category) => ({
       id: group.id,
       name: group.name,
       stats: group.subCategories.flatMap((subGroup) =>
@@ -120,7 +128,7 @@ export const useConfigStore = defineStore('config', () => {
       })) as EnrichedGroup[]
   );
 
-  const setStatGroups = (groups: Group[]) => {
+  const setStatGroups = (groups: Category[]) => {
     statGroups.value = groups;
   };
 
@@ -131,6 +139,36 @@ export const useConfigStore = defineStore('config', () => {
   onUnmounted(() => {
     scaleCache.clear();
     formatCache.clear();
+  });
+
+  const selectedPlayers = computed(() =>
+    players.value.filter((player) => selectedPlayerIds.value.includes(player.id))
+  );
+
+  const selectedGroups = computed(() => {
+    return enrichedStatGroups?.value
+      ? enrichedStatGroups.value
+          .map((group) => ({
+            ...group,
+            subCategories: group.subCategories
+              .map((subGroup) => ({
+                ...subGroup,
+                stats: subGroup.stats.filter((column) => selectedStatIds.value.includes(column.id)),
+              }))
+              .filter((subGroup) => subGroup.stats.length > 0),
+          }))
+          .filter((group) => group.subCategories.length > 0)
+      : [];
+  });
+
+  const selectedSubGroups = computed(() => {
+    return selectedGroups.value.flatMap((group) => group.subCategories);
+  });
+
+  const selectedStats = computed(() => {
+    return selectedGroups.value
+      .flatMap((group) => group.subCategories)
+      .flatMap((subGroup) => subGroup.stats);
   });
 
   return {
@@ -144,6 +182,10 @@ export const useConfigStore = defineStore('config', () => {
     selectableStats,
     selectableStatsGroupedByGroupKey,
     selectablePlayers,
+    selectedPlayers,
+    selectedGroups,
+    selectedSubGroups,
+    selectedStats,
     setStatGroups,
     setPlayers,
   };

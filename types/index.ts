@@ -1,4 +1,4 @@
-import type { StatKey, CategoryKey, SubCategoryKey, Player, StatMeta } from './dataset';
+import type { StatKey, CategoryKey, SubCategoryKey, PlayerKey } from './dataset';
 
 export * from './dataset';
 
@@ -6,9 +6,62 @@ export * from './dataset';
 // Dataset Definition
 //////////////////////////
 
+export type ScaleType = 'linear' | 'log';
 export type FormatType = 'number' | 'percent';
 
-export type PlayerKey = 'aaron-rodgers' | 'tom-brady' | 'patrick-mahomes';
+export interface Player {
+  id: PlayerKey;
+  color: `#${string}`;
+  info: {
+    name: string;
+    nickname: string;
+    position: string;
+    shooting_hand: string;
+    height: number;
+    weight: number;
+    birth_date: string;
+    draft: [number, number];
+    experience: number;
+    teams: string[];
+  };
+  stats: Record<StatKey, number>;
+}
+
+export interface Category {
+  id: CategoryKey;
+  name: string;
+  color: `#${string}`;
+  subCategories: SubCategory[];
+}
+
+export interface SubCategory {
+  id: SubCategoryKey;
+  name: string;
+  color: `#${string}`;
+  stats: Stat[];
+}
+
+export interface Stat {
+  id: StatKey;
+  name: string;
+  meta: {
+    domain: [number, number];
+    scaleType: ScaleType;
+    formatType: FormatType;
+  };
+  record: {
+    value: number;
+    name: string;
+  };
+}
+
+export interface EnrichedGroup extends Category {
+  subCategories: EnrichedSubGroup[];
+}
+
+export interface EnrichedSubGroup extends SubCategory {
+  stats: EnrichedStat[];
+}
 
 export interface EnrichedStat extends Stat {
   color: `#${string}`;
@@ -18,37 +71,9 @@ export interface EnrichedStat extends Stat {
   };
 }
 
-export interface Stat {
-  id: StatKey;
-  name: string;
-  meta: StatMeta;
-  record: {
-    value: number;
-    name: string;
-  };
-}
-
-export interface EnrichedGroup extends Group {
-  subCategories: EnrichedSubGroup[];
-}
-
-export interface Group {
-  id: CategoryKey;
-  name: string;
-  color: `#${string}`;
-  subCategories: SubGroup[];
-}
-
-export interface EnrichedSubGroup extends SubGroup {
-  stats: EnrichedStat[];
-}
-
-export interface SubGroup {
-  id: SubCategoryKey;
-  name: string;
-  color: `#${string}`;
-  stats: Stat[];
-}
+//////////////////////////
+// D3 Types
+//////////////////////////
 
 export type d3GSelection = d3.Selection<SVGGElement, unknown, null, undefined>;
 

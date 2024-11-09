@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import dataset from '@/assets/data/dataset.json';
-import type { Group, Player } from './types';
+import type { Category, Player } from './types';
 
 const configStore = useConfigStore();
 const { setStatGroups, setPlayers } = configStore;
 
 onMounted(() => {
-  setStatGroups(dataset.config.categories as unknown as Group[]);
+  setStatGroups(dataset.config.categories as unknown as Category[]);
   setPlayers(dataset.players as unknown as Player[]);
 });
 </script>

@@ -1,4 +1,4 @@
-import type { d3GSelection, EnrichedStat, Group, SubGroup } from '~/types';
+import type { d3GSelection, EnrichedStat, Category, SubCategory } from '~/types';
 
 import { wrapText, shouldFlipText, calcTextLength, withUnit } from '~/assets/scripts/utils';
 
@@ -52,7 +52,7 @@ export function useChartDrawLabels() {
     circleScale: d3.ScaleLinear<number, number>,
     indices: number[],
     selectedStatIdsCount: number,
-    groups: Group[] | SubGroup[],
+    groups: Category[] | SubCategory[],
     isGroup: boolean
   ) {
     const layerModifier = isGroup ? 0 : 1;
@@ -75,8 +75,8 @@ export function useChartDrawLabels() {
         : indices[groupIndex + 1] ??
           startIndex +
             (isGroup
-              ? (group as Group).subCategories.reduce((sum, sg) => sum + sg.stats.length, 0)
-              : (group as SubGroup).stats.length);
+              ? (group as Category).subCategories.reduce((sum, sg) => sum + sg.stats.length, 0)
+              : (group as SubCategory).stats.length);
 
       const startAngle = circleScale(startIndex);
       const endAngle = circleScale(nextGroupStartIndex);

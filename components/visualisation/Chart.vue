@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as d3 from 'd3';
-import type { d3GSelection, Player } from '@/types';
+import type { d3GSelection } from '@/types';
 
 const { width, height } = useChartConfig();
 const { drawStatLabelArcs, drawStatArcs, drawGroupArcs, drawOutsideMaxStatScaleArc } =
@@ -14,45 +14,16 @@ const { scales, updateScale } = useChartScales();
 const interactionStore = useInteractionStore();
 const { hoveredPlayer, mousePosition, tooltipData } = storeToRefs(interactionStore);
 
-const preferencesStore = usePreferencesStore();
-const { selectedPlayerIds, selectedStatIds, selectedStatIdsCount } = storeToRefs(preferencesStore);
-
 const configStore = useConfigStore();
-const { statGroups } = storeToRefs(configStore);
-
-const props = defineProps<{
-  players: Player[];
-}>();
-
-const selectedPlayers = computed(() =>
-  props.players.filter((player) => selectedPlayerIds.value.includes(player.id))
-);
-
-const selectedGroups = computed(() => {
-  return statGroups?.value
-    ? statGroups.value
-        .map((group) => ({
-          ...group,
-          subCategories: group.subCategories
-            .map((subGroup) => ({
-              ...subGroup,
-              stats: subGroup.stats.filter((column) => selectedStatIds.value.includes(column.id)),
-            }))
-            .filter((subGroup) => subGroup.stats.length > 0),
-        }))
-        .filter((group) => group.subCategories.length > 0)
-    : [];
-});
-
-const selectedSubGroups = computed(() => {
-  return selectedGroups.value.flatMap((group) => group.subCategories);
-});
-
-const selectedStats = computed(() => {
-  return selectedGroups.value
-    .flatMap((group) => group.subCategories)
-    .flatMap((subGroup) => subGroup.stats);
-});
+const {
+  selectedPlayers,
+  selectedPlayerIds,
+  selectedStatIds,
+  selectedStatIdsCount,
+  selectedGroups,
+  selectedSubGroups,
+  selectedStats,
+} = storeToRefs(configStore);
 
 const indices = computed(() => {
   let currentIndex = 0;

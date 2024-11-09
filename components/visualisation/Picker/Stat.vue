@@ -1,10 +1,7 @@
 <script setup lang="ts">
 const configStore = useConfigStore();
-const { statGroups } = storeToRefs(configStore);
-
-const preferencesStore = usePreferencesStore();
-const { selectedStatIds } = storeToRefs(preferencesStore);
-const { updateSelectedStatIds } = preferencesStore;
+const { statGroups, selectedStatIds } = storeToRefs(configStore);
+const { updateSelectedStatIds } = configStore;
 
 const selection = computed({
   get: () => selectedStatIds.value,

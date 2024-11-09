@@ -17,7 +17,7 @@ export function useChartDrawCenter() {
     const arcs = [
       {
         id: 'top-arc',
-        text: `${hoveredPlayer.name}`,
+        text: `${hoveredPlayer.info.name}`,
         radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.donut.arc.top,
         startAngle: (3 * Math.PI) / 2,
         endAngle: (5 * Math.PI) / 2,
@@ -79,7 +79,7 @@ export function useChartDrawCenter() {
       .attr('dominant-baseline', 'middle')
       .attr('fill', '#000')
       .attr('font-size', fontSize)
-      .text(hoveredPlayer.name);
+      .text(hoveredPlayer.info.name);
   }
 
   return {

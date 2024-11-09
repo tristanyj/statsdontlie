@@ -1,7 +1,14 @@
 import { group as d3Group } from 'd3-array';
 //
 
-import type { d3GSelection, EnrichedStat, Group, Player, SubGroup, StatArcData } from '~/types';
+import type {
+  d3GSelection,
+  EnrichedStat,
+  Category,
+  Player,
+  SubCategory,
+  StatArcData,
+} from '~/types';
 
 export function useChartDrawArcs() {
   const { setHoveredPlayer, updateMousePosition, setTooltipData } = useInteractionStore();
@@ -21,7 +28,7 @@ export function useChartDrawArcs() {
     selectedStats.forEach((stat, statIndex) => {
       const playerGroupsByIdenticalStat = d3Group(
         selectedPlayers,
-        (player) => player.stats[stat.id]?.value
+        (player) => player.stats[stat.id]
       );
 
       const sortedValues = Array.from(playerGroupsByIdenticalStat.keys())
@@ -70,7 +77,7 @@ export function useChartDrawArcs() {
               data: d,
             })
           )
-          .attr('fill', (d) => d.player.colors[0])
+          .attr('fill', (d) => d.player.color)
           .attr('opacity', 0)
           .on('mouseenter', (event, d) => {
             if (!interaction) return;
@@ -152,7 +159,7 @@ export function useChartDrawArcs() {
     g: d3GSelection,
     circleScale: d3.ScaleLinear<number, number>,
     indices: number[],
-    groups: Group[] | SubGroup[],
+    groups: Category[] | SubCategory[],
     layerModifier: number
   ) {
     indices.forEach((startIndex, groupIndex) => {
@@ -161,7 +168,7 @@ export function useChartDrawArcs() {
         indices[groupIndex + 1] ??
         startIndex +
           ('subCategories' in group
-            ? (group as Group).subCategories.reduce((sum, sg) => sum + sg.stats.length, 0)
+            ? (group as Category).subCategories.reduce((sum, sg) => sum + sg.stats.length, 0)
             : group.stats.length);
 
       const startAngle = circleScale(startIndex);
