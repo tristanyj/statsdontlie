@@ -11,7 +11,7 @@ export function useChartConfig() {
   // Proportions
   // ------------------------------
 
-  const percentages = [66, 22, 5, 7];
+  const percentages = [65, 23, 5, 7];
   const proportions = percentages.reduce<number[]>(
     (acc, curr) => [...acc, (acc[acc.length - 1] || 0) + curr / 100],
     []
@@ -39,7 +39,7 @@ export function useChartConfig() {
   // ------------------------------
 
   const legend = {
-    columnCount: 2,
+    columnCount: 1,
     statLabel: 'Statistic Name',
     groupLabel: 'Legend',
     subCategoryLabel: 'Category',

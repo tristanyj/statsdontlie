@@ -8,6 +8,6 @@ output$config <- config$config
 output$players <- players$players
 
 json_data <- jsonlite::toJSON(output, pretty = TRUE, auto_unbox = TRUE)
-write(json_data, file = "r/output/dataset.json")
+write(json_data, file = "assets/data/dataset.json")
 
 print("Successfully combined config and players into dataset.json")

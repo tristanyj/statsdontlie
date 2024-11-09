@@ -19,7 +19,7 @@ export const useConfigStore = defineStore('config', () => {
   const categories = ref<Category[]>([]);
   const players = ref<Player[]>([]);
 
-  const selectedPlayerIds = ref<PlayerKey[]>(['abdulka01']);
+  const selectedPlayerIds = ref<PlayerKey[]>(['abdulka01', 'jamesle01', 'chambwi01']);
   const selectedStatIds = ref<StatKey[]>([
     'awards.individual.mvp',
     'awards.team.nba_championships',
@@ -27,7 +27,8 @@ export const useConfigStore = defineStore('config', () => {
     'regular_season.total.total_rebounds',
     'regular_season.total.assists',
     'regular_season.total.steals',
-    'regular_season.total.blocks',
+    'regular_season.advanced.player_efficiency_rating',
+    'regular_season.advanced.win_shares',
   ]);
 
   // --------------------------------

@@ -578,7 +578,7 @@ if (file.exists("r/input/players.rds")) {
 output <- list()
 output$players <- list()
 
-max <- 1
+max <- 3
 
 for (i in 1:max) {
   id <- players$id[i]
