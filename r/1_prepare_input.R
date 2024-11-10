@@ -10,9 +10,9 @@ files <- list(
 )
 
 for (i in seq_along(files)) {
-  print(paste("[", i, "/", length(files), "] Reading ", names(files)[i], sep = ""))
-
   name <- names(files)[i]
+  print(paste("[", i, "/", length(files), "] Reading ", files[[name]], sep = ""))
+
   data <- read.csv(files[[name]])
   saveRDS(data, file.path("r/input", paste0(name, ".rds")))
 }
