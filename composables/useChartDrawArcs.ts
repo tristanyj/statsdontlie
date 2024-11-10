@@ -124,9 +124,18 @@ export function useChartDrawArcs() {
   function drawStatLabelArcs(
     g: d3GSelection,
     circleScale: d3.ScaleLinear<number, number>,
-    selectedStats: EnrichedStat[]
+    selectedStats: EnrichedStat[],
+    indices: number[], // Add indices parameter
+    groups: SubCategory[] // Add groups parameter, specifically SubCategory[]
   ) {
     const className = 'stat-label-arc';
+
+    const getGroupIndex = (statIndex: number) => {
+      return indices.findIndex((startIndex, i) => {
+        const nextStartIndex = indices[i + 1] ?? startIndex + groups[i].stats.length;
+        return statIndex >= startIndex && statIndex < nextStartIndex;
+      });
+    };
 
     g.selectAll(`.${className}`)
       .data(
@@ -137,6 +146,7 @@ export function useChartDrawArcs() {
             startAngle: circleScale(i),
             endAngle: circleScale(i + 1),
             data,
+            groupIndex: getGroupIndex(i),
           }))
           .concat([
             {
@@ -145,6 +155,7 @@ export function useChartDrawArcs() {
               startAngle: circleScale(selectedStats.length),
               endAngle: circleScale(selectedStats.length + legend.columnCount),
               data: null as unknown as EnrichedStat,
+              groupIndex: -1,
             },
           ])
       )
@@ -152,7 +163,12 @@ export function useChartDrawArcs() {
       .attr('class', className)
       .attr('d', arcGenerator)
       .attr('fill', (d) => d.data?.color ?? 'none')
-      .attr('opacity', modifier.color.statLabel.background.opacity);
+      .attr('opacity', (d) => {
+        if (d.groupIndex === -1) return 0;
+        return d.groupIndex % 2 === 0
+          ? modifier.color.subCategoryLabel.background.opacity.even
+          : modifier.color.subCategoryLabel.background.opacity.odd;
+      });
   }
 
   function drawGroupArcs(
@@ -184,9 +200,17 @@ export function useChartDrawArcs() {
         data: group,
       });
 
-      g.append('path').attr('d', backgroundArc).attr('fill', group?.color);
-      // .attr('fill', group?.color ?? modifier.color.default)
-      // .attr('opacity', modifier.color.groupLabel.background.opacity);
+      g.append('path')
+        .attr('d', backgroundArc)
+        .attr('fill', group.color)
+        .attr(
+          'opacity',
+          isGroup
+            ? modifier.color.categoryLabel.background.opacity
+            : groupIndex % 2 === 0
+            ? modifier.color.subCategoryLabel.background.opacity.even
+            : modifier.color.subCategoryLabel.background.opacity.odd
+        );
     });
   }
 

@@ -56,7 +56,7 @@ export function useChartDrawLabels() {
     isGroup: boolean
   ) {
     const layerModifier = isGroup ? 0 : 1;
-    const spaceModifier = isGroup ? modifier.space.groupLabel : modifier.space.subCategoryLabel;
+    const spaceModifier = isGroup ? modifier.space.categoryLabel : modifier.space.subCategoryLabel;
 
     for (let groupIndex = 0; groupIndex < indices.length + 1; groupIndex++) {
       const isLegend = groupIndex === indices.length;
@@ -64,7 +64,7 @@ export function useChartDrawLabels() {
       const group = isLegend ? null : groups[groupIndex];
       const text = isLegend
         ? isGroup
-          ? legend.groupLabel
+          ? legend.categoryLabel
           : legend.subCategoryLabel
         : group?.name ?? '';
 
@@ -95,7 +95,7 @@ export function useChartDrawLabels() {
       });
 
       const fontSize =
-        layerModifier !== 0 ? modifier.font.subCategoryLabel : modifier.font.groupLabel;
+        layerModifier !== 0 ? modifier.font.subCategoryLabel : modifier.font.categoryLabel;
       const textLength = calcTextLength(g, id, text, fontSize);
 
       const arcLength = Math.abs(endAngle - startAngle) * labelRadius;

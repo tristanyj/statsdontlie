@@ -25,12 +25,12 @@ build_config <- function(categories, subcategories, stats) {
   for (i in seq_len(nrow(categories))) {
     cat_id <- categories[i, "id"][[1]]
 
-    color_variants <- c(categories[i, "color_variant_1"][[1]], categories[i, "color_variant_2"][[1]])
+    color <- categories[i, "color"][[1]]
 
     category <- list(
       id = cat_id,
       name = categories[i, "name"][[1]],
-      color = categories[i, "color"][[1]],
+      color = color,
       subCategories = list()
     )
 
@@ -40,8 +40,6 @@ build_config <- function(categories, subcategories, stats) {
 
     for (j in seq_len(nrow(cat_subcategories))) {
       sub_id <- cat_subcategories[j, "id"][[1]]
-
-      color <- if (j %% 2 == 0) color_variants[1] else color_variants[2]
 
       sub_stats <- stats[
         startsWith(stats[["id"]], paste0(sub_id, ".")),

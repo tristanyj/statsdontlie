@@ -11,7 +11,7 @@ export function useChartConfig() {
   // Proportions
   // ------------------------------
 
-  const percentages = [65, 23, 5, 7];
+  const percentages = [68, 22, 5, 5];
   const proportions = percentages.reduce<number[]>(
     (acc, curr) => [...acc, (acc[acc.length - 1] || 0) + curr / 100],
     []
@@ -22,7 +22,7 @@ export function useChartConfig() {
   // ------------------------------
 
   const radius = Math.min(width, height) / 2 - margin;
-  const innerRadiusPadding = 0.225;
+  const innerRadiusPadding = 0.185;
   const minRadius = radius * proportions[0] * innerRadiusPadding;
   const restRadius = radius * proportions[0] * (1 - innerRadiusPadding);
   const maxRadius = radius;
@@ -39,15 +39,16 @@ export function useChartConfig() {
   // ------------------------------
 
   const legend = {
-    columnCount: 1,
+    columnCount: 2,
     statLabel: 'Statistic Name',
-    groupLabel: 'Legend',
-    subCategoryLabel: 'Category',
+    categoryLabel: 'Category',
+    subCategoryLabel: 'Type',
     scaleLabel: 'Scale Label',
     scales: scalePositions.reduce((acc, curr) => {
       return {
         ...acc,
-        [curr]: curr === 1 ? 'NBA Record' : `${(curr * 100).toString()}%`,
+        // `${(curr * 100).toString()}%`
+        [curr]: curr === 1 ? 'NBA Record' : curr,
       };
     }, {}),
   };
@@ -56,7 +57,7 @@ export function useChartConfig() {
   // Text wrapping
   // ------------------------------
 
-  const maxWidth = 100;
+  const maxWidth = 90;
   const lineHeight = 14;
 
   const wrap = {
@@ -77,19 +78,25 @@ export function useChartConfig() {
   const colorModifier = {
     default: colors.default,
     white: colors.white,
-    groupLabel: {
+    categoryLabel: {
       background: {
-        opacity: 0.7,
+        opacity: 0.9,
       },
     },
     subCategoryLabel: {
       background: {
-        opacity: 0.7,
+        opacity: {
+          even: 0.6,
+          odd: 0.2,
+        },
       },
     },
     statLabel: {
       background: {
-        opacity: 0.7,
+        opacity: {
+          even: 0.7,
+          odd: 0.6,
+        },
       },
     },
     scaleLabel: {
@@ -113,7 +120,7 @@ export function useChartConfig() {
 
   const fontModifier = {
     statLabel: 11,
-    groupLabel: 12,
+    categoryLabel: 11,
     subCategoryLabel: 11,
     scaleLabel: 10,
   };
@@ -129,9 +136,9 @@ export function useChartConfig() {
         bottom: 10,
       },
     },
-    groupLabel: {
-      standard: 20,
-      flip: 28,
+    categoryLabel: {
+      standard: 14,
+      flip: 22,
     },
     subCategoryLabel: {
       standard: 12,

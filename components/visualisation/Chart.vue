@@ -60,7 +60,13 @@ function createVisualization() {
 
   // Draw stat & stat label arcs
   drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value);
-  drawStatLabelArcs(g.value, scales.circle, selectedStats.value);
+  drawStatLabelArcs(
+    g.value,
+    scales.circle,
+    selectedStats.value,
+    indices.value.subCategory,
+    selectedSubCategories.value
+  );
 
   drawOutsideMaxStatScaleArc(g.value);
 

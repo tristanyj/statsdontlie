@@ -4,17 +4,17 @@
       {
         "id": "regular_season",
         "name": "Regular Season",
-        "color": "#ade8f4",
+        "color": "#e9edc9",
         "subCategories": [
           {
             "id": "regular_season.total",
             "name": "Career Totals",
-            "color": "#DEF6FB",
+            "color": "#e9edc9",
             "stats": [
               {
                 "id": "regular_season.total.games_played",
                 "name": "Games Played",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 1611],
                   "scaleType": "linear",
@@ -28,7 +28,7 @@
               {
                 "id": "regular_season.total.games_started",
                 "name": "Games Started",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 1499],
                   "scaleType": "linear",
@@ -42,7 +42,7 @@
               {
                 "id": "regular_season.total.minutes_played",
                 "name": "Minutes Played",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 57446],
                   "scaleType": "linear",
@@ -56,7 +56,7 @@
               {
                 "id": "regular_season.total.field_goals_made",
                 "name": "Field Goals Made",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 15837],
                   "scaleType": "linear",
@@ -70,63 +70,63 @@
               {
                 "id": "regular_season.total.field_goal_attempts",
                 "name": "Field Goal Attempts",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 28307],
+                  "domain": [0, 29313],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 28307,
-                  "name": "Kareem Abdul-Jabbar"
+                  "value": 29313,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "regular_season.total.field_goal_percentage",
                 "name": "Field Goal Percentage",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0.3, 0.559],
+                  "domain": [0.3, 0.6739],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
                 "record": {
-                  "value": 0.559,
-                  "name": "Kareem Abdul-Jabbar"
+                  "value": 0.6739,
+                  "name": "DeAndre Jordan"
                 }
               },
               {
                 "id": "regular_season.total.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 402],
+                  "domain": [0, 3767],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 402,
+                  "value": 3767,
                   "name": "Stephen Curry"
                 }
               },
               {
                 "id": "regular_season.total.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 886],
+                  "domain": [0, 8854],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 886,
+                  "value": 8854,
                   "name": "Stephen Curry"
                 }
               },
               {
                 "id": "regular_season.total.three_point_field_goal_percentage",
                 "name": "Three Point Field Goal Percentage",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 0.454],
                   "scaleType": "linear",
@@ -140,91 +140,91 @@
               {
                 "id": "regular_season.total.free_throws_made",
                 "name": "Free Throws Made",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 978],
+                  "domain": [0, 9787],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 978,
+                  "value": 9787,
                   "name": "Karl Malone"
                 }
               },
               {
                 "id": "regular_season.total.free_throw_attempts",
                 "name": "Free Throw Attempts",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 13169],
+                  "domain": [0, 13188],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 13169,
+                  "value": 13188,
                   "name": "Karl Malone"
                 }
               },
               {
                 "id": "regular_season.total.free_throw_percentage",
                 "name": "Free Throw Percentage",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0.5, 0.9],
+                  "domain": [0.5, 0.91],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
                 "record": {
-                  "value": 0.9,
-                  "name": "Steve Nash"
+                  "value": 0.91,
+                  "name": "Stephen Curry"
                 }
               },
               {
                 "id": "regular_season.total.offensive_rebounds",
                 "name": "Offensive Rebounds",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 4401],
+                  "domain": [0, 6731],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 4401,
+                  "value": 6731,
                   "name": "Moses Malone"
                 }
               },
               {
                 "id": "regular_season.total.defensive_rebounds",
                 "name": "Defensive Rebounds",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 11719],
+                  "domain": [0, 11453],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 11719,
-                  "name": "Kareem Abdul-Jabbar"
+                  "value": 11453,
+                  "name": "Kevin Garnett"
                 }
               },
               {
                 "id": "regular_season.total.total_rebounds",
                 "name": "Total Rebounds",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 17440],
+                  "domain": [0, 23924],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 17440,
-                  "name": "Kareem Abdul-Jabbar"
+                  "value": 23924,
+                  "name": "Wilt Chamberlain"
                 }
               },
               {
                 "id": "regular_season.total.assists",
                 "name": "Assists",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 15806],
                   "scaleType": "linear",
@@ -238,7 +238,7 @@
               {
                 "id": "regular_season.total.steals",
                 "name": "Steals",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 3265],
                   "scaleType": "linear",
@@ -252,7 +252,7 @@
               {
                 "id": "regular_season.total.blocks",
                 "name": "Blocks",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 3830],
                   "scaleType": "linear",
@@ -266,21 +266,21 @@
               {
                 "id": "regular_season.total.turnovers",
                 "name": "Turnovers",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 4643],
+                  "domain": [0, 5236],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 4643,
-                  "name": "Karl Malone"
+                  "value": 5236,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "regular_season.total.personal_fouls",
                 "name": "Personal Fouls",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 4657],
                   "scaleType": "linear",
@@ -294,29 +294,29 @@
               {
                 "id": "regular_season.total.points",
                 "name": "Points",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 38387],
+                  "domain": [0, 40687],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 38387,
-                  "name": "Kareem Abdul-Jabbar"
+                  "value": 40687,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "regular_season.total.triple_doubles",
                 "name": "Triple Doubles",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 181],
+                  "domain": [0, 199],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 181,
-                  "name": "Magic Johnson"
+                  "value": 199,
+                  "name": "Russell Westbrook"
                 }
               }
             ]
@@ -324,12 +324,12 @@
           {
             "id": "regular_season.per_game",
             "name": "Per Game",
-            "color": "#EFFAFD",
+            "color": "#e9edc9",
             "stats": [
               {
                 "id": "regular_season.per_game.minutes_played",
                 "name": "Minutes Played",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 45.8],
                   "scaleType": "linear",
@@ -343,189 +343,91 @@
               {
                 "id": "regular_season.per_game.field_goals_made",
                 "name": "Field Goals Made",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 12.7],
+                  "domain": [0, 12.1],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 12.7,
+                  "value": 12.1,
                   "name": "Wilt Chamberlain"
                 }
               },
               {
                 "id": "regular_season.per_game.field_goal_attempts",
                 "name": "Field Goal Attempts",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 24.5],
+                  "domain": [0, 23.8],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 24.5,
-                  "name": "Wilt Chamberlain"
+                  "value": 23.8,
+                  "name": "Elgin Baylor"
                 }
               },
               {
                 "id": "regular_season.per_game.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 0],
+                  "domain": [0, 3.9],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 0,
-                  "name": "Various Players"
+                  "value": 3.9,
+                  "name": "Stephen Curry"
                 }
               },
               {
                 "id": "regular_season.per_game.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 0],
+                  "domain": [0, 9.2],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 0,
-                  "name": "Various Players"
+                  "value": 9.2,
+                  "name": "Stephen Curry"
                 }
               },
               {
                 "id": "regular_season.per_game.free_throws_made",
                 "name": "Free Throws Made",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 11.9],
+                  "domain": [0, 8.3],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 11.9,
-                  "name": "Wilt Chamberlain"
+                  "value": 8.3,
+                  "name": "Joel Embiid"
                 }
               },
               {
                 "id": "regular_season.per_game.free_throw_attempts",
                 "name": "Free Throw Attempts",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 18.2],
+                  "domain": [0, 11.4],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 18.2,
+                  "value": 11.4,
                   "name": "Wilt Chamberlain"
                 }
               },
               {
                 "id": "regular_season.per_game.offensive_rebounds",
                 "name": "Offensive Rebounds",
-                "color": "#EFFAFD",
-                "meta": {
-                  "domain": [0, 5.4],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 5.4,
-                  "name": "Wilt Chamberlain"
-                }
-              },
-              {
-                "id": "regular_season.per_game.defensive_rebounds",
-                "name": "Defensive Rebounds",
-                "color": "#EFFAFD",
-                "meta": {
-                  "domain": [0, 14.8],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 14.8,
-                  "name": "Wilt Chamberlain"
-                }
-              },
-              {
-                "id": "regular_season.per_game.total_rebounds",
-                "name": "Total Rebounds",
-                "color": "#EFFAFD",
-                "meta": {
-                  "domain": [0, 27.2],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 27.2,
-                  "name": "Wilt Chamberlain"
-                }
-              },
-              {
-                "id": "regular_season.per_game.assists",
-                "name": "Assists",
-                "color": "#EFFAFD",
-                "meta": {
-                  "domain": [0, 11.2],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 11.2,
-                  "name": "Magic Johnson"
-                }
-              },
-              {
-                "id": "regular_season.per_game.steals",
-                "name": "Steals",
-                "color": "#EFFAFD",
-                "meta": {
-                  "domain": [0, 3.5],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 3.5,
-                  "name": "Alvin Robertson"
-                }
-              },
-              {
-                "id": "regular_season.per_game.blocks",
-                "name": "Blocks",
-                "color": "#EFFAFD",
-                "meta": {
-                  "domain": [0, 5.4],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 5.4,
-                  "name": "Mark Eaton"
-                }
-              },
-              {
-                "id": "regular_season.per_game.turnovers",
-                "name": "Turnovers",
-                "color": "#EFFAFD",
-                "meta": {
-                  "domain": [0, 5.7],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 5.7,
-                  "name": "Artis Gilmore"
-                }
-              },
-              {
-                "id": "regular_season.per_game.personal_fouls",
-                "name": "Personal Fouls",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 5.1],
                   "scaleType": "linear",
@@ -533,21 +435,119 @@
                 },
                 "record": {
                   "value": 5.1,
+                  "name": "Moses Malone"
+                }
+              },
+              {
+                "id": "regular_season.per_game.defensive_rebounds",
+                "name": "Defensive Rebounds",
+                "color": "#e9edc9",
+                "meta": {
+                  "domain": [0, 9.8],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 9.8,
+                  "name": "Dave Cowens"
+                }
+              },
+              {
+                "id": "regular_season.per_game.total_rebounds",
+                "name": "Total Rebounds",
+                "color": "#e9edc9",
+                "meta": {
+                  "domain": [0, 22.89],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 22.89,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.per_game.assists",
+                "name": "Assists",
+                "color": "#e9edc9",
+                "meta": {
+                  "domain": [0, 11.19],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 11.19,
+                  "name": "Magic Johnson"
+                }
+              },
+              {
+                "id": "regular_season.per_game.steals",
+                "name": "Steals",
+                "color": "#e9edc9",
+                "meta": {
+                  "domain": [0, 2.71],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 2.71,
+                  "name": "Alvin Robertson"
+                }
+              },
+              {
+                "id": "regular_season.per_game.blocks",
+                "name": "Blocks",
+                "color": "#e9edc9",
+                "meta": {
+                  "domain": [0, 3.5],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 3.5,
                   "name": "Mark Eaton"
+                }
+              },
+              {
+                "id": "regular_season.per_game.turnovers",
+                "name": "Turnovers",
+                "color": "#e9edc9",
+                "meta": {
+                  "domain": [0, 4.2],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 4.2,
+                  "name": "Trae Young"
+                }
+              },
+              {
+                "id": "regular_season.per_game.personal_fouls",
+                "name": "Personal Fouls",
+                "color": "#e9edc9",
+                "meta": {
+                  "domain": [0, 4.2],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 4.2,
+                  "name": "George Mikan"
                 }
               },
               {
                 "id": "regular_season.per_game.points",
                 "name": "Points",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 50.4],
+                  "domain": [0, 30.12],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 50.4,
-                  "name": "Wilt Chamberlain"
+                  "value": 30.12,
+                  "name": "Michael Jordan"
                 }
               }
             ]
@@ -555,90 +555,90 @@
           {
             "id": "regular_season.advanced",
             "name": "Advanced Stats",
-            "color": "#DEF6FB",
+            "color": "#e9edc9",
             "stats": [
               {
                 "id": "regular_season.advanced.player_efficiency_rating",
                 "name": "Player Efficiency Rating",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 31.9],
+                  "domain": [0, 28.14],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 31.9,
-                  "name": "Michael Jordan"
+                  "value": 28.14,
+                  "name": "Nikola Jokic"
                 }
               },
               {
                 "id": "regular_season.advanced.true_shooting_percentage",
                 "name": "True Shooting Percentage",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0.5, 0.707],
+                  "domain": [0.5, 0.6719],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
                 "record": {
-                  "value": 0.707,
-                  "name": "DeAndre Jordan"
+                  "value": 0.6719,
+                  "name": "Rudy Gobert"
                 }
               },
               {
                 "id": "regular_season.advanced.usage_percentage",
                 "name": "Usage Percentage",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 40.9],
+                  "domain": [0, 33.26],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
                 "record": {
-                  "value": 40.9,
+                  "value": 33.26,
                   "name": "Michael Jordan"
                 }
               },
               {
                 "id": "regular_season.advanced.win_shares",
                 "name": "Win Shares",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 273.4],
+                  "domain": [0, 273.41],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 273.4,
+                  "value": 273.41,
                   "name": "Kareem Abdul-Jabbar"
                 }
               },
               {
                 "id": "regular_season.advanced.box_plus_minus",
                 "name": "Box Plus/Minus",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [-11.1, 12.4],
+                  "domain": [-11.1, 9.98],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 12.4,
-                  "name": "Michael Jordan"
+                  "value": 9.98,
+                  "name": "Nikola Jokic"
                 }
               },
               {
                 "id": "regular_season.advanced.value_over_replacement_player",
                 "name": "Value Over Replacement Player",
-                "color": "#DEF6FB",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 85.7],
+                  "domain": [0, 152.57],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 85.7,
-                  "name": "Michael Jordan"
+                  "value": 152.57,
+                  "name": "LeBron James"
                 }
               }
             ]
@@ -646,12 +646,54 @@
           {
             "id": "regular_season.game_high",
             "name": "Game Highs",
-            "color": "#EFFAFD",
+            "color": "#e9edc9",
             "stats": [
               {
                 "id": "regular_season.game_high.field_goals_made",
                 "name": "Field Goals Made",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
+                "meta": {
+                  "domain": [0, 36],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 36,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.game_high.field_goal_attempts",
+                "name": "Field Goal Attempts",
+                "color": "#e9edc9",
+                "meta": {
+                  "domain": [0, 63],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 63,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "regular_season.game_high.three_point_field_goals_made",
+                "name": "Three Point Field Goals Made",
+                "color": "#e9edc9",
+                "meta": {
+                  "domain": [0, 14],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 14,
+                  "name": "Klay Thompson"
+                }
+              },
+              {
+                "id": "regular_season.game_high.three_point_field_goal_attempts",
+                "name": "Three Point Field Goal Attempts",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 24],
                   "scaleType": "linear",
@@ -659,55 +701,13 @@
                 },
                 "record": {
                   "value": 24,
-                  "name": "Kobe Bryant"
-                }
-              },
-              {
-                "id": "regular_season.game_high.field_goal_attempts",
-                "name": "Field Goal Attempts",
-                "color": "#EFFAFD",
-                "meta": {
-                  "domain": [0, 39],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 39,
-                  "name": "Wilt Chamberlain"
-                }
-              },
-              {
-                "id": "regular_season.game_high.three_point_field_goals_made",
-                "name": "Three Point Field Goals Made",
-                "color": "#EFFAFD",
-                "meta": {
-                  "domain": [0, 12],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 12,
-                  "name": "Kobe Bryant"
-                }
-              },
-              {
-                "id": "regular_season.game_high.three_point_field_goal_attempts",
-                "name": "Three Point Field Goal Attempts",
-                "color": "#EFFAFD",
-                "meta": {
-                  "domain": [0, 22],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 22,
-                  "name": "Kobe Bryant"
+                  "name": "Klay Thompson"
                 }
               },
               {
                 "id": "regular_season.game_high.free_throws_made",
                 "name": "Free Throws Made",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 28],
                   "scaleType": "linear",
@@ -715,41 +715,41 @@
                 },
                 "record": {
                   "value": 28,
-                  "name": "Wilt Chamberlain"
+                  "name": "Wilt Chamberlain|Adrian Dantley"
                 }
               },
               {
                 "id": "regular_season.game_high.free_throw_attempts",
                 "name": "Free Throw Attempts",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 32],
+                  "domain": [0, 39],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 32,
-                  "name": "Wilt Chamberlain"
+                  "value": 39,
+                  "name": "Dwight Howard"
                 }
               },
               {
                 "id": "regular_season.game_high.offensive_rebounds",
                 "name": "Offensive Rebounds",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 18],
+                  "domain": [0, 21],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 18,
-                  "name": "Wilt Chamberlain"
+                  "value": 21,
+                  "name": "Moses Malone"
                 }
               },
               {
                 "id": "regular_season.game_high.defensive_rebounds",
                 "name": "Defensive Rebounds",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 29],
                   "scaleType": "linear",
@@ -757,27 +757,27 @@
                 },
                 "record": {
                   "value": 29,
-                  "name": "Wilt Chamberlain"
+                  "name": "Kareem Abdul-Jabbar"
                 }
               },
               {
                 "id": "regular_season.game_high.total_rebounds",
                 "name": "Total Rebounds",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 34],
+                  "domain": [0, 55],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 34,
+                  "value": 55,
                   "name": "Wilt Chamberlain"
                 }
               },
               {
                 "id": "regular_season.game_high.assists",
                 "name": "Assists",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 30],
                   "scaleType": "linear",
@@ -791,7 +791,7 @@
               {
                 "id": "regular_season.game_high.steals",
                 "name": "Steals",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 11],
                   "scaleType": "linear",
@@ -799,13 +799,13 @@
                 },
                 "record": {
                   "value": 11,
-                  "name": "Manu Ginobili"
+                  "name": "Larry Kenon|Kendall Gill"
                 }
               },
               {
                 "id": "regular_season.game_high.blocks",
                 "name": "Blocks",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 17],
                   "scaleType": "linear",
@@ -819,7 +819,7 @@
               {
                 "id": "regular_season.game_high.turnovers",
                 "name": "Turnovers",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
                   "domain": [0, 14],
                   "scaleType": "linear",
@@ -827,21 +827,21 @@
                 },
                 "record": {
                   "value": 14,
-                  "name": "Jason Kidd"
+                  "name": "Jason Kidd|John Drew"
                 }
               },
               {
                 "id": "regular_season.game_high.points",
                 "name": "Points",
-                "color": "#EFFAFD",
+                "color": "#e9edc9",
                 "meta": {
-                  "domain": [0, 81],
+                  "domain": [0, 100],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 81,
-                  "name": "Kobe Bryant"
+                  "value": 100,
+                  "name": "Wilt Chamberlain"
                 }
               }
             ]
@@ -851,129 +851,129 @@
       {
         "id": "post_season",
         "name": "Post Season",
-        "color": "#ce796b",
+        "color": "#d5bdaf",
         "subCategories": [
           {
             "id": "post_season.total",
             "name": "Career Totals",
-            "color": "#EBC9C4",
+            "color": "#d5bdaf",
             "stats": [
               {
                 "id": "post_season.total.games_played",
                 "name": "Games Played",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 259],
+                  "domain": [0, 287],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 259,
-                  "name": "Derek Fisher"
+                  "value": 287,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "post_season.total.games_started",
                 "name": "Games Started",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 259],
+                  "domain": [0, 287],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 259,
-                  "name": "Derek Fisher"
+                  "value": 287,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "post_season.total.minutes_played",
                 "name": "Minutes Played",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 10447],
+                  "domain": [0, 11858],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 10447,
-                  "name": "Tim Duncan"
+                  "value": 11858,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "post_season.total.field_goals_made",
                 "name": "Field Goals Made",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 3852],
+                  "domain": [0, 2928],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 3852,
-                  "name": "Michael Jordan"
+                  "value": 2928,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "post_season.total.field_goal_attempts",
                 "name": "Field Goal Attempts",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 8106],
+                  "domain": [0, 5896],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 8106,
-                  "name": "Michael Jordan"
+                  "value": 5896,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "post_season.total.field_goal_percentage",
                 "name": "Field Goal Percentage",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0.3, 0.61],
+                  "domain": [0.3, 0.6667],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
                 "record": {
-                  "value": 0.61,
-                  "name": "James Worthy"
+                  "value": 0.6667,
+                  "name": "DeAndre Jordan"
                 }
               },
               {
                 "id": "post_season.total.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 385],
+                  "domain": [0, 618],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 385,
-                  "name": "Ray Allen"
+                  "value": 618,
+                  "name": "Stephen Curry"
                 }
               },
               {
                 "id": "post_season.total.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 582],
+                  "domain": [0, 1557],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 582,
+                  "value": 1557,
                   "name": "Stephen Curry"
                 }
               },
               {
                 "id": "post_season.total.three_point_field_goal_percentage",
                 "name": "Three Point Field Goal Percentage",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
                   "domain": [0, 0.5],
                   "scaleType": "linear",
@@ -981,97 +981,97 @@
                 },
                 "record": {
                   "value": 0.5,
-                  "name": "Steve Kerr"
+                  "name": "Bob Hansen"
                 }
               },
               {
                 "id": "post_season.total.free_throws_made",
                 "name": "Free Throws Made",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 1111],
+                  "domain": [0, 1836],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 1111,
-                  "name": "Michael Jordan"
+                  "value": 1836,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "post_season.total.free_throw_attempts",
                 "name": "Free Throw Attempts",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 1489],
+                  "domain": [0, 2479],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 1489,
-                  "name": "Michael Jordan"
+                  "value": 2479,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "post_season.total.free_throw_percentage",
                 "name": "Free Throw Percentage",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0.5, 0.94],
+                  "domain": [0.5, 0.9496],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
                 "record": {
-                  "value": 0.94,
-                  "name": "Steve Nash"
+                  "value": 0.9496,
+                  "name": "Gordon Hayward"
                 }
               },
               {
                 "id": "post_season.total.offensive_rebounds",
                 "name": "Offensive Rebounds",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 502],
+                  "domain": [0, 866],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 502,
-                  "name": "Dennis Rodman"
+                  "value": 866,
+                  "name": "Shaquille O'Neal"
                 }
               },
               {
                 "id": "post_season.total.defensive_rebounds",
                 "name": "Defensive Rebounds",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 1640],
+                  "domain": [0, 2153],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 1640,
-                  "name": "Tim Duncan"
+                  "value": 2153,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "post_season.total.total_rebounds",
                 "name": "Total Rebounds",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 2481],
+                  "domain": [0, 4104],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 2481,
-                  "name": "Tim Duncan"
+                  "value": 4104,
+                  "name": "Bill Russell"
                 }
               },
               {
                 "id": "post_season.total.assists",
                 "name": "Assists",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
                   "domain": [0, 2346],
                   "scaleType": "linear",
@@ -1079,55 +1079,55 @@
                 },
                 "record": {
                   "value": 2346,
-                  "name": "LeBron James"
+                  "name": "Magic Johnson"
                 }
               },
               {
                 "id": "post_season.total.steals",
                 "name": "Steals",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 395],
+                  "domain": [0, 483],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 395,
-                  "name": "Scottie Pippen"
+                  "value": 483,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "post_season.total.blocks",
                 "name": "Blocks",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 338],
+                  "domain": [0, 568],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 338,
+                  "value": 568,
                   "name": "Tim Duncan"
                 }
               },
               {
                 "id": "post_season.total.turnovers",
                 "name": "Turnovers",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 702],
+                  "domain": [0, 1034],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 702,
+                  "value": 1034,
                   "name": "LeBron James"
                 }
               },
               {
                 "id": "post_season.total.personal_fouls",
                 "name": "Personal Fouls",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
                   "domain": [0, 797],
                   "scaleType": "linear",
@@ -1135,35 +1135,35 @@
                 },
                 "record": {
                   "value": 797,
-                  "name": "LeBron James"
+                  "name": "Kareem Abdul-Jabbar"
                 }
               },
               {
                 "id": "post_season.total.points",
                 "name": "Points",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 5987],
+                  "domain": [0, 8162],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 5987,
-                  "name": "Michael Jordan"
+                  "value": 8162,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "post_season.total.triple_doubles",
                 "name": "Triple Doubles",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 11],
+                  "domain": [0, 30],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 11,
-                  "name": "LeBron James"
+                  "value": 30,
+                  "name": "Magic Johnson"
                 }
               }
             ]
@@ -1171,110 +1171,110 @@
           {
             "id": "post_season.per_game",
             "name": "Per Game",
-            "color": "#F5E4E1",
+            "color": "#d5bdaf",
             "stats": [
               {
                 "id": "post_season.per_game.minutes_played",
                 "name": "Minutes Played",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 46.3],
+                  "domain": [0, 47.24],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 46.3,
+                  "value": 47.24,
                   "name": "Wilt Chamberlain"
                 }
               },
               {
                 "id": "post_season.per_game.field_goals_made",
                 "name": "Field Goals Made",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 13.6],
+                  "domain": [0, 12.2],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 13.6,
-                  "name": "Wilt Chamberlain"
+                  "value": 12.2,
+                  "name": "Michael Jordan"
                 }
               },
               {
                 "id": "post_season.per_game.field_goal_attempts",
                 "name": "Field Goal Attempts",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 25.7],
+                  "domain": [0, 26.5],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 25.7,
-                  "name": "Wilt Chamberlain"
+                  "value": 26.5,
+                  "name": "Allen Iverson"
                 }
               },
               {
                 "id": "post_season.per_game.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 0],
+                  "domain": [0, 4.2],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 0,
-                  "name": "Various Players"
+                  "value": 4.2,
+                  "name": "Stephen Curry"
                 }
               },
               {
                 "id": "post_season.per_game.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 0],
+                  "domain": [0, 10.6],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 0,
-                  "name": "Various Players"
+                  "value": 10.6,
+                  "name": "Stephen Curry"
                 }
               },
               {
                 "id": "post_season.per_game.free_throws_made",
                 "name": "Free Throws Made",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 11.9],
+                  "domain": [0, 8.2],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 11.9,
-                  "name": "Wilt Chamberlain"
+                  "value": 8.2,
+                  "name": "Michael Jordan"
                 }
               },
               {
                 "id": "post_season.per_game.free_throw_attempts",
                 "name": "Free Throw Attempts",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 18.2],
+                  "domain": [0, 10.7],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 18.2,
-                  "name": "Wilt Chamberlain"
+                  "value": 10.7,
+                  "name": "Shaquille O'Neal"
                 }
               },
               {
                 "id": "post_season.per_game.offensive_rebounds",
                 "name": "Offensive Rebounds",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
                   "domain": [0, 5.4],
                   "scaleType": "linear",
@@ -1282,119 +1282,119 @@
                 },
                 "record": {
                   "value": 5.4,
-                  "name": "Wilt Chamberlain"
+                  "name": "Moses Malone"
                 }
               },
               {
                 "id": "post_season.per_game.defensive_rebounds",
                 "name": "Defensive Rebounds",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 14.8],
+                  "domain": [0, 10.4],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 14.8,
-                  "name": "Wilt Chamberlain"
+                  "value": 10.4,
+                  "name": "Dave Cowens"
                 }
               },
               {
                 "id": "post_season.per_game.total_rebounds",
                 "name": "Total Rebounds",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 27.2],
+                  "domain": [0, 24.87],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 27.2,
-                  "name": "Wilt Chamberlain"
+                  "value": 24.87,
+                  "name": "Bill Russell"
                 }
               },
               {
                 "id": "post_season.per_game.assists",
                 "name": "Assists",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 11.2],
+                  "domain": [0, 12.35],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 11.2,
+                  "value": 12.35,
                   "name": "Magic Johnson"
                 }
               },
               {
                 "id": "post_season.per_game.steals",
                 "name": "Steals",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 3.5],
+                  "domain": [0, 2.28],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 3.5,
-                  "name": "Alvin Robertson"
+                  "value": 2.28,
+                  "name": "Baron Davis"
                 }
               },
               {
                 "id": "post_season.per_game.blocks",
                 "name": "Blocks",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 5.4],
+                  "domain": [0, 3.26],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 5.4,
-                  "name": "Mark Eaton"
+                  "value": 3.26,
+                  "name": "Hakeem Olajuwon"
                 }
               },
               {
                 "id": "post_season.per_game.turnovers",
                 "name": "Turnovers",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 5.7],
+                  "domain": [0, 4.4],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 5.7,
-                  "name": "Artis Gilmore"
+                  "value": 4.4,
+                  "name": "Trae Young"
                 }
               },
               {
                 "id": "post_season.per_game.personal_fouls",
                 "name": "Personal Fouls",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 5.1],
+                  "domain": [0, 4.8],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 5.1,
-                  "name": "Mark Eaton"
+                  "value": 4.8,
+                  "name": "Walter Dukes|Charlie Scott"
                 }
               },
               {
                 "id": "post_season.per_game.points",
                 "name": "Points",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 46.3],
+                  "domain": [0, 33.45],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 46.3,
-                  "name": "Wilt Chamberlain"
+                  "value": 33.45,
+                  "name": "Michael Jordan"
                 }
               }
             ]
@@ -1402,90 +1402,90 @@
           {
             "id": "post_season.advanced",
             "name": "Advanced Stats",
-            "color": "#EBC9C4",
+            "color": "#d5bdaf",
             "stats": [
               {
                 "id": "post_season.advanced.player_efficiency_rating",
                 "name": "Player Efficiency Rating",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 37.4],
+                  "domain": [0, 29.17],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 37.4,
-                  "name": "Michael Jordan"
+                  "value": 29.17,
+                  "name": "Nikola Jokic"
                 }
               },
               {
                 "id": "post_season.advanced.true_shooting_percentage",
                 "name": "True Shooting Percentage",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0.5, 0.707],
+                  "domain": [0.5, 0.6634],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
                 "record": {
-                  "value": 0.707,
-                  "name": "DeAndre Jordan"
+                  "value": 0.6634,
+                  "name": "Rudy Gobert"
                 }
               },
               {
                 "id": "post_season.advanced.usage_percentage",
                 "name": "Usage Percentage",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 40.9],
+                  "domain": [0, 36.84],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
                 "record": {
-                  "value": 40.9,
-                  "name": "Michael Jordan"
+                  "value": 36.84,
+                  "name": "Luka Doncic"
                 }
               },
               {
                 "id": "post_season.advanced.win_shares",
                 "name": "Win Shares",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 35.6],
+                  "domain": [0, 58.67],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 35.6,
-                  "name": "Michael Jordan"
+                  "value": 58.67,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "post_season.advanced.box_plus_minus",
                 "name": "Box Plus/Minus",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [-11.1, 12.4],
+                  "domain": [-11.1, 11.14],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 12.4,
+                  "value": 11.14,
                   "name": "Michael Jordan"
                 }
               },
               {
                 "id": "post_season.advanced.value_over_replacement_player",
                 "name": "Value Over Replacement Player",
-                "color": "#EBC9C4",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 13],
+                  "domain": [0, 36.05],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 13,
-                  "name": "Michael Jordan"
+                  "value": 36.05,
+                  "name": "LeBron James"
                 }
               }
             ]
@@ -1493,138 +1493,54 @@
           {
             "id": "post_season.game_high",
             "name": "Game Highs",
-            "color": "#F5E4E1",
+            "color": "#d5bdaf",
             "stats": [
               {
                 "id": "post_season.game_high.field_goals_made",
                 "name": "Field Goals Made",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 22],
+                  "domain": [0, 24],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 22,
-                  "name": "Michael Jordan"
+                  "value": 24,
+                  "name": "Michael Jordan|Wilt Chamberlain|John Havlicek"
                 }
               },
               {
                 "id": "post_season.game_high.field_goal_attempts",
                 "name": "Field Goal Attempts",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 35],
+                  "domain": [0, 48],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 35,
-                  "name": "Michael Jordan"
+                  "value": 48,
+                  "name": "Wilt Chamberlain|Rick Barry"
                 }
               },
               {
                 "id": "post_season.game_high.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 8],
+                  "domain": [0, 12],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 8,
-                  "name": "Ray Allen"
+                  "value": 12,
+                  "name": "Damian Lillard"
                 }
               },
               {
                 "id": "post_season.game_high.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
-                "color": "#F5E4E1",
-                "meta": {
-                  "domain": [0, 15],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 15,
-                  "name": "Stephen Curry"
-                }
-              },
-              {
-                "id": "post_season.game_high.free_throws_made",
-                "name": "Free Throws Made",
-                "color": "#F5E4E1",
-                "meta": {
-                  "domain": [0, 24],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 24,
-                  "name": "Michael Jordan"
-                }
-              },
-              {
-                "id": "post_season.game_high.free_throw_attempts",
-                "name": "Free Throw Attempts",
-                "color": "#F5E4E1",
-                "meta": {
-                  "domain": [0, 27],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 27,
-                  "name": "Michael Jordan"
-                }
-              },
-              {
-                "id": "post_season.game_high.offensive_rebounds",
-                "name": "Offensive Rebounds",
-                "color": "#F5E4E1",
-                "meta": {
-                  "domain": [0, 11],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 11,
-                  "name": "Elvin Hayes"
-                }
-              },
-              {
-                "id": "post_season.game_high.defensive_rebounds",
-                "name": "Defensive Rebounds",
-                "color": "#F5E4E1",
-                "meta": {
-                  "domain": [0, 24],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 24,
-                  "name": "Robert Parish"
-                }
-              },
-              {
-                "id": "post_season.game_high.total_rebounds",
-                "name": "Total Rebounds",
-                "color": "#F5E4E1",
-                "meta": {
-                  "domain": [0, 31],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 31,
-                  "name": "Wilt Chamberlain"
-                }
-              },
-              {
-                "id": "post_season.game_high.assists",
-                "name": "Assists",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
                   "domain": [0, 19],
                   "scaleType": "linear",
@@ -1632,13 +1548,97 @@
                 },
                 "record": {
                   "value": 19,
-                  "name": "Magic Johnson"
+                  "name": "Russell Westbrook"
+                }
+              },
+              {
+                "id": "post_season.game_high.free_throws_made",
+                "name": "Free Throws Made",
+                "color": "#d5bdaf",
+                "meta": {
+                  "domain": [0, 30],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 30,
+                  "name": "Bob Cousy"
+                }
+              },
+              {
+                "id": "post_season.game_high.free_throw_attempts",
+                "name": "Free Throw Attempts",
+                "color": "#d5bdaf",
+                "meta": {
+                  "domain": [0, 39],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 39,
+                  "name": "Shaquille O'Neal"
+                }
+              },
+              {
+                "id": "post_season.game_high.offensive_rebounds",
+                "name": "Offensive Rebounds",
+                "color": "#d5bdaf",
+                "meta": {
+                  "domain": [0, 15],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 15,
+                  "name": "Moses Malone"
+                }
+              },
+              {
+                "id": "post_season.game_high.defensive_rebounds",
+                "name": "Defensive Rebounds",
+                "color": "#d5bdaf",
+                "meta": {
+                  "domain": [0, 20],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 20,
+                  "name": "5 players"
+                }
+              },
+              {
+                "id": "post_season.game_high.total_rebounds",
+                "name": "Total Rebounds",
+                "color": "#d5bdaf",
+                "meta": {
+                  "domain": [0, 41],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 41,
+                  "name": "Wilt Chamberlain"
+                }
+              },
+              {
+                "id": "post_season.game_high.assists",
+                "name": "Assists",
+                "color": "#d5bdaf",
+                "meta": {
+                  "domain": [0, 24],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 24,
+                  "name": "Magic Johnson|John Stockton"
                 }
               },
               {
                 "id": "post_season.game_high.steals",
                 "name": "Steals",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
                   "domain": [0, 10],
                   "scaleType": "linear",
@@ -1646,41 +1646,41 @@
                 },
                 "record": {
                   "value": 10,
-                  "name": "Isiah Thomas"
+                  "name": "Allen Iverson"
                 }
               },
               {
                 "id": "post_season.game_high.blocks",
                 "name": "Blocks",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 8],
+                  "domain": [0, 10],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 8,
-                  "name": "Mark Eaton"
+                  "value": 10,
+                  "name": "Mark Eaton|Hakeem Olajuwon|Andrew Bynum"
                 }
               },
               {
                 "id": "post_season.game_high.turnovers",
                 "name": "Turnovers",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
-                  "domain": [0, 9],
+                  "domain": [0, 12],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 9,
-                  "name": "Magic Johnson"
+                  "value": 12,
+                  "name": "James Harden"
                 }
               },
               {
                 "id": "post_season.game_high.points",
                 "name": "Points",
-                "color": "#F5E4E1",
+                "color": "#d5bdaf",
                 "meta": {
                   "domain": [0, 63],
                   "scaleType": "linear",
@@ -1698,17 +1698,17 @@
       {
         "id": "awards",
         "name": "Awards & Milestones",
-        "color": "#e9c46a",
+        "color": "#ffe69e",
         "subCategories": [
           {
             "id": "awards.individual",
             "name": "Individual Awards",
-            "color": "#F6E7C3",
+            "color": "#ffe69e",
             "stats": [
               {
                 "id": "awards.individual.mvp",
                 "name": "MVP",
-                "color": "#F6E7C3",
+                "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 6],
                   "scaleType": "linear",
@@ -1722,7 +1722,7 @@
               {
                 "id": "awards.individual.finals_mvp",
                 "name": "Finals MVP",
-                "color": "#F6E7C3",
+                "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 6],
                   "scaleType": "linear",
@@ -1736,7 +1736,7 @@
               {
                 "id": "awards.individual.dpoy",
                 "name": "Defensive Player of the Year",
-                "color": "#F6E7C3",
+                "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 4],
                   "scaleType": "linear",
@@ -1744,97 +1744,69 @@
                 },
                 "record": {
                   "value": 4,
-                  "name": "Dwight Howard"
+                  "name": "Rudy Gobert|Dikembe Mutombo|Ben Wallace"
                 }
               },
               {
                 "id": "awards.individual.all_star",
                 "name": "All-Star Selections",
-                "color": "#F6E7C3",
+                "color": "#ffe69e",
                 "meta": {
-                  "domain": [0, 19],
+                  "domain": [0, 20],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 19,
-                  "name": "Kareem Abdul-Jabbar"
+                  "value": 20,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "awards.individual.all_nba",
                 "name": "All-NBA Selections",
-                "color": "#F6E7C3",
+                "color": "#ffe69e",
                 "meta": {
-                  "domain": [0, 15],
+                  "domain": [0, 20],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 15,
-                  "name": "Kareem Abdul-Jabbar"
+                  "value": 20,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "awards.individual.all_nba_first",
                 "name": "All-NBA First Team Selections",
-                "color": "#F6E7C3",
+                "color": "#ffe69e",
                 "meta": {
-                  "domain": [0, 10],
+                  "domain": [0, 13],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 10,
-                  "name": "Kareem Abdul-Jabbar"
+                  "value": 13,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "awards.individual.all_nba_second",
                 "name": "All-NBA Second Team Selections",
-                "color": "#F6E7C3",
+                "color": "#ffe69e",
                 "meta": {
-                  "domain": [0, 6],
+                  "domain": [0, 8],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 6,
-                  "name": "Kareem Abdul-Jabbar"
+                  "value": 8,
+                  "name": "Bill Russell"
                 }
               },
               {
                 "id": "awards.individual.all_nba_third",
                 "name": "All-NBA Third Team Selections",
-                "color": "#F6E7C3",
-                "meta": {
-                  "domain": [0, 2],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 2,
-                  "name": "Michael Jordan"
-                }
-              },
-              {
-                "id": "awards.individual.all_defensive",
-                "name": "All-Defensive Selections",
-                "color": "#F6E7C3",
-                "meta": {
-                  "domain": [0, 11],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 11,
-                  "name": "Kareem Abdul-Jabbar"
-                }
-              },
-              {
-                "id": "awards.individual.all_defensive_first",
-                "name": "All-Defensive First Team Selections",
-                "color": "#F6E7C3",
+                "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 5],
                   "scaleType": "linear",
@@ -1842,27 +1814,41 @@
                 },
                 "record": {
                   "value": 5,
-                  "name": "Kareem Abdul-Jabbar"
+                  "name": "Paul George"
+                }
+              },
+              {
+                "id": "awards.individual.all_defensive",
+                "name": "All-Defensive Selections",
+                "color": "#ffe69e",
+                "meta": {
+                  "domain": [0, 15],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 15,
+                  "name": "Tim Duncan"
+                }
+              },
+              {
+                "id": "awards.individual.all_defensive_first",
+                "name": "All-Defensive First Team Selections",
+                "color": "#ffe69e",
+                "meta": {
+                  "domain": [0, 9],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 9,
+                  "name": "Kobe Bryant|Michael Jordan|Gary Payton|Kevin Garnett"
                 }
               },
               {
                 "id": "awards.individual.all_defensive_second",
                 "name": "All-Defensive Second Team Selections",
-                "color": "#F6E7C3",
-                "meta": {
-                  "domain": [0, 6],
-                  "scaleType": "linear",
-                  "formatType": "number"
-                },
-                "record": {
-                  "value": 6,
-                  "name": "Kareem Abdul-Jabbar"
-                }
-              },
-              {
-                "id": "awards.individual.player_week",
-                "name": "Player of the Week Awards",
-                "color": "#F6E7C3",
+                "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 7],
                   "scaleType": "linear",
@@ -1870,21 +1856,35 @@
                 },
                 "record": {
                   "value": 7,
-                  "name": "Michael Jordan"
+                  "name": "Tim Duncan"
+                }
+              },
+              {
+                "id": "awards.individual.player_week",
+                "name": "Player of the Week Awards",
+                "color": "#ffe69e",
+                "meta": {
+                  "domain": [0, 64],
+                  "scaleType": "linear",
+                  "formatType": "number"
+                },
+                "record": {
+                  "value": 64,
+                  "name": "LeBron James"
                 }
               },
               {
                 "id": "awards.individual.player_month",
                 "name": "Player of the Month Awards",
-                "color": "#F6E7C3",
+                "color": "#ffe69e",
                 "meta": {
-                  "domain": [0, 2],
+                  "domain": [0, 46],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 2,
-                  "name": "Michael Jordan"
+                  "value": 46,
+                  "name": "LeBron James"
                 }
               }
             ]
@@ -1892,12 +1892,12 @@
           {
             "id": "awards.team",
             "name": "Team Awards",
-            "color": "#FBF3E1",
+            "color": "#ffe69e",
             "stats": [
               {
                 "id": "awards.team.nba_championships",
                 "name": "NBA Championships",
-                "color": "#FBF3E1",
+                "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 11],
                   "scaleType": "linear",
@@ -1911,14 +1911,14 @@
               {
                 "id": "awards.team.conference_championships",
                 "name": "Conference Championships",
-                "color": "#FBF3E1",
+                "color": "#ffe69e",
                 "meta": {
-                  "domain": [0, 11],
+                  "domain": [0, 12],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 11,
+                  "value": 12,
                   "name": "Bill Russell"
                 }
               }
