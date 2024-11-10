@@ -1,5 +1,3 @@
-install.packages(c("tidyverse", "rvest", "jsonlite", "chromote"))
-
 library(tidyverse)
 library(rvest)
 library(jsonlite)
