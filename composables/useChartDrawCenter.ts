@@ -1,6 +1,8 @@
 import type { d3GSelection } from '~/types';
 import { calcTextLength } from '~/assets/scripts/utils';
 
+import * as d3 from 'd3';
+
 export function useChartDrawCenter() {
   const { arcGenerator } = useChartGenerators();
   const { minRadius, modifier } = useChartConfig();
@@ -8,8 +10,27 @@ export function useChartDrawCenter() {
   function drawCenter(g: d3GSelection) {
     g.selectAll('.center').remove();
 
-    const fontSize = 11;
+    const fontSize = 12;
     const arcGroup = g.append('g').attr('class', 'center');
+
+    const textArcs = [
+      {
+        id: 'top-arc',
+        text: 'Click here to select players',
+        radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.donut.arc.top,
+        startAngle: (3 * Math.PI) / 2,
+        endAngle: (5 * Math.PI) / 2,
+        color: modifier.color.black,
+      },
+      {
+        id: 'bottom-arc',
+        text: `Click here to select stats`,
+        radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.donut.arc.bottom,
+        startAngle: (3 * Math.PI) / 2,
+        endAngle: Math.PI / 2,
+        color: modifier.color.black,
+      },
+    ];
 
     const clickableArcs = [
       {
@@ -33,7 +54,7 @@ export function useChartDrawCenter() {
     clickableArcs.forEach((arc) => {
       arcGroup
         .append('path')
-        .attr('class', `clickable-arc ${arc.id}`)
+        .attr('class', `${arc.id}-normal`)
         .attr(
           'd',
           arcGenerator({
@@ -49,26 +70,7 @@ export function useChartDrawCenter() {
         .on('click', arc.onClick);
     });
 
-    const arcs = [
-      {
-        id: 'top-arc',
-        text: 'Click here to select players',
-        radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.donut.arc.top,
-        startAngle: (3 * Math.PI) / 2,
-        endAngle: (5 * Math.PI) / 2,
-        color: modifier.color.black,
-      },
-      {
-        id: 'bottom-arc',
-        text: `Click here to select stats`,
-        radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.donut.arc.bottom,
-        startAngle: (3 * Math.PI) / 2,
-        endAngle: Math.PI / 2,
-        color: modifier.color.black,
-      },
-    ];
-
-    arcs.forEach((arc) => {
+    textArcs.forEach((arc) => {
       const textArc = arcGenerator({
         innerRadius: arc.radius,
         outerRadius: arc.radius,
@@ -93,6 +95,33 @@ export function useChartDrawCenter() {
         .style('font-size', fontSize)
         .style('fill', '#fff')
         .text(arc.text);
+    });
+
+    clickableArcs.forEach((arc) => {
+      arcGroup
+        .append('path')
+        .attr('class', `${arc.id}-hover`)
+        .attr(
+          'd',
+          arcGenerator({
+            innerRadius: 0,
+            outerRadius: arc.radius,
+            startAngle: arc.startAngle,
+            endAngle: arc.endAngle,
+            data: null,
+          })
+        )
+        .attr('fill', arc.background)
+        .style('cursor', 'pointer')
+        .on('click', arc.onClick)
+        .on('mouseover', () => {
+          const halfCircle = d3.select(`.${arc.id}-normal`);
+          halfCircle.classed('hover', true);
+        })
+        .on('mouseout', () => {
+          const halfCircle = d3.select(`.${arc.id}-normal`);
+          halfCircle.classed('hover', false);
+        });
     });
 
     // arcGroup

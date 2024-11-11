@@ -14,6 +14,17 @@
   filter: brightness(0.9) !important;
 }
 
+.top-clickable-hover,
+.bottom-clickable-hover {
+  opacity: 0 !important;
+  cursor: pointer;
+}
+
+.top-clickable-normal.hover,
+.bottom-clickable-normal.hover {
+  filter: brightness(0.9) !important;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transform: translateY(0);
