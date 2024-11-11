@@ -66,4 +66,8 @@ function withUnit(value: number, formatType: FormatType) {
   }
 }
 
-export { wrapText, formatNumber, shouldFlipText, calcTextLength, withUnit };
+const escapeSelector = (id: string) => {
+  return id.replace(/[.]/g, '\\.');
+};
+
+export { wrapText, formatNumber, shouldFlipText, calcTextLength, withUnit, escapeSelector };

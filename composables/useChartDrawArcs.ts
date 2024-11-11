@@ -1,5 +1,5 @@
+import * as d3 from 'd3';
 import { group as d3Group } from 'd3-array';
-//
 
 import type {
   d3GSelection,
@@ -59,7 +59,7 @@ export function useChartDrawArcs() {
           const value = stat.meta.scale(statValue);
 
           arcData.push({
-            id: `${stat.id}-${player.id}`,
+            id: `${stat.id.replace(/\./g, '_')}-${player.id}`,
             index: statIndex,
             value,
             stat,
@@ -76,7 +76,7 @@ export function useChartDrawArcs() {
       .join((enter) =>
         enter
           .append('path')
-          .attr('class', className)
+          .attr('class', (d) => `${className} arc-${d.id}`)
           .attr('d', (d) =>
             arcGenerator({
               innerRadius: minRadius,
@@ -87,9 +87,12 @@ export function useChartDrawArcs() {
             })
           )
           .attr('fill', (d) => d.player.color)
-          .attr('opacity', 0)
           .on('mouseenter', (event, d) => {
             if (!interaction) return;
+
+            const arc = d3.select(`.stat-arc-normal.arc-${d.id}`);
+            arc.classed('hover', true);
+
             setHoveredPlayer(d.player);
             setTooltipData({ id: d.id });
             updateMousePosition(event);
@@ -98,18 +101,18 @@ export function useChartDrawArcs() {
             if (!interaction) return;
             updateMousePosition(event);
           })
-          .on('mouseleave', () => {
+          .on('mouseleave', (_, d) => {
             if (!interaction) return;
+
+            g.select(`.stat-arc-normal.arc-${d.id}`).classed('hover', false);
+
             setHoveredPlayer(null);
             setTooltipData(null);
           })
-          .call((enter) => {
-            if (interaction) return;
-            enter.transition().duration(0).attr('opacity', 1);
-          })
       );
 
-    // Draw legend arc
+    if (!interaction) return;
+
     g.append('path')
       .attr('class', 'legend-arc')
       .attr(

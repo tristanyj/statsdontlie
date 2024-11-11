@@ -5,13 +5,13 @@
   @apply font-host;
 }
 
-.start-arc-hover:hover {
-  opacity: 0.8;
+.stat-arc-hover {
+  opacity: 0 !important;
   cursor: pointer;
 }
 
-.start-arc-normal:hover {
-  pointer-events: none;
+.stat-arc-normal.hover {
+  filter: brightness(0.9) !important;
 }
 
 .fade-enter-active,

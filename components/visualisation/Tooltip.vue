@@ -25,7 +25,7 @@ const tooltipStyle = computed<CSSProperties>(() => {
   > -->
   <div
     v-show="tooltipData"
-    class="fixed top-0 left-0 stat-tooltip p-4 bg-white border-1 rounded-md z-100 text-sm"
+    class="fixed top-0 left-0 stat-tooltip p-2 bg-white border border-gray-500 rounded-md z-100 text-sm"
     :style="tooltipStyle"
   >
     <div class="tooltip-header">
