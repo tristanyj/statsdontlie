@@ -15,6 +15,15 @@ export function useChartDrawArcs() {
   const { arcGenerator } = useChartGenerators();
   const { radius, minRadius, proportions, restRadius, modifier, legend } = useChartConfig();
 
+  function drawCircleBackground(g: d3GSelection) {
+    g.append('circle')
+      .attr('cx', 0)
+      .attr('cy', 0)
+      .attr('r', radius)
+      .attr('fill', '#fff')
+      .attr('opacity', 1);
+  }
+
   function drawStatArcs(
     g: d3GSelection,
     circleScale: d3.ScaleLinear<number, number>,
@@ -231,6 +240,7 @@ export function useChartDrawArcs() {
   }
 
   return {
+    drawCircleBackground,
     drawStatLabelArcs,
     drawStatArcs,
     drawGroupArcs,

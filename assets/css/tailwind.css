@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Your custom styles here */
 body {
-  @apply font-inter bg-gray-50;
+  @apply font-anton bg-gray-50;
+  background-color: #6c9591;
+  background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
 }

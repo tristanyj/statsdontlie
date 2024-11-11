@@ -15,7 +15,7 @@ onMounted(() => {
   <main>
     <NuxtLoadingIndicator />
     <NuxtRouteAnnouncer />
-    <NavigationHeader />
+    <!-- <NavigationHeader /> -->
     <NuxtPage />
   </main>
 </template>

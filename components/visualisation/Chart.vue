@@ -3,8 +3,13 @@ import * as d3 from 'd3';
 import type { d3GSelection } from '@/types';
 
 const { width, height } = useChartConfig();
-const { drawStatLabelArcs, drawStatArcs, drawGroupArcs, drawOutsideMaxStatScaleArc } =
-  useChartDrawArcs();
+const {
+  drawCircleBackground,
+  drawStatLabelArcs,
+  drawStatArcs,
+  drawGroupArcs,
+  drawOutsideMaxStatScaleArc,
+} = useChartDrawArcs();
 const { drawCircularSeparators, drawLinearSeparators } = useChartDrawLines();
 const { drawStatLabels, drawScaleLabels, drawGroupLabels } = useChartDrawLabels();
 const { drawStatIntersectionPoints } = useChartDrawPoints();
@@ -53,6 +58,8 @@ function createVisualization() {
   // -----------------
   // ARCS
   // -----------------
+
+  drawCircleBackground(g.value);
 
   // Draw group and sub-group arcs
   drawGroupArcs(g.value, scales.circle, indices.value.group, selectedCategories.value, 0);
@@ -190,7 +197,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="relative z-10">
     <VisualisationTooltip
       :tooltip-data="tooltipData"
       :mouse-position="mousePosition"

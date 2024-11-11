@@ -5,7 +5,9 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       fontFamily: {
-        inter: ['Inter'],
+        inter: ['Inter', 'sans-serif'],
+        anton: ['Anton', 'sans-serif'],
+        host: ['Host Grotesk', 'sans-serif'],
       },
       colors: {
         primary: colors.green,
