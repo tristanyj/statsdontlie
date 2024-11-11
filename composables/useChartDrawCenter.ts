@@ -56,7 +56,7 @@ export function useChartDrawCenter() {
         radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.donut.arc.top,
         startAngle: (3 * Math.PI) / 2,
         endAngle: (5 * Math.PI) / 2,
-        color: '#000',
+        color: modifier.color.black,
       },
       {
         id: 'bottom-arc',
@@ -64,7 +64,7 @@ export function useChartDrawCenter() {
         radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.donut.arc.bottom,
         startAngle: (3 * Math.PI) / 2,
         endAngle: Math.PI / 2,
-        color: '#000',
+        color: modifier.color.black,
       },
     ];
 
@@ -101,7 +101,7 @@ export function useChartDrawCenter() {
     //   .attr('y', 0 + modifier.space.donut.center.top)
     //   .attr('text-anchor', 'middle')
     //   .attr('dominant-baseline', 'middle')
-    //   .attr('fill', '#000')
+    //   .attr('fill', modifier.color.black)
     //   .attr('font-size', fontSize + 5)
     //   .text(statValue);
   }

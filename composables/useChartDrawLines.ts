@@ -1,13 +1,13 @@
 import type { d3GSelection, LineData } from '~/types';
 
-const createLine = (g: d3GSelection, params: LineData) => {
+const createLine = (g: d3GSelection, params: LineData, color: string) => {
   g.append('line')
     .attr('class', params.className)
     .attr('x1', 0)
     .attr('y1', params.y1)
     .attr('x2', 0)
     .attr('y2', params.y2)
-    .attr('stroke', params.stroke ?? '#000')
+    .attr('stroke', params.stroke ?? color)
     .attr('opacity', params.opacity ?? 1)
     .attr('stroke-width', params.strokeWidth ?? 1)
     .attr('transform', params.transform);
@@ -94,25 +94,33 @@ export function useChartDrawLines() {
           ? radius * proportions[2]
           : radius * proportions[1];
 
-      createLine(g, {
-        className,
-        y1: minRadius,
-        y2: lineLength,
-        strokeWidth: isGroupSeparator || isLastStat ? 1 : 1,
-        opacity: modifier.color.separator.highOpacity,
-        transform: `rotate(${180 + (startAngle * 180) / Math.PI})`,
-      });
+      createLine(
+        g,
+        {
+          className,
+          y1: minRadius,
+          y2: lineLength,
+          strokeWidth: isGroupSeparator || isLastStat ? 1 : 1,
+          opacity: modifier.color.separator.highOpacity,
+          transform: `rotate(${180 + (startAngle * 180) / Math.PI})`,
+        },
+        modifier.color.black
+      );
 
       const nextAngle = circleScale(isLastStat ? i + legend.columnCount : i + 1);
       const midAngle = (startAngle + nextAngle) / 2;
 
-      createLine(g, {
-        className: 'stat-center-separator',
-        y1: minRadius,
-        y2: radius * proportions[0],
-        opacity: modifier.color.separator.lowOpacity,
-        transform: `rotate(${180 + (midAngle * 180) / Math.PI})`,
-      });
+      createLine(
+        g,
+        {
+          className: 'stat-center-separator',
+          y1: minRadius,
+          y2: radius * proportions[0],
+          opacity: modifier.color.separator.lowOpacity,
+          transform: `rotate(${180 + (midAngle * 180) / Math.PI})`,
+        },
+        modifier.color.black
+      );
     }
   }
 

@@ -39,7 +39,7 @@ export function useChartDrawLabels() {
           .attr('y', startY + i * wrap.lineHeight)
           .attr('text-anchor', textAnchor)
           .attr('dominant-baseline', 'middle')
-          .attr('fill', '#000')
+          .attr('fill', modifier.color.black)
           .attr('font-size', modifier.font.statLabel)
           .attr('transform', `rotate(${rotation},${x},${y})`)
           .text(line);

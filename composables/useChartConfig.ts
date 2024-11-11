@@ -72,12 +72,13 @@ export function useChartConfig() {
   const colors = {
     default: '#f0f0f0',
     white: '#fff',
-    black: '#000',
+    black: '#123',
   };
 
   const colorModifier = {
     default: colors.default,
     white: colors.white,
+    black: colors.black,
     categoryLabel: {
       background: {
         opacity: 0.9,
@@ -162,7 +163,7 @@ export function useChartConfig() {
 
   const radiusModifier = {
     outsideMaxStatScale: 1.0325,
-    insideMinStatScale: 0.9,
+    insideMinStatScale: 0.8,
     statLabel: 1.08,
   };
 
