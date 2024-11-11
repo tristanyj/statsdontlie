@@ -1,22 +1,19 @@
 <script setup lang="ts">
-import type { TooltipData } from '@/types';
 import type { CSSProperties } from 'vue';
 
-// const interactionStore = useInteractionStore();
-// const { hoveredPlayer, mousePosition, tooltipData } = storeToRefs(interactionStore);
-
-const props = defineProps<{
-  tooltipData: TooltipData | null | undefined;
-  mousePosition: { x: number; y: number };
-}>();
+const interactionStore = useInteractionStore();
+const { mousePosition, scrollPosition, tooltipData } = storeToRefs(interactionStore);
 
 const tooltipStyle = computed<CSSProperties>(() => {
-  if (!props.mousePosition) return {};
+  if (!mousePosition.value || !scrollPosition.value) return {};
+
+  // Combine mouse and scroll position for absolute positioning
+  const posX = mousePosition.value.x;
+  const posY = mousePosition.value.y;
 
   return {
-    position: 'fixed',
-    transform: `translate(${props.mousePosition.x + 20}px, ${props.mousePosition.y - 70}px)`,
-    visibility: props.tooltipData ? 'visible' : 'hidden',
+    transform: `translate(${posX + 20}px, ${posY - 70}px)`,
+    visibility: tooltipData.value ? 'visible' : 'hidden',
   };
 });
 </script>
@@ -28,7 +25,7 @@ const tooltipStyle = computed<CSSProperties>(() => {
   > -->
   <div
     v-show="tooltipData"
-    class="stat-tooltip p-4 bg-white border-1 rounded-md z-100 text-sm"
+    class="fixed top-0 left-0 stat-tooltip p-4 bg-white border-1 rounded-md z-100 text-sm"
     :style="tooltipStyle"
   >
     <div class="tooltip-header">

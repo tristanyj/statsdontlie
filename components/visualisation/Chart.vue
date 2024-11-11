@@ -17,7 +17,8 @@ const { drawCenter } = useChartDrawCenter();
 const { scales, updateScale } = useChartScales();
 
 const interactionStore = useInteractionStore();
-const { hoveredPlayer, mousePosition, tooltipData } = storeToRefs(interactionStore);
+const { mousePosition, tooltipData } = storeToRefs(interactionStore);
+const { updateMousePosition, updateScrollPosition } = interactionStore;
 
 const configStore = useConfigStore();
 const {
@@ -124,16 +125,16 @@ function createVisualization() {
   drawStatIntersectionPoints(g.value, scales.circle, selectedStatIdsCount.value);
 
   // -----------------
+  // CENTER
+  // -----------------
+
+  drawCenter(g.value);
+
+  // -----------------
   // HIDDEN
   // -----------------
 
   drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value, true);
-}
-
-function updateDonutCenter() {
-  if (!g.value) return;
-
-  drawCenter(g.value, hoveredPlayer.value);
 }
 
 function updateVisualization() {
@@ -161,13 +162,6 @@ const mountToContainer = () => {
 };
 
 watch(
-  () => hoveredPlayer.value,
-  () => {
-    updateDonutCenter();
-  }
-);
-
-watch(
   () => selectedStatIds.value,
   () => {
     updateVisualization();
@@ -191,8 +185,19 @@ watch(
   }
 );
 
+function prepareScrollPosition() {
+  updateScrollPosition(window.scrollX, window.scrollY);
+}
+
 onMounted(() => {
   mountToContainer();
+  window.addEventListener('scroll', prepareScrollPosition);
+  window.addEventListener('mousemove', updateMousePosition);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', prepareScrollPosition);
+  window.removeEventListener('mousemove', updateMousePosition);
 });
 </script>
 

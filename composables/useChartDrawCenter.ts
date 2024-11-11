@@ -1,4 +1,4 @@
-import type { d3GSelection, Player } from '~/types';
+import type { d3GSelection } from '~/types';
 
 import { calcTextLength } from '~/assets/scripts/utils';
 
@@ -6,10 +6,8 @@ export function useChartDrawCenter() {
   const { arcGenerator } = useChartGenerators();
   const { minRadius, modifier } = useChartConfig();
 
-  function drawCenter(g: d3GSelection, hoveredPlayer: Player | null) {
+  function drawCenter(g: d3GSelection) {
     g.selectAll('.center').remove();
-
-    if (!hoveredPlayer) return;
 
     const fontSize = 11;
     const arcGroup = g.append('g').attr('class', 'center');
@@ -17,7 +15,7 @@ export function useChartDrawCenter() {
     const arcs = [
       {
         id: 'top-arc',
-        text: `${hoveredPlayer.info.name}`,
+        text: 'Click here to select players',
         radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.donut.arc.top,
         startAngle: (3 * Math.PI) / 2,
         endAngle: (5 * Math.PI) / 2,
@@ -25,7 +23,7 @@ export function useChartDrawCenter() {
       },
       {
         id: 'bottom-arc',
-        text: `#1 overall`,
+        text: `Click here to select stats`,
         radius: minRadius * modifier.radius.insideMinStatScale - modifier.space.donut.arc.bottom,
         startAngle: (3 * Math.PI) / 2,
         endAngle: Math.PI / 2,
@@ -70,16 +68,6 @@ export function useChartDrawCenter() {
       .attr('fill', '#000')
       .attr('font-size', fontSize + 5)
       .text(statValue);
-
-    arcGroup
-      .append('text')
-      .attr('x', 0)
-      .attr('y', 0 + modifier.space.donut.center.bottom)
-      .attr('text-anchor', 'middle')
-      .attr('dominant-baseline', 'middle')
-      .attr('fill', '#000')
-      .attr('font-size', fontSize)
-      .text(hoveredPlayer.info.name);
   }
 
   return {
