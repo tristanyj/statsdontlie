@@ -4,6 +4,8 @@ import { calcTextLength } from '~/assets/scripts/utils';
 import * as d3 from 'd3';
 
 export function useChartDrawCenter() {
+  const { openPicker } = useInteractionStore();
+
   const { arcGenerator } = useChartGenerators();
   const { minRadius, modifier } = useChartConfig();
 
@@ -39,7 +41,7 @@ export function useChartDrawCenter() {
         endAngle: Math.PI / 2, // End at bottom (90 degrees)
         radius: minRadius * modifier.radius.insideMinStatScale,
         background: '#123456',
-        onClick: () => console.log('Select players'),
+        onClick: () => openPicker('players'),
       },
       {
         id: 'bottom-clickable',
@@ -47,7 +49,7 @@ export function useChartDrawCenter() {
         endAngle: (3 * Math.PI) / 2, // End at top (270 degrees)
         radius: minRadius * modifier.radius.insideMinStatScale,
         background: '#272532',
-        onClick: () => console.log('Select stats'),
+        onClick: () => openPicker('stats'),
       },
     ];
 

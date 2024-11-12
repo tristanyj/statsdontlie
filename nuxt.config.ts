@@ -6,7 +6,7 @@ const SITE_URL = 'https://tristanyj.com';
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  css: ['~/assets/css/d3.css'],
+  css: ['~/assets/css/main.css'],
   app: {
     head: {
       charset: 'utf-8',

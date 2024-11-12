@@ -6,6 +6,9 @@ export const useInteractionStore = defineStore(
     const isPlayerHovered = ref(false);
     const hoveredPlayer = ref<Player | null>(null);
 
+    const isPickerOpen = ref(false);
+    const pickerType = ref<'players' | 'stats'>('players');
+
     const tooltipData = ref<TooltipData | null>();
     const mousePosition = ref({ x: 0, y: 0 });
     const scrollPosition = ref({ x: 0, y: 0 });
@@ -40,12 +43,25 @@ export const useInteractionStore = defineStore(
       tooltipData.value = data;
     };
 
+    const openPicker = (key: 'players' | 'stats') => {
+      pickerType.value = key;
+      isPickerOpen.value = true;
+    };
+
+    const setIsPickerOpen = (isOpen: boolean) => {
+      isPickerOpen.value = isOpen;
+    };
+
     return {
       isPlayerHovered,
       hoveredPlayer,
+      pickerType,
       mousePosition,
       scrollPosition,
       tooltipData,
+      isPickerOpen,
+      openPicker,
+      setIsPickerOpen,
       setHoveredPlayer,
       updateMousePosition,
       updateScrollPosition,

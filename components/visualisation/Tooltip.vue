@@ -12,7 +12,7 @@ const tooltipStyle = computed<CSSProperties>(() => {
   const posY = mousePosition.value.y;
 
   return {
-    transform: `translate(${posX + 20}px, ${posY - 70}px)`,
+    transform: `translate(${posX + 15}px, ${posY - 30}px)`,
     visibility: tooltipData.value ? 'visible' : 'hidden',
   };
 });

@@ -3,9 +3,6 @@ useHead({ title: "Home | Broadway: Compare NFL's best QBs." });
 
 const configStore = useConfigStore();
 const { isLoaded } = storeToRefs(configStore);
-
-const interactionStore = useInteractionStore();
-const { scrollPosition } = storeToRefs(interactionStore);
 </script>
 
 <template>
@@ -24,20 +21,13 @@ const { scrollPosition } = storeToRefs(interactionStore);
       </div>
       <UContainer>
         <div class="relative py-12 px-2">
-          <h1 class="uppercase text-white text-8xl">Let's compare some goats</h1>
-          <p class="text-white pl-4">(i'm talking about basketball)</p>
-          <div class="">
-            <div class="">{{ scrollPosition.x }}, {{ scrollPosition.y }}</div>
-          </div>
+          <h1 class="uppercase text-white text-8xl">
+            Compare the greatest basketball players of all time
+          </h1>
         </div>
       </UContainer>
       <div v-if="isLoaded">
         <VisualisationChart />
-        <!-- <div class="grid grid-flow-col gap-10 justify-center">
-          <VisualisationPickerPlayer />
-          <UDivider orientation="vertical" />
-          <VisualisationPickerStat />
-        </div> -->
       </div>
       <UContainer>
         <div class="relative py-20 px-10">
@@ -45,5 +35,6 @@ const { scrollPosition } = storeToRefs(interactionStore);
         </div>
       </UContainer>
     </div>
+    <VisualisationPicker />
   </div>
 </template>

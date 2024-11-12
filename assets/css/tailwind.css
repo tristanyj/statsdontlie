@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-  @apply font-anton bg-gray-50;
-  background-color: #6c9591;
-  background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
-}
