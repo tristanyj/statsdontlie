@@ -40,7 +40,7 @@ export function useChartDrawCenter() {
         startAngle: -Math.PI / 2, // Start at top (-90 degrees)
         endAngle: Math.PI / 2, // End at bottom (90 degrees)
         radius: minRadius * modifier.radius.insideMinStatScale,
-        background: '#123456',
+        background: '#f9f9f9',
         onClick: () => openPicker('players'),
       },
       {
@@ -48,7 +48,7 @@ export function useChartDrawCenter() {
         startAngle: Math.PI / 2, // Start at bottom (90 degrees)
         endAngle: (3 * Math.PI) / 2, // End at top (270 degrees)
         radius: minRadius * modifier.radius.insideMinStatScale,
-        background: '#272532',
+        background: '#f9f9f9',
         onClick: () => openPicker('stats'),
       },
     ];
@@ -95,7 +95,7 @@ export function useChartDrawCenter() {
         .attr('href', `#${arc.id}`)
         .attr('startOffset', `${textOffsetPercentage}%`)
         .style('font-size', fontSize)
-        .style('fill', '#fff')
+        .style('fill', '#222')
         .text(arc.text);
     });
 

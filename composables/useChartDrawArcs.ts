@@ -8,10 +8,13 @@ import type {
   Player,
   SubCategory,
   StatArcData,
+  StatLabelArcData,
 } from '~/types';
 
 export function useChartDrawArcs() {
-  const { setHoveredPlayer, updateMousePosition, setTooltipData } = useInteractionStore();
+  const { getCategoryById, getSubCategoryById } = useConfigStore();
+  const { setHoveredPlayer, updateMousePosition, setTooltipStat, setTooltipStatLabel } =
+    useInteractionStore();
   const { arcGenerator } = useChartGenerators();
   const { radius, minRadius, proportions, restRadius, modifier, legend } = useChartConfig();
 
@@ -40,6 +43,14 @@ export function useChartDrawArcs() {
         (player) => player.stats[stat.id]
       );
 
+      const categoryId = stat.id.split('.')[0];
+      const subCategoryId = stat.id.split('.')[1];
+
+      const category = getCategoryById(categoryId);
+      if (!category) return;
+      const subCategory = getSubCategoryById(category, subCategoryId);
+      if (!subCategory) return;
+
       const sortedValues = Array.from(playerCategoriesByIdenticalStat.keys())
         .filter((value) => value !== undefined)
         .sort((a, b) => (b || 0) - (a || 0));
@@ -63,7 +74,10 @@ export function useChartDrawArcs() {
             index: statIndex,
             value,
             stat,
+            statValue: statValue.toString(),
             player,
+            category,
+            subCategory,
             startAngle: arcStartAngle,
             endAngle: arcEndAngle,
           });
@@ -94,7 +108,20 @@ export function useChartDrawArcs() {
             arc.classed('hover', true);
 
             setHoveredPlayer(d.player);
-            setTooltipData({ id: d.id });
+            setTooltipStat({
+              id: d.id,
+              playerName: d.player.info.name,
+              playerColor: d.player.color,
+              categoryName: d.category.name,
+              subCategoryName: d.subCategory.name,
+              statName: d.stat.name,
+              value: d.statValue,
+              categoryColor: d.category.color,
+              record: {
+                value: d.stat.record.value.toString(),
+                holder: d.stat.record.name,
+              },
+            });
             updateMousePosition(event);
           })
           .on('mousemove', (event) => {
@@ -107,11 +134,11 @@ export function useChartDrawArcs() {
             g.select(`.stat-arc-normal.arc-${d.id}`).classed('hover', false);
 
             setHoveredPlayer(null);
-            setTooltipData(null);
+            setTooltipStat(null);
           })
       );
 
-    if (!interaction) return;
+    if (interaction) return;
 
     g.append('path')
       .attr('class', 'legend-arc')
@@ -125,12 +152,7 @@ export function useChartDrawArcs() {
           data: null,
         })
       )
-      .attr('fill', modifier.color.default)
-      .attr('opacity', 0)
-      .call((enter) => {
-        if (interaction) return;
-        enter.transition().duration(0).attr('opacity', 1);
-      });
+      .attr('fill', '#e0e0e0');
   }
 
   function drawStatLabelArcs(
@@ -149,38 +171,67 @@ export function useChartDrawArcs() {
       });
     };
 
+    const arcData: Array<StatLabelArcData> = [];
+
+    selectedStats.forEach((stat, statIndex) => {
+      const categoryId = stat.id.split('.')[0];
+      const subCategoryId = stat.id.split('.')[1];
+
+      const category = getCategoryById(categoryId);
+      if (!category) return;
+      const subCategory = getSubCategoryById(category, subCategoryId);
+      if (!subCategory) return;
+
+      arcData.push({
+        id: `${stat.id.replace(/\./g, '_')}-${stat.id}`,
+        index: getGroupIndex(statIndex),
+        stat,
+        category,
+        subCategory,
+        startAngle: circleScale(statIndex),
+        endAngle: circleScale(statIndex + 1),
+      });
+    });
+
     g.selectAll(`.${className}`)
-      .data(
-        selectedStats
-          .map((data, i) => ({
-            innerRadius: radius * proportions[0],
-            outerRadius: radius * proportions[1],
-            startAngle: circleScale(i),
-            endAngle: circleScale(i + 1),
-            data,
-            groupIndex: getGroupIndex(i),
-          }))
-          .concat([
-            {
+      .data(arcData, (d) => (d as StatArcData).id)
+      .join((enter) =>
+        enter
+          .append('path')
+          .attr('class', (d) => `${className} arc-${d.id}`)
+          .attr('d', (d) =>
+            arcGenerator({
               innerRadius: radius * proportions[0],
               outerRadius: radius * proportions[1],
-              startAngle: circleScale(selectedStats.length),
-              endAngle: circleScale(selectedStats.length + legend.columnCount),
-              data: null as unknown as EnrichedStat,
-              groupIndex: -1,
-            },
-          ])
-      )
-      .join('path')
-      .attr('class', className)
-      .attr('d', arcGenerator)
-      .attr('fill', (d) => d.data?.color ?? 'none')
-      .attr('opacity', (d) => {
-        if (d.groupIndex === -1) return 0;
-        return d.groupIndex % 2 === 0
-          ? modifier.color.subCategoryLabel.background.opacity.even
-          : modifier.color.subCategoryLabel.background.opacity.odd;
-      });
+              startAngle: d.startAngle,
+              endAngle: d.endAngle,
+              data: d,
+            })
+          )
+          .attr('fill', (d) => d.stat?.color ?? 'none')
+          .attr('opacity', (d) => {
+            return d.index % 2 === 0
+              ? modifier.color.subCategoryLabel.background.opacity.even
+              : modifier.color.subCategoryLabel.background.opacity.odd;
+          })
+          .on('mouseenter', (_, d) => {
+            setTooltipStatLabel({
+              id: d.id,
+              categoryName: d.category.name,
+              categoryColor: d.category.color,
+              subCategoryName: d.subCategory.name,
+              statName: d.stat.name,
+              statDescription: 'lol',
+              record: {
+                value: d.stat.record.value.toString(),
+                holder: d.stat.record.name,
+              },
+            });
+          })
+          .on('mouseleave', () => {
+            setTooltipStatLabel(null);
+          })
+      );
   }
 
   function drawGroupArcs(

@@ -17,7 +17,6 @@ const { drawCenter } = useChartDrawCenter();
 const { scales, updateScale } = useChartScales();
 
 const interactionStore = useInteractionStore();
-const { mousePosition, tooltipData } = storeToRefs(interactionStore);
 const { updateMousePosition, updateScrollPosition } = interactionStore;
 
 const configStore = useConfigStore();
@@ -204,10 +203,7 @@ onUnmounted(() => {
 
 <template>
   <div class="relative z-10">
-    <VisualisationTooltip
-      :tooltip-data="tooltipData"
-      :mouse-position="mousePosition"
-    />
+    <VisualisationTooltip />
     <div
       id="container"
       ref="container"

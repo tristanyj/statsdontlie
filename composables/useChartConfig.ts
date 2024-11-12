@@ -163,7 +163,7 @@ export function useChartConfig() {
 
   const radiusModifier = {
     outsideMaxStatScale: 1.0325,
-    insideMinStatScale: 0.8,
+    insideMinStatScale: 0.9,
     statLabel: 1.08,
   };
 

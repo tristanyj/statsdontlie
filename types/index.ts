@@ -91,9 +91,22 @@ export interface StatArcData {
   index: number;
   value: number;
   stat: EnrichedStat;
+  statValue: string;
   player: Player;
   startAngle: number;
   endAngle: number;
+  category: Category;
+  subCategory: SubCategory;
+}
+
+export interface StatLabelArcData {
+  id: string;
+  index: number;
+  stat: EnrichedStat;
+  startAngle: number;
+  endAngle: number;
+  category: Category;
+  subCategory: SubCategory;
 }
 
 export interface LineData {
@@ -106,6 +119,30 @@ export interface LineData {
   transform: string;
 }
 
-export interface TooltipData {
+export interface TooltipStat {
   id: string;
+  playerName: string;
+  playerColor: `#${string}`;
+  categoryName: string;
+  categoryColor: `#${string}`;
+  subCategoryName: string;
+  statName: string;
+  value: string;
+  record: {
+    value: string;
+    holder: string;
+  };
+}
+
+export interface ToolTipStatLabel {
+  id: string;
+  categoryName: string;
+  categoryColor: `#${string}`;
+  subCategoryName: string;
+  statName: string;
+  statDescription: string;
+  record: {
+    value: string;
+    holder: string;
+  };
 }

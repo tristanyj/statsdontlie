@@ -1,4 +1,4 @@
-import type { Player, TooltipData } from '~/types';
+import type { Player, TooltipStat, ToolTipStatLabel } from '~/types';
 
 export const useInteractionStore = defineStore(
   'interaction',
@@ -9,7 +9,11 @@ export const useInteractionStore = defineStore(
     const isPickerOpen = ref(false);
     const pickerType = ref<'players' | 'stats'>('players');
 
-    const tooltipData = ref<TooltipData | null>();
+    const tooltipStat = ref<TooltipStat | null>();
+    const tooltipStatLabel = ref<ToolTipStatLabel | null>();
+
+    const isTooltipVisible = computed(() => !!tooltipStat.value || !!tooltipStatLabel.value);
+
     const mousePosition = ref({ x: 0, y: 0 });
     const scrollPosition = ref({ x: 0, y: 0 });
 
@@ -39,8 +43,12 @@ export const useInteractionStore = defineStore(
       };
     };
 
-    const setTooltipData = (data: TooltipData | null) => {
-      tooltipData.value = data;
+    const setTooltipStat = (data: TooltipStat | null) => {
+      tooltipStat.value = data;
+    };
+
+    const setTooltipStatLabel = (data: ToolTipStatLabel | null) => {
+      tooltipStatLabel.value = data;
     };
 
     const openPicker = (key: 'players' | 'stats') => {
@@ -58,14 +66,17 @@ export const useInteractionStore = defineStore(
       pickerType,
       mousePosition,
       scrollPosition,
-      tooltipData,
+      tooltipStat,
+      tooltipStatLabel,
       isPickerOpen,
+      isTooltipVisible,
       openPicker,
       setIsPickerOpen,
       setHoveredPlayer,
       updateMousePosition,
       updateScrollPosition,
-      setTooltipData,
+      setTooltipStat,
+      setTooltipStatLabel,
     };
   }
   // { persist: true }

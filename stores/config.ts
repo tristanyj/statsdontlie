@@ -141,6 +141,13 @@ export const useConfigStore = defineStore('config', () => {
     },
   });
 
+  const getCategoryById = (id: string) => categories.value.find((category) => category.id === id);
+  const getSubCategoryById = (category: Category, subCategoryId: string) => {
+    return category?.subCategories.find(
+      (subCategory) => subCategory.id === `${category.id}.${subCategoryId}`
+    );
+  };
+
   const setCategories = (d: Category[]) => (categories.value = d);
   const setPlayers = (d: Player[]) => (players.value = d);
 
@@ -165,5 +172,7 @@ export const useConfigStore = defineStore('config', () => {
     setPlayers,
     setSelectedPlayerIds,
     setSelectedStatIds,
+    getCategoryById,
+    getSubCategoryById,
   };
 });
