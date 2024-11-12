@@ -128,13 +128,9 @@ export function useChartConfig() {
 
   const spaceModifier = {
     donut: {
-      center: {
-        top: -12,
-        bottom: 8,
-      },
       arc: {
-        top: 18,
-        bottom: 10,
+        top: 24,
+        bottom: 16,
       },
     },
     categoryLabel: {

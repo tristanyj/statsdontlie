@@ -99,7 +99,7 @@ export const useConfigStore = defineStore('config', () => {
   const selectedStatIdsCount = computed(() => selectedStatIds.value.length);
 
   const selectablePlayers = computed(() => {
-    return players.value.map(({ id, info }) => ({ id, info }));
+    return players.value.map(({ id, color, info }) => ({ id, color, info }));
   });
 
   const selectableCategories = computed(() => {
