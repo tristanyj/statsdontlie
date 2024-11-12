@@ -53,6 +53,7 @@ const g = ref<d3GSelection | null>(null);
 
 function createVisualization() {
   if (!g.value) return;
+
   g.value.selectAll('*').remove();
 
   // -----------------
@@ -122,6 +123,10 @@ function createVisualization() {
 
   drawStatIntersectionPoints(g.value, scales.circle, selectedStatIdsCount.value);
 
+  // -----------------
+  // OVERLAY
+  // -----------------
+
   drawScaleLabels(g.value, scales.circle, selectedStats.value);
 
   // -----------------
@@ -135,6 +140,14 @@ function createVisualization() {
   // -----------------
 
   drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value, true);
+  drawStatLabelArcs(
+    g.value,
+    scales.circle,
+    selectedStats.value,
+    indices.value.subCategory,
+    selectedSubCategories.value,
+    true
+  );
 }
 
 function updateVisualization() {

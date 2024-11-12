@@ -17,17 +17,26 @@ body {
 
 .stat-arc-hover {
   opacity: 0 !important;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .stat-arc-normal.hover {
   filter: brightness(0.9) !important;
 }
 
+.stat-label-arc-hover {
+  opacity: 0 !important;
+  /* cursor: pointer; */
+}
+
+.stat-label-arc-normal.hover {
+  filter: brightness(0.9) !important;
+}
+
 .top-clickable-hover,
 .bottom-clickable-hover {
   opacity: 0 !important;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .top-clickable-normal.hover,

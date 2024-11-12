@@ -1,4 +1,3 @@
-import * as d3 from 'd3';
 import { group as d3Group } from 'd3-array';
 
 import type {
@@ -104,7 +103,7 @@ export function useChartDrawArcs() {
           .on('mouseenter', (event, d) => {
             if (!interaction) return;
 
-            const arc = d3.select(`.stat-arc-normal.arc-${d.id}`);
+            const arc = g.select(`.stat-arc-normal.arc-${d.id}`);
             arc.classed('hover', true);
 
             setHoveredPlayer(d.player);
@@ -160,10 +159,11 @@ export function useChartDrawArcs() {
     g: d3GSelection,
     circleScale: d3.ScaleLinear<number, number>,
     selectedStats: EnrichedStat[],
-    indices: number[], // Add indices parameter
-    groups: SubCategory[] // Add groups parameter, specifically SubCategory[]
+    indices: number[],
+    groups: SubCategory[],
+    interaction = false
   ) {
-    const className = 'stat-label-arc';
+    const className = `stat-label-arc-${interaction ? 'hover' : 'normal'}`;
 
     const getGroupIndex = (statIndex: number) => {
       return indices.findIndex((startIndex, i) => {
@@ -184,7 +184,7 @@ export function useChartDrawArcs() {
       if (!subCategory) return;
 
       arcData.push({
-        id: `${stat.id.replace(/\./g, '_')}-${stat.id}`,
+        id: `${stat.id.replace(/\./g, '_')}`,
         index: getGroupIndex(statIndex),
         stat,
         category,
@@ -199,7 +199,7 @@ export function useChartDrawArcs() {
       .join((enter) =>
         enter
           .append('path')
-          .attr('class', (d) => `${className} arc-${d.id}`)
+          .attr('class', (d) => `${className} arc-label-${d.id}`)
           .attr('d', (d) =>
             arcGenerator({
               innerRadius: radius * proportions[0],
@@ -216,6 +216,11 @@ export function useChartDrawArcs() {
               : modifier.color.subCategoryLabel.background.opacity.odd;
           })
           .on('mouseenter', (_, d) => {
+            if (!interaction) return;
+
+            const arc = g.select(`.stat-label-arc-normal.arc-label-${d.id}`);
+            arc.classed('hover', true);
+
             setTooltipStatLabel({
               id: d.id,
               categoryName: d.category.name,
@@ -229,7 +234,10 @@ export function useChartDrawArcs() {
               },
             });
           })
-          .on('mouseleave', () => {
+          .on('mouseleave', (_, d) => {
+            if (!interaction) return;
+
+            g.select(`.stat-label-arc-normal.arc-label-${d.id}`).classed('hover', false);
             setTooltipStatLabel(null);
           })
       );
