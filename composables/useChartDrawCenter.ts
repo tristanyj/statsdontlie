@@ -4,10 +4,23 @@ import { calcTextLength } from '~/assets/scripts/utils';
 import * as d3 from 'd3';
 
 export function useChartDrawCenter() {
-  const { openPicker } = useInteractionStore();
+  const { openPicker, setHoveredCategory } = useInteractionStore();
 
   const { arcGenerator } = useChartGenerators();
-  const { minRadius, modifier } = useChartConfig();
+  const { width, height, minRadius, modifier } = useChartConfig();
+
+  function drawBackground(g: d3GSelection) {
+    g.append('rect')
+      .attr('class', 'background')
+      .attr('x', -width / 2)
+      .attr('y', -height / 2)
+      .attr('width', width)
+      .attr('height', height)
+      .attr('fill', 'transparent')
+      .on('click', () => {
+        setHoveredCategory(null);
+      });
+  }
 
   function drawCenter(g: d3GSelection) {
     g.selectAll('.center').remove();
@@ -41,7 +54,10 @@ export function useChartDrawCenter() {
         endAngle: Math.PI / 2, // End at bottom (90 degrees)
         radius: minRadius * modifier.radius.insideMinStatScale,
         background: '#f9f9f9',
-        onClick: () => openPicker('players'),
+        onClick: () => {
+          openPicker('players');
+          setHoveredCategory(null);
+        },
       },
       {
         id: 'bottom-clickable',
@@ -49,7 +65,10 @@ export function useChartDrawCenter() {
         endAngle: (3 * Math.PI) / 2, // End at top (270 degrees)
         radius: minRadius * modifier.radius.insideMinStatScale,
         background: '#f9f9f9',
-        onClick: () => openPicker('stats'),
+        onClick: () => {
+          openPicker('stats');
+          setHoveredCategory(null);
+        },
       },
     ];
 
@@ -127,17 +146,27 @@ export function useChartDrawCenter() {
     });
 
     // arcGroup
-    //   .append('text')
-    //   .attr('x', 0)
-    //   .attr('y', 0 + modifier.space.donut.center.top)
-    //   .attr('text-anchor', 'middle')
-    //   .attr('dominant-baseline', 'middle')
-    //   .attr('fill', modifier.color.black)
-    //   .attr('font-size', fontSize + 5)
-    //   .text(statValue);
+    //   .append('path')
+    //   .attr(
+    //     'd',
+    //     arcGenerator({
+    //       innerRadius: minRadius * modifier.radius.insideMinStatScale,
+    //       outerRadius: minRadius,
+    //       startAngle: 0,
+    //       endAngle: Math.PI * 2,
+    //       data: null,
+    //     })
+    //   )
+    //   .on('click', () => {
+    //     setHoveredCategory(null);
+    //   })
+    //   .attr('fill', 'transparent')
+    //   .attr('stroke', modifier.color.separator.stroke)
+    //   .attr('stroke-opacity', modifier.color.separator.highOpacity);
   }
 
   return {
+    drawBackground,
     drawCenter,
   };
 }

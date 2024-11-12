@@ -84,7 +84,6 @@ export function useChartDrawArcs() {
           })
         )
         .on('click', () => {
-          console.log('clicked');
           setHoveredCategory(null);
         })
         .attr('fill', modifier.color.black)
@@ -144,7 +143,6 @@ export function useChartDrawArcs() {
           })
         )
         .on('click', () => {
-          console.log('clicked');
           setHoveredCategory(null);
         })
         .attr('fill', modifier.color.black)

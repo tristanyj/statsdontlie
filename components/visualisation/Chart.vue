@@ -14,12 +14,12 @@ const {
 const { drawCircularSeparators, drawLinearSeparators } = useChartDrawLines();
 const { drawStatLabels, drawScaleLabels, drawGroupLabels } = useChartDrawLabels();
 const { drawStatIntersectionPoints } = useChartDrawPoints();
-const { drawCenter } = useChartDrawCenter();
+const { drawBackground, drawCenter } = useChartDrawCenter();
 const { scales, updateScale } = useChartScales();
 
 const interactionStore = useInteractionStore();
 const { hoveredCategory } = storeToRefs(interactionStore);
-const { updateMousePosition, updateScrollPosition } = interactionStore;
+const { updateMousePosition, updateScrollPosition, setHoveredCategory } = interactionStore;
 
 const configStore = useConfigStore();
 const {
@@ -57,6 +57,8 @@ function createVisualization() {
   if (!g.value) return;
 
   g.value.selectAll('*').remove();
+
+  drawBackground(g.value);
 
   // -----------------
   // ARCS
@@ -234,15 +236,23 @@ function prepareScrollPosition() {
   updateScrollPosition(window.scrollX, window.scrollY);
 }
 
+const handleOutsideClick = (event: MouseEvent) => {
+  if (container.value && !container.value.contains(event.target as Node)) {
+    setHoveredCategory(null);
+  }
+};
+
 onMounted(() => {
   mountToContainer();
   window.addEventListener('scroll', prepareScrollPosition);
   window.addEventListener('mousemove', updateMousePosition);
+  window.addEventListener('click', handleOutsideClick);
 });
 
 onUnmounted(() => {
   window.removeEventListener('scroll', prepareScrollPosition);
   window.removeEventListener('mousemove', updateMousePosition);
+  window.removeEventListener('click', handleOutsideClick);
 });
 </script>
 
@@ -252,6 +262,7 @@ onUnmounted(() => {
     <div
       id="container"
       ref="container"
+      @click.stop
     />
   </div>
 </template>
