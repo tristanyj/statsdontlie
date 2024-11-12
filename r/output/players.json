@@ -2,7 +2,7 @@
   "players": [
     {
       "id": "abdulka01",
-      "color": "#ccd5ae",
+      "color": "#FF6B6B",
       "info": {
         "name": "Kareem Abdul-Jabbar",
         "nickname": "Lew",
@@ -157,7 +157,7 @@
     },
     {
       "id": "jamesle01",
-      "color": "#f28482",
+      "color": "#4ECDC4",
       "info": {
         "name": "LeBron James",
         "nickname": "King James",
@@ -313,7 +313,7 @@
     },
     {
       "id": "chambwi01",
-      "color": "#778da9",
+      "color": "#45B7D1",
       "info": {
         "name": "Wilt Chamberlain",
         "nickname": "Wilt the Stilt",

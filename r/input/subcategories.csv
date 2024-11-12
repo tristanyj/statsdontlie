@@ -1,11 +1,11 @@
-id,name,color
-regular_season.total,Career Totals,#c7eae4
-regular_season.per_game,Per Game,#f1e2cc
-regular_season.advanced,Advanced Stats,#f1e2cc
-regular_season.game_high,Game Highs,#f1e2cc
-post_season.total,Career Totals,#c7eae4
-post_season.per_game,Per Game,#f1e2cc
-post_season.advanced,Advanced Stats,#f1e2cc
-post_season.game_high,Game Highs,#f1e2cc
-awards.individual,Individual Awards,#c7eae4
-awards.team,Team Awards,#fbf2c0
+id,name
+regular_season.total,Career Total
+regular_season.per_game,Per Game
+regular_season.advanced,Advanced Stats
+regular_season.game_high,Game High
+post_season.total,Career Total
+post_season.per_game,Per Game
+post_season.advanced,Advanced Stats
+post_season.game_high,Game High
+awards.individual,Individual Awards
+awards.team,Team Awards

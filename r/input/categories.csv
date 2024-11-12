@@ -1,4 +1,4 @@
-id,name,color,color_variant_1,color_variant_2
-regular_season,Regular Season,#e9edc9,#e9edc9,#fbfaf8
-post_season,Post Season,#d5bdaf,#d5bdaf,#fbfaf8
-awards,Awards & Milestones,#ffe69e,#ffe69e,#fbfaf8
+id,name,color
+regular_season,Regular Season,#94d2bd
+post_season,Post Season,#ddbea9
+awards,Awards & Honors,#ffe69e

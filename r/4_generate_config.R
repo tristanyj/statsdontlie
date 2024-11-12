@@ -49,6 +49,7 @@ build_config <- function(categories, subcategories, stats) {
         list(
           id = sub_stats[k, "id"][[1]],
           name = sub_stats[k, "name"][[1]],
+          description = sub_stats[k, "description"][[1]],
           color = color,
           meta = create_meta(
             sub_stats[k, "scale_type"][[1]],
@@ -58,7 +59,7 @@ build_config <- function(categories, subcategories, stats) {
           ),
           record = list(
             value = sub_stats[k, "record_value"][[1]],
-            name = sub_stats[k, "record_holder"][[1]]
+            name = gsub("\\|", ", ", sub_stats[k, "record_holder"][[1]])
           )
         )
       })

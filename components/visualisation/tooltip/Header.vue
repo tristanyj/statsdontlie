@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
   <div
-    class="border-b pb-1 p-2"
+    class="pb-1 p-2"
     :style="{ background: `${categoryColor}1A` }"
   >
     <div class="flex gap-1 mb-1 text-sm">
@@ -35,7 +35,7 @@ defineProps<{
     </div>
     <div
       v-if="statDescription"
-      class="text-xs"
+      class="text-xs mb-1"
     >
       {{ statDescription }}
     </div>

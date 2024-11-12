@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <div
-    class="p-2 border-b"
+    class="p-2"
     :style="{ background: `${color}33` }"
   >
     <div class="text-2xl font-semibold">

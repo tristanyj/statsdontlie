@@ -1,132 +1,132 @@
-id,name,scale_type,format_type,domain_min,record_value,record_holder
-regular_season.total.games_played,Games Played,linear,number,0,1611,Robert Parish
-regular_season.total.games_started,Games Started,linear,number,0,1499,LeBron James
-regular_season.total.minutes_played,Minutes Played,linear,number,0,57446,Kareem Abdul-Jabbar
-regular_season.total.field_goals_made,Field Goals Made,linear,number,0,15837,Kareem Abdul-Jabbar
-regular_season.total.field_goal_attempts,Field Goal Attempts,linear,number,0,29313,LeBron James
-regular_season.total.field_goal_percentage,Field Goal Percentage,linear,percentage,0.3,0.6739,DeAndre Jordan
-regular_season.total.three_point_field_goals_made,Three Point Field Goals Made,linear,number,0,3767,Stephen Curry
-regular_season.total.three_point_field_goal_attempts,Three Point Field Goal Attempts,linear,number,0,8854,Stephen Curry
-regular_season.total.three_point_field_goal_percentage,Three Point Field Goal Percentage,linear,percentage,0,0.454,Steve Kerr
-regular_season.total.free_throws_made,Free Throws Made,linear,number,0,9787,Karl Malone
-regular_season.total.free_throw_attempts,Free Throw Attempts,linear,number,0,13188,Karl Malone
-regular_season.total.free_throw_percentage,Free Throw Percentage,linear,percentage,0.5,0.91,Stephen Curry
-regular_season.total.offensive_rebounds,Offensive Rebounds,linear,number,0,6731,Moses Malone
-regular_season.total.defensive_rebounds,Defensive Rebounds,linear,number,0,11453,Kevin Garnett
-regular_season.total.total_rebounds,Total Rebounds,linear,number,0,23924,Wilt Chamberlain
-regular_season.total.assists,Assists,linear,number,0,15806,John Stockton
-regular_season.total.steals,Steals,linear,number,0,3265,John Stockton
-regular_season.total.blocks,Blocks,linear,number,0,3830,Hakeem Olajuwon
-regular_season.total.turnovers,Turnovers,linear,number,0,5236,LeBron James
-regular_season.total.personal_fouls,Personal Fouls,linear,number,0,4657,Kareem Abdul-Jabbar
-regular_season.total.points,Points,linear,number,0,40687,LeBron James
-regular_season.total.triple_doubles,Triple Doubles,linear,number,0,199,Russell Westbrook
-regular_season.per_game.minutes_played,Minutes Played,linear,number,0,45.8,Wilt Chamberlain
-regular_season.per_game.field_goals_made,Field Goals Made,linear,number,0,12.1,Wilt Chamberlain
-regular_season.per_game.field_goal_attempts,Field Goal Attempts,linear,number,0,23.8,Elgin Baylor
-regular_season.per_game.three_point_field_goals_made,Three Point Field Goals Made,linear,number,0,3.9,Stephen Curry
-regular_season.per_game.three_point_field_goal_attempts,Three Point Field Goal Attempts,linear,number,0,9.2,Stephen Curry
-regular_season.per_game.free_throws_made,Free Throws Made,linear,number,0,8.3,Joel Embiid
-regular_season.per_game.free_throw_attempts,Free Throw Attempts,linear,number,0,11.4,Wilt Chamberlain
-regular_season.per_game.offensive_rebounds,Offensive Rebounds,linear,number,0,5.1,Moses Malone
-regular_season.per_game.defensive_rebounds,Defensive Rebounds,linear,number,0,9.8,Dave Cowens
-regular_season.per_game.total_rebounds,Total Rebounds,linear,number,0,22.89,Wilt Chamberlain
-regular_season.per_game.assists,Assists,linear,number,0,11.19,Magic Johnson
-regular_season.per_game.steals,Steals,linear,number,0,2.71,Alvin Robertson
-regular_season.per_game.blocks,Blocks,linear,number,0,3.5,Mark Eaton
-regular_season.per_game.turnovers,Turnovers,linear,number,0,4.2,Trae Young
-regular_season.per_game.personal_fouls,Personal Fouls,linear,number,0,4.2,George Mikan
-regular_season.per_game.points,Points,linear,number,0,30.12,Michael Jordan
-regular_season.advanced.player_efficiency_rating,Player Efficiency Rating,linear,number,0,28.14,Nikola Jokic
-regular_season.advanced.true_shooting_percentage,True Shooting Percentage,linear,percentage,0.5,0.6719,Rudy Gobert
-regular_season.advanced.usage_percentage,Usage Percentage,linear,percentage,0,33.26,Michael Jordan
-regular_season.advanced.win_shares,Win Shares,linear,number,0,273.41,Kareem Abdul-Jabbar
-regular_season.advanced.box_plus_minus,Box Plus/Minus,linear,number,-11.1,9.98,Nikola Jokic
-regular_season.advanced.value_over_replacement_player,Value Over Replacement Player,linear,number,0,152.57,LeBron James
-regular_season.game_high.field_goals_made,Field Goals Made,linear,number,0,36,Wilt Chamberlain
-regular_season.game_high.field_goal_attempts,Field Goal Attempts,linear,number,0,63,Wilt Chamberlain
-regular_season.game_high.three_point_field_goals_made,Three Point Field Goals Made,linear,number,0,14,Klay Thompson
-regular_season.game_high.three_point_field_goal_attempts,Three Point Field Goal Attempts,linear,number,0,24,Klay Thompson
-regular_season.game_high.free_throws_made,Free Throws Made,linear,number,0,28,Wilt Chamberlain|Adrian Dantley
-regular_season.game_high.free_throw_attempts,Free Throw Attempts,linear,number,0,39,Dwight Howard
-regular_season.game_high.offensive_rebounds,Offensive Rebounds,linear,number,0,21,Moses Malone
-regular_season.game_high.defensive_rebounds,Defensive Rebounds,linear,number,0,29,Kareem Abdul-Jabbar
-regular_season.game_high.total_rebounds,Total Rebounds,linear,number,0,55,Wilt Chamberlain
-regular_season.game_high.assists,Assists,linear,number,0,30,Scott Skiles
-regular_season.game_high.steals,Steals,linear,number,0,11,Larry Kenon|Kendall Gill
-regular_season.game_high.blocks,Blocks,linear,number,0,17,Elmore Smith
-regular_season.game_high.turnovers,Turnovers,linear,number,0,14,Jason Kidd|John Drew
-regular_season.game_high.points,Points,linear,number,0,100,Wilt Chamberlain
-post_season.total.games_played,Games Played,linear,number,0,287,LeBron James
-post_season.total.games_started,Games Started,linear,number,0,287,LeBron James
-post_season.total.minutes_played,Minutes Played,linear,number,0,11858,LeBron James
-post_season.total.field_goals_made,Field Goals Made,linear,number,0,2928,LeBron James
-post_season.total.field_goal_attempts,Field Goal Attempts,linear,number,0,5896,LeBron James
-post_season.total.field_goal_percentage,Field Goal Percentage,linear,percentage,0.3,0.6667,DeAndre Jordan
-post_season.total.three_point_field_goals_made,Three Point Field Goals Made,linear,number,0,618,Stephen Curry
-post_season.total.three_point_field_goal_attempts,Three Point Field Goal Attempts,linear,number,0,1557,Stephen Curry
-post_season.total.three_point_field_goal_percentage,Three Point Field Goal Percentage,linear,percentage,0,0.5,Bob Hansen
-post_season.total.free_throws_made,Free Throws Made,linear,number,0,1836,LeBron James
-post_season.total.free_throw_attempts,Free Throw Attempts,linear,number,0,2479,LeBron James
-post_season.total.free_throw_percentage,Free Throw Percentage,linear,percentage,0.5,0.9496,Gordon Hayward
-post_season.total.offensive_rebounds,Offensive Rebounds,linear,number,0,866,Shaquille O'Neal
-post_season.total.defensive_rebounds,Defensive Rebounds,linear,number,0,2153,LeBron James
-post_season.total.total_rebounds,Total Rebounds,linear,number,0,4104,Bill Russell
-post_season.total.assists,Assists,linear,number,0,2346,Magic Johnson
-post_season.total.steals,Steals,linear,number,0,483,LeBron James
-post_season.total.blocks,Blocks,linear,number,0,568,Tim Duncan
-post_season.total.turnovers,Turnovers,linear,number,0,1034,LeBron James
-post_season.total.personal_fouls,Personal Fouls,linear,number,0,797,Kareem Abdul-Jabbar
-post_season.total.points,Points,linear,number,0,8162,LeBron James
-post_season.total.triple_doubles,Triple Doubles,linear,number,0,30,Magic Johnson
-post_season.per_game.minutes_played,Minutes Played,linear,number,0,47.24,Wilt Chamberlain
-post_season.per_game.field_goals_made,Field Goals Made,linear,number,0,12.2,Michael Jordan
-post_season.per_game.field_goal_attempts,Field Goal Attempts,linear,number,0,26.5,Allen Iverson
-post_season.per_game.three_point_field_goals_made,Three Point Field Goals Made,linear,number,0,4.2,Stephen Curry
-post_season.per_game.three_point_field_goal_attempts,Three Point Field Goal Attempts,linear,number,0,10.6,Stephen Curry
-post_season.per_game.free_throws_made,Free Throws Made,linear,number,0,8.2,Michael Jordan
-post_season.per_game.free_throw_attempts,Free Throw Attempts,linear,number,0,10.7,Shaquille O'Neal
-post_season.per_game.offensive_rebounds,Offensive Rebounds,linear,number,0,5.4,Moses Malone
-post_season.per_game.defensive_rebounds,Defensive Rebounds,linear,number,0,10.4,Dave Cowens
-post_season.per_game.total_rebounds,Total Rebounds,linear,number,0,24.87,Bill Russell
-post_season.per_game.assists,Assists,linear,number,0,12.35,Magic Johnson
-post_season.per_game.steals,Steals,linear,number,0,2.28,Baron Davis
-post_season.per_game.blocks,Blocks,linear,number,0,3.26,Hakeem Olajuwon
-post_season.per_game.turnovers,Turnovers,linear,number,0,4.4,Trae Young
-post_season.per_game.personal_fouls,Personal Fouls,linear,number,0,4.8,Walter Dukes|Charlie Scott
-post_season.per_game.points,Points,linear,number,0,33.45,Michael Jordan
-post_season.advanced.player_efficiency_rating,Player Efficiency Rating,linear,number,0,29.17,Nikola Jokic
-post_season.advanced.true_shooting_percentage,True Shooting Percentage,linear,percentage,0.5,0.6634,Rudy Gobert
-post_season.advanced.usage_percentage,Usage Percentage,linear,percentage,0,36.84,Luka Doncic
-post_season.advanced.win_shares,Win Shares,linear,number,0,58.67,LeBron James
-post_season.advanced.box_plus_minus,Box Plus/Minus,linear,number,-11.1,11.14,Michael Jordan
-post_season.advanced.value_over_replacement_player,Value Over Replacement Player,linear,number,0,36.05,LeBron James
-post_season.game_high.field_goals_made,Field Goals Made,linear,number,0,24,Michael Jordan|Wilt Chamberlain|John Havlicek
-post_season.game_high.field_goal_attempts,Field Goal Attempts,linear,number,0,48,Wilt Chamberlain|Rick Barry
-post_season.game_high.three_point_field_goals_made,Three Point Field Goals Made,linear,number,0,12,Damian Lillard
-post_season.game_high.three_point_field_goal_attempts,Three Point Field Goal Attempts,linear,number,0,19,Russell Westbrook
-post_season.game_high.free_throws_made,Free Throws Made,linear,number,0,30,Bob Cousy
-post_season.game_high.free_throw_attempts,Free Throw Attempts,linear,number,0,39,Shaquille O'Neal
-post_season.game_high.offensive_rebounds,Offensive Rebounds,linear,number,0,15,Moses Malone
-post_season.game_high.defensive_rebounds,Defensive Rebounds,linear,number,0,20,5 players
-post_season.game_high.total_rebounds,Total Rebounds,linear,number,0,41,Wilt Chamberlain
-post_season.game_high.assists,Assists,linear,number,0,24,Magic Johnson|John Stockton
-post_season.game_high.steals,Steals,linear,number,0,10,Allen Iverson
-post_season.game_high.blocks,Blocks,linear,number,0,10,Mark Eaton|Hakeem Olajuwon|Andrew Bynum
-post_season.game_high.turnovers,Turnovers,linear,number,0,12,James Harden
-post_season.game_high.points,Points,linear,number,0,63,Michael Jordan
-awards.individual.mvp,MVP,linear,number,0,6,Kareem Abdul-Jabbar
-awards.individual.finals_mvp,Finals MVP,linear,number,0,6,Michael Jordan
-awards.individual.dpoy,Defensive Player of the Year,linear,number,0,4,Rudy Gobert|Dikembe Mutombo|Ben Wallace
-awards.individual.all_star,All-Star Selections,linear,number,0,20,LeBron James
-awards.individual.all_nba,All-NBA Selections,linear,number,0,20,LeBron James
-awards.individual.all_nba_first,All-NBA First Team Selections,linear,number,0,13,LeBron James
-awards.individual.all_nba_second,All-NBA Second Team Selections,linear,number,0,8,Bill Russell
-awards.individual.all_nba_third,All-NBA Third Team Selections,linear,number,0,5,Paul George
-awards.individual.all_defensive,All-Defensive Selections,linear,number,0,15,Tim Duncan
-awards.individual.all_defensive_first,All-Defensive First Team Selections,linear,number,0,9,Kobe Bryant|Michael Jordan|Gary Payton|Kevin Garnett
-awards.individual.all_defensive_second,All-Defensive Second Team Selections,linear,number,0,7,Tim Duncan
-awards.individual.player_week,Player of the Week Awards,linear,number,0,64,LeBron James
-awards.individual.player_month,Player of the Month Awards,linear,number,0,46,LeBron James
-awards.team.nba_championships,NBA Championships,linear,number,0,11,Bill Russell
-awards.team.conference_championships,Conference Championships,linear,number,0,12,Bill Russell
+id,name,description,scale_type,format_type,domain_min,record_value,record_holder
+regular_season.total.games_played,Games Played,Select this text to update the description for this stat.,linear,number,0,1611,Robert Parish
+regular_season.total.games_started,Games Started,Select this text to update the description for this stat.,linear,number,0,1499,LeBron James
+regular_season.total.minutes_played,Minutes Played,Select this text to update the description for this stat.,linear,number,0,57446,Kareem Abdul-Jabbar
+regular_season.total.field_goals_made,Field Goals Made,Select this text to update the description for this stat.,linear,number,0,15837,Kareem Abdul-Jabbar
+regular_season.total.field_goal_attempts,Field Goal Attempts,Select this text to update the description for this stat.,linear,number,0,29313,LeBron James
+regular_season.total.field_goal_percentage,Field Goal Percentage,Select this text to update the description for this stat.,linear,percentage,0.3,0.6739,DeAndre Jordan
+regular_season.total.three_point_field_goals_made,Three Point Field Goals Made,Select this text to update the description for this stat.,linear,number,0,3767,Stephen Curry
+regular_season.total.three_point_field_goal_attempts,Three Point Field Goal Attempts,Select this text to update the description for this stat.,linear,number,0,8854,Stephen Curry
+regular_season.total.three_point_field_goal_percentage,Three Point Field Goal Percentage,Select this text to update the description for this stat.,linear,percentage,0,0.454,Steve Kerr
+regular_season.total.free_throws_made,Free Throws Made,Select this text to update the description for this stat.,linear,number,0,9787,Karl Malone
+regular_season.total.free_throw_attempts,Free Throw Attempts,Select this text to update the description for this stat.,linear,number,0,13188,Karl Malone
+regular_season.total.free_throw_percentage,Free Throw Percentage,Select this text to update the description for this stat.,linear,percentage,0.5,0.91,Stephen Curry
+regular_season.total.offensive_rebounds,Offensive Rebounds,Select this text to update the description for this stat.,linear,number,0,6731,Moses Malone
+regular_season.total.defensive_rebounds,Defensive Rebounds,Select this text to update the description for this stat.,linear,number,0,11453,Kevin Garnett
+regular_season.total.total_rebounds,Total Rebounds,Select this text to update the description for this stat.,linear,number,0,23924,Wilt Chamberlain
+regular_season.total.assists,Assists,Select this text to update the description for this stat.,linear,number,0,15806,John Stockton
+regular_season.total.steals,Steals,Select this text to update the description for this stat.,linear,number,0,3265,John Stockton
+regular_season.total.blocks,Blocks,Select this text to update the description for this stat.,linear,number,0,3830,Hakeem Olajuwon
+regular_season.total.turnovers,Turnovers,Select this text to update the description for this stat.,linear,number,0,5236,LeBron James
+regular_season.total.personal_fouls,Personal Fouls,Select this text to update the description for this stat.,linear,number,0,4657,Kareem Abdul-Jabbar
+regular_season.total.points,Points,Select this text to update the description for this stat.,linear,number,0,40687,LeBron James
+regular_season.total.triple_doubles,Triple Doubles,Select this text to update the description for this stat.,linear,number,0,199,Russell Westbrook
+regular_season.per_game.minutes_played,Minutes Played,Select this text to update the description for this stat.,linear,number,0,45.8,Wilt Chamberlain
+regular_season.per_game.field_goals_made,Field Goals Made,Select this text to update the description for this stat.,linear,number,0,12.1,Wilt Chamberlain
+regular_season.per_game.field_goal_attempts,Field Goal Attempts,Select this text to update the description for this stat.,linear,number,0,23.8,Elgin Baylor
+regular_season.per_game.three_point_field_goals_made,Three Point Field Goals Made,Select this text to update the description for this stat.,linear,number,0,3.9,Stephen Curry
+regular_season.per_game.three_point_field_goal_attempts,Three Point Field Goal Attempts,Select this text to update the description for this stat.,linear,number,0,9.2,Stephen Curry
+regular_season.per_game.free_throws_made,Free Throws Made,Select this text to update the description for this stat.,linear,number,0,8.3,Joel Embiid
+regular_season.per_game.free_throw_attempts,Free Throw Attempts,Select this text to update the description for this stat.,linear,number,0,11.4,Wilt Chamberlain
+regular_season.per_game.offensive_rebounds,Offensive Rebounds,Select this text to update the description for this stat.,linear,number,0,5.1,Moses Malone
+regular_season.per_game.defensive_rebounds,Defensive Rebounds,Select this text to update the description for this stat.,linear,number,0,9.8,Dave Cowens
+regular_season.per_game.total_rebounds,Total Rebounds,Select this text to update the description for this stat.,linear,number,0,22.89,Wilt Chamberlain
+regular_season.per_game.assists,Assists,Select this text to update the description for this stat.,linear,number,0,11.19,Magic Johnson
+regular_season.per_game.steals,Steals,Select this text to update the description for this stat.,linear,number,0,2.71,Alvin Robertson
+regular_season.per_game.blocks,Blocks,Select this text to update the description for this stat.,linear,number,0,3.5,Mark Eaton
+regular_season.per_game.turnovers,Turnovers,Select this text to update the description for this stat.,linear,number,0,4.2,Trae Young
+regular_season.per_game.personal_fouls,Personal Fouls,Select this text to update the description for this stat.,linear,number,0,4.2,George Mikan
+regular_season.per_game.points,Points,Select this text to update the description for this stat.,linear,number,0,30.12,Michael Jordan
+regular_season.advanced.player_efficiency_rating,Player Efficiency Rating,Select this text to update the description for this stat.,linear,number,0,28.14,Nikola Jokic
+regular_season.advanced.true_shooting_percentage,True Shooting Percentage,Select this text to update the description for this stat.,linear,percentage,0.5,0.6719,Rudy Gobert
+regular_season.advanced.usage_percentage,Usage Percentage,Select this text to update the description for this stat.,linear,percentage,0,33.26,Michael Jordan
+regular_season.advanced.win_shares,Win Shares,Select this text to update the description for this stat.,linear,number,0,273.41,Kareem Abdul-Jabbar
+regular_season.advanced.box_plus_minus,Box Plus/Minus,Select this text to update the description for this stat.,linear,number,-11.1,9.98,Nikola Jokic
+regular_season.advanced.value_over_replacement_player,Value Over Replacement Player,Select this text to update the description for this stat.,linear,number,0,152.57,LeBron James
+regular_season.game_high.field_goals_made,Field Goals Made,Select this text to update the description for this stat.,linear,number,0,36,Wilt Chamberlain
+regular_season.game_high.field_goal_attempts,Field Goal Attempts,Select this text to update the description for this stat.,linear,number,0,63,Wilt Chamberlain
+regular_season.game_high.three_point_field_goals_made,Three Point Field Goals Made,Select this text to update the description for this stat.,linear,number,0,14,Klay Thompson
+regular_season.game_high.three_point_field_goal_attempts,Three Point Field Goal Attempts,Select this text to update the description for this stat.,linear,number,0,24,Klay Thompson
+regular_season.game_high.free_throws_made,Free Throws Made,Select this text to update the description for this stat.,linear,number,0,28,Wilt Chamberlain|Adrian Dantley
+regular_season.game_high.free_throw_attempts,Free Throw Attempts,Select this text to update the description for this stat.,linear,number,0,39,Dwight Howard
+regular_season.game_high.offensive_rebounds,Offensive Rebounds,Select this text to update the description for this stat.,linear,number,0,21,Moses Malone
+regular_season.game_high.defensive_rebounds,Defensive Rebounds,Select this text to update the description for this stat.,linear,number,0,29,Kareem Abdul-Jabbar
+regular_season.game_high.total_rebounds,Total Rebounds,Select this text to update the description for this stat.,linear,number,0,55,Wilt Chamberlain
+regular_season.game_high.assists,Assists,Select this text to update the description for this stat.,linear,number,0,30,Scott Skiles
+regular_season.game_high.steals,Steals,Select this text to update the description for this stat.,linear,number,0,11,Larry Kenon|Kendall Gill
+regular_season.game_high.blocks,Blocks,Select this text to update the description for this stat.,linear,number,0,17,Elmore Smith
+regular_season.game_high.turnovers,Turnovers,Select this text to update the description for this stat.,linear,number,0,14,Jason Kidd|John Drew
+regular_season.game_high.points,Points,Select this text to update the description for this stat.,linear,number,0,100,Wilt Chamberlain
+post_season.total.games_played,Games Played,Select this text to update the description for this stat.,linear,number,0,287,LeBron James
+post_season.total.games_started,Games Started,Select this text to update the description for this stat.,linear,number,0,287,LeBron James
+post_season.total.minutes_played,Minutes Played,Select this text to update the description for this stat.,linear,number,0,11858,LeBron James
+post_season.total.field_goals_made,Field Goals Made,Select this text to update the description for this stat.,linear,number,0,2928,LeBron James
+post_season.total.field_goal_attempts,Field Goal Attempts,Select this text to update the description for this stat.,linear,number,0,5896,LeBron James
+post_season.total.field_goal_percentage,Field Goal Percentage,Select this text to update the description for this stat.,linear,percentage,0.3,0.6667,DeAndre Jordan
+post_season.total.three_point_field_goals_made,Three Point Field Goals Made,Select this text to update the description for this stat.,linear,number,0,618,Stephen Curry
+post_season.total.three_point_field_goal_attempts,Three Point Field Goal Attempts,Select this text to update the description for this stat.,linear,number,0,1557,Stephen Curry
+post_season.total.three_point_field_goal_percentage,Three Point Field Goal Percentage,Select this text to update the description for this stat.,linear,percentage,0,0.5,Bob Hansen
+post_season.total.free_throws_made,Free Throws Made,Select this text to update the description for this stat.,linear,number,0,1836,LeBron James
+post_season.total.free_throw_attempts,Free Throw Attempts,Select this text to update the description for this stat.,linear,number,0,2479,LeBron James
+post_season.total.free_throw_percentage,Free Throw Percentage,Select this text to update the description for this stat.,linear,percentage,0.5,0.9496,Gordon Hayward
+post_season.total.offensive_rebounds,Offensive Rebounds,Select this text to update the description for this stat.,linear,number,0,866,Shaquille O'Neal
+post_season.total.defensive_rebounds,Defensive Rebounds,Select this text to update the description for this stat.,linear,number,0,2153,LeBron James
+post_season.total.total_rebounds,Total Rebounds,Select this text to update the description for this stat.,linear,number,0,4104,Bill Russell
+post_season.total.assists,Assists,Select this text to update the description for this stat.,linear,number,0,2346,Magic Johnson
+post_season.total.steals,Steals,Select this text to update the description for this stat.,linear,number,0,483,LeBron James
+post_season.total.blocks,Blocks,Select this text to update the description for this stat.,linear,number,0,568,Tim Duncan
+post_season.total.turnovers,Turnovers,Select this text to update the description for this stat.,linear,number,0,1034,LeBron James
+post_season.total.personal_fouls,Personal Fouls,Select this text to update the description for this stat.,linear,number,0,797,Kareem Abdul-Jabbar
+post_season.total.points,Points,Select this text to update the description for this stat.,linear,number,0,8162,LeBron James
+post_season.total.triple_doubles,Triple Doubles,Select this text to update the description for this stat.,linear,number,0,30,Magic Johnson
+post_season.per_game.minutes_played,Minutes Played,Select this text to update the description for this stat.,linear,number,0,47.24,Wilt Chamberlain
+post_season.per_game.field_goals_made,Field Goals Made,Select this text to update the description for this stat.,linear,number,0,12.2,Michael Jordan
+post_season.per_game.field_goal_attempts,Field Goal Attempts,Select this text to update the description for this stat.,linear,number,0,26.5,Allen Iverson
+post_season.per_game.three_point_field_goals_made,Three Point Field Goals Made,Select this text to update the description for this stat.,linear,number,0,4.2,Stephen Curry
+post_season.per_game.three_point_field_goal_attempts,Three Point Field Goal Attempts,Select this text to update the description for this stat.,linear,number,0,10.6,Stephen Curry
+post_season.per_game.free_throws_made,Free Throws Made,Select this text to update the description for this stat.,linear,number,0,8.2,Michael Jordan
+post_season.per_game.free_throw_attempts,Free Throw Attempts,Select this text to update the description for this stat.,linear,number,0,10.7,Shaquille O'Neal
+post_season.per_game.offensive_rebounds,Offensive Rebounds,Select this text to update the description for this stat.,linear,number,0,5.4,Moses Malone
+post_season.per_game.defensive_rebounds,Defensive Rebounds,Select this text to update the description for this stat.,linear,number,0,10.4,Dave Cowens
+post_season.per_game.total_rebounds,Total Rebounds,Select this text to update the description for this stat.,linear,number,0,24.87,Bill Russell
+post_season.per_game.assists,Assists,Select this text to update the description for this stat.,linear,number,0,12.35,Magic Johnson
+post_season.per_game.steals,Steals,Select this text to update the description for this stat.,linear,number,0,2.28,Baron Davis
+post_season.per_game.blocks,Blocks,Select this text to update the description for this stat.,linear,number,0,3.26,Hakeem Olajuwon
+post_season.per_game.turnovers,Turnovers,Select this text to update the description for this stat.,linear,number,0,4.4,Trae Young
+post_season.per_game.personal_fouls,Personal Fouls,Select this text to update the description for this stat.,linear,number,0,4.8,Walter Dukes|Charlie Scott
+post_season.per_game.points,Points,Select this text to update the description for this stat.,linear,number,0,33.45,Michael Jordan
+post_season.advanced.player_efficiency_rating,Player Efficiency Rating,Select this text to update the description for this stat.,linear,number,0,29.17,Nikola Jokic
+post_season.advanced.true_shooting_percentage,True Shooting Percentage,Select this text to update the description for this stat.,linear,percentage,0.5,0.6634,Rudy Gobert
+post_season.advanced.usage_percentage,Usage Percentage,Select this text to update the description for this stat.,linear,percentage,0,36.84,Luka Doncic
+post_season.advanced.win_shares,Win Shares,Select this text to update the description for this stat.,linear,number,0,58.67,LeBron James
+post_season.advanced.box_plus_minus,Box Plus/Minus,Select this text to update the description for this stat.,linear,number,-11.1,11.14,Michael Jordan
+post_season.advanced.value_over_replacement_player,Value Over Replacement Player,Select this text to update the description for this stat.,linear,number,0,36.05,LeBron James
+post_season.game_high.field_goals_made,Field Goals Made,Select this text to update the description for this stat.,linear,number,0,24,Michael Jordan|Wilt Chamberlain|John Havlicek
+post_season.game_high.field_goal_attempts,Field Goal Attempts,Select this text to update the description for this stat.,linear,number,0,48,Wilt Chamberlain|Rick Barry
+post_season.game_high.three_point_field_goals_made,Three Point Field Goals Made,Select this text to update the description for this stat.,linear,number,0,12,Damian Lillard
+post_season.game_high.three_point_field_goal_attempts,Three Point Field Goal Attempts,Select this text to update the description for this stat.,linear,number,0,19,Russell Westbrook
+post_season.game_high.free_throws_made,Free Throws Made,Select this text to update the description for this stat.,linear,number,0,30,Bob Cousy
+post_season.game_high.free_throw_attempts,Free Throw Attempts,Select this text to update the description for this stat.,linear,number,0,39,Shaquille O'Neal
+post_season.game_high.offensive_rebounds,Offensive Rebounds,Select this text to update the description for this stat.,linear,number,0,15,Moses Malone
+post_season.game_high.defensive_rebounds,Defensive Rebounds,Select this text to update the description for this stat.,linear,number,0,20,5 players
+post_season.game_high.total_rebounds,Total Rebounds,Select this text to update the description for this stat.,linear,number,0,41,Wilt Chamberlain
+post_season.game_high.assists,Assists,Select this text to update the description for this stat.,linear,number,0,24,Magic Johnson|John Stockton
+post_season.game_high.steals,Steals,Select this text to update the description for this stat.,linear,number,0,10,Allen Iverson
+post_season.game_high.blocks,Blocks,Select this text to update the description for this stat.,linear,number,0,10,Mark Eaton|Hakeem Olajuwon|Andrew Bynum
+post_season.game_high.turnovers,Turnovers,Select this text to update the description for this stat.,linear,number,0,12,James Harden
+post_season.game_high.points,Points,Select this text to update the description for this stat.,linear,number,0,63,Michael Jordan
+awards.individual.mvp,MVP,Select this text to update the description for this stat.,linear,number,0,6,Kareem Abdul-Jabbar
+awards.individual.finals_mvp,Finals MVP,Select this text to update the description for this stat.,linear,number,0,6,Michael Jordan
+awards.individual.dpoy,Defensive Player of the Year,Select this text to update the description for this stat.,linear,number,0,4,Rudy Gobert|Dikembe Mutombo|Ben Wallace
+awards.individual.all_star,All-Star Selections,Select this text to update the description for this stat.,linear,number,0,20,LeBron James
+awards.individual.all_nba,All-NBA Selections,Select this text to update the description for this stat.,linear,number,0,20,LeBron James
+awards.individual.all_nba_first,All-NBA First Team Selections,Select this text to update the description for this stat.,linear,number,0,13,LeBron James
+awards.individual.all_nba_second,All-NBA Second Team Selections,Select this text to update the description for this stat.,linear,number,0,8,Bill Russell
+awards.individual.all_nba_third,All-NBA Third Team Selections,Select this text to update the description for this stat.,linear,number,0,5,Paul George
+awards.individual.all_defensive,All-Defensive Selections,Select this text to update the description for this stat.,linear,number,0,15,Tim Duncan
+awards.individual.all_defensive_first,All-Defensive First Team Selections,Select this text to update the description for this stat.,linear,number,0,9,Kobe Bryant|Michael Jordan|Gary Payton|Kevin Garnett
+awards.individual.all_defensive_second,All-Defensive Second Team Selections,Select this text to update the description for this stat.,linear,number,0,7,Tim Duncan
+awards.individual.player_week,Player of the Week Awards,Select this text to update the description for this stat.,linear,number,0,64,LeBron James
+awards.individual.player_month,Player of the Month Awards,Select this text to update the description for this stat.,linear,number,0,46,LeBron James
+awards.team.nba_championships,NBA Championships,Select this text to update the description for this stat.,linear,number,0,11,Bill Russell
+awards.team.conference_championships,Conference Championships,Select this text to update the description for this stat.,linear,number,0,12,Bill Russell

@@ -34,6 +34,8 @@ const tooltipStyle = computed<CSSProperties>(() => {
         :category-name="tooltipStat?.categoryName"
         :category-color="tooltipStat?.categoryColor"
         :sub-category-name="tooltipStat?.subCategoryName"
+        :stat-name="tooltipStat?.statName"
+        :stat-description="tooltipStat?.statDescription"
       />
       <VisualisationTooltipStat
         :value="tooltipStat?.value"

@@ -44,6 +44,7 @@ export interface SubCategory {
 export interface Stat {
   id: StatKey;
   name: string;
+  description: string;
   color: `#${string}`;
   meta: {
     domain: [number, number];
@@ -127,6 +128,7 @@ export interface TooltipStat {
   categoryColor: `#${string}`;
   subCategoryName: string;
   statName: string;
+  statDescription: string;
   value: string;
   record: {
     value: string;
