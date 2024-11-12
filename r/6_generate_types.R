@@ -3,7 +3,7 @@ library(dplyr)
 library(stringr)
 
 output_dir <- "types"
-dataset <- fromJSON("r/output/dataset.json")
+dataset <- fromJSON("assets/data/dataset.json")
 
 extract_stat_ids <- function(categories) {
   stat_ids <- c()
