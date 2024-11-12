@@ -70,7 +70,7 @@ export function useChartConfig() {
   // ------------------------------
 
   const colors = {
-    default: '#f0f0f0',
+    default: '#fefefe',
     white: '#fff',
     black: '#123',
   };
@@ -104,7 +104,7 @@ export function useChartConfig() {
       last: {
         background: {
           color: colors.white,
-          opacity: 0.6,
+          opacity: 0.75,
         },
       },
       background: {

@@ -20,7 +20,7 @@ export function useChartDrawArcs() {
       .attr('cx', 0)
       .attr('cy', 0)
       .attr('r', radius)
-      .attr('fill', '#fff')
+      .attr('fill', modifier.color.default)
       .attr('opacity', 1);
   }
 

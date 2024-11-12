@@ -102,7 +102,6 @@ function createVisualization() {
 
   // Draw scale and stat labels
   drawStatLabels(g.value, scales.circle, selectedStats.value);
-  drawScaleLabels(g.value, scales.circle, selectedStats.value);
 
   // -----------------
   // LINES
@@ -123,6 +122,8 @@ function createVisualization() {
   // -----------------
 
   drawStatIntersectionPoints(g.value, scales.circle, selectedStatIdsCount.value);
+
+  drawScaleLabels(g.value, scales.circle, selectedStats.value);
 
   // -----------------
   // CENTER
