@@ -14,7 +14,7 @@ const {
 const { drawCircularSeparators, drawLinearSeparators } = useChartDrawLines();
 const { drawStatLabels, drawScaleLabels, drawGroupLabels } = useChartDrawLabels();
 const { drawStatIntersectionPoints } = useChartDrawPoints();
-const { drawBackground, drawCenter } = useChartDrawCenter();
+const { drawCenterImage, drawBackground, drawCenter } = useChartDrawCenter();
 const { scales, updateScale } = useChartScales();
 
 const interactionStore = useInteractionStore();
@@ -132,6 +132,7 @@ function createVisualization() {
   // -----------------
 
   drawCenter(g.value);
+  drawCenterImage(g.value);
 
   // -----------------
   // OVERLAY

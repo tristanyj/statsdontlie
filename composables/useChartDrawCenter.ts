@@ -1,6 +1,8 @@
 import type { d3GSelection } from '~/types';
 import { calcTextLength } from '~/assets/scripts/utils';
 
+import basket from '~/assets/images/basket.svg';
+
 import * as d3 from 'd3';
 
 export function useChartDrawCenter() {
@@ -20,6 +22,18 @@ export function useChartDrawCenter() {
       .on('click', () => {
         setHoveredCategory(null);
       });
+  }
+
+  function drawCenterImage(g: d3GSelection) {
+    const imageSize = 60;
+
+    g.append('image')
+      .attr('class', 'center-image')
+      .attr('href', basket)
+      .attr('width', imageSize)
+      .attr('height', imageSize)
+      .attr('x', -imageSize / 2)
+      .attr('y', -imageSize / 2);
   }
 
   function drawCenter(g: d3GSelection) {
@@ -64,7 +78,7 @@ export function useChartDrawCenter() {
         startAngle: Math.PI / 2, // Start at bottom (90 degrees)
         endAngle: (3 * Math.PI) / 2, // End at top (270 degrees)
         radius: minRadius * modifier.radius.insideMinStatScale,
-        background: '#f9f9f9',
+        background: '#f1f1f1',
         onClick: () => {
           openPicker('stats');
           setHoveredCategory(null);
@@ -167,6 +181,7 @@ export function useChartDrawCenter() {
 
   return {
     drawBackground,
+    drawCenterImage,
     drawCenter,
   };
 }

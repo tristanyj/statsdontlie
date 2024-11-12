@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import basket from '@/assets/images/basket.svg';
 useHead({ title: "Home | Broadway: Compare NFL's best QBs." });
 
 const configStore = useConfigStore();
@@ -21,7 +22,15 @@ const { isLoaded } = storeToRefs(configStore);
       </div>
       <UContainer>
         <div class="relative py-12 px-2">
+          <!-- <div class="mb-5"></div> -->
           <h1 class="uppercase text-white text-8xl">
+            <div class="relative w-24 inline-block">
+              <img
+                :src="basket"
+                alt="Basketball"
+                class="absolute bottom-0 left-3 inline w-24 h-24 center-image"
+              />
+            </div>
             Compare the greatest basketball players of all time
           </h1>
         </div>

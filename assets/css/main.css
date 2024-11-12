@@ -37,6 +37,10 @@ body {
   cursor: pointer;
 }
 
+.center-image {
+  animation: spin 40s linear infinite;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transform: translateY(0);
