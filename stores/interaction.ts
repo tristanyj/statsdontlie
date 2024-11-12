@@ -1,10 +1,12 @@
-import type { Player, TooltipStat, ToolTipStatLabel } from '~/types';
+import type { Category, Player, SubCategory, TooltipStat, ToolTipStatLabel } from '~/types';
 
 export const useInteractionStore = defineStore(
   'interaction',
   () => {
     const isPlayerHovered = ref(false);
     const hoveredPlayer = ref<Player | null>(null);
+
+    const hoveredCategory = ref<Category | SubCategory | null>(null);
 
     const isPickerOpen = ref(false);
     const pickerType = ref<'players' | 'stats'>('players');
@@ -26,6 +28,10 @@ export const useInteractionStore = defineStore(
 
       isPlayerHovered.value = true;
       hoveredPlayer.value = player;
+    };
+
+    const setHoveredCategory = (category: Category | SubCategory | null) => {
+      hoveredCategory.value = category;
     };
 
     const updateMousePosition = (event: MouseEvent) => {
@@ -63,6 +69,7 @@ export const useInteractionStore = defineStore(
     return {
       isPlayerHovered,
       hoveredPlayer,
+      hoveredCategory,
       pickerType,
       mousePosition,
       scrollPosition,
@@ -77,6 +84,7 @@ export const useInteractionStore = defineStore(
       updateScrollPosition,
       setTooltipStat,
       setTooltipStatLabel,
+      setHoveredCategory,
     };
   }
   // { persist: true }

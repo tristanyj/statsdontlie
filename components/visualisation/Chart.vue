@@ -5,6 +5,7 @@ import type { d3GSelection } from '@/types';
 const { width, height } = useChartConfig();
 const {
   drawCircleBackground,
+  drawOverlayArc,
   drawStatLabelArcs,
   drawStatArcs,
   drawGroupArcs,
@@ -17,6 +18,7 @@ const { drawCenter } = useChartDrawCenter();
 const { scales, updateScale } = useChartScales();
 
 const interactionStore = useInteractionStore();
+const { hoveredCategory } = storeToRefs(interactionStore);
 const { updateMousePosition, updateScrollPosition } = interactionStore;
 
 const configStore = useConfigStore();
@@ -124,16 +126,23 @@ function createVisualization() {
   drawStatIntersectionPoints(g.value, scales.circle, selectedStatIdsCount.value);
 
   // -----------------
-  // OVERLAY
-  // -----------------
-
-  drawScaleLabels(g.value, scales.circle, selectedStats.value);
-
-  // -----------------
   // CENTER
   // -----------------
 
   drawCenter(g.value);
+
+  // -----------------
+  // OVERLAY
+  // -----------------
+
+  drawScaleLabels(g.value, scales.circle, selectedStats.value);
+  drawOverlayArc(
+    g.value,
+    scales.circle,
+    hoveredCategory.value,
+    selectedCategories.value,
+    selectedSubCategories.value
+  );
 
   // -----------------
   // HIDDEN
@@ -146,6 +155,15 @@ function createVisualization() {
     selectedStats.value,
     indices.value.subCategory,
     selectedSubCategories.value,
+    true
+  );
+  drawGroupArcs(g.value, scales.circle, indices.value.group, selectedCategories.value, 0, true);
+  drawGroupArcs(
+    g.value,
+    scales.circle,
+    indices.value.subCategory,
+    selectedSubCategories.value,
+    1,
     true
   );
 }
@@ -173,6 +191,20 @@ const mountToContainer = () => {
 
   createVisualization();
 };
+
+watch(
+  () => hoveredCategory.value,
+  () => {
+    if (!g.value) return;
+    drawOverlayArc(
+      g.value,
+      scales.circle,
+      hoveredCategory.value,
+      selectedCategories.value,
+      selectedSubCategories.value
+    );
+  }
+);
 
 watch(
   () => selectedStatIds.value,

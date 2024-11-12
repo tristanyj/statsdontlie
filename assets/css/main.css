@@ -15,33 +15,26 @@ body {
   @apply font-host;
 }
 
-.stat-arc-hover {
-  opacity: 0 !important;
-  /* cursor: pointer; */
-}
-
-.stat-arc-normal.hover {
-  filter: brightness(0.9) !important;
-}
-
-.stat-label-arc-hover {
-  opacity: 0 !important;
-  /* cursor: pointer; */
-}
-
-.stat-label-arc-normal.hover {
-  filter: brightness(0.9) !important;
-}
-
+.stat-arc-hover,
+.group-arc-hover,
+.stat-label-arc-hover,
 .top-clickable-hover,
 .bottom-clickable-hover {
   opacity: 0 !important;
   /* cursor: pointer; */
 }
 
+.stat-arc-normal.hover,
+.group-arc-normal.hover,
+.stat-label-arc-normal.hover,
 .top-clickable-normal.hover,
 .bottom-clickable-normal.hover {
   filter: brightness(0.9) !important;
+}
+
+.group-arc-hover,
+.overlay {
+  cursor: pointer;
 }
 
 .fade-enter-active,

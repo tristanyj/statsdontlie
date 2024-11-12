@@ -1,5 +1,7 @@
 import { group as d3Group } from 'd3-array';
 
+import * as d3 from 'd3';
+
 import type {
   d3GSelection,
   EnrichedStat,
@@ -12,8 +14,13 @@ import type {
 
 export function useChartDrawArcs() {
   const { getCategoryById, getSubCategoryById } = useConfigStore();
-  const { setHoveredPlayer, updateMousePosition, setTooltipStat, setTooltipStatLabel } =
-    useInteractionStore();
+  const {
+    setHoveredPlayer,
+    setHoveredCategory,
+    updateMousePosition,
+    setTooltipStat,
+    setTooltipStatLabel,
+  } = useInteractionStore();
   const { arcGenerator } = useChartGenerators();
   const { radius, minRadius, proportions, restRadius, modifier, legend } = useChartConfig();
 
@@ -24,6 +31,193 @@ export function useChartDrawArcs() {
       .attr('r', radius)
       .attr('fill', modifier.color.default)
       .attr('opacity', 1);
+  }
+
+  function drawOverlayArc(
+    g: d3GSelection,
+    circleScale: d3.ScaleLinear<number, number>,
+    hoveredCategory: Category | SubCategory | null,
+    selectedCategories: Category[],
+    selectedSubCategories: SubCategory[]
+  ) {
+    g.selectAll('.overlay').remove();
+
+    const className = 'overlay-arc';
+
+    if (!hoveredCategory) return;
+
+    const isCategory = 'subCategories' in hoveredCategory;
+    const categoryId = isCategory ? hoveredCategory.id : hoveredCategory.id.split('.')[0];
+
+    const categoryIndex = selectedCategories.findIndex((cat) => cat.id === categoryId);
+
+    const overlay = g.append('g').attr('class', 'overlay');
+
+    const columnsBeforeCategory = selectedCategories
+      .slice(0, categoryIndex)
+      .reduce(
+        (sum, cat) =>
+          sum + cat.subCategories.reduce((subSum, subGroup) => subSum + subGroup.stats.length, 0),
+        0
+      );
+
+    const categoryWidth = selectedCategories[categoryIndex].subCategories.reduce(
+      (sum, subGroup) => sum + subGroup.stats.length,
+      0
+    );
+
+    const categoryStartAngle = circleScale(columnsBeforeCategory);
+    const categoryEndAngle = circleScale(columnsBeforeCategory + categoryWidth);
+
+    if (isCategory) {
+      overlay
+        .append('path')
+        .attr('class', className)
+        .attr(
+          'd',
+          arcGenerator({
+            innerRadius: minRadius,
+            outerRadius: radius * proportions[3],
+            startAngle: 0,
+            endAngle: categoryStartAngle,
+            data: null,
+          })
+        )
+        .on('click', () => {
+          console.log('clicked');
+          setHoveredCategory(null);
+        })
+        .attr('fill', modifier.color.black)
+        .attr('opacity', 0)
+        .transition()
+        .duration(200)
+        .ease(d3.easeLinear)
+        .attr('opacity', 0.3);
+
+      // Draw second part: from category end to full circle
+      overlay
+        .append('path')
+        .attr('class', className)
+        .attr(
+          'd',
+          arcGenerator({
+            innerRadius: minRadius,
+            outerRadius: radius * proportions[3],
+            startAngle: categoryEndAngle,
+            endAngle: Math.PI * 2,
+            data: null,
+          })
+        )
+        .on('click', () => {
+          setHoveredCategory(null);
+        })
+        .attr('fill', modifier.color.black)
+        .attr('opacity', 0)
+        .transition()
+        .duration(200)
+        .ease(d3.easeLinear)
+        .attr('opacity', 0.3);
+    } else {
+      const subCategoryIndex = selectedSubCategories.findIndex(
+        (cat) => cat.id === hoveredCategory.id
+      );
+      const columnsBeforeSubCategory = selectedSubCategories
+        .slice(0, subCategoryIndex)
+        .reduce((sum, subGroup) => sum + subGroup.stats.length, 0);
+
+      const subCategoryWidth = selectedSubCategories[subCategoryIndex].stats.length;
+
+      const subCategoryStartAngle = circleScale(columnsBeforeSubCategory);
+      const subCategoryEndAngle = circleScale(columnsBeforeSubCategory + subCategoryWidth);
+
+      overlay
+        .append('path')
+        .attr('class', className)
+        .attr(
+          'd',
+          arcGenerator({
+            innerRadius: minRadius,
+            outerRadius: radius * proportions[2],
+            startAngle: 0,
+            endAngle: subCategoryStartAngle,
+            data: null,
+          })
+        )
+        .on('click', () => {
+          console.log('clicked');
+          setHoveredCategory(null);
+        })
+        .attr('fill', modifier.color.black)
+        .attr('opacity', 0)
+        .transition()
+        .duration(200)
+        .ease(d3.easeLinear)
+        .attr('opacity', 0.3);
+
+      // Draw second part: from category end to full circle
+      overlay
+        .append('path')
+        .attr('class', className)
+        .attr(
+          'd',
+          arcGenerator({
+            innerRadius: minRadius,
+            outerRadius: radius * proportions[2],
+            startAngle: subCategoryEndAngle,
+            endAngle: Math.PI * 2,
+            data: null,
+          })
+        )
+        .on('click', () => {
+          setHoveredCategory(null);
+        })
+        .attr('fill', modifier.color.black)
+        .attr('opacity', 0)
+        .transition()
+        .duration(200)
+        .ease(d3.easeLinear)
+        .attr('opacity', 0.3);
+
+      overlay
+        .append('path')
+        .attr('class', className)
+        .attr(
+          'd',
+          arcGenerator({
+            innerRadius: radius * proportions[2],
+            outerRadius: radius * proportions[3],
+            startAngle: 0,
+            endAngle: categoryStartAngle,
+            data: null,
+          })
+        )
+        .attr('fill', modifier.color.black)
+        .attr('opacity', 0)
+        .transition()
+        .duration(200)
+        .ease(d3.easeLinear)
+        .attr('opacity', 0.3);
+
+      overlay
+        .append('path')
+        .attr('class', className)
+        .attr(
+          'd',
+          arcGenerator({
+            innerRadius: radius * proportions[2],
+            outerRadius: radius * proportions[3],
+            startAngle: categoryEndAngle,
+            endAngle: Math.PI * 2,
+            data: null,
+          })
+        )
+        .attr('fill', modifier.color.black)
+        .attr('opacity', 0)
+        .transition()
+        .duration(200)
+        .ease(d3.easeLinear)
+        .attr('opacity', 0.3);
+    }
   }
 
   function drawStatArcs(
@@ -248,11 +442,16 @@ export function useChartDrawArcs() {
     circleScale: d3.ScaleLinear<number, number>,
     indices: number[],
     groups: Category[] | SubCategory[],
-    layerModifier: number
+    layerModifier: number,
+    interaction = false
   ) {
+    const className = `group-arc-${interaction ? 'hover' : 'normal'}`;
+
     indices.forEach((startIndex, groupIndex) => {
       const group = groups[groupIndex];
       const isGroup = 'subCategories' in group;
+
+      const groupId = `${group.id.replace(/\./g, '_')}`;
 
       const nextGroupStartIndex =
         indices[groupIndex + 1] ??
@@ -273,6 +472,7 @@ export function useChartDrawArcs() {
       });
 
       g.append('path')
+        .attr('class', `${className} group-arc-${groupId}`)
         .attr('d', backgroundArc)
         .attr('fill', group.color)
         .attr(
@@ -282,7 +482,20 @@ export function useChartDrawArcs() {
             : groupIndex % 2 === 0
             ? modifier.color.subCategoryLabel.background.opacity.even
             : modifier.color.subCategoryLabel.background.opacity.odd
-        );
+        )
+        .on('mouseenter', () => {
+          if (!interaction) return;
+          const arc = g.select(`.group-arc-normal.group-arc-${groupId}`);
+          arc.classed('hover', true);
+        })
+        .on('mouseleave', () => {
+          if (!interaction) return;
+          g.select(`.group-arc-normal.group-arc-${groupId}`).classed('hover', false);
+        })
+        .on('click', () => {
+          if (!interaction) return;
+          setHoveredCategory(group);
+        });
     });
   }
 
@@ -303,6 +516,7 @@ export function useChartDrawArcs() {
   }
 
   return {
+    drawOverlayArc,
     drawCircleBackground,
     drawStatLabelArcs,
     drawStatArcs,
