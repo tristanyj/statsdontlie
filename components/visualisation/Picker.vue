@@ -82,12 +82,14 @@ const isOpen = computed({
           />
         </div>
       </div>
-      <div class="overflow-y-auto">
-        <div v-if="selectedIndex === 0">
-          <h2 class="text-2xl font-bold text-center">Select Players</h2>
-          <div class="flex justify-center p-5">
-            <div class="grid grid-flow-col gap-5 text-center">
-              <div
+      <div
+        v-if="selectedIndex === 0"
+        class="h-full"
+      >
+        <div class="grid grid-cols-[4fr,1fr] h-full">
+          <div class="p-4">
+            <div class="grid grid-cols-6 gap-4">
+              <UCard
                 v-for="(player, i) in selectablePlayers"
                 :key="`player-${i}`"
                 class=""
@@ -99,38 +101,56 @@ const isOpen = computed({
                     :label="player.info.name"
                   />
                 </div>
+              </UCard>
+            </div>
+          </div>
+          <div class="border-l min-w-80 p-6">
+            <div class="grid gap-4">
+              <div class="uppercase font-host">Selected players</div>
+              <div class="grid gap-2">
+                <div
+                  v-for="playerId in selectionPlayers"
+                  :key="`selected-${playerId}`"
+                >
+                  <div class="bg-gray-100 border border-gray-200 rounded-md p-2">
+                    {{ selectablePlayers.find((player) => player.id === playerId).info.name }}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div v-if="selectedIndex === 1">
-          <h2 class="text-2xl font-bold text-center">Select Stats</h2>
-          <div class="flex justify-center p-5">
-            <div class="grid grid-cols-3 gap-5 text-center">
-              <div
-                v-for="(group, i) in selectableCategories"
-                :key="`group-${i}`"
-              >
-                <h3 class="text-lg font-bold">{{ group.name }}</h3>
-                <div class="">
-                  <div
-                    v-for="(subCategory, j) in group.subCategories"
-                    :key="`sub-group-${j}`"
-                    class=""
-                  >
-                    <h4 class="text-md font-bold">{{ subCategory.name }}</h4>
-                    <div class="">
-                      <div
-                        v-for="(column, k) in subCategory.stats"
-                        :key="`column-${k}`"
-                        class=""
-                      >
-                        <UCheckbox
-                          v-model="selectionStats"
-                          :value="column.id"
-                          :label="column.name"
-                        />
-                      </div>
+      </div>
+      <div
+        v-if="selectedIndex === 1"
+        class="overflow-y-auto h-full"
+      >
+        <div class="p-4 py-10">
+          <div class="grid grid-cols-3 gap-5 items-start">
+            <div
+              v-for="(group, i) in selectableCategories"
+              :key="`group-${i}`"
+              class="grid gap-4 items-start px-20 border-l"
+            >
+              <h3 class="text-lg font-bold">{{ group.name }}</h3>
+              <div class="grid gap-4 items-start">
+                <div
+                  v-for="(subCategory, j) in group.subCategories"
+                  :key="`sub-group-${j}`"
+                  class="grid gap-4"
+                >
+                  <h4 class="text-md font-bold">{{ subCategory.name }}</h4>
+                  <div class="grid grid-cols-2 gap-x-4 gap-y-1">
+                    <div
+                      v-for="(column, k) in subCategory.stats"
+                      :key="`column-${k}`"
+                      class=""
+                    >
+                      <UCheckbox
+                        v-model="selectionStats"
+                        :value="column.id"
+                        :label="column.name"
+                      />
                     </div>
                   </div>
                 </div>

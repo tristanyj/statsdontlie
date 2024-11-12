@@ -103,12 +103,14 @@ export const useConfigStore = defineStore('config', () => {
   });
 
   const selectableCategories = computed(() => {
-    return categories.value.map(({ id, name, subCategories }) => ({
+    return categories.value.map(({ id, name, color, subCategories }) => ({
       id,
       name,
+      color,
       subCategories: subCategories.map(({ id, name, stats }) => ({
         id,
         name,
+        color,
         stats: stats.map(({ id, name }) => ({ id, name })),
       })),
     }));
