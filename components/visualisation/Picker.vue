@@ -166,118 +166,64 @@ const isOpen = computed({
           class="grid h-full"
         >
           <div class="p-4">
-            <div class="grid grid-cols-12 gap-2">
-              <TransitionGroup
-                name="player-cards"
-                tag="div"
-                class="contents"
+            <div class="grid grid-cols-12 gap-5">
+              <button
+                v-for="(player, i) in sortedPlayers"
+                :key="`player-${i}`"
+                class="group relative p-2 border transition-all duration-50 rounded-sm bg-white"
+                @click="togglePlayer(player.id)"
               >
-                <button
-                  v-for="(player, i) in sortedPlayers"
-                  :key="`player-${i}`"
-                  class="group relative p-2 border transition-all duration-200 rounded-md"
-                  @click="togglePlayer(player.id)"
-                >
-                  <!-- Background pattern for selected state -->
-                  <div
-                    class="absolute inset-0 opacity-0 transition-opacity duration-200"
-                    :class="[selectionPlayers.includes(player.id) && 'opacity-5']"
-                  >
-                    <div class="absolute inset-0 bg-primary-100 pattern-dots" />
-                  </div>
-
-                  <!-- Selected indicator -->
-                  <!-- <div
-                    class="absolute -top-2 -right-2 transform transition-transform duration-200"
-                    :class="[
-                      selectionPlayers.includes(player.id)
-                        ? 'translate-x-0 text-primary-500 opacity-100'
-                        : 'translate-x-0 opacity-0',
-                    ]"
-                  >
-                    <UIcon
-                      name="i-heroicons-check-circle-20-solid"
-                      size="20"
-                    />
-                  </div> -->
-
-                  <!-- Player content -->
-                  <div class="relative h-full flex flex-col justify-between">
-                    <div
-                      class="grid grid-flow-col justify-center items-center text-[10px] text-gray-400 mb-2"
-                    >
-                      <div class="">{{ player.info.nickname }}</div>
-                    </div>
-                    <div class="flex flex-col items-center">
-                      <img
-                        :src="getImageUrl(player.id)"
-                        class="h-20 object-contain rounded-sm"
-                        alt=""
-                      />
-                      <div class="text-center mt-2">
-                        <div class="items-start font-medium leading-[18px]">
-                          <div
-                            class="relative left-[3px] bottom-[2px] inline-block w-2 h-2 rounded-full mr-1"
-                            :style="{
-                              background: player.color,
-                            }"
-                          />
-                          {{ player.info.name }}
-                        </div>
-                        <div class="text-xs text-gray-500 mt-1">
-                          {{ player.info.position }}
-                        </div>
-                        <div class="text-xs text-gray-500">
-                          {{ player.info.height }} {{ player.info.weight }}lb
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="grid grid-flow-col justify-center items-center text-[10px] text-gray-400 mt-2"
-                    >
-                      <div>
-                        {{ player.info.draft[1] }}-{{
-                          player.info.draft[1] + player.info.experience
-                        }}
-                      </div>
-                    </div>
-                  </div>
-                  <!-- <div class="w-full h-px bg-gray-200 my-2" /> -->
-                  <!-- <div class="text-xs text-gray-500">
-                      {{ player.info.position }}
-                    </div>
-                    <div class="text-xs text-gray-500">
-                      {{ player.info.height }}, {{ player.info.weight }}lb
-                    </div>
-                    <div
-                      v-if="player.info.teams"
-                      class="text-xs text-gray-500"
-                    >
-                      {{ player.info.teams.join(', ') }}
-                    </div>
-                  </div>-->
-                </button>
-              </TransitionGroup>
-            </div>
-          </div>
-          <!-- <div class="border-l min-w-80 p-6">
-            <div class="grid gap-4">
-              <div class="uppercase font-host">Selected players</div>
-              <div class="grid gap-2">
+                <!-- Background pattern for selected state -->
                 <div
-                  v-for="playerId in selectionPlayers"
-                  :key="`selected-${playerId}`"
+                  class="absolute inset-0 opacity-0 transition-opacity duration-50"
+                  :class="[
+                    selectionPlayers.includes(player.id) ? 'opacity-50' : 'group-hover:opacity-10',
+                  ]"
                 >
-                  <div class="bg-gray-100 border border-gray-200 rounded-md p-2">
-                    {{
-                      selectablePlayers.find((player) => player.id === playerId)?.info.name ||
-                      'Unknown'
-                    }}
+                  <div class="absolute -top-1 -left-1 w-[106%] h-[104%] rounded-md bg-amber-900" />
+                  <div class="absolute inset-0 bg-white rounded-sm" />
+                </div>
+
+                <!-- Player content -->
+                <div class="relative h-full flex flex-col justify-between">
+                  <div
+                    class="grid grid-flow-col justify-center items-center text-[10px] text-gray-400 mb-2"
+                  >
+                    <div class="">{{ player.info.nickname }}</div>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <img
+                      :src="getImageUrl(player.id)"
+                      class="h-20 object-contain rounded-sm"
+                      alt=""
+                    />
+                    <div class="text-center mt-2">
+                      <div class="items-start font-medium leading-[18px]">
+                        <div
+                          class="relative left-[3px] bottom-[2px] inline-block w-2 h-2 rounded-full mr-1"
+                          :style="{
+                            background: player.color,
+                          }"
+                        />
+                        {{ player.info.name }}
+                      </div>
+                      <div class="text-xs text-gray-500 mt-1">
+                        {{ player.info.position }}
+                      </div>
+                      <div class="text-xs text-gray-500">
+                        {{ player.info.height }} {{ player.info.weight }}lb
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid justify-center items-center text-[10px] text-gray-400 mt-2">
+                    <div>
+                      {{ player.info.draft[1] }}-{{ player.info.draft[1] + player.info.experience }}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </button>
             </div>
-          </div> -->
+          </div>
         </div>
         <div
           v-else
@@ -353,5 +299,10 @@ const isOpen = computed({
 .player-cards-leave-active {
   /* position: absolute; */
   opacity: 0;
+}
+
+.pattern-dots {
+  background-image: radial-gradient(#d2d6dc 1px, transparent 1px);
+  background-size: 10px 10px;
 }
 </style>

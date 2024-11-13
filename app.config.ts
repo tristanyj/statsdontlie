@@ -1,6 +1,6 @@
 export default defineAppConfig({
   ui: {
-    primary: 'teal',
+    primary: 'amber',
     gray: 'cool',
     container: {
       constrained: 'max-w-2xl',
@@ -24,7 +24,7 @@ export default defineAppConfig({
         },
       },
       base: 'relative flex-1 flex flex-col w-full bg-white/90 focus:outline-none',
-      background: 'bg-[white]/95 dark:bg-gray-900',
+      background: 'bg-white/95 dark:bg-gray-900',
     },
   },
 });

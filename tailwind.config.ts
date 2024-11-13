@@ -10,7 +10,7 @@ export default <Partial<Config>>{
         host: ['Host Grotesk', 'sans-serif'],
       },
       colors: {
-        primary: colors.green,
+        primary: colors.amber,
       },
     },
   },
