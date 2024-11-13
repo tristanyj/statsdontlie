@@ -114,10 +114,10 @@ const isOpen = computed({
   <USlideover
     v-model="isOpen"
     side="bottom"
-    class="font-inter"
+    class="font-host"
   >
     <div class="grid grid-rows-[auto,1fr] h-full">
-      <div class="grid grid-cols-[auto,1fr,auto] gap-10 items-center font-inter border-b p-4">
+      <div class="grid grid-cols-[auto,1fr,auto] gap-10 items-center border-b p-4">
         <div class="">
           <UTabs
             v-model="selectedIndex"
@@ -164,15 +164,7 @@ const isOpen = computed({
                 <button
                   v-for="(player, i) in filteredPlayers"
                   :key="`player-${i}`"
-                  class="group relative p-3 border-4 transition-all duration-200 rounded-sm"
-                  :class="[
-                    selectionPlayers.includes(player.id)
-                      ? ''
-                      : 'border-gray-100 bg-white hover:border-gray-200',
-                  ]"
-                  :style="{
-                    borderColor: selectionPlayers.includes(player.id) ? `${player.color}` : '',
-                  }"
+                  class="group relative p-3 border transition-all duration-200 rounded-md"
                   @click="togglePlayer(player.id)"
                 >
                   <!-- Background pattern for selected state -->
@@ -216,16 +208,14 @@ const isOpen = computed({
                         {{ player.info.nickname }}
                       </div>
                     </div>
-                    <div class="text-xs text-gray-500">
+                    <!-- <div class="text-xs text-gray-500">
                       {{ player.info.position }}
                     </div>
-                    <div class="">
-                      <div class="text-xs text-gray-500">
-                        {{ player.info.height }}, {{ player.info.weight }}lb
-                      </div>
-                      <div class="text-xs text-gray-500">
-                        {{ player.info.birth_date }}
-                      </div>
+                    <div class="text-xs text-gray-500">
+                      {{ player.info.height }}, {{ player.info.weight }}lb
+                    </div>
+                    <div class="text-xs text-gray-500">
+                      {{ player.info.birth_date }}
                     </div>
                     <div class="text-xs text-gray-500">
                       {{ player.info.experience }} years of experience
@@ -238,15 +228,7 @@ const isOpen = computed({
                     </div>
                     <div class="text-sm text-gray-500 truncate">
                       Drafted {{ player.info.draft[0] }} in {{ player.info.draft[1] }}
-                    </div>
-                    <!-- Add player image if available -->
-                    <!-- <img
-            v-if="player.info.image"
-            :src="player.info.image"
-            :alt="player.info.name"
-            class="w-full h-24 object-cover rounded-md"
-          /> -->
-                    <!-- Add more player info -->
+                    </div> -->
                   </div>
 
                   <!-- Hover overlay -->

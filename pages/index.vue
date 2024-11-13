@@ -14,7 +14,7 @@ const { openPicker } = interactionStore;
     <div class="relative">
       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-2xl">
         <div
-          class="absolute -bottom-4 -left-8 transform -rotate-90 origin-top-left font-inter font-normal text-white opacity-25"
+          class="absolute -bottom-4 -left-8 transform -rotate-90 origin-top-left font-normal text-white opacity-25"
         >
           LeBron James - Michael Jordan - Kobe Bryant
         </div>
@@ -24,7 +24,7 @@ const { openPicker } = interactionStore;
         <div class="absolute top-0 right-0 w-1 h-[1000vh] bg-white" />
       </div>
       <UContainer>
-        <div class="relative py-12 px-2">
+        <div class="relative py-12 px-2 font-anton">
           <!-- <div class="mb-5"></div> -->
           <h1 class="uppercase text-white text-8xl">
             <div class="relative w-24 inline-block">
