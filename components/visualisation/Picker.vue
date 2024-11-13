@@ -584,7 +584,7 @@ const isOpen = computed({
           v-if="hasResults"
           class="grid h-full"
         >
-          <div class="p-4 pt-2">
+          <div class="p-4 pt-3">
             <div class="grid grid-cols-8 2xl:grid-cols-12 gap-4">
               <button
                 v-for="(player, i) in sortedPlayers"
@@ -659,13 +659,14 @@ const isOpen = computed({
       >
         <div
           v-if="hasResults"
-          class="p-4 pt-2 pb-10"
+          class="p-4 pt-3 pb-10"
         >
-          <div class="grid grid-cols-3 gap-5 items-start">
+          <div class="grid grid-cols-3 gap-20 items-start">
             <div
               v-for="(group, i) in filteredCategories"
               :key="`group-${i}`"
-              class="grid gap-4 items-start px-20 border-l"
+              class="grid gap-4 items-start"
+              :class="i === 0 ? 'border-transparent' : 'border-gray-200'"
             >
               <h3 class="text-lg font-bold">{{ group.name }}</h3>
               <div class="grid gap-4 items-start">
@@ -675,7 +676,7 @@ const isOpen = computed({
                   class="grid gap-4"
                 >
                   <h4 class="text-md font-bold">{{ subCategory.name }}</h4>
-                  <div class="grid grid-cols-2 gap-x-4 gap-y-1">
+                  <div class="grid grid-cols-3 gap-x-4 gap-y-1">
                     <div
                       v-for="(column, k) in subCategory.stats"
                       :key="`column-${k}`"
