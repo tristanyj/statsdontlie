@@ -78,7 +78,7 @@ export function useChartDrawCenter() {
         startAngle: Math.PI / 2, // Start at bottom (90 degrees)
         endAngle: (3 * Math.PI) / 2, // End at top (270 degrees)
         radius: minRadius * modifier.radius.insideMinStatScale,
-        background: '#f1f1f1',
+        background: '#f9f9f9',
         onClick: () => {
           openPicker('stats');
           setHoveredCategory(null);

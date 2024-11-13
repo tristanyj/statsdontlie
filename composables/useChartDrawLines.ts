@@ -17,6 +17,21 @@ export function useChartDrawLines() {
   const { radius, minRadius, restRadius, proportions, layerCount, modifier, legend } =
     useChartConfig();
 
+  function drawDonutLine(g: d3GSelection) {
+    createLine(
+      g,
+      {
+        className: 'donut-line',
+        y1: -minRadius * modifier.radius.insideMinStatScale,
+        y2: minRadius * modifier.radius.insideMinStatScale,
+        strokeWidth: 1,
+        opacity: 0.5,
+        transform: `rotate(${90})`,
+      },
+      modifier.color.black
+    );
+  }
+
   function drawCircularSeparators(g: d3GSelection) {
     // circle inside min radius
     g.append('circle')
@@ -125,6 +140,7 @@ export function useChartDrawLines() {
   }
 
   return {
+    drawDonutLine,
     drawCircularSeparators,
     drawLinearSeparators,
   };

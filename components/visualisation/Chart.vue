@@ -11,7 +11,7 @@ const {
   drawGroupArcs,
   drawOutsideMaxStatScaleArc,
 } = useChartDrawArcs();
-const { drawCircularSeparators, drawLinearSeparators } = useChartDrawLines();
+const { drawCircularSeparators, drawLinearSeparators, drawDonutLine } = useChartDrawLines();
 const { drawStatLabels, drawScaleLabels, drawGroupLabels } = useChartDrawLabels();
 const { drawStatIntersectionPoints } = useChartDrawPoints();
 const { drawCenterImage, drawBackground, drawCenter } = useChartDrawCenter();
@@ -132,6 +132,7 @@ function createVisualization() {
   // -----------------
 
   drawCenter(g.value);
+  drawDonutLine(g.value);
   drawCenterImage(g.value);
 
   // -----------------
