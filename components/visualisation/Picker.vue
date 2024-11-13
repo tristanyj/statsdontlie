@@ -155,7 +155,7 @@ const isOpen = computed({
           class="grid h-full"
         >
           <div class="p-4">
-            <div class="grid grid-cols-8 gap-2">
+            <div class="grid grid-cols-12 gap-2">
               <TransitionGroup
                 name="player-cards"
                 tag="div"
@@ -164,7 +164,7 @@ const isOpen = computed({
                 <button
                   v-for="(player, i) in filteredPlayers"
                   :key="`player-${i}`"
-                  class="group relative p-3 border transition-all duration-200 rounded-md"
+                  class="group relative p-2 border transition-all duration-200 rounded-md"
                   @click="togglePlayer(player.id)"
                 >
                   <!-- Background pattern for selected state -->
@@ -191,34 +191,44 @@ const isOpen = computed({
                   </div> -->
 
                   <!-- Player content -->
-                  <div class="relative grid text-left">
-                    <div class="flex justify-center">
+                  <div class="relative h-full flex flex-col justify-between">
+                    <div
+                      class="grid grid-flow-col justify-center items-center text-[10px] text-gray-400 mb-2"
+                    >
+                      <div class="">{{ player.info.nickname }}</div>
+                    </div>
+                    <div class="flex flex-col items-center">
                       <img
                         :src="getImageUrl(player.id)"
-                        class="h-20 object-contain rounded-sm"
+                        class="h-24 object-contain rounded-sm"
                         alt=""
                       />
-                    </div>
-                    <div class="grid justify-center text-center">
-                      <div class="font-medium truncate">{{ player.info.name }}</div>
-                      <div
-                        v-if="player.info.nickname"
-                        class="text-xs text-gray-500"
-                      >
-                        {{ player.info.nickname }}
+                      <div class="text-center mt-2">
+                        <div class="font-medium leading-[18px]">{{ player.info.name }}</div>
+                        <div class="text-xs text-gray-500 mt-1">
+                          {{ player.info.position }}
+                        </div>
+                        <div class="text-xs text-gray-500">
+                          {{ player.info.height }} {{ player.info.weight }}lb
+                        </div>
                       </div>
                     </div>
-                    <!-- <div class="text-xs text-gray-500">
+                    <div
+                      class="grid grid-flow-col justify-center items-center text-[10px] text-gray-400 mt-2"
+                    >
+                      <div>
+                        {{ player.info.draft[1] }}-{{
+                          player.info.draft[1] + player.info.experience
+                        }}
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="w-full h-px bg-gray-200 my-2" /> -->
+                  <!-- <div class="text-xs text-gray-500">
                       {{ player.info.position }}
                     </div>
                     <div class="text-xs text-gray-500">
                       {{ player.info.height }}, {{ player.info.weight }}lb
-                    </div>
-                    <div class="text-xs text-gray-500">
-                      {{ player.info.birth_date }}
-                    </div>
-                    <div class="text-xs text-gray-500">
-                      {{ player.info.experience }} years of experience
                     </div>
                     <div
                       v-if="player.info.teams"
@@ -226,15 +236,7 @@ const isOpen = computed({
                     >
                       {{ player.info.teams.join(', ') }}
                     </div>
-                    <div class="text-sm text-gray-500 truncate">
-                      Drafted {{ player.info.draft[0] }} in {{ player.info.draft[1] }}
-                    </div> -->
-                  </div>
-
-                  <!-- Hover overlay -->
-                  <div
-                    class="absolute inset-0 bg-gray-500 opacity-0 transition-opacity duration-200 group-hover:opacity-5"
-                  />
+                  </div>-->
                 </button>
               </TransitionGroup>
             </div>
