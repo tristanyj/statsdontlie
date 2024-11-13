@@ -142,14 +142,14 @@ const isOpen = computed({
       </div>
       <div
         v-if="selectedIndex === 0"
-        class="h-full"
+        class="overflow-y-auto h-full"
       >
         <div
           v-if="hasResults"
-          class="grid grid-cols-[4fr,1fr] h-full"
+          class="grid h-full"
         >
           <div class="p-4">
-            <div class="grid grid-cols-6 gap-4">
+            <div class="grid grid-cols-8 gap-2">
               <TransitionGroup
                 name="player-cards"
                 tag="div"
@@ -218,7 +218,7 @@ const isOpen = computed({
               </TransitionGroup>
             </div>
           </div>
-          <div class="border-l min-w-80 p-6">
+          <!-- <div class="border-l min-w-80 p-6">
             <div class="grid gap-4">
               <div class="uppercase font-host">Selected players</div>
               <div class="grid gap-2">
@@ -235,7 +235,7 @@ const isOpen = computed({
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <div
           v-else
