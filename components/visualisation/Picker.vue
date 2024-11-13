@@ -16,6 +16,20 @@ const getImageUrl = (playerId) => {
   return new URL(`../../assets/images/player/${playerId}.jpg`, import.meta.url).href;
 };
 
+// Define ranges for sliders
+const heightRange = ref([72, 84]); // 6'0" to 7'0" in inches
+const weightRange = ref([150, 300]); // in pounds
+const yearsRange = ref([1950, 2024]);
+
+// Positions checkboxes
+const positions = ref({
+  PG: false,
+  SG: false,
+  SF: false,
+  PF: false,
+  C: false,
+});
+
 const items = [
   {
     key: 'players',
@@ -167,7 +181,117 @@ const isOpen = computed({
           <div class="underline">Default selection</div>
         </div>
         <div class="flex space-x-2 text-sm text-gray-500">
-          <div class="underline">Filter by :</div>
+          <UPopover>
+            <div class="underline">Filter by :</div>
+            <template #panel>
+              <div class="p-4">
+                <div class="filters-container rounded-lg">
+                  <!-- Height Range Slider -->
+                  <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Height Range ({{ heightRange[0] }}" - {{ heightRange[1] }}")
+                    </label>
+                    <div class="relative">
+                      <input
+                        type="range"
+                        v-model="heightRange[0]"
+                        :min="72"
+                        :max="84"
+                        class="range-slider"
+                      />
+                      <input
+                        type="range"
+                        v-model="heightRange[1]"
+                        :min="72"
+                        :max="84"
+                        class="range-slider"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Weight Range Slider -->
+                  <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Weight Range ({{ weightRange[0] }} - {{ weightRange[1] }} lbs)
+                    </label>
+                    <div class="relative">
+                      <input
+                        type="range"
+                        v-model="weightRange[0]"
+                        :min="150"
+                        :max="300"
+                        class="range-slider"
+                      />
+                      <input
+                        type="range"
+                        v-model="weightRange[1]"
+                        :min="150"
+                        :max="300"
+                        class="range-slider"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Years Range Slider -->
+                  <div class="slider-container mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Years ({{ Math.min(yearsRange[0], yearsRange[1]) }} -
+                      {{ Math.max(yearsRange[0], yearsRange[1]) }})
+                    </label>
+                    <div class="relative h-1">
+                      <div class="absolute h-full rounded-full bg-gray-300 w-full" />
+                      <div
+                        class="absolute h-full bg-blue-500 rounded-full"
+                        :style="{
+                          left: `${Math.min(
+                            ((yearsRange[0] - 1950) / (2024 - 1950)) * 100,
+                            ((yearsRange[1] - 1950) / (2024 - 1950)) * 100
+                          )}%`,
+                          right: `${
+                            100 -
+                            Math.max(
+                              ((yearsRange[0] - 1950) / (2024 - 1950)) * 100,
+                              ((yearsRange[1] - 1950) / (2024 - 1950)) * 100
+                            )
+                          }%`,
+                        }"
+                      />
+                      <input
+                        type="range"
+                        v-model.number="yearsRange[0]"
+                        :min="1950"
+                        :max="2024"
+                        class="range-slider"
+                      />
+                      <input
+                        type="range"
+                        v-model.number="yearsRange[1]"
+                        :min="1950"
+                        :max="2024"
+                        class="range-slider"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Position Checkboxes -->
+                  <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2"> Positions </label>
+                    <div class="flex gap-4">
+                      <label
+                        v-for="(checked, position) in positions"
+                        :key="position"
+                        class="flex items-center"
+                      >
+                        <UCheckbox v-model="positions[position]" />
+                        <span class="ml-2 text-sm">{{ position }}</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </UPopover>
+          <!-- <div class="underline">Filter by :</div> -->
           <div class="">&#8226;</div>
           <div class="underline">Sort by :</div>
         </div>
@@ -316,8 +440,53 @@ const isOpen = computed({
   opacity: 0;
 }
 
-.pattern-dots {
-  background-image: radial-gradient(#d2d6dc 1px, transparent 1px);
-  background-size: 10px 10px;
+.slider-container {
+  @apply relative w-full;
+}
+
+.range-slider {
+  @apply absolute w-full appearance-none bg-transparent pointer-events-none;
+  top: -11px; /* Adjust thumb vertical alignment */
+  height: 1rem;
+}
+
+.range-slider::-webkit-slider-thumb {
+  @apply h-4 w-4 rounded-full border-none bg-blue-500 cursor-pointer pointer-events-auto relative;
+  -webkit-appearance: none;
+}
+
+.range-slider::-moz-range-thumb {
+  @apply h-4 w-4 rounded-full border-none bg-blue-500 cursor-pointer pointer-events-auto relative;
+}
+
+.range-slider::-webkit-slider-runnable-track {
+  @apply w-full h-1 bg-transparent cursor-pointer;
+}
+
+.range-slider::-moz-range-track {
+  @apply w-full h-1 bg-transparent cursor-pointer;
+}
+
+/* Make both thumbs appear above track */
+.range-slider {
+  @apply z-20;
+}
+
+/* Hover and focus states */
+.range-slider::-webkit-slider-thumb:hover,
+.range-slider::-moz-range-thumb:hover {
+  @apply bg-blue-600;
+}
+
+.range-slider:focus {
+  @apply outline-none;
+}
+
+.range-slider:focus::-webkit-slider-thumb {
+  @apply ring-2 ring-blue-300;
+}
+
+.range-slider:focus::-moz-range-thumb {
+  @apply ring-2 ring-blue-300;
 }
 </style>
