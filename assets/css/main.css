@@ -42,7 +42,7 @@ body {
 }
 
 .center-image {
-  animation: spin 40s linear infinite;
+  animation: spin 20s linear infinite;
 }
 
 .fade-enter-active,

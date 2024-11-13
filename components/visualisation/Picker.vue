@@ -123,6 +123,10 @@ const clearFilters = () => {
   isFiltersOpen.value = false;
 };
 
+const selectAllFilteredPlayers = () => {
+  setSelectedPlayerIds(filteredPlayers.value.map((player) => player.id));
+};
+
 const value = ref('');
 
 const filteredPlayers = computed(() => {
@@ -343,6 +347,13 @@ const isOpen = computed({
               @click="restoreDefaultPlayerSelection"
             >
               Default selection
+            </div>
+            <div class="">&#8226;</div>
+            <div
+              class="underline cursor-pointer"
+              @click="selectAllFilteredPlayers"
+            >
+              Select all filtered
             </div>
           </div>
           <div class="flex space-x-2 text-sm text-gray-500">
