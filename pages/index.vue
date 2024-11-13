@@ -4,6 +4,9 @@ useHead({ title: "Home | Broadway: Compare NFL's best QBs." });
 
 const configStore = useConfigStore();
 const { isLoaded } = storeToRefs(configStore);
+
+const interactionStore = useInteractionStore();
+const { openPicker } = interactionStore;
 </script>
 
 <template>
@@ -33,6 +36,22 @@ const { isLoaded } = storeToRefs(configStore);
             </div>
             Compare the greatest basketball players of all time
           </h1>
+          <div class="px-2">
+            <div class="grid grid-cols-2 border-4 border-white">
+              <div
+                class="flex justify-center items-center border-r-4 border-white cursor-pointer"
+                @click="openPicker('players')"
+              >
+                <div class="text-white font-medium uppercase">Select players</div>
+              </div>
+              <div
+                class="flex justify-center items-center cursor-pointer"
+                @click="openPicker('stats')"
+              >
+                <div class="text-white font-medium uppercase">Select stats</div>
+              </div>
+            </div>
+          </div>
         </div>
       </UContainer>
       <div v-if="isLoaded">
