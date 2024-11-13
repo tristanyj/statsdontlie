@@ -157,6 +157,21 @@ const isOpen = computed({
           />
         </div>
       </div>
+      <div class="grid grid-flow-col justify-between py-3 mt-2 px-4">
+        <div class="flex space-x-2 text-sm text-gray-500">
+          <div class="">0 Selected,</div>
+          <div class="">0 Total</div>
+          <div class="">&#8226;</div>
+          <div class="underline">Clear selection</div>
+          <div class="">&#8226;</div>
+          <div class="underline">Default selection</div>
+        </div>
+        <div class="flex space-x-2 text-sm text-gray-500">
+          <div class="underline">Filter by :</div>
+          <div class="">&#8226;</div>
+          <div class="underline">Sort by :</div>
+        </div>
+      </div>
       <div
         v-if="selectedIndex === 0"
         class="overflow-y-auto h-full"
