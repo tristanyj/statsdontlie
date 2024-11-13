@@ -164,7 +164,7 @@ const isOpen = computed({
                 <button
                   v-for="(player, i) in filteredPlayers"
                   :key="`player-${i}`"
-                  class="group relative p-3 border-4 transition-all duration-200"
+                  class="group relative p-3 border-4 transition-all duration-200 rounded-sm"
                   :class="[
                     selectionPlayers.includes(player.id)
                       ? ''
@@ -216,7 +216,7 @@ const isOpen = computed({
                         {{ player.info.nickname }}
                       </div>
                     </div>
-                    <!-- <div class="text-xs text-gray-500">
+                    <div class="text-xs text-gray-500">
                       {{ player.info.position }}
                     </div>
                     <div class="">
@@ -238,7 +238,7 @@ const isOpen = computed({
                     </div>
                     <div class="text-sm text-gray-500 truncate">
                       Drafted {{ player.info.draft[0] }} in {{ player.info.draft[1] }}
-                    </div> -->
+                    </div>
                     <!-- Add player image if available -->
                     <!-- <img
             v-if="player.info.image"
