@@ -584,7 +584,7 @@ const isOpen = computed({
           v-if="hasResults"
           class="grid h-full"
         >
-          <div class="p-4">
+          <div class="p-4 pt-2">
             <div class="grid grid-cols-8 2xl:grid-cols-12 gap-4">
               <button
                 v-for="(player, i) in sortedPlayers"
@@ -659,7 +659,7 @@ const isOpen = computed({
       >
         <div
           v-if="hasResults"
-          class="p-4 py-10"
+          class="p-4 pt-2 pb-10"
         >
           <div class="grid grid-cols-3 gap-5 items-start">
             <div
