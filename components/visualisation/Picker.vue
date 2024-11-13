@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { PlayerKey } from '~/types';
 
-// import havlijo01 from '~/assets/images/havlijo01.jpg';
-
 const configStore = useConfigStore();
 const { selectedPlayerIds, selectablePlayers, selectableCategories, selectedStatIds } =
   storeToRefs(configStore);
@@ -16,7 +14,6 @@ const getImageUrl = (playerId) => {
   return new URL(`../../assets/images/player/${playerId}.jpg`, import.meta.url).href;
 };
 
-// Define ranges for sliders
 const heightRange = ref([72, 84]); // 6'0" to 7'0" in inches
 const weightRange = ref([150, 300]); // in pounds
 const yearsRange = ref([1950, 2024]);
