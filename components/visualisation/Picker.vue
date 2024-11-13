@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { PlayerKey } from '~/types';
 
+// import havlijo01 from '~/assets/images/havlijo01.jpg';
+
 const configStore = useConfigStore();
 const { selectedPlayerIds, selectablePlayers, selectableCategories, selectedStatIds } =
   storeToRefs(configStore);
@@ -9,6 +11,10 @@ const { setSelectedPlayerIds, setSelectedStatIds } = configStore;
 const interactionStore = useInteractionStore();
 const { isPickerOpen, pickerType } = storeToRefs(interactionStore);
 const { setIsPickerOpen, openPicker } = interactionStore;
+
+const getImageUrl = (playerId) => {
+  return new URL(`../../assets/images/player/${playerId}.jpg`, import.meta.url).href;
+};
 
 const items = [
   {
@@ -158,16 +164,14 @@ const isOpen = computed({
                 <button
                   v-for="(player, i) in filteredPlayers"
                   :key="`player-${i}`"
-                  class="group relative overflow-hidden p-4 border rounded-lg transition-all duration-200"
+                  class="group relative p-3 border-4 transition-all duration-200"
                   :class="[
                     selectionPlayers.includes(player.id)
                       ? ''
-                      : 'border-gray-200 bg-white hover:border-gray-400',
+                      : 'border-gray-100 bg-white hover:border-gray-200',
                   ]"
                   :style="{
-                    backgroundColor: selectionPlayers.includes(player.id)
-                      ? `${player.color}1A`
-                      : 'white',
+                    borderColor: selectionPlayers.includes(player.id) ? `${player.color}` : '',
                   }"
                   @click="togglePlayer(player.id)"
                 >
@@ -176,27 +180,65 @@ const isOpen = computed({
                     class="absolute inset-0 opacity-0 transition-opacity duration-200"
                     :class="[selectionPlayers.includes(player.id) && 'opacity-5']"
                   >
-                    <div class="absolute inset-0 bg-primary-500 pattern-dots" />
+                    <div class="absolute inset-0 bg-primary-100 pattern-dots" />
                   </div>
 
                   <!-- Selected indicator -->
-                  <div
-                    class="absolute top-2 right-2 transform transition-transform duration-200"
+                  <!-- <div
+                    class="absolute -top-2 -right-2 transform transition-transform duration-200"
                     :class="[
                       selectionPlayers.includes(player.id)
-                        ? 'translate-x-0 text-primary-500'
-                        : 'translate-x-8',
+                        ? 'translate-x-0 text-primary-500 opacity-100'
+                        : 'translate-x-0 opacity-0',
                     ]"
                   >
-                    <UIcon name="i-heroicons-check-circle-20-solid" />
-                  </div>
+                    <UIcon
+                      name="i-heroicons-check-circle-20-solid"
+                      size="20"
+                    />
+                  </div> -->
 
                   <!-- Player content -->
-                  <div class="relative grid gap-2 text-left">
-                    <div class="font-medium truncate">{{ player.info.name }}</div>
-                    <div class="text-sm text-gray-500 truncate">
-                      {{ player.info.draft }}
+                  <div class="relative grid text-left">
+                    <div class="flex justify-center">
+                      <img
+                        :src="getImageUrl(player.id)"
+                        class="h-20 object-contain rounded-sm"
+                        alt=""
+                      />
                     </div>
+                    <div class="grid justify-center text-center">
+                      <div class="font-medium truncate">{{ player.info.name }}</div>
+                      <div
+                        v-if="player.info.nickname"
+                        class="text-xs text-gray-500"
+                      >
+                        {{ player.info.nickname }}
+                      </div>
+                    </div>
+                    <!-- <div class="text-xs text-gray-500">
+                      {{ player.info.position }}
+                    </div>
+                    <div class="">
+                      <div class="text-xs text-gray-500">
+                        {{ player.info.height }}, {{ player.info.weight }}lb
+                      </div>
+                      <div class="text-xs text-gray-500">
+                        {{ player.info.birth_date }}
+                      </div>
+                    </div>
+                    <div class="text-xs text-gray-500">
+                      {{ player.info.experience }} years of experience
+                    </div>
+                    <div
+                      v-if="player.info.teams"
+                      class="text-xs text-gray-500"
+                    >
+                      {{ player.info.teams.join(', ') }}
+                    </div>
+                    <div class="text-sm text-gray-500 truncate">
+                      Drafted {{ player.info.draft[0] }} in {{ player.info.draft[1] }}
+                    </div> -->
                     <!-- Add player image if available -->
                     <!-- <img
             v-if="player.info.image"
@@ -205,14 +247,11 @@ const isOpen = computed({
             class="w-full h-24 object-cover rounded-md"
           /> -->
                     <!-- Add more player info -->
-                    <div class="text-xs text-gray-400">
-                      {{ player.info.position }}
-                    </div>
                   </div>
 
                   <!-- Hover overlay -->
                   <div
-                    class="absolute inset-0 bg-gray-900 opacity-0 transition-opacity duration-200 group-hover:opacity-5"
+                    class="absolute inset-0 bg-gray-500 opacity-0 transition-opacity duration-200 group-hover:opacity-5"
                   />
                 </button>
               </TransitionGroup>

@@ -2065,7 +2065,7 @@
       "color": "#FF6B6B",
       "info": {
         "name": "Kareem Abdul-Jabbar",
-        "nickname": "Lew",
+        "nickname": "Lew, Cap, Murdock, Big Fella, The Tower of Power",
         "position": "Center",
         "shooting_hand": "Right",
         "height": "7-2",
@@ -2214,7 +2214,7 @@
       "color": "#4ECDC4",
       "info": {
         "name": "LeBron James",
-        "nickname": "King James",
+        "nickname": "King James, LBJ, Chosen One, Bron-Bron, The Little Emperor, The Akron Hammer, L-Train, Benjamin Buckets, Captain LeMerica",
         "position": "Small Forward",
         "shooting_hand": "Right",
         "height": "6-9",
@@ -2363,7 +2363,7 @@
       "color": "#45B7D1",
       "info": {
         "name": "Wilt Chamberlain",
-        "nickname": "Wilt the Stilt",
+        "nickname": "Wilt the Stilt, The Big Dipper, Dippy, Dip, The Load, Big Musty, The Record Book, Hook and Ladder, Wiltie, Whip, Whipper, Norm",
         "position": "Center",
         "shooting_hand": "Right",
         "height": "7-1",
@@ -2462,7 +2462,7 @@
       "color": "#96CEB4",
       "info": {
         "name": "Karl Malone",
-        "nickname": "The Mailman",
+        "nickname": "The Mailman, King Karl",
         "position": "Power Forward",
         "shooting_hand": "Right",
         "height": "6-9",
@@ -2610,7 +2610,7 @@
       "color": "#D4A373",
       "info": {
         "name": "Michael Jordan",
-        "nickname": "Mike",
+        "nickname": "Mike, Air Jordan, M.J., His Airness, Money, Black Cat, Mr. June, G.O.A.T., Superman, Captain Marvel, Black Jesus, Magic Mike",
         "position": "Shooting Guard",
         "shooting_hand": "Right",
         "height": "6-6",
@@ -2759,7 +2759,7 @@
       "color": "#9B5DE5",
       "info": {
         "name": "Chris Paul",
-        "nickname": "CP3",
+        "nickname": "CP3, The Point God, The Skate Instructor",
         "position": "Point Guard",
         "shooting_hand": "Right",
         "height": "6-0",
@@ -2908,6 +2908,7 @@
       "color": "#F15BB5",
       "info": {
         "name": "John Stockton",
+        "nickname": "Stock",
         "position": "Point Guard",
         "shooting_hand": "Right",
         "height": "6-1",
@@ -3055,7 +3056,7 @@
       "color": "#00BBF9",
       "info": {
         "name": "Tim Duncan",
-        "nickname": "Timmy",
+        "nickname": "Timmy, The Big Fundamental, Groundhog Day, Old Man Riverwalk, The Stone Buddha",
         "position": "Center",
         "shooting_hand": "Right",
         "height": "6-11",
@@ -3204,7 +3205,7 @@
       "color": "#00F5D4",
       "info": {
         "name": "Dirk Nowitzki",
-        "nickname": "Dirty",
+        "nickname": "Dirty, Tall Baller from the G, German Race Car, German Jesus",
         "position": "Power Forward",
         "shooting_hand": "Right",
         "height": "7-0",
@@ -3352,7 +3353,7 @@
       "color": "#FF9F1C",
       "info": {
         "name": "Kevin Garnett",
-        "nickname": "KG",
+        "nickname": "KG, The Big Ticket, The Kid",
         "position": "Power Forward",
         "shooting_hand": "Right",
         "height": "6-11",
@@ -3501,7 +3502,7 @@
       "color": "#E76F51",
       "info": {
         "name": "Oscar Robertson",
-        "nickname": "Big O",
+        "nickname": "Big O, Mr. Triple Double, Ozzie, Oscar the Grouch",
         "position": "Point Guard",
         "shooting_hand": "Right",
         "height": "6-5",
@@ -3628,7 +3629,7 @@
       "color": "#2A9D8F",
       "info": {
         "name": "Shaquille O'Neal",
-        "nickname": "Shaq",
+        "nickname": "Shaq, Diesel, The Big Aristotle, Superman, Shaq Fu, Shaq Daddy, Warrior",
         "position": "Center",
         "shooting_hand": "Right",
         "height": "7-1",
@@ -3776,7 +3777,7 @@
       "color": "#E63946",
       "info": {
         "name": "David Robinson",
-        "nickname": "The Admiral",
+        "nickname": "The Admiral, D-Rob",
         "position": "Center",
         "shooting_hand": "Left",
         "height": "7-1",
@@ -3925,7 +3926,7 @@
       "color": "#457B9D",
       "info": {
         "name": "Charles Barkley",
-        "nickname": "Sir Charles",
+        "nickname": "Sir Charles, The Round Mound of Rebound, The Chuckster, The Chuck Wagon, The Prince of Pizza, The Incredible Bulk, The Leaning Tower of Pizza, Bread Truck, Boy Gorge, Love Boat, Food World, The Crisco Kid, Wide Load from Leeds, Ton of Fun, Goodtime Blimp",
         "position": "Power Forward",
         "shooting_hand": "Right",
         "height": "6-6",
@@ -4074,7 +4075,7 @@
       "color": "#1D3557",
       "info": {
         "name": "Reggie Miller",
-        "nickname": "Uncle Reg",
+        "nickname": "Uncle Reg, The Knick Killer, Killa, Funk, Mighty Mouth, Freddy",
         "position": "Shooting Guard",
         "shooting_hand": "Right",
         "height": "6-7",
@@ -4222,7 +4223,7 @@
       "color": "#F4A261",
       "info": {
         "name": "Kobe Bryant",
-        "nickname": "Black Mamba",
+        "nickname": "Black Mamba, KB24, Vino, Showboat, Little Flying Warrior, The Eighth Man, Lord of the Rings",
         "position": "Shooting Guard",
         "shooting_hand": "Right",
         "height": "6-6",
@@ -4370,7 +4371,7 @@
       "color": "#BC6C25",
       "info": {
         "name": "Kevin Durant",
-        "nickname": "Durantula",
+        "nickname": "Durantula, KD, Slim Reaper, Easy Money Sniper, The Servant, Green Room",
         "position": "Small Forward",
         "shooting_hand": "Right",
         "height": "6-11",
@@ -4519,7 +4520,7 @@
       "color": "#606C38",
       "info": {
         "name": "Moses Malone",
-        "nickname": "Chairman of the Boards",
+        "nickname": "Chairman of the Boards, Big Mo, Octobull, Modine",
         "position": "Center",
         "shooting_hand": "Right",
         "height": "6-10",
@@ -4666,7 +4667,7 @@
       "color": "#283618",
       "info": {
         "name": "James Harden",
-        "nickname": "The Beard",
+        "nickname": "The Beard, El Chapo, Jimbo Slice, Honey Bun, Uno, The System",
         "position": "Shooting Guard",
         "shooting_hand": "Left",
         "height": "6-5",
@@ -4815,7 +4816,7 @@
       "color": "#DDA15E",
       "info": {
         "name": "Bill Russell",
-        "nickname": "Russ",
+        "nickname": "Russ, Whiskers, Willie, Bill the Hill, The Stuffer",
         "position": "Center",
         "shooting_hand": "Left",
         "height": "6-10",
@@ -4914,7 +4915,7 @@
       "color": "#BC4749",
       "info": {
         "name": "Hakeem Olajuwon",
-        "nickname": "The Dream",
+        "nickname": "The Dream, Little Moses",
         "position": "Center",
         "shooting_hand": "Right",
         "height": "7-0",
@@ -5063,7 +5064,7 @@
       "color": "#5F0F40",
       "info": {
         "name": "Jerry West",
-        "nickname": "Mr. Clutch",
+        "nickname": "Mr. Clutch, Zeke From Cabin Creek, The Logo, Cabin Creek Comet, Tweety, Tweety Bird, Mr. Outside",
         "position": "Point Guard",
         "shooting_hand": "Right",
         "height": "6-3",
@@ -5190,7 +5191,7 @@
       "color": "#9B2226",
       "info": {
         "name": "Magic Johnson",
-        "nickname": "Magic",
+        "nickname": "Magic, Buck, E.J. the Deejay, Tragic, The Magic Man, Junior",
         "position": "Point Guard",
         "shooting_hand": "Right",
         "height": "6-9",
@@ -5339,7 +5340,7 @@
       "color": "#606C38",
       "info": {
         "name": "Paul Pierce",
-        "nickname": "The Truth",
+        "nickname": "The Truth, P-Double",
         "position": "Small Forward",
         "shooting_hand": "Right",
         "height": "6-7",
@@ -5488,7 +5489,7 @@
       "color": "#0077B6",
       "info": {
         "name": "Robert Parish",
-        "nickname": "The Chief",
+        "nickname": "The Chief, Slim",
         "position": "Center",
         "shooting_hand": "Right",
         "height": "7-1",
@@ -5636,7 +5637,7 @@
       "color": "#023E8A",
       "info": {
         "name": "Larry Bird",
-        "nickname": "Larry Legend",
+        "nickname": "Larry Legend, The Hick from French Lick, Kodak, The Great White Hope",
         "position": "Small Forward",
         "shooting_hand": "Right",
         "height": "6-9",
@@ -5785,7 +5786,7 @@
       "color": "#03045E",
       "info": {
         "name": "Stephen Curry",
-        "nickname": "Steph",
+        "nickname": "Steph, Baby-Faced Assassin, Chef Curry, The Human Torch, Threezus",
         "position": "Point Guard",
         "shooting_hand": "Right",
         "height": "6-2",
@@ -5934,7 +5935,7 @@
       "color": "#6D597A",
       "info": {
         "name": "Russell Westbrook",
-        "nickname": "The Brodie",
+        "nickname": "The Brodie, Russ, Beastbrook, Mr. Triple Double",
         "position": "Point Guard",
         "shooting_hand": "Right",
         "height": "6-4",
@@ -6083,7 +6084,7 @@
       "color": "#355070",
       "info": {
         "name": "Nikola Jokić",
-        "nickname": "Joker",
+        "nickname": "Joker, Big Honey, Cookie Monster, Yoke, Big Tipper",
         "position": "Center",
         "shooting_hand": "Right",
         "height": "6-11",
@@ -6232,7 +6233,7 @@
       "color": "#6B705C",
       "info": {
         "name": "Ray Allen",
-        "nickname": "Ray-Ray",
+        "nickname": "Ray-Ray, Sugar Ray, Jesus Shuttlesworth, Skinny Walt, Gentleman",
         "position": "Shooting Guard",
         "shooting_hand": "Right",
         "height": "6-5",
@@ -6380,7 +6381,7 @@
       "color": "#B7B7A4",
       "info": {
         "name": "Dikembe Mutombo",
-        "nickname": "Deke",
+        "nickname": "Deke, Mt. Mutombo",
         "position": "Center",
         "shooting_hand": "Right",
         "height": "7-2",
@@ -6528,7 +6529,7 @@
       "color": "#A5A58D",
       "info": {
         "name": "Pau Gasol",
-        "nickname": "Meal Ticket",
+        "nickname": "Meal Ticket, ET, Kung Pow",
         "position": "Center",
         "shooting_hand": "Right",
         "height": "7-0",
@@ -6677,7 +6678,7 @@
       "color": "#FFB4A2",
       "info": {
         "name": "Jason Kidd",
-        "nickname": "J-Kidd",
+        "nickname": "J-Kidd, Ason Kidd, The Engine, The Kidd, Mr. Triple Double",
         "position": "Point Guard",
         "shooting_hand": "Right",
         "height": "6-4",
@@ -6826,6 +6827,7 @@
       "color": "#E5989B",
       "info": {
         "name": "Clyde Drexler",
+        "nickname": "Clyde the Glide",
         "position": "Shooting Guard",
         "shooting_hand": "Right",
         "height": "6-7",
@@ -6974,7 +6976,7 @@
       "color": "#B5838D",
       "info": {
         "name": "Steve Nash",
-        "nickname": "MVSteve",
+        "nickname": "MVSteve, Two Time, Nashty",
         "position": "Point Guard",
         "shooting_hand": "Right",
         "height": "6-3",
@@ -7123,7 +7125,7 @@
       "color": "#6D6875",
       "info": {
         "name": "Allen Iverson",
-        "nickname": "The Answer",
+        "nickname": "The Answer, A.I., Bubba Chuck, Jewelz, The Third Degree",
         "position": "Shooting Guard",
         "shooting_hand": "Right",
         "height": "6-0",
@@ -7271,7 +7273,7 @@
       "color": "#FFB703",
       "info": {
         "name": "Kawhi Leonard",
-        "nickname": "The Claw",
+        "nickname": "The Claw, Board Man, Fun Guy, The Hand, The Terminator",
         "position": "Small Forward",
         "shooting_hand": "Right",
         "height": "6-7",
@@ -7419,7 +7421,7 @@
       "color": "#FB8500",
       "info": {
         "name": "Gary Payton",
-        "nickname": "The Glove",
+        "nickname": "The Glove, GP",
         "position": "Point Guard",
         "shooting_hand": "Right",
         "height": "6-4",
@@ -7568,7 +7570,7 @@
       "color": "#219EBC",
       "info": {
         "name": "Dwight Howard",
-        "nickname": "Superman",
+        "nickname": "Superman, D12, The Daily Double",
         "position": "Center",
         "shooting_hand": "Right",
         "height": "6-10",
@@ -7716,7 +7718,7 @@
       "color": "#8ECAE6",
       "info": {
         "name": "John Havlicek",
-        "nickname": "Hondo",
+        "nickname": "Hondo, Country Boy",
         "position": "Small Forward",
         "shooting_hand": "Right",
         "height": "6-5",
@@ -7849,7 +7851,7 @@
       "color": "#95D5B2",
       "info": {
         "name": "Patrick Ewing",
-        "nickname": "Big Pat",
+        "nickname": "Big Pat, Hoya Destroya, Pat, The Big Fella, Beast",
         "position": "Center",
         "shooting_hand": "Right",
         "height": "7-0",
@@ -7997,7 +7999,7 @@
       "color": "#52B788",
       "info": {
         "name": "Scottie Pippen",
-        "nickname": "Pip",
+        "nickname": "Pip, Scott, Batman, Robin",
         "position": "Small Forward",
         "shooting_hand": "Right",
         "height": "6-8",
@@ -8146,7 +8148,7 @@
       "color": "#2D6A4F",
       "info": {
         "name": "Dwyane Wade",
-        "nickname": "D-Wade",
+        "nickname": "D-Wade, Flash, WOW, Pookie, Father Prime",
         "position": "Shooting Guard",
         "shooting_hand": "Right",
         "height": "6-4",
@@ -8294,7 +8296,7 @@
       "color": "#D8F3DC",
       "info": {
         "name": "Isiah Thomas",
-        "nickname": "Zeke",
+        "nickname": "Zeke, The Baby-Faced Assassin, Tuss, Pocket Magic",
         "position": "Point Guard",
         "shooting_hand": "Right",
         "height": "6-1",
@@ -8443,7 +8445,7 @@
       "color": "#081C15",
       "info": {
         "name": "Bob Pettit",
-        "nickname": "Big Blue",
+        "nickname": "Big Blue, The Bombardier from Baton Rouge",
         "position": "Power Forward",
         "shooting_hand": "Right",
         "height": "6-9",
@@ -8541,7 +8543,7 @@
       "color": "#FFD60A",
       "info": {
         "name": "Anthony Davis",
-        "nickname": "Unibrow",
+        "nickname": "Unibrow, The Brow, AD, Ant, Phatman, Street Clothes, Wilt Davis",
         "position": "Power Forward",
         "shooting_hand": "Right",
         "height": "6-10",
@@ -8689,7 +8691,7 @@
       "color": "#BF0603",
       "info": {
         "name": "Giannis Antetokounmpo",
-        "nickname": "The Greek Freak",
+        "nickname": "The Greek Freak, The Alphabet",
         "position": "Power Forward",
         "shooting_hand": "Right",
         "height": "6-11",
@@ -8838,7 +8840,7 @@
       "color": "#720026",
       "info": {
         "name": "Bob Cousy",
-        "nickname": "Cooz",
+        "nickname": "Cooz, Houdini of the Hardwood, Flenchy",
         "position": "Point Guard",
         "shooting_hand": "Right",
         "height": "6-1",
@@ -8937,7 +8939,7 @@
       "color": "#CE4257",
       "info": {
         "name": "Julius Erving",
-        "nickname": "Dr. J",
+        "nickname": "Dr. J, The Doctor, J.W., The Claw, Black Moses, Houdini, Little Hawk, Doc, Julie, Super Julius",
         "position": "Small Forward",
         "shooting_hand": "Right",
         "height": "6-7",
@@ -9085,7 +9087,7 @@
       "color": "#FF7F51",
       "info": {
         "name": "Elgin Baylor",
-        "nickname": "Elg",
+        "nickname": "Elg, Rabbit, Motormouth, Tick Tock, Aches and Pains, The Big Hurt, Elgin the Belgin",
         "position": "Small Forward",
         "shooting_hand": "Right",
         "height": "6-5",

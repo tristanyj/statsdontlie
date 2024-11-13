@@ -176,13 +176,29 @@ extract_selection_count <- function(page, selector) {
   })
 }
 
+download_player_image <- function(page, id) {
+  tryCatch({
+    url <- page %>%
+      html_node("#meta div.media-item img") %>%
+      html_attr("src")
+
+    response <- httr::GET(url)
+
+    writeBin(httr::content(response, "raw"), paste0("assets/images/player/", id, ".jpg"))
+  }, error = function(e) {
+    warning(paste("Error downloading player image:", e$message))
+    return(NULL)
+  })
+}
+
 extract_teams_played_for <- function(page) {
   tryCatch({
     teams <- page %>%
       html_nodes("#per_game_stats tbody td[data-stat='team_name_abbr'] a") %>%
       html_text() %>%
       str_trim() %>%
-      unique()
+      unique() %>%
+      as.vector()
 
     return(teams)
   }, error = function(e) {
@@ -196,9 +212,9 @@ extract_nickname <- function(p) {
     nickname <- p %>%
       html_text() %>%
       str_trim() %>%
-      str_extract("\\((.*?),") %>%
-      str_remove("\\(") %>%
-      str_remove(",")
+      str_extract("\\((.*?)\\)") %>%  # Extract everything between parentheses
+      str_remove("\\(") %>%           # Remove opening parenthesis
+      str_remove("\\)")               # Remove closing parenthesis
 
     return(nickname)
   }, error = function(e) {
@@ -540,8 +556,9 @@ scrape_player <- function(id, url, color) {
     Sys.sleep(2)
 
     html_content <- b$Runtime$evaluate("document.documentElement.outerHTML")$result$value
-
     page <- read_html(html_content)
+
+    download_player_image(page, id)
 
     info <- extract_player_info(page)
     regular_season_stats <- extract_regular_season_stats(page)
@@ -580,6 +597,7 @@ output$players <- list()
 
 max <- nrow(players)
 
+# for (i in 7:7) {
 for (i in 1:max) {
   id <- players$id[i]
   url <- players$bbref_url[i]

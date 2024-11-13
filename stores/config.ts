@@ -149,7 +149,15 @@ export const useConfigStore = defineStore('config', () => {
   };
 
   const setCategories = (d: Category[]) => (categories.value = d);
-  const setPlayers = (d: Player[]) => (players.value = d);
+  const setPlayers = (d: Player[]) =>
+    (players.value = d.map((player) => ({
+      ...player,
+      info: {
+        ...player.info,
+        nickname: player.info.nickname.split(',')[0],
+        teams: typeof player.info.teams === 'string' ? [player.info.teams] : player.info.teams,
+      },
+    })));
 
   const setSelectedPlayerIds = (newselectedPlayerIds: PlayerKey[]) =>
     (selectedPlayerIds.value = newselectedPlayerIds);
