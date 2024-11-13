@@ -48,6 +48,17 @@ const filteredPlayers = computed(() => {
   );
 });
 
+const sortedPlayers = computed(() => {
+  const copy = [...filteredPlayers.value];
+  copy.sort((a, b) => {
+    const [aFirstName, aLastName] = a.info.name.split(' ');
+    const [bFirstName, bLastName] = b.info.name.split(' ');
+
+    return aLastName.localeCompare(bLastName) || aFirstName.localeCompare(bFirstName);
+  });
+  return copy;
+});
+
 // For stats, we need to maintain the category structure while filtering
 const filteredCategories = computed(() => {
   if (!value.value) return selectableCategories.value;
@@ -162,7 +173,7 @@ const isOpen = computed({
                 class="contents"
               >
                 <button
-                  v-for="(player, i) in filteredPlayers"
+                  v-for="(player, i) in sortedPlayers"
                   :key="`player-${i}`"
                   class="group relative p-2 border transition-all duration-200 rounded-md"
                   @click="togglePlayer(player.id)"
@@ -200,11 +211,19 @@ const isOpen = computed({
                     <div class="flex flex-col items-center">
                       <img
                         :src="getImageUrl(player.id)"
-                        class="h-24 object-contain rounded-sm"
+                        class="h-20 object-contain rounded-sm"
                         alt=""
                       />
                       <div class="text-center mt-2">
-                        <div class="font-medium leading-[18px]">{{ player.info.name }}</div>
+                        <div class="items-start font-medium leading-[18px]">
+                          <div
+                            class="relative left-[3px] bottom-[2px] inline-block w-2 h-2 rounded-full mr-1"
+                            :style="{
+                              background: player.color,
+                            }"
+                          />
+                          {{ player.info.name }}
+                        </div>
                         <div class="text-xs text-gray-500 mt-1">
                           {{ player.info.position }}
                         </div>
