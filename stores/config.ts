@@ -8,6 +8,45 @@ import type {
   PlayerKey,
 } from '~/types';
 
+const DEFAULT_PLAYER_IDS: PlayerKey[] = ['abdulka01', 'jamesle01', 'chambwi01', 'jordami01'];
+
+const DEFAULT_STAT_IDS: StatKey[] = [
+  // Awards
+  'awards.individual.mvp',
+  'awards.individual.dpoy',
+  'awards.individual.all_nba',
+  'awards.individual.all_defensive',
+  'awards.individual.all_star',
+  'awards.team.nba_championships',
+  'awards.team.conference_championships',
+  // Regular season
+  'regular_season.total.games_played',
+  'regular_season.total.points',
+  'regular_season.total.total_rebounds',
+  'regular_season.total.assists',
+  'regular_season.per_game.points',
+  'regular_season.per_game.total_rebounds',
+  'regular_season.per_game.assists',
+  'regular_season.advanced.player_efficiency_rating',
+  'regular_season.advanced.win_shares',
+  'regular_season.game_high.points',
+  'regular_season.game_high.total_rebounds',
+  'regular_season.game_high.assists',
+  // Post season
+  'post_season.total.games_played',
+  'post_season.total.points',
+  'post_season.total.total_rebounds',
+  'post_season.total.assists',
+  'post_season.per_game.points',
+  'post_season.per_game.total_rebounds',
+  'post_season.per_game.assists',
+  'post_season.advanced.player_efficiency_rating',
+  'post_season.advanced.win_shares',
+  'post_season.game_high.points',
+  'post_season.game_high.total_rebounds',
+  'post_season.game_high.assists',
+];
+
 export const useConfigStore = defineStore('config', () => {
   const cacheStore = useCacheStore();
   const { getScale, getFormat } = cacheStore;
@@ -19,43 +58,8 @@ export const useConfigStore = defineStore('config', () => {
   const categories = ref<Category[]>([]);
   const players = ref<Player[]>([]);
 
-  const selectedPlayerIds = ref<PlayerKey[]>(['abdulka01', 'jamesle01', 'chambwi01']);
-  const selectedStatIds = ref<StatKey[]>([
-    // Awards
-    'awards.individual.mvp',
-    'awards.individual.dpoy',
-    'awards.individual.all_nba',
-    'awards.individual.all_defensive',
-    'awards.individual.all_star',
-    'awards.team.nba_championships',
-    'awards.team.conference_championships',
-    // Regular season
-    'regular_season.total.games_played',
-    'regular_season.total.points',
-    'regular_season.total.total_rebounds',
-    'regular_season.total.assists',
-    'regular_season.per_game.points',
-    'regular_season.per_game.total_rebounds',
-    'regular_season.per_game.assists',
-    'regular_season.advanced.player_efficiency_rating',
-    'regular_season.advanced.win_shares',
-    'regular_season.game_high.points',
-    'regular_season.game_high.total_rebounds',
-    'regular_season.game_high.assists',
-    // Post season
-    'post_season.total.games_played',
-    'post_season.total.points',
-    'post_season.total.total_rebounds',
-    'post_season.total.assists',
-    'post_season.per_game.points',
-    'post_season.per_game.total_rebounds',
-    'post_season.per_game.assists',
-    'post_season.advanced.player_efficiency_rating',
-    'post_season.advanced.win_shares',
-    'post_season.game_high.points',
-    'post_season.game_high.total_rebounds',
-    'post_season.game_high.assists',
-  ]);
+  const selectedPlayerIds = ref<PlayerKey[]>([...DEFAULT_PLAYER_IDS]);
+  const selectedStatIds = ref<StatKey[]>([...DEFAULT_STAT_IDS]);
 
   // --------------------------------
   // Computed
@@ -116,6 +120,12 @@ export const useConfigStore = defineStore('config', () => {
     }));
   });
 
+  const selectableStats = computed(() => {
+    return categories.value.flatMap((category) =>
+      category.subCategories.flatMap((subCategory) => subCategory.stats)
+    );
+  });
+
   const enrichedCategories = computed(
     () =>
       categories.value.map((category) => ({
@@ -164,6 +174,14 @@ export const useConfigStore = defineStore('config', () => {
   const setSelectedStatIds = (newselectedStatIds: StatKey[]) =>
     (selectedStatIds.value = newselectedStatIds);
 
+  const restoreDefaultPlayerSelection = () => {
+    selectedPlayerIds.value = [...DEFAULT_PLAYER_IDS];
+  };
+
+  const restoreDefaultStatSelection = () => {
+    selectedStatIds.value = [...DEFAULT_STAT_IDS];
+  };
+
   return {
     isLoaded,
     selectedPlayerIds,
@@ -172,6 +190,7 @@ export const useConfigStore = defineStore('config', () => {
     selectedStatIdsCount,
     selectablePlayers,
     selectableCategories,
+    selectableStats,
     selectedPlayers,
     selectedCategories,
     selectedSubCategories,
@@ -182,5 +201,7 @@ export const useConfigStore = defineStore('config', () => {
     setSelectedStatIds,
     getCategoryById,
     getSubCategoryById,
+    restoreDefaultPlayerSelection,
+    restoreDefaultStatSelection,
   };
 });

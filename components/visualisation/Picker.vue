@@ -1,22 +1,36 @@
 <script setup lang="ts">
 import type { PlayerKey } from '~/types';
 
+import { heightToInches } from '~/assets/scripts/utils';
+
 const configStore = useConfigStore();
-const { selectedPlayerIds, selectablePlayers, selectableCategories, selectedStatIds } =
-  storeToRefs(configStore);
-const { setSelectedPlayerIds, setSelectedStatIds } = configStore;
+const {
+  selectedPlayerIds,
+  selectablePlayers,
+  selectableCategories,
+  selectableStats,
+  selectedStatIds,
+} = storeToRefs(configStore);
+const {
+  setSelectedPlayerIds,
+  setSelectedStatIds,
+  restoreDefaultPlayerSelection,
+  restoreDefaultStatSelection,
+} = configStore;
 
 const interactionStore = useInteractionStore();
 const { isPickerOpen, pickerType } = storeToRefs(interactionStore);
 const { setIsPickerOpen, openPicker } = interactionStore;
 
-const getImageUrl = (playerId) => {
+const getImageUrl = (playerId: PlayerKey) => {
   return new URL(`../../assets/images/player/${playerId}.jpg`, import.meta.url).href;
 };
 
-const heightRange = ref([72, 84]); // 6'0" to 7'0" in inches
-const weightRange = ref([150, 300]); // in pounds
-const yearsRange = ref([1950, 2024]);
+const selectedOnly = ref(false);
+
+const heightRange = ref([70, 96]); // 5'0" to 7'0" in inches
+const weightRange = ref([150, 350]); // in pounds
+const yearsRange = ref([1960, 2024]);
 
 // Positions checkboxes
 const positions = ref({
@@ -26,6 +40,14 @@ const positions = ref({
   PF: false,
   C: false,
 });
+
+const positionEquivalents = {
+  PG: 'Point Guard',
+  SG: 'Shooting Guard',
+  SF: 'Small Forward',
+  PF: 'Power Forward',
+  C: 'Center',
+};
 
 const items = [
   {
@@ -47,27 +69,153 @@ const selectedIndex = computed({
   },
 });
 
+type Option = {
+  label: string;
+  key: string;
+};
+
+const isFiltersOpen = ref(false);
+
+const isSortOpen = ref(false);
+const isSortAscending = ref(true);
+
+const sortOptions: Option[] = [
+  {
+    label: 'Name',
+    key: 'name',
+  },
+  {
+    label: 'Height',
+    key: 'height',
+  },
+  {
+    label: 'Weight',
+    key: 'weight',
+  },
+  {
+    label: 'Experience',
+    key: 'experience',
+  },
+  {
+    label: 'Draft Year',
+    key: 'draft-year',
+  },
+];
+
+const currentSort = ref(sortOptions[0]);
+
+const selectOption = (option: Option) => {
+  currentSort.value = option;
+  isSortOpen.value = false;
+  if (currentSort.value.key === option.key) {
+    isSortAscending.value = !isSortAscending.value;
+  }
+};
+
+const clearFilters = () => {
+  selectedOnly.value = false;
+  heightRange.value = [70, 96];
+  weightRange.value = [150, 350];
+  yearsRange.value = [1960, 2024];
+  Object.keys(positions.value).forEach(
+    (position) => (positions.value[position as keyof typeof positions.value] = false)
+  );
+  isFiltersOpen.value = false;
+};
+
 const value = ref('');
 
-// First, create computed properties for filtered items
 const filteredPlayers = computed(() => {
-  if (!value.value) return selectablePlayers.value;
-
   const searchTerm = value.value.toLowerCase();
-  return selectablePlayers.value.filter((player) =>
-    player.info.name.toLowerCase().includes(searchTerm)
-  );
+
+  const filteredBySearch = searchTerm
+    ? selectablePlayers.value.filter((player) =>
+        player.info.name.toLowerCase().includes(searchTerm)
+      )
+    : selectablePlayers.value;
+
+  const filteredBySelected = selectedOnly.value
+    ? filteredBySearch.filter((player) => selectedPlayerIds.value.includes(player.id))
+    : filteredBySearch;
+
+  const filteredByHeight = filteredBySelected.filter((player) => {
+    const height = heightToInches(player.info.height);
+    return height >= heightRange.value[0] && height <= heightRange.value[1];
+  });
+
+  const filteredByWeight = filteredByHeight.filter((player) => {
+    const weight = parseInt(player.info.weight);
+    return weight >= weightRange.value[0] && weight <= weightRange.value[1];
+  });
+
+  const filteredByYears = filteredByWeight.filter((player) => {
+    const endYear = player.info.draft[1] + player.info.experience;
+
+    return (
+      endYear >= Math.min(yearsRange.value[0], yearsRange.value[1]) &&
+      endYear <= Math.max(yearsRange.value[0], yearsRange.value[1])
+    );
+  });
+
+  const selectedPositions = Object.entries(positions.value)
+    .filter((position) => position[1])
+    .map((position) => position[0]);
+
+  const filteredByPosition = selectedPositions.length
+    ? filteredByYears.filter((player) => {
+        return selectedPositions.some((position) => {
+          const equivalent = positionEquivalents[position as keyof typeof positionEquivalents];
+          console.log(!!equivalent && player.info.position === equivalent);
+          return !!equivalent && player.info.position === equivalent;
+        });
+      })
+    : filteredByYears;
+
+  return filteredByPosition;
 });
 
 const sortedPlayers = computed(() => {
   const copy = [...filteredPlayers.value];
-  copy.sort((a, b) => {
-    const [aFirstName, aLastName] = a.info.name.split(' ');
-    const [bFirstName, bLastName] = b.info.name.split(' ');
 
-    return aLastName.localeCompare(bLastName) || aFirstName.localeCompare(bFirstName);
-  });
-  return copy;
+  switch (currentSort.value.key) {
+    case 'name':
+      return copy.sort((a, b) => {
+        const [aFirstName, aLastName] = a.info.name.split(' ');
+        const [bFirstName, bLastName] = b.info.name.split(' ');
+
+        return isSortAscending.value
+          ? aLastName.localeCompare(bLastName) || aFirstName.localeCompare(bFirstName)
+          : bLastName.localeCompare(aLastName) || bFirstName.localeCompare(aFirstName);
+      });
+    case 'height':
+      return copy.sort((a, b) => {
+        const aHeight = heightToInches(a.info.height);
+        const bHeight = heightToInches(b.info.height);
+
+        return isSortAscending.value ? aHeight - bHeight : bHeight - aHeight;
+      });
+    case 'weight':
+      return copy.sort((a, b) => {
+        const aWeight = parseInt(a.info.weight);
+        const bWeight = parseInt(b.info.weight);
+
+        return isSortAscending.value ? aWeight - bWeight : bWeight - aWeight;
+      });
+    case 'experience':
+      return copy.sort((a, b) => {
+        return isSortAscending.value
+          ? a.info.experience - b.info.experience
+          : b.info.experience - a.info.experience;
+      });
+    case 'draft-year':
+      return copy.sort((a, b) => {
+        return isSortAscending.value
+          ? a.info.draft[1] - b.info.draft[1]
+          : b.info.draft[1] - a.info.draft[1];
+      });
+    default:
+      return copy;
+  }
 });
 
 // For stats, we need to maintain the category structure while filtering
@@ -110,6 +258,14 @@ const togglePlayer = (playerId: PlayerKey) => {
   }
 };
 
+const clearSelection = (type: 'players' | 'stats') => {
+  if (type === 'players') {
+    setSelectedPlayerIds([]);
+  } else {
+    setSelectedStatIds([]);
+  }
+};
+
 const selectionPlayers = computed({
   get: () => selectedPlayerIds.value,
   set: (newValue) => {
@@ -138,7 +294,7 @@ const isOpen = computed({
     side="bottom"
     class="font-host"
   >
-    <div class="grid grid-rows-[auto,1fr] h-full">
+    <div class="grid grid-rows-[auto,auto,1fr] h-full">
       <div class="grid grid-cols-[auto,1fr,auto] gap-10 items-center border-b p-4">
         <div class="">
           <UTabs
@@ -168,131 +324,247 @@ const isOpen = computed({
           />
         </div>
       </div>
-      <div class="grid grid-flow-col justify-between py-3 mt-2 px-4">
-        <div class="flex space-x-2 text-sm text-gray-500">
-          <div class="">0 Selected,</div>
-          <div class="">0 Total</div>
-          <div class="">&#8226;</div>
-          <div class="underline">Clear selection</div>
-          <div class="">&#8226;</div>
-          <div class="underline">Default selection</div>
-        </div>
-        <div class="flex space-x-2 text-sm text-gray-500">
-          <UPopover>
-            <div class="underline">Filter by :</div>
-            <template #panel>
-              <div class="p-4">
-                <div class="filters-container rounded-lg">
-                  <!-- Height Range Slider -->
-                  <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">
-                      Height Range ({{ heightRange[0] }}" - {{ heightRange[1] }}")
-                    </label>
-                    <div class="relative">
-                      <input
-                        type="range"
-                        v-model="heightRange[0]"
-                        :min="72"
-                        :max="84"
-                        class="range-slider"
-                      />
-                      <input
-                        type="range"
-                        v-model="heightRange[1]"
-                        :min="72"
-                        :max="84"
-                        class="range-slider"
-                      />
-                    </div>
-                  </div>
-
-                  <!-- Weight Range Slider -->
-                  <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">
-                      Weight Range ({{ weightRange[0] }} - {{ weightRange[1] }} lbs)
-                    </label>
-                    <div class="relative">
-                      <input
-                        type="range"
-                        v-model="weightRange[0]"
-                        :min="150"
-                        :max="300"
-                        class="range-slider"
-                      />
-                      <input
-                        type="range"
-                        v-model="weightRange[1]"
-                        :min="150"
-                        :max="300"
-                        class="range-slider"
-                      />
-                    </div>
-                  </div>
-
-                  <!-- Years Range Slider -->
-                  <div class="slider-container mb-6">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">
-                      Years ({{ Math.min(yearsRange[0], yearsRange[1]) }} -
-                      {{ Math.max(yearsRange[0], yearsRange[1]) }})
-                    </label>
-                    <div class="relative h-1">
-                      <div class="absolute h-full rounded-full bg-gray-300 w-full" />
+      <template v-if="selectedIndex === 0">
+        <div class="grid grid-flow-col justify-between py-3 mt-2 px-4">
+          <div class="flex space-x-2 text-sm text-gray-500">
+            <div class="">{{ selectedPlayerIds.length }} selected,</div>
+            <div class="">{{ filteredPlayers.length }} filtered,</div>
+            <div class="">{{ selectablePlayers.length }} total</div>
+            <div class="">&#8226;</div>
+            <div
+              class="underline cursor-pointer"
+              @click="clearSelection('players')"
+            >
+              Clear selection
+            </div>
+            <div class="">&#8226;</div>
+            <div
+              class="underline cursor-pointer"
+              @click="restoreDefaultPlayerSelection"
+            >
+              Default selection
+            </div>
+          </div>
+          <div class="flex space-x-2 text-sm text-gray-500">
+            <UPopover
+              v-model:open="isFiltersOpen"
+              :popper="{ arrow: true }"
+            >
+              <div class="underline">Filters</div>
+              <template #panel>
+                <div class="p-4">
+                  <div class="filters-container rounded-lg">
+                    <div class="flex">
                       <div
-                        class="absolute h-full bg-blue-500 rounded-full"
-                        :style="{
-                          left: `${Math.min(
-                            ((yearsRange[0] - 1950) / (2024 - 1950)) * 100,
-                            ((yearsRange[1] - 1950) / (2024 - 1950)) * 100
-                          )}%`,
-                          right: `${
-                            100 -
-                            Math.max(
-                              ((yearsRange[0] - 1950) / (2024 - 1950)) * 100,
-                              ((yearsRange[1] - 1950) / (2024 - 1950)) * 100
-                            )
-                          }%`,
-                        }"
-                      />
-                      <input
-                        type="range"
-                        v-model.number="yearsRange[0]"
-                        :min="1950"
-                        :max="2024"
-                        class="range-slider"
-                      />
-                      <input
-                        type="range"
-                        v-model.number="yearsRange[1]"
-                        :min="1950"
-                        :max="2024"
-                        class="range-slider"
-                      />
-                    </div>
-                  </div>
-
-                  <!-- Position Checkboxes -->
-                  <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700 mb-2"> Positions </label>
-                    <div class="flex gap-4">
-                      <label
-                        v-for="(checked, position) in positions"
-                        :key="position"
-                        class="flex items-center"
+                        class="underline cursor-pointer mb-4"
+                        @click="clearFilters()"
                       >
-                        <UCheckbox v-model="positions[position]" />
-                        <span class="ml-2 text-sm">{{ position }}</span>
+                        Clear filters
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="block text-sm text-gray-700 mb-1">Selected Only</label>
+                      <UToggle v-model="selectedOnly" />
+                    </div>
+
+                    <!-- Height Range Slider -->
+                    <div class="slider-container mb-5">
+                      <label class="block text-sm text-gray-700 mb-2">
+                        Height Range ({{ heightRange[0] }}" - {{ heightRange[1] }}")
                       </label>
+                      <div class="relative h-1">
+                        <div class="absolute h-full rounded-full bg-gray-300 w-full" />
+                        <div
+                          class="absolute h-full bg-primary-700 rounded-full"
+                          :style="{
+                            left: `${Math.min(
+                              ((heightRange[0] - 70) / (96 - 70)) * 100,
+                              ((heightRange[1] - 70) / (96 - 70)) * 100
+                            )}%`,
+                            right: `${
+                              100 -
+                              Math.max(
+                                ((heightRange[0] - 70) / (96 - 70)) * 100,
+                                ((heightRange[1] - 70) / (96 - 70)) * 100
+                              )
+                            }%`,
+                          }"
+                        />
+                        <input
+                          v-model="heightRange[0]"
+                          type="range"
+                          :min="70"
+                          :max="96"
+                          class="range-slider"
+                        />
+                        <input
+                          v-model="heightRange[1]"
+                          type="range"
+                          :min="70"
+                          :max="96"
+                          class="range-slider"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Weight Range Slider -->
+                    <div class="slider-container mb-5">
+                      <label class="block text-sm text-gray-700 mb-2">
+                        Weight Range ({{ weightRange[0] }} - {{ weightRange[1] }} lbs)
+                      </label>
+                      <div class="relative h-1">
+                        <div class="absolute h-full rounded-full bg-gray-300 w-full" />
+                        <div
+                          class="absolute h-full bg-primary-700 rounded-full"
+                          :style="{
+                            left: `${Math.min(
+                              ((weightRange[0] - 150) / (350 - 150)) * 100,
+                              ((weightRange[1] - 150) / (350 - 150)) * 100
+                            )}%`,
+                            right: `${
+                              100 -
+                              Math.max(
+                                ((weightRange[0] - 150) / (350 - 150)) * 100,
+                                ((weightRange[1] - 150) / (350 - 150)) * 100
+                              )
+                            }%`,
+                          }"
+                        />
+                        <input
+                          v-model="weightRange[0]"
+                          type="range"
+                          :min="150"
+                          :max="350"
+                          class="range-slider"
+                        />
+                        <input
+                          v-model="weightRange[1]"
+                          type="range"
+                          :min="150"
+                          :max="350"
+                          class="range-slider"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Years Range Slider -->
+                    <div class="slider-container mb-5">
+                      <label class="block text-sm text-gray-700 mb-2">
+                        Years active ({{ Math.min(yearsRange[0], yearsRange[1]) }} -
+                        {{ Math.max(yearsRange[0], yearsRange[1]) }})
+                      </label>
+                      <div class="relative h-1">
+                        <div class="absolute h-full rounded-full bg-gray-300 w-full" />
+                        <div
+                          class="absolute h-full bg-primary-700 rounded-full"
+                          :style="{
+                            left: `${Math.min(
+                              ((yearsRange[0] - 1960) / (2024 - 1960)) * 100,
+                              ((yearsRange[1] - 1960) / (2024 - 1960)) * 100
+                            )}%`,
+                            right: `${
+                              100 -
+                              Math.max(
+                                ((yearsRange[0] - 1960) / (2024 - 1960)) * 100,
+                                ((yearsRange[1] - 1960) / (2024 - 1960)) * 100
+                              )
+                            }%`,
+                          }"
+                        />
+                        <input
+                          v-model.number="yearsRange[0]"
+                          type="range"
+                          :min="1960"
+                          :max="2024"
+                          class="range-slider"
+                        />
+                        <input
+                          v-model.number="yearsRange[1]"
+                          type="range"
+                          :min="1960"
+                          :max="2024"
+                          class="range-slider"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Position Checkboxes -->
+                    <div>
+                      <label class="block text-sm text-gray-700 mb-1"> Positions </label>
+                      <div class="flex gap-3">
+                        <label
+                          v-for="(checked, position) in positions"
+                          :key="position"
+                          class="flex items-center"
+                        >
+                          <UCheckbox v-model="positions[position]" />
+                          <span class="ml-1 text-sm">{{ position }}</span>
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
+              </template>
+            </UPopover>
+            <!-- <div class="underline">Filter by :</div> -->
+            <div class="">&#8226;</div>
+            <UPopover
+              v-model:open="isSortOpen"
+              :popper="{ arrow: true }"
+            >
+              <div class="flex items-center space-x-1 underline">
+                <span>Sort by : {{ currentSort.label }}</span>
               </div>
-            </template>
-          </UPopover>
-          <!-- <div class="underline">Filter by :</div> -->
-          <div class="">&#8226;</div>
-          <div class="underline">Sort by :</div>
+
+              <template #panel>
+                <div class="p-2 w-36">
+                  <div
+                    v-for="option in sortOptions"
+                    :key="option.key"
+                    role="menuitem"
+                    class="px-3 py-2 text-sm rounded-md text-gray-700 hover:bg-gray-100 cursor-pointer flex justify-start items-center"
+                    @click="selectOption(option)"
+                  >
+                    <UIcon
+                      v-if="currentSort.key === option.key"
+                      :name="
+                        isSortAscending ? 'i-radix-icons:arrow-down' : 'i-radix-icons:arrow-up'
+                      "
+                      class="mr-2"
+                    />
+                    <span>
+                      {{ option.label }}
+                    </span>
+                  </div>
+                </div>
+              </template>
+            </UPopover>
+          </div>
         </div>
-      </div>
+      </template>
+      <template v-else>
+        <div class="grid grid-flow-col justify-between py-3 mt-2 px-4">
+          <div class="flex space-x-2 text-sm text-gray-500">
+            <div class="">{{ selectedStatIds.length }} Selected,</div>
+            <div class="">{{ selectableStats.length }} Total</div>
+            <div class="">&#8226;</div>
+            <div
+              class="underline cursor-pointer"
+              @click="clearSelection('stats')"
+            >
+              Clear selection
+            </div>
+            <div class="">&#8226;</div>
+            <div
+              class="underline cursor-pointer"
+              @click="restoreDefaultStatSelection"
+            >
+              Default selection
+            </div>
+          </div>
+        </div>
+      </template>
       <div
         v-if="selectedIndex === 0"
         class="overflow-y-auto h-full"
@@ -302,7 +574,7 @@ const isOpen = computed({
           class="grid h-full"
         >
           <div class="p-4">
-            <div class="grid grid-cols-12 gap-5">
+            <div class="grid grid-cols-8 2xl:grid-cols-12 gap-4">
               <button
                 v-for="(player, i) in sortedPlayers"
                 :key="`player-${i}`"
@@ -316,7 +588,9 @@ const isOpen = computed({
                     selectionPlayers.includes(player.id) ? 'opacity-50' : 'group-hover:opacity-10',
                   ]"
                 >
-                  <div class="absolute -top-1 -left-1 w-[106%] h-[104%] rounded-md bg-amber-900" />
+                  <div
+                    class="absolute inset-0 transform scale-x-[1.06] scale-y-[1.04] rounded-md bg-amber-900"
+                  />
                   <div class="absolute inset-0 bg-white rounded-sm" />
                 </div>
 
@@ -448,12 +722,12 @@ const isOpen = computed({
 }
 
 .range-slider::-webkit-slider-thumb {
-  @apply h-4 w-4 rounded-full border-none bg-blue-500 cursor-pointer pointer-events-auto relative;
+  @apply h-4 w-4 rounded-full border-none bg-primary-800 cursor-pointer pointer-events-auto relative;
   -webkit-appearance: none;
 }
 
 .range-slider::-moz-range-thumb {
-  @apply h-4 w-4 rounded-full border-none bg-blue-500 cursor-pointer pointer-events-auto relative;
+  @apply h-4 w-4 rounded-full border-none bg-primary-800 cursor-pointer pointer-events-auto relative;
 }
 
 .range-slider::-webkit-slider-runnable-track {

@@ -38,6 +38,7 @@ const tooltipStyle = computed<CSSProperties>(() => {
         :stat-description="tooltipStat?.statDescription"
       />
       <VisualisationTooltipStat
+        :id="tooltipStat?.playerId"
         :value="tooltipStat?.value"
         :name="tooltipStat?.playerName"
         :stat-name="tooltipStat?.statName"

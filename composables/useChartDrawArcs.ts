@@ -301,6 +301,7 @@ export function useChartDrawArcs() {
             setHoveredPlayer(d.player);
             setTooltipStat({
               id: d.id,
+              playerId: d.player.id,
               playerName: d.player.info.name,
               playerColor: d.player.color,
               categoryName: d.category.name,

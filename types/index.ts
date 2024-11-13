@@ -17,8 +17,8 @@ export interface Player {
     nickname: string;
     position: string;
     shooting_hand: string;
-    height: number;
-    weight: number;
+    height: string;
+    weight: string;
     birth_date: string;
     draft: [number, number];
     experience: number;
@@ -122,6 +122,7 @@ export interface LineData {
 
 export interface TooltipStat {
   id: string;
+  playerId: PlayerKey;
   playerName: string;
   playerColor: `#${string}`;
   categoryName: string;

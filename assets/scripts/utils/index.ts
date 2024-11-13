@@ -70,4 +70,20 @@ const escapeSelector = (id: string) => {
   return id.replace(/[.]/g, '\\.');
 };
 
-export { wrapText, formatNumber, shouldFlipText, calcTextLength, withUnit, escapeSelector };
+const heightToInches = (height: string): number => {
+  // Split the height string into feet and inches
+  const [feet, inches] = height.split('-').map(Number);
+
+  // Convert feet to inches and add remaining inches
+  return feet * 12 + inches;
+};
+
+export {
+  wrapText,
+  formatNumber,
+  shouldFlipText,
+  calcTextLength,
+  withUnit,
+  escapeSelector,
+  heightToInches,
+};
