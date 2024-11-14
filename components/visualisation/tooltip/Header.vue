@@ -35,7 +35,7 @@ defineProps<{
     </div>
     <div
       v-if="statDescription"
-      class="text-xs mb-1"
+      class="text-sm mb-1"
     >
       {{ statDescription }}
     </div>

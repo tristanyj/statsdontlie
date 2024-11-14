@@ -173,6 +173,7 @@ export const useConfigStore = defineStore('config', () => {
         ...player.info,
         nickname: player.info.nickname.split(',')[0],
         teams: typeof player.info.teams === 'string' ? [player.info.teams] : player.info.teams,
+        draft: player.id === 'malonmo01' ? [5, 1976] : player.info.draft,
       },
     })));
 

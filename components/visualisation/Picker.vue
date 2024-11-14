@@ -901,7 +901,7 @@ const isOpen = computed({
                 <!-- Player content -->
                 <div class="relative h-full flex flex-col justify-between">
                   <div
-                    class="grid grid-flow-col justify-center items-center text-[10px] text-gray-400 mb-2"
+                    class="grid grid-flow-col justify-center items-center text-xs text-gray-400 mb-2"
                   >
                     <div class="">{{ player.info.nickname }}</div>
                   </div>
@@ -921,15 +921,15 @@ const isOpen = computed({
                         />
                         {{ player.info.name }}
                       </div>
-                      <div class="text-xs text-gray-500 mt-1">
+                      <div class="text-sm text-gray-500 mt-1">
                         {{ player.info.position }}
                       </div>
-                      <div class="text-xs text-gray-500">
+                      <div class="text-sm text-gray-500">
                         {{ player.info.height }} {{ player.info.weight }}lb
                       </div>
                     </div>
                   </div>
-                  <div class="grid justify-center items-center text-[10px] text-gray-400 mt-2">
+                  <div class="grid justify-center items-center text-xs text-gray-400 mt-2">
                     <div>
                       {{ player.info.draft[1] }}-{{ player.info.draft[1] + player.info.experience }}
                     </div>
