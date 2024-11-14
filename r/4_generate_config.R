@@ -49,7 +49,8 @@ build_config <- function(categories, subcategories, stats) {
         list(
           id = sub_stats[k, "id"][[1]],
           name = sub_stats[k, "name"][[1]],
-          description = sub_stats[k, "description"][[1]],
+          description = gsub("\\|", ", ", sub_stats[k, "description"][[1]]),
+          abbreviation = sub_stats[k, "abbreviation"][[1]],
           color = color,
           meta = create_meta(
             sub_stats[k, "scale_type"][[1]],

@@ -120,7 +120,7 @@ onMounted(() => {
         :id="tooltipStat?.playerId"
         :value="tooltipStat?.value"
         :name="tooltipStat?.playerName"
-        :stat-name="tooltipStat?.statName"
+        :stat-abbreviation="tooltipStat?.statAbbreviation"
         :color="tooltipStat?.playerColor"
       />
       <VisualisationTooltipRecord

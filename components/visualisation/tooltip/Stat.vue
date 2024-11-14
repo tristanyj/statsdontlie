@@ -4,7 +4,7 @@ import type { PlayerKey } from '~/types';
 defineProps<{
   id: PlayerKey;
   value: string;
-  statName: string;
+  statAbbreviation: string;
   name: string;
   color: string;
 }>();
@@ -25,8 +25,9 @@ const getImageUrl = (playerId: PlayerKey) => {
       alt=""
     />
     <div class="">
-      <div class="text-2xl font-semibold">
-        {{ value }} <span class="text-base">{{ statName }}</span>
+      <div class="text-2xl">
+        <span class="font-semibold mr-1">{{ value }}</span>
+        <span class="text-sm">{{ statAbbreviation }}</span>
       </div>
       <div class="flex space-x-1 items-center">
         <div

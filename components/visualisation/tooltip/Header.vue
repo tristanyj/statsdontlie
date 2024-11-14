@@ -4,7 +4,7 @@ defineProps<{
   categoryColor: `#${string}`;
   subCategoryName: string;
   statName?: string;
-  statDescription?: string;
+  statDescription: string | null;
 }>();
 </script>
 
@@ -29,13 +29,13 @@ defineProps<{
     </div>
     <div
       v-if="statName"
-      class="font-semibold text-base"
+      class="font-semibold"
     >
       {{ statName }}
     </div>
     <div
       v-if="statDescription"
-      class="text-sm mb-1"
+      class="text-sm mb-1 max-w-60 opacity-80"
     >
       {{ statDescription }}
     </div>

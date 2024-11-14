@@ -14,7 +14,8 @@
               {
                 "id": "regular_season.total.games_played",
                 "name": "Games Played",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "GP",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 1611],
@@ -29,7 +30,8 @@
               {
                 "id": "regular_season.total.games_started",
                 "name": "Games Started",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "GS",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 1499],
@@ -44,7 +46,8 @@
               {
                 "id": "regular_season.total.minutes_played",
                 "name": "Minutes Played",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "MP",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 57446],
@@ -59,7 +62,8 @@
               {
                 "id": "regular_season.total.field_goals_made",
                 "name": "Field Goals Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FGM",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 15837],
@@ -74,7 +78,8 @@
               {
                 "id": "regular_season.total.field_goal_attempts",
                 "name": "Field Goal Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FGA",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 29313],
@@ -89,7 +94,8 @@
               {
                 "id": "regular_season.total.field_goal_percentage",
                 "name": "Field Goal Percentage",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FG%",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0.3, 0.6739],
@@ -104,7 +110,8 @@
               {
                 "id": "regular_season.total.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3PM",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 3767],
@@ -119,7 +126,8 @@
               {
                 "id": "regular_season.total.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3PA",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 8854],
@@ -134,7 +142,8 @@
               {
                 "id": "regular_season.total.three_point_field_goal_percentage",
                 "name": "Three Point Field Goal Percentage",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3P%",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 0.454],
@@ -149,7 +158,8 @@
               {
                 "id": "regular_season.total.free_throws_made",
                 "name": "Free Throws Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FTM",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 9787],
@@ -164,7 +174,8 @@
               {
                 "id": "regular_season.total.free_throw_attempts",
                 "name": "Free Throw Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FTA",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 13188],
@@ -179,10 +190,11 @@
               {
                 "id": "regular_season.total.free_throw_percentage",
                 "name": "Free Throw Percentage",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FT%",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0.5, 0.91],
+                  "domain": [0.3, 0.91],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
@@ -194,7 +206,8 @@
               {
                 "id": "regular_season.total.offensive_rebounds",
                 "name": "Offensive Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "OREB",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 6731],
@@ -209,7 +222,8 @@
               {
                 "id": "regular_season.total.defensive_rebounds",
                 "name": "Defensive Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "DREB",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 11453],
@@ -223,8 +237,9 @@
               },
               {
                 "id": "regular_season.total.total_rebounds",
-                "name": "Total Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "name": "Rebounds",
+                "description": "",
+                "abbreviation": "REB",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 23924],
@@ -239,7 +254,8 @@
               {
                 "id": "regular_season.total.assists",
                 "name": "Assists",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "AST",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 15806],
@@ -254,7 +270,8 @@
               {
                 "id": "regular_season.total.steals",
                 "name": "Steals",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "STL",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 3265],
@@ -269,7 +286,8 @@
               {
                 "id": "regular_season.total.blocks",
                 "name": "Blocks",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "BLK",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 3830],
@@ -284,7 +302,8 @@
               {
                 "id": "regular_season.total.turnovers",
                 "name": "Turnovers",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "TOV",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 5236],
@@ -299,7 +318,8 @@
               {
                 "id": "regular_season.total.personal_fouls",
                 "name": "Personal Fouls",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "PF",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 4657],
@@ -314,7 +334,8 @@
               {
                 "id": "regular_season.total.points",
                 "name": "Points",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "PTS",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 40687],
@@ -329,7 +350,8 @@
               {
                 "id": "regular_season.total.triple_doubles",
                 "name": "Triple Doubles",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "TD",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 199],
@@ -351,7 +373,8 @@
               {
                 "id": "regular_season.per_game.minutes_played",
                 "name": "Minutes Played",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "MP/G",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 45.8],
@@ -366,7 +389,8 @@
               {
                 "id": "regular_season.per_game.field_goals_made",
                 "name": "Field Goals Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FGM/G",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 12.1],
@@ -381,7 +405,8 @@
               {
                 "id": "regular_season.per_game.field_goal_attempts",
                 "name": "Field Goal Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FGA/G",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 23.8],
@@ -396,7 +421,8 @@
               {
                 "id": "regular_season.per_game.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3PM/G",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 3.9],
@@ -411,7 +437,8 @@
               {
                 "id": "regular_season.per_game.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3PA/G",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 9.2],
@@ -426,7 +453,8 @@
               {
                 "id": "regular_season.per_game.free_throws_made",
                 "name": "Free Throws Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FTM/G",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 8.3],
@@ -441,7 +469,8 @@
               {
                 "id": "regular_season.per_game.free_throw_attempts",
                 "name": "Free Throw Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FTA/G",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 11.4],
@@ -456,7 +485,8 @@
               {
                 "id": "regular_season.per_game.offensive_rebounds",
                 "name": "Offensive Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "OREB/G",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 5.1],
@@ -471,7 +501,8 @@
               {
                 "id": "regular_season.per_game.defensive_rebounds",
                 "name": "Defensive Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "DREB/G",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 9.8],
@@ -485,53 +516,57 @@
               },
               {
                 "id": "regular_season.per_game.total_rebounds",
-                "name": "Total Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "name": "Rebounds",
+                "description": "",
+                "abbreviation": "REB/G",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0, 22.89],
+                  "domain": [0, 22.9],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 22.89,
+                  "value": 22.9,
                   "name": "Wilt Chamberlain"
                 }
               },
               {
                 "id": "regular_season.per_game.assists",
                 "name": "Assists",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "AST/G",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0, 11.19],
+                  "domain": [0, 11.2],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 11.19,
+                  "value": 11.2,
                   "name": "Magic Johnson"
                 }
               },
               {
                 "id": "regular_season.per_game.steals",
                 "name": "Steals",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "STL/G",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0, 2.71],
+                  "domain": [0, 2.7],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 2.71,
+                  "value": 2.7,
                   "name": "Alvin Robertson"
                 }
               },
               {
                 "id": "regular_season.per_game.blocks",
                 "name": "Blocks",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "BLK/G",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 3.5],
@@ -546,7 +581,8 @@
               {
                 "id": "regular_season.per_game.turnovers",
                 "name": "Turnovers",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "TOV/G",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 4.2],
@@ -561,7 +597,8 @@
               {
                 "id": "regular_season.per_game.personal_fouls",
                 "name": "Personal Fouls",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "PF/G",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 4.2],
@@ -576,15 +613,16 @@
               {
                 "id": "regular_season.per_game.points",
                 "name": "Points",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "PTS/G",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0, 30.12],
+                  "domain": [0, 30.1],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 30.12,
+                  "value": 30.1,
                   "name": "Michael Jordan"
                 }
               }
@@ -598,90 +636,96 @@
               {
                 "id": "regular_season.advanced.player_efficiency_rating",
                 "name": "Player Efficiency Rating",
-                "description": "Select this text to update the description for this stat.",
+                "description": "A measure of per-minute production standardized such that the league average is 15.",
+                "abbreviation": "PER",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0, 28.14],
+                  "domain": [0, 28.2],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 28.14,
+                  "value": 28.2,
                   "name": "Nikola Jokic"
                 }
               },
               {
                 "id": "regular_season.advanced.true_shooting_percentage",
                 "name": "True Shooting Percentage",
-                "description": "Select this text to update the description for this stat.",
+                "description": "A measure of shooting efficiency that takes into account 2-point field goals, 3-point field goals and free throws.",
+                "abbreviation": "TS%",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0.5, 0.6719],
+                  "domain": [0.3, 0.67],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
                 "record": {
-                  "value": 0.6719,
+                  "value": 0.67,
                   "name": "Rudy Gobert"
                 }
               },
               {
                 "id": "regular_season.advanced.usage_percentage",
                 "name": "Usage Percentage",
-                "description": "Select this text to update the description for this stat.",
+                "description": "An estimate of the percentage of team plays used by a player while they were on the floor.",
+                "abbreviation": "USG%",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0, 33.26],
+                  "domain": [0, 33.3],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
                 "record": {
-                  "value": 33.26,
+                  "value": 33.3,
                   "name": "Michael Jordan"
                 }
               },
               {
                 "id": "regular_season.advanced.win_shares",
                 "name": "Win Shares",
-                "description": "Select this text to update the description for this stat.",
+                "description": "An estimate of the number of wins contributed by a player.",
+                "abbreviation": "WS",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0, 273.41],
+                  "domain": [0, 273.4],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 273.41,
+                  "value": 273.4,
                   "name": "Kareem Abdul-Jabbar"
                 }
               },
               {
                 "id": "regular_season.advanced.box_plus_minus",
                 "name": "Box Plus/Minus",
-                "description": "Select this text to update the description for this stat.",
+                "description": "A box score estimate of the points per 100 possessions a player contributed above a league-average player, translated to an average team.",
+                "abbreviation": "BPM",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [-11.1, 9.98],
+                  "domain": [-11.1, 10],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 9.98,
+                  "value": 10,
                   "name": "Nikola Jokic"
                 }
               },
               {
                 "id": "regular_season.advanced.value_over_replacement_player",
                 "name": "Value Over Replacement Player",
-                "description": "Select this text to update the description for this stat.",
+                "description": "A box score estimate of the points per 100 TEAM possessions that a player contributed above a replacement-level (-2.0) player, translated to an average team and prorated to an 82-game season.",
+                "abbreviation": "VORP",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0, 152.57],
+                  "domain": [0, 152.7],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 152.57,
+                  "value": 152.7,
                   "name": "LeBron James"
                 }
               }
@@ -695,7 +739,8 @@
               {
                 "id": "regular_season.game_high.field_goals_made",
                 "name": "Field Goals Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FGM",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 36],
@@ -710,7 +755,8 @@
               {
                 "id": "regular_season.game_high.field_goal_attempts",
                 "name": "Field Goal Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FGA",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 63],
@@ -725,7 +771,8 @@
               {
                 "id": "regular_season.game_high.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3PM",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 14],
@@ -740,7 +787,8 @@
               {
                 "id": "regular_season.game_high.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3PA",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 24],
@@ -755,7 +803,8 @@
               {
                 "id": "regular_season.game_high.free_throws_made",
                 "name": "Free Throws Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FTM",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 28],
@@ -770,7 +819,8 @@
               {
                 "id": "regular_season.game_high.free_throw_attempts",
                 "name": "Free Throw Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FTA",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 39],
@@ -785,7 +835,8 @@
               {
                 "id": "regular_season.game_high.offensive_rebounds",
                 "name": "Offensive Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "OREB",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 21],
@@ -800,7 +851,8 @@
               {
                 "id": "regular_season.game_high.defensive_rebounds",
                 "name": "Defensive Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "DREB",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 29],
@@ -814,8 +866,9 @@
               },
               {
                 "id": "regular_season.game_high.total_rebounds",
-                "name": "Total Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "name": "Rebounds",
+                "description": "",
+                "abbreviation": "REB",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 55],
@@ -830,7 +883,8 @@
               {
                 "id": "regular_season.game_high.assists",
                 "name": "Assists",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "AST",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 30],
@@ -845,7 +899,8 @@
               {
                 "id": "regular_season.game_high.steals",
                 "name": "Steals",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "STL",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 11],
@@ -860,7 +915,8 @@
               {
                 "id": "regular_season.game_high.blocks",
                 "name": "Blocks",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "BLK",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 17],
@@ -875,7 +931,8 @@
               {
                 "id": "regular_season.game_high.turnovers",
                 "name": "Turnovers",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "TOV",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 14],
@@ -890,7 +947,8 @@
               {
                 "id": "regular_season.game_high.points",
                 "name": "Points",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "PTS",
                 "color": "#94d2bd",
                 "meta": {
                   "domain": [0, 100],
@@ -919,7 +977,8 @@
               {
                 "id": "post_season.total.games_played",
                 "name": "Games Played",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "GP",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 287],
@@ -934,7 +993,8 @@
               {
                 "id": "post_season.total.games_started",
                 "name": "Games Started",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "GS",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 287],
@@ -949,7 +1009,8 @@
               {
                 "id": "post_season.total.minutes_played",
                 "name": "Minutes Played",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "MP",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 11858],
@@ -964,7 +1025,8 @@
               {
                 "id": "post_season.total.field_goals_made",
                 "name": "Field Goals Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FGM",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 2928],
@@ -979,7 +1041,8 @@
               {
                 "id": "post_season.total.field_goal_attempts",
                 "name": "Field Goal Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FGA",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 5896],
@@ -994,7 +1057,8 @@
               {
                 "id": "post_season.total.field_goal_percentage",
                 "name": "Field Goal Percentage",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FG%",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0.3, 0.6667],
@@ -1009,7 +1073,8 @@
               {
                 "id": "post_season.total.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3PM",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 618],
@@ -1024,7 +1089,8 @@
               {
                 "id": "post_season.total.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3PA",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 1557],
@@ -1039,7 +1105,8 @@
               {
                 "id": "post_season.total.three_point_field_goal_percentage",
                 "name": "Three Point Field Goal Percentage",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3P%",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 0.5],
@@ -1054,7 +1121,8 @@
               {
                 "id": "post_season.total.free_throws_made",
                 "name": "Free Throws Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FTM",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 1836],
@@ -1069,7 +1137,8 @@
               {
                 "id": "post_season.total.free_throw_attempts",
                 "name": "Free Throw Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FTA",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 2479],
@@ -1084,10 +1153,11 @@
               {
                 "id": "post_season.total.free_throw_percentage",
                 "name": "Free Throw Percentage",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FT%",
                 "color": "#ddbea9",
                 "meta": {
-                  "domain": [0.5, 0.9496],
+                  "domain": [0.3, 0.9496],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
@@ -1099,7 +1169,8 @@
               {
                 "id": "post_season.total.offensive_rebounds",
                 "name": "Offensive Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "OREB",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 866],
@@ -1114,7 +1185,8 @@
               {
                 "id": "post_season.total.defensive_rebounds",
                 "name": "Defensive Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "DREB",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 2153],
@@ -1128,8 +1200,9 @@
               },
               {
                 "id": "post_season.total.total_rebounds",
-                "name": "Total Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "name": "Rebounds",
+                "description": "",
+                "abbreviation": "REB",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 4104],
@@ -1144,7 +1217,8 @@
               {
                 "id": "post_season.total.assists",
                 "name": "Assists",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "AST",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 2346],
@@ -1159,7 +1233,8 @@
               {
                 "id": "post_season.total.steals",
                 "name": "Steals",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "STL",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 483],
@@ -1174,7 +1249,8 @@
               {
                 "id": "post_season.total.blocks",
                 "name": "Blocks",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "BLK",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 568],
@@ -1189,7 +1265,8 @@
               {
                 "id": "post_season.total.turnovers",
                 "name": "Turnovers",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "TOV",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 1034],
@@ -1204,7 +1281,8 @@
               {
                 "id": "post_season.total.personal_fouls",
                 "name": "Personal Fouls",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "PF",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 797],
@@ -1219,7 +1297,8 @@
               {
                 "id": "post_season.total.points",
                 "name": "Points",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "PTS",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 8162],
@@ -1234,7 +1313,8 @@
               {
                 "id": "post_season.total.triple_doubles",
                 "name": "Triple Doubles",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "TD",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 30],
@@ -1256,22 +1336,24 @@
               {
                 "id": "post_season.per_game.minutes_played",
                 "name": "Minutes Played",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "MP/G",
                 "color": "#ddbea9",
                 "meta": {
-                  "domain": [0, 47.24],
+                  "domain": [0, 47.2],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 47.24,
+                  "value": 47.2,
                   "name": "Wilt Chamberlain"
                 }
               },
               {
                 "id": "post_season.per_game.field_goals_made",
                 "name": "Field Goals Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FGM/G",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 12.2],
@@ -1286,7 +1368,8 @@
               {
                 "id": "post_season.per_game.field_goal_attempts",
                 "name": "Field Goal Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FGA/G",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 26.5],
@@ -1301,7 +1384,8 @@
               {
                 "id": "post_season.per_game.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3PM/G",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 4.2],
@@ -1316,7 +1400,8 @@
               {
                 "id": "post_season.per_game.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3PA/G",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 10.6],
@@ -1331,7 +1416,8 @@
               {
                 "id": "post_season.per_game.free_throws_made",
                 "name": "Free Throws Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FTM/G",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 8.2],
@@ -1346,7 +1432,8 @@
               {
                 "id": "post_season.per_game.free_throw_attempts",
                 "name": "Free Throw Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FTA/G",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 10.7],
@@ -1361,7 +1448,8 @@
               {
                 "id": "post_season.per_game.offensive_rebounds",
                 "name": "Offensive Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "OREB/G",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 5.4],
@@ -1376,7 +1464,8 @@
               {
                 "id": "post_season.per_game.defensive_rebounds",
                 "name": "Defensive Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "DREB/G",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 10.4],
@@ -1390,68 +1479,73 @@
               },
               {
                 "id": "post_season.per_game.total_rebounds",
-                "name": "Total Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "name": "Rebounds",
+                "description": "",
+                "abbreviation": "REB/G",
                 "color": "#ddbea9",
                 "meta": {
-                  "domain": [0, 24.87],
+                  "domain": [0, 24.9],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 24.87,
+                  "value": 24.9,
                   "name": "Bill Russell"
                 }
               },
               {
                 "id": "post_season.per_game.assists",
                 "name": "Assists",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "AST/G",
                 "color": "#ddbea9",
                 "meta": {
-                  "domain": [0, 12.35],
+                  "domain": [0, 12.3],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 12.35,
+                  "value": 12.3,
                   "name": "Magic Johnson"
                 }
               },
               {
                 "id": "post_season.per_game.steals",
                 "name": "Steals",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "STL/G",
                 "color": "#ddbea9",
                 "meta": {
-                  "domain": [0, 2.28],
+                  "domain": [0, 2.3],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 2.28,
+                  "value": 2.3,
                   "name": "Baron Davis"
                 }
               },
               {
                 "id": "post_season.per_game.blocks",
                 "name": "Blocks",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "BLK/G",
                 "color": "#ddbea9",
                 "meta": {
-                  "domain": [0, 3.26],
+                  "domain": [0, 3.3],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 3.26,
+                  "value": 3.3,
                   "name": "Hakeem Olajuwon"
                 }
               },
               {
                 "id": "post_season.per_game.turnovers",
                 "name": "Turnovers",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "TOV/G",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 4.4],
@@ -1466,7 +1560,8 @@
               {
                 "id": "post_season.per_game.personal_fouls",
                 "name": "Personal Fouls",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "PF/G",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 4.8],
@@ -1481,15 +1576,16 @@
               {
                 "id": "post_season.per_game.points",
                 "name": "Points",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "PTS/G",
                 "color": "#ddbea9",
                 "meta": {
-                  "domain": [0, 33.45],
+                  "domain": [0, 33.4],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 33.45,
+                  "value": 33.4,
                   "name": "Michael Jordan"
                 }
               }
@@ -1503,90 +1599,96 @@
               {
                 "id": "post_season.advanced.player_efficiency_rating",
                 "name": "Player Efficiency Rating",
-                "description": "Select this text to update the description for this stat.",
+                "description": "A measure of per-minute production standardized such that the league average is 15.",
+                "abbreviation": "PER",
                 "color": "#ddbea9",
                 "meta": {
-                  "domain": [0, 29.17],
+                  "domain": [0, 29.2],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 29.17,
+                  "value": 29.2,
                   "name": "Nikola Jokic"
                 }
               },
               {
                 "id": "post_season.advanced.true_shooting_percentage",
                 "name": "True Shooting Percentage",
-                "description": "Select this text to update the description for this stat.",
+                "description": "A measure of shooting efficiency that takes into account 2-point field goals, 3-point field goals and free throws.",
+                "abbreviation": "TS%",
                 "color": "#ddbea9",
                 "meta": {
-                  "domain": [0.5, 0.6634],
+                  "domain": [0.3, 0.67],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
                 "record": {
-                  "value": 0.6634,
+                  "value": 0.67,
                   "name": "Rudy Gobert"
                 }
               },
               {
                 "id": "post_season.advanced.usage_percentage",
                 "name": "Usage Percentage",
-                "description": "Select this text to update the description for this stat.",
+                "description": "An estimate of the percentage of team plays used by a player while they were on the floor.",
+                "abbreviation": "USG%",
                 "color": "#ddbea9",
                 "meta": {
-                  "domain": [0, 36.84],
+                  "domain": [0, 36.8],
                   "scaleType": "linear",
                   "formatType": "percentage"
                 },
                 "record": {
-                  "value": 36.84,
+                  "value": 36.8,
                   "name": "Luka Doncic"
                 }
               },
               {
                 "id": "post_season.advanced.win_shares",
                 "name": "Win Shares",
-                "description": "Select this text to update the description for this stat.",
+                "description": "An estimate of the number of wins contributed by a player.",
+                "abbreviation": "WS",
                 "color": "#ddbea9",
                 "meta": {
-                  "domain": [0, 58.67],
+                  "domain": [0, 58.7],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 58.67,
+                  "value": 58.7,
                   "name": "LeBron James"
                 }
               },
               {
                 "id": "post_season.advanced.box_plus_minus",
                 "name": "Box Plus/Minus",
-                "description": "Select this text to update the description for this stat.",
+                "description": "A box score estimate of the points per 100 possessions a player contributed above a league-average player, translated to an average team.",
+                "abbreviation": "BPM",
                 "color": "#ddbea9",
                 "meta": {
-                  "domain": [-11.1, 11.14],
+                  "domain": [-11.1, 11.1],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 11.14,
+                  "value": 11.1,
                   "name": "Michael Jordan"
                 }
               },
               {
                 "id": "post_season.advanced.value_over_replacement_player",
                 "name": "Value Over Replacement Player",
-                "description": "Select this text to update the description for this stat.",
+                "description": "A box score estimate of the points per 100 team possessions that a player contributed above a replacement-level (-2.0) player, translated to an average team and prorated to an 82-game season.",
+                "abbreviation": "VORP",
                 "color": "#ddbea9",
                 "meta": {
-                  "domain": [0, 36.05],
+                  "domain": [0, 36.1],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 36.05,
+                  "value": 36.1,
                   "name": "LeBron James"
                 }
               }
@@ -1600,7 +1702,8 @@
               {
                 "id": "post_season.game_high.field_goals_made",
                 "name": "Field Goals Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FGM",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 24],
@@ -1615,7 +1718,8 @@
               {
                 "id": "post_season.game_high.field_goal_attempts",
                 "name": "Field Goal Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FGA",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 48],
@@ -1630,7 +1734,8 @@
               {
                 "id": "post_season.game_high.three_point_field_goals_made",
                 "name": "Three Point Field Goals Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3PM",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 12],
@@ -1645,7 +1750,8 @@
               {
                 "id": "post_season.game_high.three_point_field_goal_attempts",
                 "name": "Three Point Field Goal Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3PA",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 19],
@@ -1660,7 +1766,8 @@
               {
                 "id": "post_season.game_high.free_throws_made",
                 "name": "Free Throws Made",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FTM",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 30],
@@ -1675,7 +1782,8 @@
               {
                 "id": "post_season.game_high.free_throw_attempts",
                 "name": "Free Throw Attempts",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "FTA",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 39],
@@ -1690,7 +1798,8 @@
               {
                 "id": "post_season.game_high.offensive_rebounds",
                 "name": "Offensive Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "OREB",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 15],
@@ -1705,7 +1814,8 @@
               {
                 "id": "post_season.game_high.defensive_rebounds",
                 "name": "Defensive Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "DREB",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 20],
@@ -1719,8 +1829,9 @@
               },
               {
                 "id": "post_season.game_high.total_rebounds",
-                "name": "Total Rebounds",
-                "description": "Select this text to update the description for this stat.",
+                "name": "Rebounds",
+                "description": "",
+                "abbreviation": "REB",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 41],
@@ -1735,7 +1846,8 @@
               {
                 "id": "post_season.game_high.assists",
                 "name": "Assists",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "AST",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 24],
@@ -1750,7 +1862,8 @@
               {
                 "id": "post_season.game_high.steals",
                 "name": "Steals",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "STL",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 10],
@@ -1765,7 +1878,8 @@
               {
                 "id": "post_season.game_high.blocks",
                 "name": "Blocks",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "BLK",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 10],
@@ -1780,7 +1894,8 @@
               {
                 "id": "post_season.game_high.turnovers",
                 "name": "Turnovers",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "TOV",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 12],
@@ -1795,7 +1910,8 @@
               {
                 "id": "post_season.game_high.points",
                 "name": "Points",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "PTS",
                 "color": "#ddbea9",
                 "meta": {
                   "domain": [0, 63],
@@ -1823,8 +1939,9 @@
             "stats": [
               {
                 "id": "awards.individual.mvp",
-                "name": "MVP",
-                "description": "Select this text to update the description for this stat.",
+                "name": "Most Valuable Player",
+                "description": "",
+                "abbreviation": "MVP",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 6],
@@ -1838,8 +1955,9 @@
               },
               {
                 "id": "awards.individual.finals_mvp",
-                "name": "Finals MVP",
-                "description": "Select this text to update the description for this stat.",
+                "name": "Finals Most Valuable Player",
+                "description": "",
+                "abbreviation": "Finals MVP",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 6],
@@ -1854,7 +1972,8 @@
               {
                 "id": "awards.individual.dpoy",
                 "name": "Defensive Player of the Year",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "DPOY",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 4],
@@ -1869,7 +1988,8 @@
               {
                 "id": "awards.individual.all_star",
                 "name": "All-Star Selections",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "All-Star",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 20],
@@ -1884,7 +2004,8 @@
               {
                 "id": "awards.individual.all_nba",
                 "name": "All-NBA Selections",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "All-NBA",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 20],
@@ -1899,7 +2020,8 @@
               {
                 "id": "awards.individual.all_nba_first",
                 "name": "All-NBA First Team Selections",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "1st Team All-NBA",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 13],
@@ -1914,7 +2036,8 @@
               {
                 "id": "awards.individual.all_nba_second",
                 "name": "All-NBA Second Team Selections",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "2nd Team All-NBA",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 8],
@@ -1929,7 +2052,8 @@
               {
                 "id": "awards.individual.all_nba_third",
                 "name": "All-NBA Third Team Selections",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "3rd Team All-NBA",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 5],
@@ -1944,7 +2068,8 @@
               {
                 "id": "awards.individual.all_defensive",
                 "name": "All-Defensive Selections",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "All-Defense",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 15],
@@ -1959,7 +2084,8 @@
               {
                 "id": "awards.individual.all_defensive_first",
                 "name": "All-Defensive First Team Selections",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "1st Team All-Defense",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 9],
@@ -1974,7 +2100,8 @@
               {
                 "id": "awards.individual.all_defensive_second",
                 "name": "All-Defensive Second Team Selections",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "2nd Team All-Defense",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 7],
@@ -1989,22 +2116,24 @@
               {
                 "id": "awards.individual.player_week",
                 "name": "Player of the Week Awards",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "POTW",
                 "color": "#ffe69e",
                 "meta": {
-                  "domain": [0, 64],
+                  "domain": [0, 68],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 64,
+                  "value": 68,
                   "name": "LeBron James"
                 }
               },
               {
                 "id": "awards.individual.player_month",
                 "name": "Player of the Month Awards",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "POTM",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 46],
@@ -2026,7 +2155,8 @@
               {
                 "id": "awards.team.nba_championships",
                 "name": "NBA Championships",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "NBA Championships",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 11],
@@ -2041,7 +2171,8 @@
               {
                 "id": "awards.team.conference_championships",
                 "name": "Conference Championships",
-                "description": "Select this text to update the description for this stat.",
+                "description": "",
+                "abbreviation": "Conference Championships",
                 "color": "#ffe69e",
                 "meta": {
                   "domain": [0, 12],

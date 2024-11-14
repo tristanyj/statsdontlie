@@ -307,6 +307,7 @@ export function useChartDrawArcs() {
               categoryName: d.category.name,
               subCategoryName: d.subCategory.name,
               statName: d.stat.name,
+              statAbbreviation: d.stat.abbreviation,
               statDescription: d.stat.description,
               value: d.statValue,
               categoryColor: d.category.color,
@@ -421,6 +422,7 @@ export function useChartDrawArcs() {
               subCategoryName: d.subCategory.name,
               statName: d.stat.name,
               statDescription: d.stat.description,
+              statAbbreviation: d.stat.abbreviation,
               record: {
                 value: d.stat.record.value.toString(),
                 holder: d.stat.record.name,

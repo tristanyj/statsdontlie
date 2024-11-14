@@ -173,7 +173,17 @@ export const useConfigStore = defineStore('config', () => {
     );
   };
 
-  const setCategories = (d: Category[]) => (categories.value = d);
+  const setCategories = (d: Category[]) =>
+    (categories.value = d.map((category) => {
+      const subCategories = category.subCategories.map((subCategory) => {
+        const stats = subCategory.stats.map((stat) => ({
+          ...stat,
+          description: stat.description && stat.description.length > 1 ? stat.description : null,
+        }));
+        return { ...subCategory, stats };
+      });
+      return { ...category, subCategories };
+    }));
   const setPlayers = (d: Player[]) =>
     (players.value = d.map((player) => ({
       ...player,
