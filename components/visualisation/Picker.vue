@@ -541,7 +541,7 @@ const isOpen = computed({
                       <div class="relative h-1">
                         <div class="absolute h-full rounded-full bg-gray-300 w-full" />
                         <div
-                          class="absolute h-full bg-primary-700 rounded-full"
+                          class="absolute h-full bg-primary-950/50 rounded-full"
                           :style="{
                             left: `${Math.min(
                               ((heightRange[0] - 70) / (96 - 70)) * 100,
@@ -581,7 +581,7 @@ const isOpen = computed({
                       <div class="relative h-1">
                         <div class="absolute h-full rounded-full bg-gray-300 w-full" />
                         <div
-                          class="absolute h-full bg-primary-700 rounded-full"
+                          class="absolute h-full bg-primary-950/50 rounded-full"
                           :style="{
                             left: `${Math.min(
                               ((weightRange[0] - 150) / (350 - 150)) * 100,
@@ -622,7 +622,7 @@ const isOpen = computed({
                       <div class="relative h-1">
                         <div class="absolute h-full rounded-full bg-gray-300 w-full" />
                         <div
-                          class="absolute h-full bg-primary-700 rounded-full"
+                          class="absolute h-full bg-primary-950/50 rounded-full"
                           :style="{
                             left: `${Math.min(
                               ((yearsRange[0] - 1960) / (2024 - 1960)) * 100,
@@ -656,18 +656,20 @@ const isOpen = computed({
 
                     <!-- Position Checkboxes -->
                     <div>
-                      <label class="block text-sm text-gray-700 mb-1"> Positions </label>
+                      <label class="block text-sm text-gray-700 mb-1">Positions</label>
                       <div class="flex gap-3">
                         <label
                           v-for="(checked, position) in positions"
                           :key="position"
                           class="flex items-center"
                         >
-                          <UCheckbox
-                            v-model="positions[position]"
-                            :label="position"
-                          />
-                          <span class="ml-1 text-sm">{{ position }}</span>
+                          <div class="checkbox">
+                            <UCheckbox
+                              v-model="positions[position]"
+                              :ui="{ inner: 'ms-1 flex flex-col' }"
+                              :label="position"
+                            />
+                          </div>
                         </label>
                       </div>
                     </div>
@@ -1021,7 +1023,7 @@ const isOpen = computed({
 /* Hover and focus states */
 .range-slider::-webkit-slider-thumb:hover,
 .range-slider::-moz-range-thumb:hover {
-  @apply bg-blue-600;
+  @apply bg-primary-800;
 }
 
 .range-slider:focus {
@@ -1029,10 +1031,10 @@ const isOpen = computed({
 }
 
 .range-slider:focus::-webkit-slider-thumb {
-  @apply ring-2 ring-blue-300;
+  @apply ring-1 ring-primary-800;
 }
 
 .range-slider:focus::-moz-range-thumb {
-  @apply ring-2 ring-blue-300;
+  @apply ring-1 ring-primary-800;
 }
 </style>

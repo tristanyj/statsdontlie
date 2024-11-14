@@ -14,11 +14,16 @@ export default defineAppConfig({
       },
     },
     checkbox: {
-      base: 'h-4 w-4 checked:bg-primary-950/50 dark:checked:bg-current dark:checked:border-transparent dark:indeterminate:bg-primary-950/50 dark:indeterminate:border-transparent disabled:opacity-50 disabled:cursor-not-allowed focus:ring-0 focus:ring-transparent focus:ring-offset-transparent cursor-pointer',
-      color: 'text-primary-950/60 dark:text-{color}-400',
+      base: 'h-4 w-4 checked:bg-primary-950/60 dark:checked:bg-current dark:checked:border-transparent dark:indeterminate:bg-primary-950/50 dark:indeterminate:border-transparent disabled:opacity-50 disabled:cursor-not-allowed focus:ring-0 focus:ring-transparent focus:ring-offset-transparent cursor-pointer',
+      color: 'text-primary-950/50 dark:text-{color}-400',
+      inner: 'ms-2 flex flex-col',
       ring: 'focus-visible:ring-2 focus-visible:ring-primary-950/50 dark:focus-visible:ring-{color}-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900',
       background: 'bg-white dark:bg-gray-900',
       label: 'text-sm font-medium text-gray-800 dark:text-gray-200 cursor-pointer',
+    },
+    toggle: {
+      ring: 'focus-visible:ring-2 focus-visible:ring-primary-950/50 dark:focus-visible:ring-{color}-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900',
+      active: 'bg-primary-950/60  dark:bg-{color}-400',
     },
     tabs: {
       wrapper: 'relative space-y-0',

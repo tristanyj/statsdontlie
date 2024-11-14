@@ -41,6 +41,10 @@ body {
   cursor: pointer;
 }
 
+.checkbox {
+  cursor: pointer;
+}
+
 .center-image {
   animation: spin 20s linear infinite;
 }
