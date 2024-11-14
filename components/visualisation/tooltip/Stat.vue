@@ -24,7 +24,7 @@ const getImageUrl = (playerId: PlayerKey) => {
       class="h-16 object-contain rounded-sm"
       alt=""
     />
-    <div class="">
+    <div class="grid items-center">
       <div class="text-2xl">
         <span class="font-semibold mr-1">{{ value }}</span>
         <span class="text-sm">{{ statAbbreviation }}</span>

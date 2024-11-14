@@ -3,10 +3,10 @@ regular_season.total.games_played,Games Played,GP,,linear,number,0,1611,Robert P
 regular_season.total.games_started,Games Started,GS,,linear,number,0,1499,LeBron James
 regular_season.total.minutes_played,Minutes Played,MP,,linear,number,0,57446,Kareem Abdul-Jabbar
 regular_season.total.field_goals_made,Field Goals Made,FGM,,linear,number,0,15837,Kareem Abdul-Jabbar
-regular_season.total.field_goal_attempts,Field Goal Attempts,FGA,,linear,number,0,29313,LeBron James
+regular_season.total.field_goal_attempts,Field Goal Attempts,FGA,,linear,number,0,29476,LeBron James
 regular_season.total.field_goal_percentage,Field Goal Percentage,FG%,,linear,percentage,0.3,0.6739,DeAndre Jordan
-regular_season.total.three_point_field_goals_made,Three Point Field Goals Made,3PM,,linear,number,0,3767,Stephen Curry
-regular_season.total.three_point_field_goal_attempts,Three Point Field Goal Attempts,3PA,,linear,number,0,8854,Stephen Curry
+regular_season.total.three_point_field_goals_made,Three Point Field Goals Made,3PM,,linear,number,0,3774,Stephen Curry
+regular_season.total.three_point_field_goal_attempts,Three Point Field Goal Attempts,3PA,,linear,number,0,8867,Stephen Curry
 regular_season.total.three_point_field_goal_percentage,Three Point Field Goal Percentage,3P%,,linear,percentage,0,0.454,Steve Kerr
 regular_season.total.free_throws_made,Free Throws Made,FTM,,linear,number,0,9787,Karl Malone
 regular_season.total.free_throw_attempts,Free Throw Attempts,FTA,,linear,number,0,13188,Karl Malone
@@ -19,7 +19,7 @@ regular_season.total.steals,Steals,STL,,linear,number,0,3265,John Stockton
 regular_season.total.blocks,Blocks,BLK,,linear,number,0,3830,Hakeem Olajuwon
 regular_season.total.turnovers,Turnovers,TOV,,linear,number,0,5236,LeBron James
 regular_season.total.personal_fouls,Personal Fouls,PF,,linear,number,0,4657,Kareem Abdul-Jabbar
-regular_season.total.points,Points,PTS,,linear,number,0,40687,LeBron James
+regular_season.total.points,Points,PTS,,linear,number,0,40706,LeBron James
 regular_season.total.triple_doubles,Triple Doubles,TD,,linear,number,0,199,Russell Westbrook
 regular_season.per_game.minutes_played,Minutes Played,MP/G,,linear,number,0,45.8,Wilt Chamberlain
 regular_season.per_game.field_goals_made,Field Goals Made,FGM/G,,linear,number,0,12.1,Wilt Chamberlain

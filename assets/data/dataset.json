@@ -82,12 +82,12 @@
                 "abbreviation": "FGA",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0, 29313],
+                  "domain": [0, 29476],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 29313,
+                  "value": 29476,
                   "name": "LeBron James"
                 }
               },
@@ -114,12 +114,12 @@
                 "abbreviation": "3PM",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0, 3767],
+                  "domain": [0, 3774],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 3767,
+                  "value": 3774,
                   "name": "Stephen Curry"
                 }
               },
@@ -130,12 +130,12 @@
                 "abbreviation": "3PA",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0, 8854],
+                  "domain": [0, 8867],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 8854,
+                  "value": 8867,
                   "name": "Stephen Curry"
                 }
               },
@@ -338,12 +338,12 @@
                 "abbreviation": "PTS",
                 "color": "#94d2bd",
                 "meta": {
-                  "domain": [0, 40687],
+                  "domain": [0, 40706],
                   "scaleType": "linear",
                   "formatType": "number"
                 },
                 "record": {
-                  "value": 40687,
+                  "value": 40706,
                   "name": "LeBron James"
                 }
               },
