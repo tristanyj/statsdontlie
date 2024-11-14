@@ -119,6 +119,8 @@ export function useChartDrawLabels() {
     circleScale: d3.ScaleLinear<number, number>,
     stats: EnrichedStat[]
   ) {
+    const statsCount = stats.length;
+
     for (let i = 0; i < stats.length + 1; i++) {
       const d = stats[i];
       const isLegend = i === stats.length;
@@ -128,82 +130,92 @@ export function useChartDrawLabels() {
       const midAngle = (startAngle + endAngle) / 2;
       const shouldFlip = shouldFlipText(midAngle);
 
-      scalePositions.forEach((position) => {
-        const id = `label-path-${d?.id ?? 'legend'}-${position}`;
+      scalePositions
+        .filter((position) => {
+          if (statsCount <= 45) {
+            return true;
+          } else if (statsCount <= 60) {
+            return position > 0.2;
+          } else {
+            return position > 0.6;
+          }
+        })
+        .forEach((position) => {
+          const id = `label-path-${d?.id ?? 'legend'}-${position}`;
 
-        const scaleOffset = position * (radius * proportions[0] - minRadius);
-        const flipOffset = shouldFlip
-          ? modifier.space.scaleLabel.flip
-          : modifier.space.scaleLabel.standard;
-        const startOffset = position === 0.0 ? modifier.space.scaleLabel.start : 0;
-        const endOffset = position === 1.0 ? modifier.space.scaleLabel.end : 0;
+          const scaleOffset = position * (radius * proportions[0] - minRadius);
+          const flipOffset = shouldFlip
+            ? modifier.space.scaleLabel.flip
+            : modifier.space.scaleLabel.standard;
+          const startOffset = position === 0.0 ? modifier.space.scaleLabel.start : 0;
+          const endOffset = position === 1.0 ? modifier.space.scaleLabel.end : 0;
 
-        const labelRadius = minRadius + scaleOffset + flipOffset + startOffset + endOffset;
-        const backgroundRadius = shouldFlip
-          ? labelRadius + modifier.space.scaleLabel.background.flip
-          : labelRadius + modifier.space.scaleLabel.background.standard;
+          const labelRadius = minRadius + scaleOffset + flipOffset + startOffset + endOffset;
+          const backgroundRadius = shouldFlip
+            ? labelRadius + modifier.space.scaleLabel.background.flip
+            : labelRadius + modifier.space.scaleLabel.background.standard;
 
-        const value = isLegend
-          ? legend.scales[position as keyof typeof legend.scales]
-          : position === 1.0
-          ? // @ts-expect-error - TS doesn't know about the scale function
-            withUnit(d.meta.scale.invert(position), d.meta.formatType)
-          : // @ts-expect-error - TS doesn't know about the scale function
-            d.meta.format(d.meta.scale.invert(position), position === 0.0 ? 0 : 1);
+          const value = isLegend
+            ? legend.scales[position as keyof typeof legend.scales]
+            : position === 1.0
+            ? // @ts-expect-error - TS doesn't know about the scale function
+              withUnit(d.meta.scale.invert(position), d.meta.formatType)
+            : // @ts-expect-error - TS doesn't know about the scale function
+              d.meta.format(d.meta.scale.invert(position), position === 0.0 ? 0 : 1);
 
-        g.append('path')
-          .attr('id', id)
-          .attr(
-            'd',
-            arcGenerator({
-              innerRadius: labelRadius,
-              outerRadius: labelRadius,
-              startAngle: shouldFlip ? endAngle : startAngle,
-              endAngle: shouldFlip ? startAngle : endAngle,
-              data: position,
-            })
-          )
-          .attr('fill', 'none');
-
-        const fontSize = modifier.font.scaleLabel;
-        const textLength = calcTextLength(g, id, value, fontSize);
-        const textHeight = modifier.space.scaleLabel.text.height;
-
-        const padding = modifier.space.scaleLabel.text.padding;
-        const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
-        const textPercentage = (textLength / arcLength) * 100;
-        const restPercentage = 100 - textPercentage;
-        const textOffsetPercentage = restPercentage / 4;
-
-        const backgroundArcLength = textLength + padding * 2;
-        const angleForArc = backgroundArcLength / backgroundRadius;
-
-        const bgStartAngle = midAngle - angleForArc / 2;
-        const bgEndAngle = midAngle + angleForArc / 2;
-
-        if (position !== 1.0) {
           g.append('path')
+            .attr('id', id)
             .attr(
               'd',
               arcGenerator({
-                innerRadius: backgroundRadius - (textHeight / 2 + padding),
-                outerRadius: backgroundRadius + (textHeight / 2 + padding),
-                startAngle: bgStartAngle,
-                endAngle: bgEndAngle,
+                innerRadius: labelRadius,
+                outerRadius: labelRadius,
+                startAngle: shouldFlip ? endAngle : startAngle,
+                endAngle: shouldFlip ? startAngle : endAngle,
                 data: position,
               })
             )
-            .attr('fill', modifier.color.scaleLabel.background.color)
-            .attr('opacity', modifier.color.scaleLabel.background.opacity);
-        }
+            .attr('fill', 'none');
 
-        g.append('text')
-          .append('textPath')
-          .attr('href', `#${id}`)
-          .attr('startOffset', `${textOffsetPercentage}%`)
-          .style('font-size', fontSize)
-          .text(value);
-      });
+          const fontSize = modifier.font.scaleLabel;
+          const textLength = calcTextLength(g, id, value, fontSize);
+          const textHeight = modifier.space.scaleLabel.text.height;
+
+          const padding = modifier.space.scaleLabel.text.padding;
+          const arcLength = Math.abs(endAngle - startAngle) * labelRadius;
+          const textPercentage = (textLength / arcLength) * 100;
+          const restPercentage = 100 - textPercentage;
+          const textOffsetPercentage = restPercentage / 4;
+
+          const backgroundArcLength = textLength + padding * 2;
+          const angleForArc = backgroundArcLength / backgroundRadius;
+
+          const bgStartAngle = midAngle - angleForArc / 2;
+          const bgEndAngle = midAngle + angleForArc / 2;
+
+          if (position !== 1.0) {
+            g.append('path')
+              .attr(
+                'd',
+                arcGenerator({
+                  innerRadius: backgroundRadius - (textHeight / 2 + padding),
+                  outerRadius: backgroundRadius + (textHeight / 2 + padding),
+                  startAngle: bgStartAngle,
+                  endAngle: bgEndAngle,
+                  data: position,
+                })
+              )
+              .attr('fill', modifier.color.scaleLabel.background.color)
+              .attr('opacity', modifier.color.scaleLabel.background.opacity);
+          }
+
+          g.append('text')
+            .append('textPath')
+            .attr('href', `#${id}`)
+            .attr('startOffset', `${textOffsetPercentage}%`)
+            .style('font-size', fontSize)
+            .text(value);
+        });
     }
   }
 
