@@ -549,14 +549,14 @@ watch(
             <div class="">{{ selectablePlayers.length }} total</div>
             <div class="">&#8226;</div>
             <div
-              class="underline cursor-pointer"
+              class="underline cursor-pointer hover:text-gray-600"
               @click="clearSelection('players')"
             >
               Clear selection
             </div>
             <div class="">&#8226;</div>
             <div
-              class="underline cursor-pointer"
+              class="underline cursor-pointer hover:text-gray-600"
               @click="restoreDefaultPlayerSelection"
             >
               Default selection
@@ -564,7 +564,7 @@ watch(
             <template v-if="filteredPlayers.length < selectablePlayers.length">
               <div class="">&#8226;</div>
               <div
-                class="underline cursor-pointer"
+                class="underline cursor-pointer hover:text-gray-600"
                 @click="selectAllFilteredPlayers"
               >
                 Select all filtered
@@ -574,7 +574,7 @@ watch(
           <div class="flex space-x-2 text-sm text-gray-500">
             <template v-if="isFiltered">
               <div
-                class="underline cursor-pointer"
+                class="underline cursor-pointer hover:text-gray-600"
                 @click="clearFilters"
               >
                 Clear filters
@@ -585,7 +585,7 @@ watch(
               v-model:open="isFiltersOpen"
               :popper="{ arrow: true }"
             >
-              <div class="underline">Filters</div>
+              <div class="underline hover:text-gray-600">Filters</div>
               <template #panel>
                 <div class="p-4">
                   <div class="filters-container rounded-lg">
@@ -743,7 +743,7 @@ watch(
               v-model:open="isSortOpen"
               :popper="{ arrow: true }"
             >
-              <div class="flex items-center space-x-1 underline">
+              <div class="flex items-center space-x-1 underline hover:text-gray-600">
                 <span>Sort by : {{ currentSort.label }}</span>
               </div>
 
@@ -781,14 +781,14 @@ watch(
             <div class="">{{ selectableStats.length }} Total</div>
             <div class="">&#8226;</div>
             <div
-              class="underline cursor-pointer"
+              class="underline cursor-pointer hover:text-gray-600"
               @click="clearSelection('stats')"
             >
               Clear selection
             </div>
             <div class="">&#8226;</div>
             <div
-              class="underline cursor-pointer"
+              class="underline cursor-pointer hover:text-gray-600"
               @click="restoreDefaultStatSelection"
             >
               Default selection
@@ -797,7 +797,7 @@ watch(
               <div class="">&#8226;</div>
 
               <div
-                class="underline cursor-pointer"
+                class="underline cursor-pointer hover:text-gray-600"
                 @click="selectAllFilteredStats"
               >
                 Select all filtered
@@ -807,7 +807,7 @@ watch(
           <div class="flex space-x-2 text-sm text-gray-500">
             <template v-if="isFilteredStats">
               <div
-                class="underline cursor-pointer"
+                class="underline cursor-pointer hover:text-gray-600"
                 @click="clearFiltersStats"
               >
                 Clear filters
@@ -818,7 +818,7 @@ watch(
               v-model:open="isFiltersOpenStats"
               :popper="{ arrow: true }"
             >
-              <div class="underline">Filters</div>
+              <div class="underline hover:text-gray-600">Filters</div>
               <template #panel>
                 <div class="p-4">
                   <div class="filters-container rounded-lg w-60">
@@ -875,7 +875,7 @@ watch(
               v-model:open="isSortOpenStats"
               :popper="{ arrow: true }"
             >
-              <div class="flex items-center space-x-1 underline">
+              <div class="flex items-center space-x-1 underline hover:text-gray-600">
                 <span>Sort by : {{ currentSortStats.label }}</span>
               </div>
 
