@@ -468,6 +468,15 @@ const isOpen = computed({
     setIsPickerOpen(newValue);
   },
 });
+
+watch(
+  () => isOpen.value,
+  (newValue) => {
+    if (newValue) {
+      value.value = '';
+    }
+  }
+);
 </script>
 
 <template>
@@ -804,11 +813,13 @@ const isOpen = computed({
                           :key="category"
                           class="flex items-center"
                         >
-                          <UCheckbox
-                            v-model="categories[category]"
-                            :ui="{ inner: 'ms-1 flex flex-col' }"
-                            :label="category"
-                          />
+                          <div class="checkbox">
+                            <UCheckbox
+                              v-model="categories[category]"
+                              :ui="{ inner: 'ms-1 flex flex-col' }"
+                              :label="category"
+                            />
+                          </div>
                         </label>
                       </div>
                     </div>
@@ -821,11 +832,13 @@ const isOpen = computed({
                           :key="category"
                           class="flex items-center"
                         >
-                          <UCheckbox
-                            v-model="subCategories[category]"
-                            :ui="{ inner: 'ms-1 flex flex-col' }"
-                            :label="category"
-                          />
+                          <div class="checkbox">
+                            <UCheckbox
+                              v-model="subCategories[category]"
+                              :ui="{ inner: 'ms-1 flex flex-col' }"
+                              :label="category"
+                            />
+                          </div>
                         </label>
                       </div>
                     </div>
@@ -1006,6 +1019,7 @@ const isOpen = computed({
                       >
                         <UCheckbox
                           v-model="selectionStats"
+                          :ui="{ inner: 'ms-1.5 flex flex-col' }"
                           :value="column.id"
                           :label="column.name"
                         />
