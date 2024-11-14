@@ -36,6 +36,10 @@ body {
   filter: brightness(0.96) !important;
 }
 
+.darken:hover {
+  filter: brightness(0.86);
+}
+
 .group-arc-hover,
 .overlay {
   cursor: pointer;

@@ -30,7 +30,7 @@ const getImageUrl = (playerId: PlayerKey) => {
       </div>
       <div class="flex space-x-1 items-center">
         <div
-          class="w-3 h-3 rounded-sm"
+          class="w-2 h-2 rounded-full"
           :style="{
             background: color,
           }"

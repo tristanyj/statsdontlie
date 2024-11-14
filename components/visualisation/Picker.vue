@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PlayerKey } from '~/types';
+import type { PlayerKey, SubCategoryKey } from '~/types';
 
 import { heightToInches } from '~/assets/scripts/utils';
 
@@ -229,6 +229,30 @@ const clearFilters = () => {
   isFiltersOpen.value = false;
 };
 
+const toggleSubCategorySelection = (subCategoryId: SubCategoryKey) => {
+  // if all stats are selected, deselect all
+  // if some stats are selected, select all
+  // if none are selected, select all
+  const stats = filteredCategories.value
+    .flatMap((category) => category.subCategories)
+    .find((subCategory) => subCategory.id === subCategoryId)?.stats;
+
+  if (!stats) return;
+
+  const allSelected = stats.every((stat) => selectedStatIds.value.includes(stat.id));
+
+  if (allSelected) {
+    setSelectedStatIds(selectedStatIds.value.filter((id) => !id.includes(subCategoryId)));
+  } else {
+    setSelectedStatIds(
+      [
+        ...selectedStatIds.value,
+        ...stats.map((stat) => stat.id).filter((id, index, self) => self.indexOf(id) === index),
+      ].filter((id, index, self) => self.indexOf(id) === index)
+    );
+  }
+};
+
 const clearFiltersStats = () => {
   selectedOnlyStats.value = false;
   Object.keys(categories.value).forEach(
@@ -291,7 +315,6 @@ const filteredPlayers = computed(() => {
     ? filteredByYears.filter((player) => {
         return selectedPositions.some((position) => {
           const equivalent = positionEquivalents[position as keyof typeof positionEquivalents];
-          console.log(!!equivalent && player.info.position === equivalent);
           return !!equivalent && player.info.position === equivalent;
         });
       })
@@ -994,7 +1017,10 @@ watch(
                   class="grid gap-2"
                 >
                   <div class="flex">
-                    <div class="relative text-md font-bold">
+                    <div
+                      class="darken relative text-md font-bold cursor-pointer"
+                      @click="toggleSubCategorySelection(subCategory.id)"
+                    >
                       <div
                         class="absolute left-0 top-0 w-full h-full inline-block transform scale-110 rounded-sm mr-1"
                         :style="{

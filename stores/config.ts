@@ -8,14 +8,22 @@ import type {
   PlayerKey,
 } from '~/types';
 
-const DEFAULT_PLAYER_IDS: PlayerKey[] = ['abdulka01', 'jamesle01', 'chambwi01', 'jordami01'];
+const DEFAULT_PLAYER_IDS: PlayerKey[] = [
+  'abdulka01',
+  'jamesle01',
+  'chambwi01',
+  'jordami01',
+  'stockjo01',
+];
 
 const DEFAULT_STAT_IDS: StatKey[] = [
   // Awards
   'awards.individual.mvp',
   'awards.individual.dpoy',
   'awards.individual.all_nba',
+  'awards.individual.all_nba_first',
   'awards.individual.all_defensive',
+  'awards.individual.all_defensive_first',
   'awards.individual.all_star',
   'awards.team.nba_championships',
   'awards.team.conference_championships',
