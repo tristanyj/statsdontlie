@@ -408,7 +408,7 @@ export function useChartDrawArcs() {
               ? modifier.color.subCategoryLabel.background.opacity.even
               : modifier.color.subCategoryLabel.background.opacity.odd;
           })
-          .on('mouseenter', (_, d) => {
+          .on('mouseenter', (event, d) => {
             if (!interaction) return;
 
             const arc = g.select(`.stat-label-arc-normal.arc-label-${d.id}`);
@@ -426,6 +426,11 @@ export function useChartDrawArcs() {
                 holder: d.stat.record.name,
               },
             });
+            updateMousePosition(event);
+          })
+          .on('mousemove', (event) => {
+            if (!interaction) return;
+            updateMousePosition(event);
           })
           .on('mouseleave', (_, d) => {
             if (!interaction) return;
