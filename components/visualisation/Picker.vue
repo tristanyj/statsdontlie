@@ -3,6 +3,13 @@ import type { PlayerKey } from '~/types';
 
 import { heightToInches } from '~/assets/scripts/utils';
 
+const formatString = (str: string): string => {
+  return str
+    .split('_')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+};
+
 const configStore = useConfigStore();
 const {
   selectedPlayerIds,
@@ -27,6 +34,7 @@ const getImageUrl = (playerId: PlayerKey) => {
 };
 
 const selectedOnly = ref(false);
+const selectedOnlyStats = ref(false);
 
 const heightRange = ref([70, 96]); // 5'0" to 7'0" in inches
 const weightRange = ref([150, 350]); // in pounds
@@ -34,11 +42,26 @@ const yearsRange = ref([1960, 2024]);
 
 // Positions checkboxes
 const positions = ref({
-  PG: false,
-  SG: false,
-  SF: false,
-  PF: false,
-  C: false,
+  PG: true,
+  SG: true,
+  SF: true,
+  PF: true,
+  C: true,
+});
+
+const categories = ref({
+  'Regular Season': true,
+  'Post Season': true,
+  Awards: true,
+});
+
+const subCategories = ref({
+  Total: true,
+  'Per Game': true,
+  Advanced: true,
+  'Game High': true,
+  Individual: true,
+  Team: true,
 });
 
 const positionEquivalents = {
@@ -75,9 +98,13 @@ type Option = {
 };
 
 const isFiltersOpen = ref(false);
+const isFiltersOpenStats = ref(false);
 
 const isSortOpen = ref(false);
+const isSortOpenStats = ref(false);
+
 const isSortAscending = ref(false);
+const isSortAscendingStats = ref(true);
 
 const sortOptions: Option[] = [
   {
@@ -106,7 +133,19 @@ const sortOptions: Option[] = [
   },
 ];
 
+const sortOptionsStats: Option[] = [
+  {
+    label: 'Default',
+    key: 'default',
+  },
+  {
+    label: 'Name',
+    key: 'name',
+  },
+];
+
 const currentSort = ref(sortOptions[1]);
+const currentSortStats = ref(sortOptionsStats[0]);
 
 const selectOption = (option: Option) => {
   if (currentSort.value.key === option.key) {
@@ -116,19 +155,69 @@ const selectOption = (option: Option) => {
   isSortOpen.value = false;
 };
 
+const getChunks = (
+  array: {
+    id: string;
+    name: string;
+  }[],
+  columns: number
+) => {
+  // Determine number of chunks based on array length
+  const numberOfChunks = array.length < 4 ? 1 : array.length < 7 ? 2 : columns;
+
+  const chunkSize = Math.ceil(array.length / numberOfChunks);
+  const chunks: (typeof array)[] = Array(numberOfChunks)
+    .fill([])
+    .map(() => []);
+
+  array.forEach((item, index) => {
+    const chunkIndex = Math.floor(index / chunkSize);
+    if (chunkIndex < numberOfChunks) {
+      chunks[chunkIndex].push(item);
+    }
+  });
+
+  return chunks;
+};
+
+const selectOptionStats = (option: Option) => {
+  if (currentSortStats.value.key === option.key) {
+    isSortAscendingStats.value = !isSortAscendingStats.value;
+  }
+  currentSortStats.value = option;
+  isSortOpenStats.value = false;
+};
+
 const clearFilters = () => {
   selectedOnly.value = false;
   heightRange.value = [70, 96];
   weightRange.value = [150, 350];
   yearsRange.value = [1960, 2024];
   Object.keys(positions.value).forEach(
-    (position) => (positions.value[position as keyof typeof positions.value] = false)
+    (position) => (positions.value[position as keyof typeof positions.value] = true)
   );
   isFiltersOpen.value = false;
 };
 
+const clearFiltersStats = () => {
+  selectedOnlyStats.value = false;
+  Object.keys(categories.value).forEach(
+    (category) => (categories.value[category as keyof typeof categories.value] = true)
+  );
+  isFiltersOpenStats.value = false;
+};
+
 const selectAllFilteredPlayers = () => {
   setSelectedPlayerIds(filteredPlayers.value.map((player) => player.id));
+};
+
+const selectAllFilteredStats = () => {
+  setSelectedStatIds(
+    filteredCategories.value
+      .flatMap((category) => category.subCategories)
+      .flatMap((subCategory) => subCategory.stats)
+      .map((stat) => stat.id)
+  );
 };
 
 const value = ref('');
@@ -177,7 +266,7 @@ const filteredPlayers = computed(() => {
           return !!equivalent && player.info.position === equivalent;
         });
       })
-    : filteredByYears;
+    : [];
 
   return filteredByPosition;
 });
@@ -234,8 +323,6 @@ const sortedPlayers = computed(() => {
 
 // For stats, we need to maintain the category structure while filtering
 const filteredCategories = computed(() => {
-  if (!value.value) return selectableCategories.value;
-
   const searchTerm = value.value.toLowerCase();
 
   return selectableCategories.value
@@ -244,11 +331,63 @@ const filteredCategories = computed(() => {
       subCategories: category.subCategories
         .map((subCategory) => ({
           ...subCategory,
-          stats: subCategory.stats.filter((stat) => stat.name.toLowerCase().includes(searchTerm)),
+          stats: subCategory.stats
+            .filter((stat) => (value.value ? stat.name.toLowerCase().includes(searchTerm) : true))
+            .filter((stat) =>
+              selectedOnlyStats.value ? selectedStatIds.value.includes(stat.id) : true
+            )
+            .filter((stat) => {
+              const [categoryId, subCategoryId] = stat.id.split('.');
+              const parsedCategoryId = formatString(categoryId);
+              const parsedSubCategoryId = formatString(subCategoryId);
+
+              return (
+                categories.value[parsedCategoryId as keyof typeof categories.value] &&
+                subCategories.value[parsedSubCategoryId as keyof typeof subCategories.value]
+              );
+            }),
         }))
         .filter((subCategory) => subCategory.stats.length > 0), // Remove empty subCategories
     }))
     .filter((category) => category.subCategories.length > 0); // Remove empty categories
+});
+
+const filteredStats = computed(() => {
+  return filteredCategories.value.flatMap((category) =>
+    category.subCategories.flatMap((subCategory) => subCategory.stats)
+  );
+});
+
+const sortedCategories = computed(() => {
+  const copy = [...filteredCategories.value];
+
+  switch (currentSortStats.value.key) {
+    case 'name':
+      // sort stats by name
+      return copy
+        .map((category) => ({
+          ...category,
+          subCategories: category.subCategories
+            .map((subCategory) => ({
+              ...subCategory,
+              stats: subCategory.stats.sort((a, b) =>
+                isSortAscendingStats.value
+                  ? a.name.localeCompare(b.name)
+                  : b.name.localeCompare(a.name)
+              ),
+            }))
+            .sort((a, b) =>
+              isSortAscendingStats.value
+                ? a.name.localeCompare(b.name)
+                : b.name.localeCompare(a.name)
+            ),
+        }))
+        .sort((a, b) =>
+          isSortAscendingStats.value ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+        );
+    default:
+      return copy;
+  }
 });
 
 // Add a helper computed to check if any results were found
@@ -362,12 +501,14 @@ const isOpen = computed({
               Default selection
             </div>
             <div class="">&#8226;</div>
-            <div
-              class="underline cursor-pointer"
-              @click="selectAllFilteredPlayers"
-            >
-              Select all filtered
-            </div>
+            <template v-if="filteredPlayers.length < selectablePlayers.length">
+              <div
+                class="underline cursor-pointer"
+                @click="selectAllFilteredPlayers"
+              >
+                Select all filtered
+              </div>
+            </template>
           </div>
           <div class="flex space-x-2 text-sm text-gray-500">
             <UPopover
@@ -522,7 +663,10 @@ const isOpen = computed({
                           :key="position"
                           class="flex items-center"
                         >
-                          <UCheckbox v-model="positions[position]" />
+                          <UCheckbox
+                            v-model="positions[position]"
+                            :label="position"
+                          />
                           <span class="ml-1 text-sm">{{ position }}</span>
                         </label>
                       </div>
@@ -571,6 +715,7 @@ const isOpen = computed({
         <div class="grid grid-flow-col justify-between py-3 mt-2 px-4">
           <div class="flex space-x-2 text-sm text-gray-500">
             <div class="">{{ selectedStatIds.length }} Selected,</div>
+            <div class="">{{ filteredStats.length }} filtered,</div>
             <div class="">{{ selectableStats.length }} Total</div>
             <div class="">&#8226;</div>
             <div
@@ -586,6 +731,105 @@ const isOpen = computed({
             >
               Default selection
             </div>
+            <template v-if="filteredStats.length < selectableStats.length">
+              <div class="">&#8226;</div>
+
+              <div
+                class="underline cursor-pointer"
+                @click="selectAllFilteredStats"
+              >
+                Select all filtered
+              </div>
+            </template>
+          </div>
+          <div class="flex space-x-2 text-sm text-gray-500">
+            <UPopover
+              v-model:open="isFiltersOpenStats"
+              :popper="{ arrow: true }"
+            >
+              <div class="underline">Filters</div>
+              <template #panel>
+                <div class="p-4">
+                  <div class="filters-container rounded-lg w-60">
+                    <div class="flex">
+                      <div
+                        class="underline cursor-pointer mb-4"
+                        @click="clearFiltersStats()"
+                      >
+                        Clear filters
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="block text-sm text-gray-700">Selected Only</label>
+                      <UToggle v-model="selectedOnlyStats" />
+                    </div>
+
+                    <!-- Position Checkboxes -->
+                    <div class="mb-3">
+                      <label class="block text-sm text-gray-700 mb-1">Categories</label>
+                      <div class="flex flex-wrap gap-x-3 gap-y-2">
+                        <label
+                          v-for="(checked, category) in categories"
+                          :key="category"
+                          class="flex items-center"
+                        >
+                          <UCheckbox v-model="categories[category]" />
+                          <span class="ml-1 text-sm">{{ category }}</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label class="block text-sm text-gray-700 mb-1">Sub Categories</label>
+                      <div class="flex flex-wrap gap-x-3 gap-y-2">
+                        <label
+                          v-for="(checked, category) in subCategories"
+                          :key="category"
+                          class="flex items-center"
+                        >
+                          <UCheckbox v-model="subCategories[category]" />
+                          <span class="ml-1 text-sm">{{ category }}</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </UPopover>
+            <!-- <div class="underline">Filter by :</div> -->
+            <div class="">&#8226;</div>
+            <UPopover
+              v-model:open="isSortOpenStats"
+              :popper="{ arrow: true }"
+            >
+              <div class="flex items-center space-x-1 underline">
+                <span>Sort by : {{ currentSortStats.label }}</span>
+              </div>
+
+              <template #panel>
+                <div class="p-2 w-36">
+                  <div
+                    v-for="option in sortOptionsStats"
+                    :key="option.key"
+                    role="menuitem"
+                    class="px-3 py-2 text-sm rounded-md text-gray-700 hover:bg-gray-100 cursor-pointer flex justify-start items-center"
+                    @click="selectOptionStats(option)"
+                  >
+                    <UIcon
+                      v-if="currentSortStats.key === option.key"
+                      :name="
+                        isSortAscendingStats ? 'i-radix-icons:arrow-up' : 'i-radix-icons:arrow-down'
+                      "
+                      class="mr-2"
+                    />
+                    <span>
+                      {{ option.label }}
+                    </span>
+                  </div>
+                </div>
+              </template>
+            </UPopover>
           </div>
         </div>
       </template>
@@ -663,7 +907,7 @@ const isOpen = computed({
           v-else
           class="p-4 text-center text-gray-500"
         >
-          No players found matching "{{ value }}"
+          No players found matching criteria
         </div>
       </div>
       <div
@@ -676,7 +920,7 @@ const isOpen = computed({
         >
           <div class="grid grid-cols-3 gap-20 items-start">
             <div
-              v-for="(group, i) in filteredCategories"
+              v-for="(group, i) in sortedCategories"
               :key="`group-${i}`"
               class="grid gap-4 items-start"
               :class="i === 0 ? 'border-transparent' : 'border-gray-200'"
@@ -689,17 +933,23 @@ const isOpen = computed({
                   class="grid gap-4"
                 >
                   <h4 class="text-md font-bold">{{ subCategory.name }}</h4>
-                  <div class="grid grid-cols-3 gap-x-4 gap-y-1">
+                  <div class="grid grid-cols-3 items-start gap-x-5">
                     <div
-                      v-for="(column, k) in subCategory.stats"
-                      :key="`column-${k}`"
-                      class=""
+                      v-for="(chunk, k) in getChunks(subCategory.stats, 3)"
+                      :key="`chunk-${k}`"
+                      class="grid gap-y-1 items-start"
                     >
-                      <UCheckbox
-                        v-model="selectionStats"
-                        :value="column.id"
-                        :label="column.name"
-                      />
+                      <div
+                        v-for="(column, index) in chunk"
+                        :key="`column-${index}`"
+                        class=""
+                      >
+                        <UCheckbox
+                          v-model="selectionStats"
+                          :value="column.id"
+                          :label="column.name"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -711,7 +961,7 @@ const isOpen = computed({
           v-else
           class="p-4 text-center text-gray-500"
         >
-          No stats found matching "{{ value }}"
+          No stats found matching criteria
         </div>
       </div>
     </div>
