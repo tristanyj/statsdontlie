@@ -36,9 +36,18 @@ const getImageUrl = (playerId: PlayerKey) => {
 const selectedOnly = ref(false);
 const selectedOnlyStats = ref(false);
 
-const heightRange = ref([70, 96]); // 5'0" to 7'0" in inches
+const heightRange = ref([70, 90]); // 5'0" to 7'0" in inches
 const weightRange = ref([150, 350]); // in pounds
 const yearsRange = ref([1960, 2024]);
+
+const heightMin = computed(() => Math.min(heightRange.value[0], heightRange.value[1]));
+const heightMax = computed(() => Math.max(heightRange.value[0], heightRange.value[1]));
+
+const weightMin = computed(() => Math.min(weightRange.value[0], weightRange.value[1]));
+const weightMax = computed(() => Math.max(weightRange.value[0], weightRange.value[1]));
+
+const yearsMin = computed(() => Math.min(yearsRange.value[0], yearsRange.value[1]));
+const yearsMax = computed(() => Math.max(yearsRange.value[0], yearsRange.value[1]));
 
 // Positions checkboxes
 const positions = ref({
@@ -96,6 +105,27 @@ type Option = {
   label: string;
   key: string;
 };
+
+const isFiltered = computed(() => {
+  return (
+    selectedOnly.value ||
+    heightRange.value[0] !== 70 ||
+    heightRange.value[1] !== 90 ||
+    weightRange.value[0] !== 150 ||
+    weightRange.value[1] !== 350 ||
+    yearsRange.value[0] !== 1960 ||
+    yearsRange.value[1] !== 2024 ||
+    Object.values(positions.value).some((position) => !position)
+  );
+});
+
+const isFilteredStats = computed(() => {
+  return (
+    selectedOnlyStats.value ||
+    Object.values(categories.value).some((category) => !category) ||
+    Object.values(subCategories.value).some((subCategory) => !subCategory)
+  );
+});
 
 const isFiltersOpen = ref(false);
 const isFiltersOpenStats = ref(false);
@@ -190,7 +220,7 @@ const selectOptionStats = (option: Option) => {
 
 const clearFilters = () => {
   selectedOnly.value = false;
-  heightRange.value = [70, 96];
+  heightRange.value = [70, 90];
   weightRange.value = [150, 350];
   yearsRange.value = [1960, 2024];
   Object.keys(positions.value).forEach(
@@ -203,6 +233,9 @@ const clearFiltersStats = () => {
   selectedOnlyStats.value = false;
   Object.keys(categories.value).forEach(
     (category) => (categories.value[category as keyof typeof categories.value] = true)
+  );
+  Object.keys(subCategories.value).forEach(
+    (subCategory) => (subCategories.value[subCategory as keyof typeof subCategories.value] = true)
   );
   isFiltersOpenStats.value = false;
 };
@@ -237,21 +270,17 @@ const filteredPlayers = computed(() => {
 
   const filteredByHeight = filteredBySelected.filter((player) => {
     const height = heightToInches(player.info.height);
-    return height >= heightRange.value[0] && height <= heightRange.value[1];
+    return height >= heightMin.value && height <= heightMax.value;
   });
 
   const filteredByWeight = filteredByHeight.filter((player) => {
     const weight = parseInt(player.info.weight);
-    return weight >= weightRange.value[0] && weight <= weightRange.value[1];
+    return weight >= weightMin.value && weight <= weightMax.value;
   });
 
   const filteredByYears = filteredByWeight.filter((player) => {
     const endYear = player.info.draft[1] + player.info.experience;
-
-    return (
-      endYear >= Math.min(yearsRange.value[0], yearsRange.value[1]) &&
-      endYear <= Math.max(yearsRange.value[0], yearsRange.value[1])
-    );
+    return endYear >= yearsMin.value && endYear <= yearsMax.value;
   });
 
   const selectedPositions = Object.entries(positions.value)
@@ -500,8 +529,8 @@ const isOpen = computed({
             >
               Default selection
             </div>
-            <div class="">&#8226;</div>
             <template v-if="filteredPlayers.length < selectablePlayers.length">
+              <div class="">&#8226;</div>
               <div
                 class="underline cursor-pointer"
                 @click="selectAllFilteredPlayers"
@@ -511,6 +540,15 @@ const isOpen = computed({
             </template>
           </div>
           <div class="flex space-x-2 text-sm text-gray-500">
+            <template v-if="isFiltered">
+              <div
+                class="underline cursor-pointer"
+                @click="clearFilters"
+              >
+                Clear filters
+              </div>
+              <div class="">&#8226;</div>
+            </template>
             <UPopover
               v-model:open="isFiltersOpen"
               :popper="{ arrow: true }"
@@ -519,15 +557,6 @@ const isOpen = computed({
               <template #panel>
                 <div class="p-4">
                   <div class="filters-container rounded-lg">
-                    <div class="flex">
-                      <div
-                        class="underline cursor-pointer mb-4"
-                        @click="clearFilters()"
-                      >
-                        Clear filters
-                      </div>
-                    </div>
-
                     <div class="mb-3">
                       <label class="block text-sm text-gray-700 mb-1">Selected Only</label>
                       <UToggle v-model="selectedOnly" />
@@ -536,7 +565,7 @@ const isOpen = computed({
                     <!-- Height Range Slider -->
                     <div class="slider-container mb-5">
                       <label class="block text-sm text-gray-700 mb-2">
-                        Height Range ({{ heightRange[0] }}" - {{ heightRange[1] }}")
+                        Height Range ({{ heightMin }}" - {{ heightMax }}")
                       </label>
                       <div class="relative h-1">
                         <div class="absolute h-full rounded-full bg-gray-300 w-full" />
@@ -544,14 +573,14 @@ const isOpen = computed({
                           class="absolute h-full bg-primary-950/50 rounded-full"
                           :style="{
                             left: `${Math.min(
-                              ((heightRange[0] - 70) / (96 - 70)) * 100,
-                              ((heightRange[1] - 70) / (96 - 70)) * 100
+                              ((heightRange[0] - 70) / (90 - 70)) * 100,
+                              ((heightRange[1] - 70) / (90 - 70)) * 100
                             )}%`,
                             right: `${
                               100 -
                               Math.max(
-                                ((heightRange[0] - 70) / (96 - 70)) * 100,
-                                ((heightRange[1] - 70) / (96 - 70)) * 100
+                                ((heightRange[0] - 70) / (90 - 70)) * 100,
+                                ((heightRange[1] - 70) / (90 - 70)) * 100
                               )
                             }%`,
                           }"
@@ -560,14 +589,14 @@ const isOpen = computed({
                           v-model="heightRange[0]"
                           type="range"
                           :min="70"
-                          :max="96"
+                          :max="90"
                           class="range-slider"
                         />
                         <input
                           v-model="heightRange[1]"
                           type="range"
                           :min="70"
-                          :max="96"
+                          :max="90"
                           class="range-slider"
                         />
                       </div>
@@ -576,7 +605,7 @@ const isOpen = computed({
                     <!-- Weight Range Slider -->
                     <div class="slider-container mb-5">
                       <label class="block text-sm text-gray-700 mb-2">
-                        Weight Range ({{ weightRange[0] }} - {{ weightRange[1] }} lbs)
+                        Weight Range ({{ weightMin }} - {{ weightMax }} lbs)
                       </label>
                       <div class="relative h-1">
                         <div class="absolute h-full rounded-full bg-gray-300 w-full" />
@@ -616,8 +645,7 @@ const isOpen = computed({
                     <!-- Years Range Slider -->
                     <div class="slider-container mb-5">
                       <label class="block text-sm text-gray-700 mb-2">
-                        Years active ({{ Math.min(yearsRange[0], yearsRange[1]) }} -
-                        {{ Math.max(yearsRange[0], yearsRange[1]) }})
+                        Years active ({{ yearsMin }} - {{ yearsMax }})
                       </label>
                       <div class="relative h-1">
                         <div class="absolute h-full rounded-full bg-gray-300 w-full" />
@@ -745,6 +773,15 @@ const isOpen = computed({
             </template>
           </div>
           <div class="flex space-x-2 text-sm text-gray-500">
+            <template v-if="isFilteredStats">
+              <div
+                class="underline cursor-pointer"
+                @click="clearFiltersStats"
+              >
+                Clear filters
+              </div>
+              <div class="">&#8226;</div>
+            </template>
             <UPopover
               v-model:open="isFiltersOpenStats"
               :popper="{ arrow: true }"
@@ -753,15 +790,6 @@ const isOpen = computed({
               <template #panel>
                 <div class="p-4">
                   <div class="filters-container rounded-lg w-60">
-                    <div class="flex">
-                      <div
-                        class="underline cursor-pointer mb-4"
-                        @click="clearFiltersStats()"
-                      >
-                        Clear filters
-                      </div>
-                    </div>
-
                     <div class="mb-3">
                       <label class="block text-sm text-gray-700">Selected Only</label>
                       <UToggle v-model="selectedOnlyStats" />
@@ -776,8 +804,11 @@ const isOpen = computed({
                           :key="category"
                           class="flex items-center"
                         >
-                          <UCheckbox v-model="categories[category]" />
-                          <span class="ml-1 text-sm">{{ category }}</span>
+                          <UCheckbox
+                            v-model="categories[category]"
+                            :ui="{ inner: 'ms-1 flex flex-col' }"
+                            :label="category"
+                          />
                         </label>
                       </div>
                     </div>
@@ -790,8 +821,11 @@ const isOpen = computed({
                           :key="category"
                           class="flex items-center"
                         >
-                          <UCheckbox v-model="subCategories[category]" />
-                          <span class="ml-1 text-sm">{{ category }}</span>
+                          <UCheckbox
+                            v-model="subCategories[category]"
+                            :ui="{ inner: 'ms-1 flex flex-col' }"
+                            :label="category"
+                          />
                         </label>
                       </div>
                     </div>
@@ -924,17 +958,41 @@ const isOpen = computed({
             <div
               v-for="(group, i) in sortedCategories"
               :key="`group-${i}`"
-              class="grid gap-4 items-start"
+              class="grid gap-3 items-start"
               :class="i === 0 ? 'border-transparent' : 'border-gray-200'"
             >
-              <h3 class="text-lg font-bold">{{ group.name }}</h3>
+              <div class="flex">
+                <div class="relative text-lg font-bold">
+                  <div
+                    class="absolute left-0 top-0 w-full h-full inline-block transform scale-110 rounded-sm mr-1"
+                    :style="{
+                      background: `${group.color}66`,
+                    }"
+                  />
+                  <h3 class="relative">
+                    {{ group.name }}
+                  </h3>
+                </div>
+              </div>
               <div class="grid gap-4 items-start">
                 <div
                   v-for="(subCategory, j) in group.subCategories"
                   :key="`sub-group-${j}`"
-                  class="grid gap-4"
+                  class="grid gap-2"
                 >
-                  <h4 class="text-md font-bold">{{ subCategory.name }}</h4>
+                  <div class="flex">
+                    <div class="relative text-md font-bold">
+                      <div
+                        class="absolute left-0 top-0 w-full h-full inline-block transform scale-110 rounded-sm mr-1"
+                        :style="{
+                          background: `${subCategory.color}33`,
+                        }"
+                      />
+                      <h4 class="relative">
+                        {{ subCategory.name }}
+                      </h4>
+                    </div>
+                  </div>
                   <div class="grid grid-cols-3 items-start gap-x-5">
                     <div
                       v-for="(chunk, k) in getChunks(subCategory.stats, 3)"
