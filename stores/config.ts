@@ -103,7 +103,14 @@ export const useConfigStore = defineStore('config', () => {
   const selectedStatIdsCount = computed(() => selectedStatIds.value.length);
 
   const selectablePlayers = computed(() => {
-    return players.value.map(({ id, color, info }) => ({ id, color, info }));
+    return players.value.map(({ id, color, info, stats }) => ({
+      id,
+      color,
+      info,
+      stats: {
+        winShares: stats['regular_season.advanced.win_shares'],
+      },
+    }));
   });
 
   const selectableCategories = computed(() => {

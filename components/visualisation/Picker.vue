@@ -77,12 +77,16 @@ type Option = {
 const isFiltersOpen = ref(false);
 
 const isSortOpen = ref(false);
-const isSortAscending = ref(true);
+const isSortAscending = ref(false);
 
 const sortOptions: Option[] = [
   {
     label: 'Name',
     key: 'name',
+  },
+  {
+    label: 'Win Shares',
+    key: 'win-shares',
   },
   {
     label: 'Height',
@@ -102,14 +106,14 @@ const sortOptions: Option[] = [
   },
 ];
 
-const currentSort = ref(sortOptions[0]);
+const currentSort = ref(sortOptions[1]);
 
 const selectOption = (option: Option) => {
-  currentSort.value = option;
-  isSortOpen.value = false;
   if (currentSort.value.key === option.key) {
     isSortAscending.value = !isSortAscending.value;
   }
+  currentSort.value = option;
+  isSortOpen.value = false;
 };
 
 const clearFilters = () => {
@@ -190,6 +194,12 @@ const sortedPlayers = computed(() => {
         return isSortAscending.value
           ? aLastName.localeCompare(bLastName) || aFirstName.localeCompare(bFirstName)
           : bLastName.localeCompare(aLastName) || bFirstName.localeCompare(aFirstName);
+      });
+    case 'win-shares':
+      return copy.sort((a, b) => {
+        return isSortAscending.value
+          ? a.stats.winShares - b.stats.winShares
+          : b.stats.winShares - a.stats.winShares;
       });
     case 'height':
       return copy.sort((a, b) => {
@@ -311,7 +321,11 @@ const isOpen = computed({
         <div class="">
           <UInput
             v-model="value"
-            :ui="{ padding: 'py-3 px-5' }"
+            icon="i-radix-icons:magnifying-glass"
+            padded
+            size="md"
+            color="gray"
+            variant="outline"
             :placeholder="`Search ${selectedIndex === 0 ? 'players' : 'stats'}...`"
             clearable
           />
@@ -319,9 +333,8 @@ const isOpen = computed({
         <div class="">
           <UButton
             color="gray"
-            size="sm"
+            size="md"
             icon="i-heroicons-x-mark-20-solid"
-            class="z-10"
             square
             padded
             @click="isOpen = false"
@@ -540,7 +553,7 @@ const isOpen = computed({
                     <UIcon
                       v-if="currentSort.key === option.key"
                       :name="
-                        isSortAscending ? 'i-radix-icons:arrow-down' : 'i-radix-icons:arrow-up'
+                        isSortAscending ? 'i-radix-icons:arrow-up' : 'i-radix-icons:arrow-down'
                       "
                       class="mr-2"
                     />
@@ -589,18 +602,18 @@ const isOpen = computed({
               <button
                 v-for="(player, i) in sortedPlayers"
                 :key="`player-${i}`"
-                class="group relative p-2 border transition-all duration-50 rounded-sm bg-white"
+                class="group relative p-2 border transition-all duration-50 rounded-sm bg-white focus:outline-primary-950/50"
                 @click="togglePlayer(player.id)"
               >
                 <!-- Background pattern for selected state -->
                 <div
-                  class="absolute inset-0 opacity-0 transition-opacity duration-50"
+                  class="absolute inset-0 opacity-0 transition-opacity duration-0"
                   :class="[
                     selectionPlayers.includes(player.id) ? 'opacity-50' : 'group-hover:opacity-10',
                   ]"
                 >
                   <div
-                    class="absolute inset-0 transform scale-x-[1.06] scale-y-[1.04] rounded-md bg-amber-900"
+                    class="absolute inset-0 transform scale-x-[1.06] scale-y-[1.04] rounded-md bg-primary-950"
                   />
                   <div class="absolute inset-0 bg-white rounded-sm" />
                 </div>
