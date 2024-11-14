@@ -10,6 +10,7 @@ const {
   drawStatArcs,
   drawGroupArcs,
   drawOutsideMaxStatScaleArc,
+  drawTest,
 } = useChartDrawArcs();
 const { drawCircularSeparators, drawLinearSeparators, drawDonutLine } = useChartDrawLines();
 const { drawStatLabels, drawScaleLabels, drawGroupLabels } = useChartDrawLabels();
@@ -57,6 +58,8 @@ function createVisualization() {
   if (!g.value) return;
 
   g.value.selectAll('*').remove();
+
+  drawTest(g.value);
 
   drawBackground(g.value);
 

@@ -521,7 +521,34 @@ export function useChartDrawArcs() {
       .attr('opacity', modifier.color.scaleLabel.last.background.opacity);
   }
 
+  function drawTest(g: d3GSelection) {
+    const numLines = 12;
+    const innerRadius = 0;
+    const outerRadius = 100;
+
+    const group = g.append('g').attr('class', 'test-lol-group');
+
+    for (let i = 0; i < numLines; i++) {
+      const angle = (i / numLines) * Math.PI * 2;
+
+      group
+        .append('line')
+        .attr('x1', Math.cos(angle) * innerRadius)
+        .attr('y1', Math.sin(angle) * innerRadius)
+        .attr('x2', Math.cos(angle) * outerRadius)
+        .attr('y2', Math.sin(angle) * outerRadius)
+        .attr('stroke', 'white')
+        .attr('stroke-width', 1);
+    }
+
+    // Optional: Add the circles for reference
+    group.append('circle').attr('r', innerRadius).attr('fill', 'none').attr('stroke', 'white');
+
+    group.append('circle').attr('r', outerRadius).attr('fill', 'none').attr('stroke', 'white');
+  }
+
   return {
+    drawTest,
     drawOverlayArc,
     drawCircleBackground,
     drawStatLabelArcs,
