@@ -12,19 +12,19 @@ const { openPicker } = interactionStore;
 <template>
   <div class="grid content">
     <div class="relative">
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-2xl">
+      <!-- <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-2xl">
         <div
           class="absolute -bottom-4 -left-8 transform -rotate-90 origin-top-left font-normal text-white opacity-25"
         >
           LeBron James - Michael Jordan - Kobe Bryant
         </div>
-      </div>
-      <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl">
-        <div class="absolute top-0 left-0 w-1 h-[1000vh] bg-white" />
-        <div class="absolute top-0 right-0 w-1 h-[1000vh] bg-white" />
-      </div>
-      <UContainer>
-        <div class="relative py-12 px-2 font-anton">
+      </div> -->
+      <!-- <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl">
+      </div> -->
+      <UContainer class="relative">
+        <div class="absolute top-0 left-0 w-1 h-[100vh] bg-white" />
+        <div class="absolute top-0 right-0 w-1 h-[100vh] bg-white" />
+        <div class="relative py-12 pb-6 px-2 font-anton">
           <!-- <div class="mb-5"></div> -->
           <h1 class="uppercase text-white text-8xl">
             <div class="relative w-24 inline-block">
@@ -36,8 +36,8 @@ const { openPicker } = interactionStore;
             </div>
             Compare the greatest basketball players of all time
           </h1>
-          <div class="px-2 mt-1">
-            <div class="grid grid-cols-2 border-4 border-white">
+          <div class="mt-5">
+            <!-- <div class="grid grid-cols-2 border-4 border-white">
               <div
                 class="flex justify-center items-center border-r-4 border-white cursor-pointer py-1 transition-color duration-100 hover:bg-white/5"
                 @click="openPicker('players')"
@@ -50,7 +50,7 @@ const { openPicker } = interactionStore;
               >
                 <div class="text-white font-medium uppercase">Select stats</div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </UContainer>
@@ -58,8 +58,27 @@ const { openPicker } = interactionStore;
         <VisualisationChart />
       </div>
       <UContainer>
-        <div class="relative py-20 px-10">
-          <p class="text-white pl-4">(bottom)</p>
+        <div class="relative py-16 px-10 text-center lowercase">
+          <p class="text-white pl-4">
+            Created by Tristan Lanoye |
+            <a
+              href="https://tristanyj.com"
+              class="underline"
+              >tristanyj.com</a
+            >
+          </p>
+          <div class="max-w-80 mx-auto h-px bg-white my-4 opacity-25" />
+          <div class="text-gray-200 text-sm lowercase">
+            Data from
+            <a
+              href="https://www.basketball-reference.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-gray-100 transition-colors duration-50 underline"
+              >Basketball Reference</a
+            >; <br />
+            up to date as of november 2024.
+          </div>
         </div>
       </UContainer>
     </div>
