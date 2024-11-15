@@ -85,6 +85,7 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
             <a
               href="https://tristanyj.com"
               class="underline"
+              target="_blank"
               >tristanyj.com</a
             >
           </p>
