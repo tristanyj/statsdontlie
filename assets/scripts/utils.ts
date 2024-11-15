@@ -86,6 +86,30 @@ const isDefaultRange = (range: number[], defaultRange: number[]) => {
   return range[0] === defaultRange[0] && range[1] === defaultRange[1];
 };
 
+const getChunks = (
+  array: {
+    id: string;
+    name: string;
+  }[],
+  columns: number
+) => {
+  const numberOfChunks = array.length < 4 ? 1 : array.length < 7 ? 2 : columns;
+
+  const chunkSize = Math.ceil(array.length / numberOfChunks);
+  const chunks: (typeof array)[] = Array(numberOfChunks)
+    .fill([])
+    .map(() => []);
+
+  array.forEach((item, index) => {
+    const chunkIndex = Math.floor(index / chunkSize);
+    if (chunkIndex < numberOfChunks) {
+      chunks[chunkIndex].push(item);
+    }
+  });
+
+  return chunks;
+};
+
 export {
   wrapText,
   formatNumber,
@@ -96,4 +120,5 @@ export {
   heightToInches,
   formatString,
   isDefaultRange,
+  getChunks,
 };

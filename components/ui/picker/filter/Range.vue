@@ -69,30 +69,13 @@ const rangeValue = useVModel(props, 'rangeValue', emit);
 </template>
 
 <style scoped>
-.player-cards-move,
-.player-cards-enter-active,
-.player-cards-leave-active {
-  transition: all 0.25s ease;
-}
-
-.player-cards-enter-from,
-.player-cards-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.player-cards-leave-active {
-  /* position: absolute; */
-  opacity: 0;
-}
-
 .slider-container {
   @apply relative w-full;
 }
 
 .range-slider {
   @apply absolute w-full appearance-none bg-transparent pointer-events-none;
-  top: -11px; /* Adjust thumb vertical alignment */
+  top: -11px;
   height: 1rem;
 }
 
@@ -113,12 +96,10 @@ const rangeValue = useVModel(props, 'rangeValue', emit);
   @apply w-full h-1 bg-transparent cursor-pointer;
 }
 
-/* Make both thumbs appear above track */
 .range-slider {
   @apply z-20;
 }
 
-/* Hover and focus states */
 .range-slider::-webkit-slider-thumb:hover,
 .range-slider::-moz-range-thumb:hover {
   @apply bg-primary-800;

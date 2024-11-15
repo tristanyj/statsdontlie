@@ -13,22 +13,19 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
 <template>
   <div class="grid content">
     <div class="relative">
-      <div class="absolute top-0 left-[10%] h-full w-1 bg-white opacity-[3%]" />
-      <div class="absolute top-0 left-[20%] h-full w-1 bg-white opacity-[3%]" />
-      <div class="absolute top-0 left-[30%] h-full w-1 bg-white opacity-[3%]" />
-      <div class="absolute top-0 left-[40%] h-full w-1 bg-white opacity-[3%]" />
-      <div class="absolute top-0 left-[50%] h-full w-1 bg-white opacity-[3%]" />
-      <div class="absolute top-0 left-[60%] h-full w-1 bg-white opacity-[3%]" />
-      <div class="absolute top-0 left-[70%] h-full w-1 bg-white opacity-[3%]" />
-      <div class="absolute top-0 left-[80%] h-full w-1 bg-white opacity-[3%]" />
-      <div class="absolute top-0 left-[90%] h-full w-1 bg-white opacity-[3%]" />
+      <div
+        v-for="i in 10"
+        :key="`line-${i}`"
+        class="absolute top-0 h-full w-1 bg-gray-50 opacity-5"
+        :class="`left-[${i * 10}%]`"
+      />
       <UContainer class="relative">
         <div class="relative py-16 font-anton">
           <div class="flex justify-center relative mb-5">
             <div class="relative">
               <img
                 :src="basketCircle"
-                alt=""
+                alt="Basketball Circle"
                 class="w-32 h-32 md:w-36 md:h-36 spin-slow opacity-70"
               />
               <div
@@ -42,7 +39,7 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
               </div>
             </div>
           </div>
-          <h1 class="uppercase text-white text-center text-7xl md:text-8xl">Stats don't lie</h1>
+          <h1 class="uppercase text-gray-50 text-center text-7xl md:text-8xl">Stats don't lie</h1>
           <div class="mt-8">
             <div class="grid md:grid-cols-2 gap-6 text-justify">
               <p class="font-host text-gray-100">
@@ -79,7 +76,7 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
       </div>
       <UContainer>
         <div class="relative py-16 text-center lowercase">
-          <p class="text-white">
+          <p class="text-gray-50">
             Created by Tristan Lanoye
             <span class="relative right-1 mx-3 opacity-50">|</span>
             <a
@@ -88,7 +85,7 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
               >tristanyj.com</a
             >
           </p>
-          <div class="max-w-80 mx-auto h-px bg-white my-4 opacity-25" />
+          <div class="max-w-80 mx-auto h-px bg-gray-50 my-4 opacity-25" />
           <div class="text-gray-200 text-sm lowercase">
             Data from
             <a

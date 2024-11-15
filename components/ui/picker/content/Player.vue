@@ -30,78 +30,64 @@ const togglePlayer = (playerId: PlayerKey) => {
 </script>
 
 <template>
-  <div class="overflow-y-auto h-full">
+  <UiPickerContent
+    :has-results="hasResults"
+    type="players"
+  >
     <div
-      v-if="hasResults"
-      class="grid h-full"
+      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 gap-4"
     >
-      <div class="p-4 pt-3">
+      <button
+        v-for="(player, i) in sortedPlayers"
+        :key="`player-${i}`"
+        class="group relative p-2 border transition-all duration-50 rounded-sm bg-white focus:outline-primary-950/50"
+        @click="togglePlayer(player.id)"
+      >
         <div
-          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 gap-4"
+          class="absolute inset-0 opacity-0 transition-opacity duration-0"
+          :class="[selectionPlayers.includes(player.id) ? 'opacity-50' : 'group-hover:opacity-10']"
         >
-          <button
-            v-for="(player, i) in sortedPlayers"
-            :key="`player-${i}`"
-            class="group relative p-2 border transition-all duration-50 rounded-sm bg-white focus:outline-primary-950/50"
-            @click="togglePlayer(player.id)"
-          >
-            <div
-              class="absolute inset-0 opacity-0 transition-opacity duration-0"
-              :class="[
-                selectionPlayers.includes(player.id) ? 'opacity-50' : 'group-hover:opacity-10',
-              ]"
-            >
-              <div
-                class="absolute inset-0 transform scale-x-[1.06] scale-y-[1.04] rounded-md bg-primary-950"
-              />
-              <div class="absolute inset-0 bg-white rounded-sm" />
-            </div>
-
-            <div class="relative h-full flex flex-col justify-between">
-              <div
-                class="grid grid-flow-col justify-center items-center text-xs text-gray-400 mb-2"
-              >
-                <div class="">{{ player.info.nickname }}</div>
-              </div>
-              <div class="flex flex-col items-center">
-                <img
-                  :src="getImageUrl(player.id)"
-                  class="h-20 object-contain rounded-sm"
-                  alt=""
-                />
-                <div class="text-center mt-2">
-                  <div class="items-start font-medium leading-[18px]">
-                    <div
-                      class="relative left-[3px] bottom-[2px] inline-block w-2 h-2 rounded-full mr-1"
-                      :style="{
-                        background: player.color,
-                      }"
-                    />
-                    {{ player.info.name }}
-                  </div>
-                  <div class="text-sm text-gray-500 mt-1">
-                    {{ player.info.position }}
-                  </div>
-                  <div class="text-sm text-gray-500">
-                    {{ player.info.height }} {{ player.info.weight }}lb
-                  </div>
-                </div>
-              </div>
-              <div class="grid justify-center items-center text-xs text-gray-400 mt-2">
-                <div>
-                  {{ player.info.draft[1] }}-{{ player.info.draft[1] + player.info.experience }}
-                </div>
-              </div>
-            </div>
-          </button>
+          <div
+            class="absolute inset-0 transform scale-x-[1.06] scale-y-[1.04] rounded-md bg-primary-950"
+          />
+          <div class="absolute inset-0 bg-white rounded-sm" />
         </div>
-      </div>
+
+        <div class="relative h-full flex flex-col justify-between">
+          <div class="grid grid-flow-col justify-center items-center text-xs text-gray-400 mb-2">
+            {{ player.info.nickname }}
+          </div>
+          <div class="flex flex-col items-center">
+            <img
+              :src="getImageUrl(player.id)"
+              class="h-20 object-contain rounded-sm"
+              alt=""
+            />
+            <div class="text-center mt-2">
+              <div class="items-start font-medium leading-[18px]">
+                <div
+                  class="relative left-[3px] bottom-[2px] inline-block w-2 h-2 rounded-full mr-1"
+                  :style="{
+                    background: player.color,
+                  }"
+                />
+                {{ player.info.name }}
+              </div>
+              <div class="text-sm text-gray-500 mt-1">
+                {{ player.info.position }}
+              </div>
+              <div class="text-sm text-gray-500">
+                {{ player.info.height }} {{ player.info.weight }}lb
+              </div>
+            </div>
+          </div>
+          <div class="grid justify-center items-center text-xs text-gray-400 mt-2">
+            <div>
+              {{ player.info.draft[1] }}-{{ player.info.draft[1] + player.info.experience }}
+            </div>
+          </div>
+        </div>
+      </button>
     </div>
-    <div
-      v-else
-      class="p-4 text-center text-gray-500"
-    >
-      No players found matching criteria
-    </div>
-  </div>
+  </UiPickerContent>
 </template>
