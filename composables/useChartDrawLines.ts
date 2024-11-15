@@ -1,6 +1,6 @@
-import type { d3GSelection, LineData } from '~/types';
+import type { d3GSelection, Line } from '~/types';
 
-const createLine = (g: d3GSelection, params: LineData, color: string) => {
+const createLine = (g: d3GSelection, params: Line, color: string) => {
   g.append('line')
     .attr('class', params.className)
     .attr('x1', 0)

@@ -8,8 +8,8 @@ import type {
   Category,
   Player,
   SubCategory,
-  StatArcData,
-  StatLabelArcData,
+  StatArc,
+  StatLabelArc,
 } from '~/types';
 
 export function useChartDrawArcs() {
@@ -228,7 +228,7 @@ export function useChartDrawArcs() {
     interaction = false
   ) {
     const className = `stat-arc-${interaction ? 'hover' : 'normal'}`;
-    const arcData: Array<StatArcData> = [];
+    const arcData: Array<StatArc> = [];
 
     selectedStats.forEach((stat, statIndex) => {
       const playerCategoriesByIdenticalStat = d3Group(
@@ -279,7 +279,7 @@ export function useChartDrawArcs() {
     });
 
     g.selectAll(`.${className}`)
-      .data(arcData, (d) => (d as StatArcData).id)
+      .data(arcData, (d) => (d as StatArc).id)
       .join((enter) =>
         enter
           .append('path')
@@ -303,16 +303,24 @@ export function useChartDrawArcs() {
             setHoveredPlayer(d.player);
             setTooltipStat({
               id: d.id,
-              playerId: d.player.id,
-              playerName: d.player.info.name,
-              playerColor: d.player.color,
-              categoryName: d.category.name,
-              subCategoryName: d.subCategory.name,
-              statName: d.stat.name,
-              statAbbreviation: d.stat.abbreviation,
-              statDescription: d.stat.description,
+              player: {
+                id: d.player.id,
+                name: d.player.info.name,
+                color: d.player.color,
+              },
+              category: {
+                name: d.category.name,
+                color: d.category.color,
+              },
+              subCategory: {
+                name: d.subCategory.name,
+              },
+              stat: {
+                name: d.stat.name,
+                description: d.stat.description,
+                abbreviation: d.stat.abbreviation,
+              },
               value: d.statValue,
-              categoryColor: d.category.color,
               record: {
                 value: d.stat.record.value.toString(),
                 holder: d.stat.record.name,
@@ -368,7 +376,7 @@ export function useChartDrawArcs() {
       });
     };
 
-    const arcData: Array<StatLabelArcData> = [];
+    const arcData: Array<StatLabelArc> = [];
 
     selectedStats.forEach((stat, statIndex) => {
       const categoryId = stat.id.split('.')[0];
@@ -391,7 +399,7 @@ export function useChartDrawArcs() {
     });
 
     g.selectAll(`.${className}`)
-      .data(arcData, (d) => (d as StatArcData).id)
+      .data(arcData, (d) => (d as StatArc).id)
       .join((enter) =>
         enter
           .append('path')
@@ -419,12 +427,18 @@ export function useChartDrawArcs() {
 
             setTooltipStatLabel({
               id: d.id,
-              categoryName: d.category.name,
-              categoryColor: d.category.color,
-              subCategoryName: d.subCategory.name,
-              statName: d.stat.name,
-              statDescription: d.stat.description,
-              statAbbreviation: d.stat.abbreviation,
+              category: {
+                name: d.category.name,
+                color: d.category.color,
+              },
+              subCategory: {
+                name: d.subCategory.name,
+              },
+              stat: {
+                name: d.stat.name,
+                description: d.stat.description,
+                abbreviation: d.stat.abbreviation,
+              },
               record: {
                 value: d.stat.record.value.toString(),
                 holder: d.stat.record.name,

@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import colors from 'tailwindcss/colors';
+import { amber } from 'tailwindcss/colors';
 
 export default <Partial<Config>>{
   theme: {
@@ -10,7 +10,7 @@ export default <Partial<Config>>{
         host: ['Host Grotesk', 'sans-serif'],
       },
       colors: {
-        primary: colors.amber,
+        primary: amber,
       },
     },
   },

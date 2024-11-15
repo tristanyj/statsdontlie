@@ -79,7 +79,7 @@ export interface EnrichedStat extends Stat {
 
 export type d3GSelection = d3.Selection<SVGGElement, unknown, null, undefined>;
 
-export interface ArcData {
+export interface Arc {
   innerRadius: number;
   outerRadius: number;
   startAngle: number;
@@ -88,30 +88,23 @@ export interface ArcData {
   data: any;
 }
 
-export interface StatArcData {
+export interface StatLabelArc {
   id: string;
   index: number;
-  value: number;
   stat: EnrichedStat;
+  category: Category;
+  subCategory: SubCategory;
+  startAngle: number;
+  endAngle: number;
+}
+
+export interface StatArc extends StatLabelArc {
+  value: number;
   statValue: string;
   player: Player;
-  startAngle: number;
-  endAngle: number;
-  category: Category;
-  subCategory: SubCategory;
 }
 
-export interface StatLabelArcData {
-  id: string;
-  index: number;
-  stat: EnrichedStat;
-  startAngle: number;
-  endAngle: number;
-  category: Category;
-  subCategory: SubCategory;
-}
-
-export interface LineData {
+export interface Line {
   className: string;
   y1: number;
   y2: number;
@@ -119,38 +112,6 @@ export interface LineData {
   strokeWidth?: number;
   opacity?: number;
   transform: string;
-}
-
-export interface TooltipStat {
-  id: string;
-  playerId: PlayerKey;
-  playerName: string;
-  playerColor: `#${string}`;
-  categoryName: string;
-  categoryColor: `#${string}`;
-  subCategoryName: string;
-  statName: string;
-  statDescription: string | null;
-  statAbbreviation: string;
-  value: string;
-  record: {
-    value: string;
-    holder: string;
-  };
-}
-
-export interface ToolTipStatLabel {
-  id: string;
-  categoryName: string;
-  categoryColor: `#${string}`;
-  subCategoryName: string;
-  statName: string;
-  statDescription: string | null;
-  statAbbreviation: string;
-  record: {
-    value: string;
-    holder: string;
-  };
 }
 
 // --------------------------------
@@ -161,3 +122,36 @@ export type SortOption = {
   label: string;
   key: string;
 };
+
+interface Tooltip {
+  id: string;
+  category: {
+    name: string;
+    color: `#${string}`;
+  };
+  subCategory: {
+    name: string;
+  };
+  stat: {
+    name: string;
+    description: string | null;
+    abbreviation: string;
+  };
+  record: {
+    value: string;
+    holder: string;
+  };
+}
+
+export interface TooltipStat extends Tooltip {
+  player: {
+    id: PlayerKey;
+    name: string;
+    color: `#${string}`;
+  };
+  value: string;
+}
+
+export interface ToolTipStatLabel extends Tooltip {
+  id: string;
+}

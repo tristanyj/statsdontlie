@@ -1,8 +1,8 @@
 import { arc } from 'd3';
-import type { ArcData } from '~/types';
+import type { Arc } from '~/types';
 
 export function useChartGenerators() {
-  const arcGenerator = arc<ArcData>()
+  const arcGenerator = arc<Arc>()
     .innerRadius((d) => d.innerRadius)
     .outerRadius((d) => d.outerRadius)
     .startAngle((d) => d.startAngle)
