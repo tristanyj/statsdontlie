@@ -509,8 +509,8 @@ watch(
     class="font-host"
   >
     <div class="grid grid-rows-[auto,auto,1fr] h-full">
-      <div class="grid grid-cols-[auto,1fr,auto] gap-10 items-center border-b p-4">
-        <div class="">
+      <div class="grid md:grid-cols-[auto,1fr,auto] gap-3 lg:gap-10 items-center border-b p-4">
+        <div class="order-3 md:order-1">
           <UTabs
             v-model="selectedIndex"
             :items="items"
@@ -518,7 +518,7 @@ watch(
             @change="value = ''"
           />
         </div>
-        <div class="">
+        <div class="order-2">
           <UInput
             v-model="value"
             icon="i-radix-icons:magnifying-glass"
@@ -530,7 +530,7 @@ watch(
             clearable
           />
         </div>
-        <div class="">
+        <div class="order-1 md:order-3">
           <UButton
             color="gray"
             size="md"
@@ -542,34 +542,40 @@ watch(
         </div>
       </div>
       <template v-if="selectedIndex === 0">
-        <div class="grid grid-flow-col justify-between py-3 mt-2 px-4">
-          <div class="flex space-x-2 text-sm text-gray-500">
-            <div class="">{{ selectedPlayerIds.length }} selected,</div>
-            <div class="">{{ filteredPlayers.length }} filtered,</div>
-            <div class="">{{ selectablePlayers.length }} total</div>
-            <div class="">&#8226;</div>
-            <div
-              class="underline cursor-pointer hover:text-gray-600"
-              @click="clearSelection('players')"
-            >
-              Clear selection
+        <div class="grid lg:grid-flow-col justify-between py-3 mt-2 px-4">
+          <div
+            class="grid sm:grid-flow-col items-center gap-2 text-sm sm:mb-2 lg:mb-0 text-gray-500"
+          >
+            <div class="grid grid-flow-col justify-start gap-1 items-center">
+              <div class="">{{ selectedPlayerIds.length }} selected,</div>
+              <div class="">{{ filteredPlayers.length }} filtered,</div>
+              <div class="">{{ selectablePlayers.length }} total</div>
             </div>
-            <div class="">&#8226;</div>
-            <div
-              class="underline cursor-pointer hover:text-gray-600"
-              @click="restoreDefaultPlayerSelection"
-            >
-              Default selection
-            </div>
-            <template v-if="filteredPlayers.length < selectablePlayers.length">
+            <div class="grid grid-flow-col justify-start gap-2 mb-2 sm:mb-0 items-center">
+              <div class="hidden sm:inline">&#8226;</div>
+              <div
+                class="underline cursor-pointer hover:text-gray-600"
+                @click="clearSelection('players')"
+              >
+                Clear selection
+              </div>
               <div class="">&#8226;</div>
               <div
                 class="underline cursor-pointer hover:text-gray-600"
-                @click="selectAllFilteredPlayers"
+                @click="restoreDefaultPlayerSelection"
               >
-                Select all filtered
+                Default selection
               </div>
-            </template>
+              <template v-if="filteredPlayers.length < selectablePlayers.length">
+                <div class="hidden sm:inline">&#8226;</div>
+                <div
+                  class="hidden sm:inline underline cursor-pointer hover:text-gray-600"
+                  @click="selectAllFilteredPlayers"
+                >
+                  Select all filtered
+                </div>
+              </template>
+            </div>
           </div>
           <div class="flex space-x-2 text-sm text-gray-500">
             <template v-if="isFiltered">
@@ -914,7 +920,9 @@ watch(
           class="grid h-full"
         >
           <div class="p-4 pt-3">
-            <div class="grid grid-cols-8 2xl:grid-cols-12 gap-4">
+            <div
+              class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 gap-4"
+            >
               <button
                 v-for="(player, i) in sortedPlayers"
                 :key="`player-${i}`"
