@@ -82,6 +82,17 @@ export const PLAYER_SORT_OPTIONS: SortOption[] = [
   },
 ];
 
+export const STAT_SORT_OPTIONS: SortOption[] = [
+  {
+    label: 'Default',
+    key: 'default',
+  },
+  {
+    label: 'Name',
+    key: 'name',
+  },
+];
+
 export const HEIGHT_RANGE = [70, 90];
 export const WEIGHT_RANGE = [150, 350];
 export const YEARS_RANGE = [1960, 2024];

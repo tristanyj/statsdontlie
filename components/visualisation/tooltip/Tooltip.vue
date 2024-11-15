@@ -14,29 +14,26 @@ const tooltipStyle = computed<CSSProperties>(() => {
   const paddingX = 25;
   const paddingY = 25;
 
-  // Check if mouse is near edges
   const isPastHalfWidth = mousePosition.value.x > width.value * 0.65;
   const isPastHalfHeight = mousePosition.value.y > height.value * 0.65;
 
-  let posX, posY;
+  const posX = mousePosition.value.x + paddingX;
+  const posY =
+    isPastHalfWidth && isPastHalfHeight
+      ? mousePosition.value.y - tooltipSize.value.height - paddingY
+      : mousePosition.value.y + paddingY;
 
-  // Handle bottom-right corner case
-  if (isPastHalfWidth && isPastHalfHeight) {
-    // Position tooltip to the left and above the cursor
-    posX = mousePosition.value.x + paddingX;
-    posY = mousePosition.value.y - tooltipSize.value.height - paddingY;
-  } else {
-    // Normal positioning for other cases
-    posX = mousePosition.value.x + paddingX;
-    posY = mousePosition.value.y + paddingY;
-  }
-
-  // Ensure tooltip stays within viewport bounds
-  posX = Math.max(paddingX, Math.min(posX, width.value - tooltipSize.value.width - paddingX));
-  posY = Math.max(paddingY, Math.min(posY, height.value - tooltipSize.value.height - paddingY));
+  const clampedPosX = Math.max(
+    paddingX,
+    Math.min(posX, width.value - tooltipSize.value.width - paddingX)
+  );
+  const clampedPosY = Math.max(
+    paddingY,
+    Math.min(posY, height.value - tooltipSize.value.height - paddingY)
+  );
 
   return {
-    transform: `translate(${posX}px, ${posY}px)`,
+    transform: `translate(${clampedPosX}px, ${clampedPosY}px)`,
     visibility: isTooltipVisible.value ? 'visible' : 'hidden',
     position: 'fixed',
     top: 0,
@@ -47,16 +44,13 @@ const tooltipStyle = computed<CSSProperties>(() => {
 const tooltipSize = ref({ width: 0, height: 0 });
 const tooltip = ref<HTMLElement | null>(null);
 
-// Update size whenever tooltip content changes
 watch(
   [tooltipStat, tooltipStatLabel, isTooltipVisible],
   async () => {
     if (!tooltip.value) return;
 
-    // Wait for DOM update
     await nextTick();
 
-    // Get the actual rendered size
     const rect = tooltip.value.getBoundingClientRect();
     tooltipSize.value = {
       width: rect.width,
@@ -66,7 +60,6 @@ watch(
   { immediate: true }
 );
 
-// Optional: Update on window resize
 useEventListener(window, 'resize', () => {
   if (!tooltip.value || !isTooltipVisible.value) return;
 
@@ -77,7 +70,6 @@ useEventListener(window, 'resize', () => {
   };
 });
 
-// Optional: ResizeObserver for more accurate size tracking
 onMounted(() => {
   if (!tooltip.value) return;
 
@@ -98,10 +90,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- <Transition
-    name="fade"
-    mode="out-in"
-  > -->
   <div
     v-show="isTooltipVisible"
     ref="tooltip"
@@ -142,5 +130,4 @@ onMounted(() => {
       />
     </template>
   </div>
-  <!-- </Transition> -->
 </template>

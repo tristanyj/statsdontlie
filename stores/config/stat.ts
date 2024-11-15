@@ -1,10 +1,22 @@
-import type { Stat, EnrichedStat, EnrichedCategory, Category, StatKey } from '~/types';
+import type {
+  Stat,
+  EnrichedStat,
+  EnrichedCategory,
+  SubCategoryKey,
+  Category,
+  StatKey,
+} from '~/types';
 
-import { DEFAULT_STAT_IDS } from '~/assets/scripts/constants';
+import { DEFAULT_STAT_IDS, STAT_SORT_OPTIONS } from '~/assets/scripts/constants';
+
+import { formatString } from '~/assets/scripts/utils';
 
 export const useStatConfigStore = defineStore('config/stat', () => {
   const cacheStore = useCacheStore();
   const { getScale, getFormat } = cacheStore;
+
+  const configStore = useConfigStore();
+  const { searchInput } = storeToRefs(configStore);
 
   // --------------------------------
   // State
@@ -121,12 +133,166 @@ export const useStatConfigStore = defineStore('config/stat', () => {
     selectedStatIds.value = [...DEFAULT_STAT_IDS];
   };
 
+  const selectedOnly = ref(false);
+
+  const filters = ref({
+    categories: {
+      'Regular Season': true,
+      'Post Season': true,
+      Awards: true,
+    },
+    subCategories: {
+      Total: true,
+      'Per Game': true,
+      Advanced: true,
+      'Game High': true,
+      Individual: true,
+      Team: true,
+    },
+  });
+
+  const currentSort = ref(STAT_SORT_OPTIONS[0]);
+
+  const filteredCategories = computed(() => {
+    const searchTerm = searchInput.value.toLowerCase();
+
+    return selectableCategories.value
+      .map((category) => ({
+        ...category,
+        subCategories: category.subCategories
+          .map((subCategory) => ({
+            ...subCategory,
+            stats: subCategory.stats
+              .filter((stat) => (searchTerm ? stat.name.toLowerCase().includes(searchTerm) : true))
+              .filter((stat) =>
+                selectedOnly.value ? selectedStatIds.value.includes(stat.id) : true
+              )
+              .filter((stat) => {
+                const [categoryId, subCategoryId] = stat.id.split('.');
+                const parsedCategoryId = formatString(categoryId);
+                const parsedSubCategoryId = formatString(subCategoryId);
+
+                return (
+                  filters.value.categories[
+                    parsedCategoryId as keyof typeof filters.value.categories
+                  ] &&
+                  filters.value.subCategories[
+                    parsedSubCategoryId as keyof typeof filters.value.subCategories
+                  ]
+                );
+              }),
+          }))
+          .filter((subCategory) => subCategory.stats.length > 0), // Remove empty subCategories
+      }))
+      .filter((category) => category.subCategories.length > 0); // Remove empty categories
+  });
+
+  const filteredStats = computed(() => {
+    return filteredCategories.value.flatMap((category) =>
+      category.subCategories.flatMap((subCategory) => subCategory.stats)
+    );
+  });
+
+  const isSortAscending = ref(true);
+
+  const toggleSubCategorySelection = (subCategoryId: SubCategoryKey) => {
+    const stats = filteredCategories.value
+      .flatMap((category) => category.subCategories)
+      .find((subCategory) => subCategory.id === subCategoryId)?.stats;
+
+    if (!stats) return;
+
+    const allSelected = stats.every((stat) => selectedStatIds.value.includes(stat.id));
+
+    if (allSelected) {
+      setSelectedStatIds(selectedStatIds.value.filter((id) => !id.includes(subCategoryId)));
+    } else {
+      setSelectedStatIds(
+        [
+          ...selectedStatIds.value,
+          ...stats.map((stat) => stat.id).filter((id, index, self) => self.indexOf(id) === index),
+        ].filter((id, index, self) => self.indexOf(id) === index)
+      );
+    }
+  };
+
+  const clearFiltersStats = () => {
+    selectedOnly.value = false;
+    Object.keys(filters.value.categories).forEach(
+      (category) =>
+        (filters.value.categories[category as keyof typeof filters.value.categories] = true)
+    );
+    Object.keys(filters.value.subCategories).forEach(
+      (subCategory) =>
+        (filters.value.subCategories[subCategory as keyof typeof filters.value.subCategories] =
+          true)
+    );
+  };
+
+  const selectAllFilteredStats = () => {
+    setSelectedStatIds(
+      filteredCategories.value
+        .flatMap((category) => category.subCategories)
+        .flatMap((subCategory) => subCategory.stats)
+        .map((stat) => stat.id)
+    );
+  };
+  const clearSelection = () => {
+    setSelectedStatIds([]);
+  };
+
+  const sortedCategories = computed(() => {
+    const copy = [...filteredCategories.value];
+
+    switch (currentSort.value.key) {
+      case 'name':
+        // sort stats by name
+        return copy
+          .map((category) => ({
+            ...category,
+            subCategories: category.subCategories
+              .map((subCategory) => ({
+                ...subCategory,
+                stats: subCategory.stats.sort((a, b) =>
+                  isSortAscending.value
+                    ? a.name.localeCompare(b.name)
+                    : b.name.localeCompare(a.name)
+                ),
+              }))
+              .sort((a, b) =>
+                isSortAscending.value ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+              ),
+          }))
+          .sort((a, b) =>
+            isSortAscending.value ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+          );
+      default:
+        return copy;
+    }
+  });
+
+  const isFiltered = computed(() => {
+    return (
+      selectedOnly.value ||
+      Object.values(filters.value.categories).some((category) => !category) ||
+      Object.values(filters.value.subCategories).some((subCategory) => !subCategory)
+    );
+  });
+
   return {
     isLoaded,
+    isFiltered,
+    currentSort,
+    isSortAscending,
+    selectedOnly,
+    filters,
+    filteredStats,
+    sortedCategories,
     selectedStatIds,
     selectedStatIdsCount,
     selectableCategories,
     selectableStats,
+    filteredCategories,
     selectedCategories,
     selectedSubCategories,
     selectedStats,
@@ -135,5 +301,9 @@ export const useStatConfigStore = defineStore('config/stat', () => {
     getCategoryById,
     getSubCategoryById,
     restoreDefaultStatSelection,
+    selectAllFilteredStats,
+    clearSelection,
+    toggleSubCategorySelection,
+    clearFiltersStats,
   };
 });
