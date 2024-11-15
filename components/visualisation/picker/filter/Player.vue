@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import type { SortOption } from '~/types';
 
-import { PLAYER_SORT_OPTIONS } from '~/assets/scripts/constants';
+import {
+  PLAYER_SORT_OPTIONS,
+  HEIGHT_RANGE,
+  WEIGHT_RANGE,
+  YEARS_RANGE,
+} from '~/assets/scripts/constants';
 
 const playerConfigStore = usePlayerConfigStore();
 const {
@@ -61,18 +66,23 @@ const selectOption = (option: SortOption) => {
       </div>
       <VisualisationPickerFilterRange
         v-model:rangeValue="filters.heightRange"
-        :min="70"
-        :max="90"
+        label="Height"
+        :min="HEIGHT_RANGE[0]"
+        :max="HEIGHT_RANGE[1]"
       />
       <VisualisationPickerFilterRange
         v-model:rangeValue="filters.weightRange"
-        :min="150"
-        :max="350"
+        label="Weight"
+        unit="lb"
+        :min="WEIGHT_RANGE[0]"
+        :max="WEIGHT_RANGE[1]"
       />
       <VisualisationPickerFilterRange
         v-model:rangeValue="filters.yearsRange"
-        :min="1960"
-        :max="2024"
+        label="Years active"
+        unit=""
+        :min="YEARS_RANGE[0]"
+        :max="YEARS_RANGE[1]"
       />
       <div>
         <label class="block text-sm text-gray-700 mb-1">Positions</label>

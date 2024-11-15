@@ -4,12 +4,16 @@ import { useVModel } from '@vueuse/core';
 interface Props {
   min: number;
   max: number;
+  label: string;
+  unit: string;
   rangeValue: number[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
   min: 0,
   max: 0,
+  label: '',
+  unit: '"',
   rangeValue: () => [0, 0],
 });
 
@@ -17,8 +21,8 @@ const emit = defineEmits<{
   'update:rangeValue': [value: number[]];
 }>();
 
-const weightMin = computed(() => Math.min(props.rangeValue[0], props.rangeValue[1]));
-const weightMax = computed(() => Math.max(props.rangeValue[0], props.rangeValue[1]));
+const absMin = computed(() => Math.min(props.rangeValue[0], props.rangeValue[1]));
+const absMax = computed(() => Math.max(props.rangeValue[0], props.rangeValue[1]));
 
 const rangeValue = useVModel(props, 'rangeValue', emit);
 </script>
@@ -26,7 +30,7 @@ const rangeValue = useVModel(props, 'rangeValue', emit);
 <template>
   <div class="slider-container mb-5">
     <label class="block text-sm text-gray-700 mb-2">
-      Height Range ({{ weightMin }}" - {{ weightMax }}")
+      {{ label }} ({{ absMin }}{{ unit }} - {{ absMax }}{{ unit }})
     </label>
     <div class="relative h-1">
       <div class="absolute h-full rounded-full bg-gray-300 w-full" />
