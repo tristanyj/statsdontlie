@@ -51,36 +51,34 @@ const isFiltersOpen = useVModel(props, 'isFiltersOpen', emit);
       </div>
       <div class="grid grid-flow-col justify-start gap-2 mb-2 sm:mb-0 items-center">
         <div class="hidden sm:inline">&#8226;</div>
-        <VisualisationPickerFilterControl @click="emit('clearSelection')">
+        <UiPickerFilterControl @click="emit('clearSelection')">
           Clear selection
-        </VisualisationPickerFilterControl>
+        </UiPickerFilterControl>
         <div class="">&#8226;</div>
-        <VisualisationPickerFilterControl @click="emit('restoreDefaultSelection')">
+        <UiPickerFilterControl @click="emit('restoreDefaultSelection')">
           Default selection
-        </VisualisationPickerFilterControl>
+        </UiPickerFilterControl>
         <template v-if="filteredLength < selectableLength">
           <div class="hidden sm:inline">&#8226;</div>
-          <VisualisationPickerFilterControl
+          <UiPickerFilterControl
             class="hidden sm:inline"
             @click="emit('selectAllFiltered')"
           >
             Select all filtered
-          </VisualisationPickerFilterControl>
+          </UiPickerFilterControl>
         </template>
       </div>
     </div>
     <div class="flex space-x-2 text-sm text-gray-500">
       <template v-if="isFiltered">
-        <VisualisationPickerFilterControl @click="emit('clearFilters')">
-          Clear filters
-        </VisualisationPickerFilterControl>
+        <UiPickerFilterControl @click="emit('clearFilters')"> Clear filters </UiPickerFilterControl>
         <div class="">&#8226;</div>
       </template>
       <UPopover
         v-model:open="isFiltersOpen"
         :popper="{ arrow: true }"
       >
-        <VisualisationPickerFilterControl>Filters</VisualisationPickerFilterControl>
+        <UiPickerFilterControl>Filters</UiPickerFilterControl>
         <template #panel>
           <div class="p-4">
             <slot />
@@ -92,9 +90,7 @@ const isFiltersOpen = useVModel(props, 'isFiltersOpen', emit);
         v-model:open="isSortOpen"
         :popper="{ arrow: true }"
       >
-        <VisualisationPickerFilterControl>
-          Sort by : {{ currentSort.label }}
-        </VisualisationPickerFilterControl>
+        <UiPickerFilterControl> Sort by : {{ currentSort.label }} </UiPickerFilterControl>
         <template #panel>
           <div class="p-2 w-36">
             <div

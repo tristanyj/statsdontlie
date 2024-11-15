@@ -16,13 +16,9 @@ export function useChartDrawArcs() {
   const statConfigStore = useStatConfigStore();
   const { getCategoryById, getSubCategoryById } = statConfigStore;
 
-  const {
-    setHoveredPlayer,
-    setHoveredCategory,
-    updateMousePosition,
-    setTooltipStat,
-    setTooltipStatLabel,
-  } = useInteractionStore();
+  const interactionStore = useInteractionStore();
+  const { setHoveredCategory, updateMousePosition, setTooltipStat, setTooltipStatLabel } =
+    interactionStore;
   const { arcGenerator } = useChartGenerators();
   const { radius, minRadius, proportions, restRadius, modifier, legend } = useChartConfig();
 
@@ -300,7 +296,6 @@ export function useChartDrawArcs() {
             const arc = g.select(`.stat-arc-normal.arc-${d.id}`);
             arc.classed('hover', true);
 
-            setHoveredPlayer(d.player);
             setTooltipStat({
               id: d.id,
               player: {
@@ -337,7 +332,6 @@ export function useChartDrawArcs() {
 
             g.select(`.stat-arc-normal.arc-${d.id}`).classed('hover', false);
 
-            setHoveredPlayer(null);
             setTooltipStat(null);
           })
       );

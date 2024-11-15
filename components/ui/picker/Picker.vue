@@ -4,7 +4,7 @@ const { searchInput } = storeToRefs(configStore);
 
 const interactionStore = useInteractionStore();
 const { isPickerOpen, pickerType } = storeToRefs(interactionStore);
-const { setIsPickerOpen, openPicker } = interactionStore;
+const { openPicker } = interactionStore;
 
 const items = [
   {
@@ -29,7 +29,7 @@ const selectedIndex = computed({
 const isOpen = computed({
   get: () => isPickerOpen.value,
   set: (newValue) => {
-    setIsPickerOpen(newValue);
+    isPickerOpen.value = newValue;
   },
 });
 
@@ -50,7 +50,7 @@ watch(
     class="font-host"
   >
     <div class="grid grid-rows-[auto,auto,1fr] h-full">
-      <VisualisationPickerHeader
+      <UiPickerHeader
         v-model="selectedIndex"
         v-model:searchValue="searchInput"
         :items="items"
@@ -58,12 +58,12 @@ watch(
         @close="isOpen = false"
       />
       <template v-if="selectedIndex === 0">
-        <VisualisationPickerFilterPlayer />
-        <VisualisationPickerContentPlayer />
+        <UiPickerFilterPlayer />
+        <UiPickerContentPlayer />
       </template>
       <template v-else>
-        <VisualisationPickerFilterStat />
-        <VisualisationPickerContentStat />
+        <UiPickerFilterStat />
+        <UiPickerContentStat />
       </template>
     </div>
   </USlideover>

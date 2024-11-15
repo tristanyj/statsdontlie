@@ -42,7 +42,7 @@ const selectOption = (option: SortOption) => {
 </script>
 
 <template>
-  <VisualisationPickerFilter
+  <UiPickerFilter
     v-model:isFiltersOpen="isFiltersOpen"
     v-model:isSortOpen="isSortOpen"
     :is-sort-ascending="isSortAscending"
@@ -64,20 +64,20 @@ const selectOption = (option: SortOption) => {
         <label class="block text-sm text-gray-700 mb-1">Selected Only</label>
         <UToggle v-model="filters.selectedOnly" />
       </div>
-      <VisualisationPickerFilterRange
+      <UiPickerFilterRange
         v-model:rangeValue="filters.heightRange"
         label="Height"
         :min="HEIGHT_RANGE[0]"
         :max="HEIGHT_RANGE[1]"
       />
-      <VisualisationPickerFilterRange
+      <UiPickerFilterRange
         v-model:rangeValue="filters.weightRange"
         label="Weight"
         unit="lb"
         :min="WEIGHT_RANGE[0]"
         :max="WEIGHT_RANGE[1]"
       />
-      <VisualisationPickerFilterRange
+      <UiPickerFilterRange
         v-model:rangeValue="filters.yearsRange"
         label="Years active"
         unit=""
@@ -103,5 +103,5 @@ const selectOption = (option: SortOption) => {
         </div>
       </div>
     </div>
-  </VisualisationPickerFilter>
+  </UiPickerFilter>
 </template>

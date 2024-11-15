@@ -29,7 +29,7 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
               <img
                 :src="basketCircle"
                 alt=""
-                class="w-32 h-32 md:w-36 md:h-36 spin-slow"
+                class="w-32 h-32 md:w-36 md:h-36 spin-slow opacity-70"
               />
               <div
                 class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 md:w-28 h-24 md:h-28"
@@ -37,7 +37,7 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
                 <img
                   :src="basket"
                   alt="Basketball"
-                  class="w-full spin-slow-reverse"
+                  class="w-full spin-mid-reverse"
                 />
               </div>
             </div>
@@ -68,7 +68,7 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
         </div>
       </UContainer>
       <div class="relative px-4">
-        <VisualisationChart v-if="isPlayersLoaded && isStatsLoaded" />
+        <UiChart v-if="isPlayersLoaded && isStatsLoaded" />
         <div
           v-else
           class="relative max-w-[1400px] w-full mx-auto"
@@ -103,6 +103,6 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
         </div>
       </UContainer>
     </div>
-    <VisualisationPicker />
+    <UiPicker />
   </div>
 </template>

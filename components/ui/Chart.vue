@@ -20,7 +20,7 @@ const { scales, updateScale } = useChartScales();
 
 const interactionStore = useInteractionStore();
 const { hoveredCategory } = storeToRefs(interactionStore);
-const { updateMousePosition, updateScrollPosition, setHoveredCategory } = interactionStore;
+const { updateMousePosition, setHoveredCategory } = interactionStore;
 
 const playerConfigStore = usePlayerConfigStore();
 const statConfigStore = useStatConfigStore();
@@ -242,10 +242,6 @@ watch(
   }
 );
 
-function prepareScrollPosition() {
-  updateScrollPosition(window.scrollX, window.scrollY);
-}
-
 const handleOutsideClick = (event: MouseEvent) => {
   if (container.value && !container.value.contains(event.target as Node)) {
     setHoveredCategory(null);
@@ -254,13 +250,11 @@ const handleOutsideClick = (event: MouseEvent) => {
 
 onMounted(() => {
   mountToContainer();
-  window.addEventListener('scroll', prepareScrollPosition);
   window.addEventListener('mousemove', updateMousePosition);
   window.addEventListener('click', handleOutsideClick);
 });
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', prepareScrollPosition);
   window.removeEventListener('mousemove', updateMousePosition);
   window.removeEventListener('click', handleOutsideClick);
 });
@@ -268,7 +262,7 @@ onUnmounted(() => {
 
 <template>
   <div class="relative z-10">
-    <VisualisationTooltip />
+    <UiTooltip />
     <div
       id="container"
       ref="container"

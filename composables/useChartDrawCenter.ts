@@ -28,7 +28,7 @@ export function useChartDrawCenter() {
     const imageSize = 60;
 
     g.append('image')
-      .attr('class', 'center-image')
+      .attr('class', 'spin-mid')
       .attr('href', basket)
       .attr('width', imageSize)
       .attr('height', imageSize)

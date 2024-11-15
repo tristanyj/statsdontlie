@@ -5,11 +5,11 @@ import { useWindowSize, useEventListener } from '@vueuse/core';
 const { width, height } = useWindowSize();
 
 const interactionStore = useInteractionStore();
-const { mousePosition, scrollPosition, isTooltipVisible, tooltipStat, tooltipStatLabel } =
+const { mousePosition, isTooltipVisible, tooltipStat, tooltipStatLabel } =
   storeToRefs(interactionStore);
 
 const tooltipStyle = computed<CSSProperties>(() => {
-  if (!mousePosition.value || !scrollPosition.value) return {};
+  if (!mousePosition.value) return {};
 
   const paddingX = 25;
   const paddingY = 25;
@@ -97,34 +97,28 @@ onMounted(() => {
     :style="tooltipStyle"
   >
     <template v-if="tooltipStat">
-      <VisualisationTooltipHeader
-        :category-name="tooltipStat?.categoryName"
-        :category-color="tooltipStat?.categoryColor"
-        :sub-category-name="tooltipStat?.subCategoryName"
-        :stat-name="tooltipStat?.statName"
-        :stat-description="tooltipStat?.statDescription"
+      <UiTooltipHeader
+        :category="tooltipStat?.category"
+        :sub-category="tooltipStat?.subCategory"
+        :stat="tooltipStat?.stat"
       />
-      <VisualisationTooltipStat
-        :id="tooltipStat?.playerId"
+      <UiTooltipStat
+        :player="tooltipStat?.player"
         :value="tooltipStat?.value"
-        :name="tooltipStat?.playerName"
-        :stat-abbreviation="tooltipStat?.statAbbreviation"
-        :color="tooltipStat?.playerColor"
+        :stat="tooltipStat?.stat"
       />
-      <VisualisationTooltipRecord
+      <UiTooltipRecord
         :value="tooltipStat?.record.value"
         :holder="tooltipStat?.record.holder"
       />
     </template>
     <template v-else-if="tooltipStatLabel">
-      <VisualisationTooltipHeader
-        :category-name="tooltipStatLabel?.categoryName"
-        :category-color="tooltipStatLabel?.categoryColor"
-        :sub-category-name="tooltipStatLabel?.subCategoryName"
-        :stat-name="tooltipStatLabel?.statName"
-        :stat-description="tooltipStatLabel?.statDescription"
+      <UiTooltipHeader
+        :category="tooltipStatLabel?.category"
+        :sub-category="tooltipStatLabel?.subCategory"
+        :stat="tooltipStatLabel?.stat"
       />
-      <VisualisationTooltipRecord
+      <UiTooltipRecord
         :value="tooltipStatLabel?.record.value"
         :holder="tooltipStatLabel?.record.holder"
       />

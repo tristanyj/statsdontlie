@@ -29,7 +29,7 @@ const selectOption = (option: SortOption) => {
 </script>
 
 <template>
-  <VisualisationPickerFilter
+  <UiPickerFilter
     v-model:isFiltersOpen="isFiltersOpenStats"
     v-model:isSortOpen="isSortOpen"
     :is-sort-ascending="isSortAscending"
@@ -88,5 +88,5 @@ const selectOption = (option: SortOption) => {
         </div>
       </div>
     </div>
-  </VisualisationPickerFilter>
+  </UiPickerFilter>
 </template>

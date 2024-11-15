@@ -1,19 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 html {
-  @apply bg-white;
+  @apply bg-gray-50;
 }
 
 body {
-  @apply font-anton border-[8px] md:border-[16px] border-white;
+  @apply font-anton border-[8px] md:border-[16px] border-gray-50;
   background-color: #6c9591;
   background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
-}
-
-#container {
-  @apply font-host;
 }
 
 #container svg {
@@ -28,7 +20,6 @@ body {
 .top-clickable-hover,
 .bottom-clickable-hover {
   opacity: 0 !important;
-  /* cursor: pointer; */
 }
 
 .stat-arc-normal.hover,
@@ -47,66 +38,30 @@ body {
   filter: brightness(0.86);
 }
 
-.justified-text {
-  text-align: justify;
-  text-justify: inter-word;
-  word-spacing: -0.5px; /* Fine-tune spacing between words */
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-}
-
 .group-arc-hover,
-.overlay {
-  cursor: pointer;
-}
-
+.overlay,
 .checkbox {
   cursor: pointer;
-}
-
-.center-image {
-  animation: spin 20s linear infinite;
 }
 
 .spin-fast {
   animation: spin 5s linear infinite;
 }
 
-.spin-slow {
-  opacity: 0.7;
-  animation: spin 30s linear infinite;
+.spin-mid {
+  animation: spin 20s linear infinite;
 }
 
-.spin-slow-reverse {
+.spin-mid-reverse {
   animation: spin 20s linear infinite reverse;
+}
+
+.spin-slow {
+  animation: spin 30s linear infinite;
 }
 
 @keyframes spin {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transform: translateY(0);
-  transform-origin: center;
-  transition: transform 1s ease, opacity 0.25s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(50px);
-}
-
-.fade-quick-enter-active,
-.fade-quick-leave-active {
-  transition: opacity 0.25s ease;
-}
-
-.fade-quick-enter-from,
-.fade-quick-leave-to {
-  opacity: 0;
 }
