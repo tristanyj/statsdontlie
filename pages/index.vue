@@ -65,8 +65,15 @@ const { isLoaded } = storeToRefs(configStore);
           </div>
         </div>
       </UContainer>
-      <div v-if="isLoaded">
-        <VisualisationChart />
+      <div class="relative">
+        <VisualisationChart v-if="isLoaded" />
+        <div
+          v-else
+          class="relative max-w-[1400px] w-full mx-auto"
+        >
+          <div class="pb-[100%]" />
+          <div class="absolute inset-0 animate-pulse rounded-full bg-gray-100 opacity-20" />
+        </div>
       </div>
       <UContainer>
         <div class="relative py-16 px-10 text-center lowercase">

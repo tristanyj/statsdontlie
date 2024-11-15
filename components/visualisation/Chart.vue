@@ -181,6 +181,8 @@ function updateVisualization() {
   createVisualization();
 }
 
+const isLoading = ref(true);
+
 const mountToContainer = () => {
   if (!container.value) {
     return;
@@ -191,12 +193,14 @@ const mountToContainer = () => {
     .select(container.value)
     .append('svg')
     .attr('width', width)
-    .attr('height', height)
+    // .attr('height', height)
     .attr('viewBox', `0 0 ${width} ${height}`)
     .attr('class', 'mx-auto');
   g.value = svg.append('g').attr('transform', `translate(${width / 2},${height / 2})`);
 
   createVisualization();
+
+  isLoading.value = false;
 };
 
 watch(
@@ -271,3 +275,9 @@ onUnmounted(() => {
     />
   </div>
 </template>
+
+<style scoped>
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+</style>

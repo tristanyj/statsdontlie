@@ -14,10 +14,13 @@ body {
 }
 
 #container {
+  @apply font-host;
+}
+
+#container svg {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  @apply font-host;
 }
 
 .stat-arc-hover,
@@ -97,4 +100,14 @@ body {
 .fade-leave-to {
   opacity: 0;
   transform: translateY(50px);
+}
+
+.fade-quick-enter-active,
+.fade-quick-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.fade-quick-enter-from,
+.fade-quick-leave-to {
+  opacity: 0;
 }
