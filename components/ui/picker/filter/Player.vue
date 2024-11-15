@@ -47,7 +47,6 @@ const selectOption = (option: SortOption) => {
     v-model:isSortOpen="isSortOpen"
     :is-sort-ascending="isSortAscending"
     :is-filtered="isFiltered"
-    :selectable-length="selectablePlayers.length"
     :selected-length="selectedPlayerIds.length"
     :filtered-length="filteredPlayers.length"
     :total-length="selectablePlayers.length"

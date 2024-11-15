@@ -1,17 +1,36 @@
-import type { Player, PlayerKey } from '~/types';
-import { heightToInches } from '~/assets/scripts/utils';
+import type { Player, SelectablePlayer, PlayerKey, PlayerFilters } from '~/types';
 import {
   DEFAULT_PLAYER_IDS,
-  POSITION_EQUIVALENT,
   HEIGHT_RANGE,
   WEIGHT_RANGE,
   YEARS_RANGE,
   PLAYER_SORT_OPTIONS,
+  DEFAULT_PLAYER_FILTERS,
 } from '~/assets/scripts/constants';
+
+import { isDefaultRange } from '~/assets/scripts/utils';
 
 export const usePlayerConfigStore = defineStore('config/player', () => {
   const configStore = useConfigStore();
   const { searchInput } = storeToRefs(configStore);
+
+  const {
+    filterBySearch,
+    filterByHeight,
+    filterByWeight,
+    filterBySelection,
+    filterByYears,
+    filteredByPosition,
+  } = usePlayerFilters();
+
+  const {
+    sortByName,
+    sortByWinShares,
+    sortByHeight,
+    sortByWeight,
+    sortByExperience,
+    sortByDraftYear,
+  } = usePlayerSort();
 
   // --------------------------------
   // State
@@ -23,19 +42,7 @@ export const usePlayerConfigStore = defineStore('config/player', () => {
   const currentSort = ref(PLAYER_SORT_OPTIONS[1]);
   const isSortAscending = ref(false);
 
-  const filters = ref({
-    selectedOnly: false,
-    heightRange: [HEIGHT_RANGE[0], HEIGHT_RANGE[1]],
-    weightRange: [WEIGHT_RANGE[0], WEIGHT_RANGE[1]],
-    yearsRange: [YEARS_RANGE[0], YEARS_RANGE[1]],
-    positions: {
-      PG: true,
-      SG: true,
-      SF: true,
-      PF: true,
-      C: true,
-    },
-  });
+  const filters = ref<PlayerFilters>(DEFAULT_PLAYER_FILTERS);
 
   // --------------------------------
   // Computed
@@ -47,81 +54,36 @@ export const usePlayerConfigStore = defineStore('config/player', () => {
     players.value.filter((player) => selectedPlayerIds.value.includes(player.id))
   );
 
-  const selectedPlayerIdsCount = computed(() => selectedPlayerIds.value.length);
-
-  const selectablePlayers = computed(() => {
+  const selectablePlayers = computed<SelectablePlayer[]>(() => {
     return players.value.map(({ id, color, info, stats }) => ({
       id,
       color,
       info,
-      stats: {
-        winShares: stats['regular_season.advanced.win_shares'],
-      },
+      winShares: stats['regular_season.advanced.win_shares'],
     }));
   });
 
   const filteredPlayers = computed(() => {
     const searchTerm = searchInput.value.toLowerCase();
 
-    const filteredBySearch = searchTerm
-      ? selectablePlayers.value.filter((player) =>
-          player.info.name.toLowerCase().includes(searchTerm)
-        )
-      : selectablePlayers.value;
+    let result = selectablePlayers.value;
 
-    const filteredBySelected = filters.value.selectedOnly
-      ? filteredBySearch.filter((player) => selectedPlayerIds.value.includes(player.id))
-      : filteredBySearch;
+    result = filterBySearch(result, searchTerm);
+    result = filterBySelection(result, selectedPlayerIds.value, filters.value.selectedOnly);
+    result = filterByHeight(result, filters.value.heightRange);
+    result = filterByWeight(result, filters.value.weightRange);
+    result = filterByYears(result, filters.value.yearsRange);
+    result = filteredByPosition(result, filters.value.positions);
 
-    const filteredByHeight = filteredBySelected.filter((player) => {
-      const height = heightToInches(player.info.height);
-      return (
-        height >= Math.min(filters.value.heightRange[0], filters.value.heightRange[1]) &&
-        height <= Math.max(filters.value.heightRange[0], filters.value.heightRange[1])
-      );
-    });
-
-    const filteredByWeight = filteredByHeight.filter((player) => {
-      const weight = parseInt(player.info.weight);
-      return (
-        weight >= Math.min(filters.value.weightRange[0], filters.value.weightRange[1]) &&
-        weight <= Math.max(filters.value.weightRange[0], filters.value.weightRange[1])
-      );
-    });
-
-    const filteredByYears = filteredByWeight.filter((player) => {
-      const endYear = player.info.draft[1] + player.info.experience;
-      return (
-        endYear >= Math.min(filters.value.yearsRange[0], filters.value.yearsRange[1]) &&
-        endYear <= Math.max(filters.value.yearsRange[0], filters.value.yearsRange[1])
-      );
-    });
-
-    const selectedPositions = Object.entries(filters.value.positions)
-      .filter((position) => position[1])
-      .map((position) => position[0]);
-
-    const filteredByPosition = selectedPositions.length
-      ? filteredByYears.filter((player) => {
-          return selectedPositions.some((position) => {
-            const equivalent = POSITION_EQUIVALENT[position as keyof typeof POSITION_EQUIVALENT];
-            return !!equivalent && player.info.position === equivalent;
-          });
-        })
-      : [];
-
-    return filteredByPosition;
+    return result;
   });
 
   const isFiltered = computed(() => {
     return (
       filters.value.selectedOnly ||
-      filters.value.heightRange[0] !== HEIGHT_RANGE[0] ||
-      filters.value.heightRange[1] !== HEIGHT_RANGE[1] ||
-      filters.value.weightRange[0] !== WEIGHT_RANGE[0] ||
-      filters.value.weightRange[1] !== WEIGHT_RANGE[1] ||
-      filters.value.yearsRange[0] !== YEARS_RANGE[0] ||
-      filters.value.yearsRange[1] !== YEARS_RANGE[1] ||
+      !isDefaultRange(filters.value.heightRange, HEIGHT_RANGE) ||
+      !isDefaultRange(filters.value.weightRange, WEIGHT_RANGE) ||
+      !isDefaultRange(filters.value.yearsRange, YEARS_RANGE) ||
       Object.values(filters.value.positions).some((position) => !position)
     );
   });
@@ -131,46 +93,17 @@ export const usePlayerConfigStore = defineStore('config/player', () => {
 
     switch (currentSort.value.key) {
       case 'name':
-        return copy.sort((a, b) => {
-          const [aFirstName, aLastName] = a.info.name.split(' ');
-          const [bFirstName, bLastName] = b.info.name.split(' ');
-
-          return isSortAscending.value
-            ? aLastName.localeCompare(bLastName) || aFirstName.localeCompare(bFirstName)
-            : bLastName.localeCompare(aLastName) || bFirstName.localeCompare(aFirstName);
-        });
+        return sortByName(copy, isSortAscending.value);
       case 'win-shares':
-        return copy.sort((a, b) => {
-          return isSortAscending.value
-            ? a.stats.winShares - b.stats.winShares
-            : b.stats.winShares - a.stats.winShares;
-        });
+        return sortByWinShares(copy, isSortAscending.value);
       case 'height':
-        return copy.sort((a, b) => {
-          const aHeight = heightToInches(a.info.height);
-          const bHeight = heightToInches(b.info.height);
-
-          return isSortAscending.value ? aHeight - bHeight : bHeight - aHeight;
-        });
+        return sortByHeight(copy, isSortAscending.value);
       case 'weight':
-        return copy.sort((a, b) => {
-          const aWeight = parseInt(a.info.weight);
-          const bWeight = parseInt(b.info.weight);
-
-          return isSortAscending.value ? aWeight - bWeight : bWeight - aWeight;
-        });
+        return sortByWeight(copy, isSortAscending.value);
       case 'experience':
-        return copy.sort((a, b) => {
-          return isSortAscending.value
-            ? a.info.experience - b.info.experience
-            : b.info.experience - a.info.experience;
-        });
+        return sortByExperience(copy, isSortAscending.value);
       case 'draft-year':
-        return copy.sort((a, b) => {
-          return isSortAscending.value
-            ? a.info.draft[1] - b.info.draft[1]
-            : b.info.draft[1] - a.info.draft[1];
-        });
+        return sortByDraftYear(copy, isSortAscending.value);
       default:
         return copy;
     }
@@ -180,8 +113,8 @@ export const usePlayerConfigStore = defineStore('config/player', () => {
   // Methods
   // --------------------------------
 
-  const setPlayers = (d: Player[]) =>
-    (players.value = d.map((player) => ({
+  const setPlayers = (d: Player[]) => {
+    players.value = d.map((player) => ({
       ...player,
       info: {
         ...player.info,
@@ -189,39 +122,32 @@ export const usePlayerConfigStore = defineStore('config/player', () => {
         teams: typeof player.info.teams === 'string' ? [player.info.teams] : player.info.teams,
         draft: player.id === 'malonmo01' ? [5, 1976] : player.info.draft,
       },
-    })));
+    }));
+  };
 
-  const setSelectedPlayerIds = (newselectedPlayerIds: PlayerKey[]) =>
-    (selectedPlayerIds.value = newselectedPlayerIds);
+  const setSelectedPlayerIds = (newselectedPlayerIds: PlayerKey[]) => {
+    selectedPlayerIds.value = newselectedPlayerIds;
+  };
 
   const restoreDefaultPlayerSelection = () => {
     selectedPlayerIds.value = [...DEFAULT_PLAYER_IDS];
   };
 
   const clearFilters = () => {
-    filters.value = {
-      selectedOnly: false,
-      heightRange: [HEIGHT_RANGE[0], HEIGHT_RANGE[1]],
-      weightRange: [WEIGHT_RANGE[0], WEIGHT_RANGE[1]],
-      yearsRange: [YEARS_RANGE[0], YEARS_RANGE[1]],
-      positions: {
-        PG: true,
-        SG: true,
-        SF: true,
-        PF: true,
-        C: true,
-      },
-    };
+    filters.value = DEFAULT_PLAYER_FILTERS;
   };
 
   const selectAllFilteredPlayers = () => {
-    setSelectedPlayerIds(filteredPlayers.value.map((player) => player.id));
+    setSelectedPlayerIds(
+      [...selectedPlayerIds.value, ...filteredPlayers.value.map((player) => player.id)].filter(
+        (id, index, self) => self.indexOf(id) === index
+      )
+    );
   };
 
   return {
     isLoaded,
     selectedPlayerIds,
-    selectedPlayerIdsCount,
     selectablePlayers,
     selectedPlayers,
     currentSort,

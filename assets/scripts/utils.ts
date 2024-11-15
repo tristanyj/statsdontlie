@@ -82,6 +82,10 @@ const formatString = (str: string): string => {
     .join(' ');
 };
 
+const isDefaultRange = (range: number[], defaultRange: number[]) => {
+  return range[0] === defaultRange[0] && range[1] === defaultRange[1];
+};
+
 export {
   wrapText,
   formatNumber,
@@ -91,4 +95,5 @@ export {
   escapeSelector,
   heightToInches,
   formatString,
+  isDefaultRange,
 };

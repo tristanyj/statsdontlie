@@ -9,7 +9,7 @@ export * from './dataset';
 export type ScaleType = 'linear' | 'log';
 export type FormatType = 'number' | 'percent';
 
-export interface Player {
+interface BasePlayer {
   id: PlayerKey;
   color: `#${string}`;
   info: {
@@ -24,6 +24,13 @@ export interface Player {
     experience: number;
     teams: string[];
   };
+}
+
+export interface SelectablePlayer extends BasePlayer {
+  winShares: number;
+}
+
+export interface Player extends BasePlayer {
   stats: Record<StatKey, number>;
 }
 
@@ -154,4 +161,29 @@ export interface TooltipStat extends Tooltip {
 
 export interface ToolTipStatLabel extends Tooltip {
   id: string;
+}
+
+// --------------------------------
+// Player
+// --------------------------------
+
+export interface PlayerFilters {
+  selectedOnly: boolean;
+  heightRange: [number, number];
+  weightRange: [number, number];
+  yearsRange: [number, number];
+  positions: Record<'PG' | 'SG' | 'SF' | 'PF' | 'C', boolean>;
+}
+
+export interface PlayerSort {
+  key: 'name' | 'win-shares' | 'height' | 'weight' | 'experience' | 'draft-year';
+  label: string;
+}
+
+export interface PlayerState {
+  players: Player[];
+  selectedPlayerIds: PlayerKey[];
+  currentSort: PlayerSort;
+  isSortAscending: boolean;
+  filters: PlayerFilters;
 }

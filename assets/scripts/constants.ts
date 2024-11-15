@@ -1,4 +1,4 @@
-import type { StatKey, PlayerKey, SortOption } from '~/types';
+import type { StatKey, PlayerKey, SortOption, PlayerFilters } from '~/types';
 
 export const DEFAULT_PLAYER_IDS: PlayerKey[] = [
   'abdulka01',
@@ -93,3 +93,17 @@ export const STAT_SORT_OPTIONS: SortOption[] = [
 export const HEIGHT_RANGE = [70, 90];
 export const WEIGHT_RANGE = [150, 350];
 export const YEARS_RANGE = [1960, 2024];
+
+export const DEFAULT_PLAYER_FILTERS: PlayerFilters = {
+  selectedOnly: false,
+  heightRange: [HEIGHT_RANGE[0], HEIGHT_RANGE[1]],
+  weightRange: [WEIGHT_RANGE[0], WEIGHT_RANGE[1]],
+  yearsRange: [YEARS_RANGE[0], YEARS_RANGE[1]],
+  positions: {
+    PG: true,
+    SG: true,
+    SF: true,
+    PF: true,
+    C: true,
+  },
+};

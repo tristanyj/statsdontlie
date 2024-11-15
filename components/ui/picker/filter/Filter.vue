@@ -6,7 +6,6 @@ interface Props {
   isSortAscending: boolean;
   isFiltersOpen: boolean;
   isFiltered: boolean;
-  selectableLength: number;
   selectedLength: number;
   filteredLength: number;
   totalLength: number;
@@ -19,7 +18,6 @@ const props = withDefaults(defineProps<Props>(), {
   isSortAscending: false,
   isFiltersOpen: false,
   isFiltered: false,
-  selectableLength: 0,
   selectedLength: 0,
   filteredLength: 0,
   totalLength: 0,
@@ -58,7 +56,7 @@ const isFiltersOpen = useVModel(props, 'isFiltersOpen', emit);
         <UiPickerFilterControl @click="emit('restoreDefaultSelection')">
           Default selection
         </UiPickerFilterControl>
-        <template v-if="filteredLength < selectableLength">
+        <template v-if="filteredLength < totalLength">
           <div class="hidden sm:inline">&#8226;</div>
           <UiPickerFilterControl
             class="hidden sm:inline"
