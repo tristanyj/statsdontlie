@@ -4,8 +4,10 @@ import basketCircle from '@/assets/images/basket-circle.svg';
 
 useHead({ title: "Home | Broadway: Compare NFL's best QBs." });
 
-const configStore = useConfigStore();
-const { isLoaded } = storeToRefs(configStore);
+const playerConfigStore = usePlayerConfigStore();
+const { isLoaded: isPlayersLoaded } = storeToRefs(playerConfigStore);
+const statConfigStore = useStatConfigStore();
+const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
 </script>
 
 <template>
@@ -66,7 +68,7 @@ const { isLoaded } = storeToRefs(configStore);
         </div>
       </UContainer>
       <div class="relative px-4">
-        <VisualisationChart v-if="isLoaded" />
+        <VisualisationChart v-if="isPlayersLoaded && isStatsLoaded" />
         <div
           v-else
           class="relative max-w-[1400px] w-full mx-auto"

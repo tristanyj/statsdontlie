@@ -13,7 +13,9 @@ import type {
 } from '~/types';
 
 export function useChartDrawArcs() {
-  const { getCategoryById, getSubCategoryById } = useConfigStore();
+  const statConfigStore = useStatConfigStore();
+  const { getCategoryById, getSubCategoryById } = statConfigStore;
+
   const {
     setHoveredPlayer,
     setHoveredCategory,

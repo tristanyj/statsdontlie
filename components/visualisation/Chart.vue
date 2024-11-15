@@ -22,16 +22,17 @@ const interactionStore = useInteractionStore();
 const { hoveredCategory } = storeToRefs(interactionStore);
 const { updateMousePosition, updateScrollPosition, setHoveredCategory } = interactionStore;
 
-const configStore = useConfigStore();
+const playerConfigStore = usePlayerConfigStore();
+const statConfigStore = useStatConfigStore();
+
+const { selectedPlayers, selectedPlayerIds } = storeToRefs(playerConfigStore);
 const {
-  selectedPlayers,
-  selectedPlayerIds,
   selectedStatIds,
   selectedStatIdsCount,
   selectedCategories,
   selectedSubCategories,
   selectedStats,
-} = storeToRefs(configStore);
+} = storeToRefs(statConfigStore);
 
 const indices = computed(() => {
   let currentIndex = 0;

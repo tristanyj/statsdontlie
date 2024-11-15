@@ -41,6 +41,9 @@ export default defineNuxtConfig({
       script: [],
     },
   },
+  imports: {
+    dirs: ['stores/**'], // This ensures nested directories are scanned
+  },
   modules: [
     '@nuxt/ui',
     '@nuxt/eslint',

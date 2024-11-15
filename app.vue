@@ -2,8 +2,11 @@
 import dataset from '@/assets/data/dataset.json';
 import type { Category, Player } from './types';
 
-const configStore = useConfigStore();
-const { setCategories, setPlayers } = configStore;
+const playerConfigStore = usePlayerConfigStore();
+const { setPlayers } = playerConfigStore;
+
+const statConfigStore = useStatConfigStore();
+const { setCategories } = statConfigStore;
 
 onMounted(() => {
   setCategories(dataset.config.categories as unknown as Category[]);

@@ -25,7 +25,7 @@ const emit = defineEmits<{
 }>();
 
 const selectedIndex = useVModel(props, 'modelValue', emit);
-const value = useVModel(props, 'searchValue', emit);
+const searchValue = useVModel(props, 'searchValue', emit);
 
 const placeholder = computed(() => `Search ${selectedIndex.value === 0 ? 'players' : 'stats'}...`);
 </script>
@@ -42,7 +42,7 @@ const placeholder = computed(() => `Search ${selectedIndex.value === 0 ? 'player
     </div>
     <div class="order-2">
       <UInput
-        v-model="value"
+        v-model="searchValue"
         icon="i-radix-icons:magnifying-glass"
         :placeholder="placeholder"
         padded

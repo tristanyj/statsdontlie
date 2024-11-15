@@ -1,61 +1,8 @@
-import type {
-  Stat,
-  EnrichedStat,
-  EnrichedCategory,
-  Category,
-  Player,
-  StatKey,
-  PlayerKey,
-} from '~/types';
+import type { Stat, EnrichedStat, EnrichedCategory, Category, StatKey } from '~/types';
 
-const DEFAULT_PLAYER_IDS: PlayerKey[] = [
-  'abdulka01',
-  'jamesle01',
-  'chambwi01',
-  'jordami01',
-  'stockjo01',
-];
+import { DEFAULT_STAT_IDS } from '~/assets/scripts/constants';
 
-const DEFAULT_STAT_IDS: StatKey[] = [
-  // Awards
-  'awards.individual.mvp',
-  'awards.individual.dpoy',
-  'awards.individual.all_nba',
-  'awards.individual.all_nba_first',
-  'awards.individual.all_defensive',
-  'awards.individual.all_defensive_first',
-  'awards.individual.all_star',
-  'awards.team.nba_championships',
-  'awards.team.conference_championships',
-  // Regular season
-  'regular_season.total.games_played',
-  'regular_season.total.points',
-  'regular_season.total.total_rebounds',
-  'regular_season.total.assists',
-  'regular_season.per_game.points',
-  'regular_season.per_game.total_rebounds',
-  'regular_season.per_game.assists',
-  'regular_season.advanced.player_efficiency_rating',
-  'regular_season.advanced.win_shares',
-  'regular_season.game_high.points',
-  'regular_season.game_high.total_rebounds',
-  'regular_season.game_high.assists',
-  // Post season
-  'post_season.total.games_played',
-  'post_season.total.points',
-  'post_season.total.total_rebounds',
-  'post_season.total.assists',
-  'post_season.per_game.points',
-  'post_season.per_game.total_rebounds',
-  'post_season.per_game.assists',
-  'post_season.advanced.player_efficiency_rating',
-  'post_season.advanced.win_shares',
-  'post_season.game_high.points',
-  'post_season.game_high.total_rebounds',
-  'post_season.game_high.assists',
-];
-
-export const useConfigStore = defineStore('config', () => {
+export const useStatConfigStore = defineStore('config/stat', () => {
   const cacheStore = useCacheStore();
   const { getScale, getFormat } = cacheStore;
 
@@ -64,20 +11,14 @@ export const useConfigStore = defineStore('config', () => {
   // --------------------------------
 
   const categories = ref<Category[]>([]);
-  const players = ref<Player[]>([]);
 
-  const selectedPlayerIds = ref<PlayerKey[]>([...DEFAULT_PLAYER_IDS]);
   const selectedStatIds = ref<StatKey[]>([...DEFAULT_STAT_IDS]);
 
   // --------------------------------
   // Computed
   // --------------------------------
 
-  const isLoaded = computed(() => categories.value.length > 0 && players.value.length > 0);
-
-  const selectedPlayers = computed(() =>
-    players.value.filter((player) => selectedPlayerIds.value.includes(player.id))
-  );
+  const isLoaded = computed(() => categories.value.length > 0);
 
   const selectedCategories = computed(() => {
     return enrichedCategories?.value
@@ -107,19 +48,7 @@ export const useConfigStore = defineStore('config', () => {
       .flatMap((subCategory) => subCategory.stats);
   });
 
-  const selectedPlayerIdsCount = computed(() => selectedPlayerIds.value.length);
   const selectedStatIdsCount = computed(() => selectedStatIds.value.length);
-
-  const selectablePlayers = computed(() => {
-    return players.value.map(({ id, color, info, stats }) => ({
-      id,
-      color,
-      info,
-      stats: {
-        winShares: stats['regular_season.advanced.win_shares'],
-      },
-    }));
-  });
 
   const selectableCategories = computed(() => {
     return categories.value.map(({ id, name, color, subCategories }) => ({
@@ -178,31 +107,15 @@ export const useConfigStore = defineStore('config', () => {
       const subCategories = category.subCategories.map((subCategory) => {
         const stats = subCategory.stats.map((stat) => ({
           ...stat,
-          description: stat.description && stat.description.length > 1 ? stat.description : null,
+          description: stat.description ? stat.description : null,
         }));
         return { ...subCategory, stats };
       });
       return { ...category, subCategories };
     }));
-  const setPlayers = (d: Player[]) =>
-    (players.value = d.map((player) => ({
-      ...player,
-      info: {
-        ...player.info,
-        nickname: player.info.nickname.split(',')[0],
-        teams: typeof player.info.teams === 'string' ? [player.info.teams] : player.info.teams,
-        draft: player.id === 'malonmo01' ? [5, 1976] : player.info.draft,
-      },
-    })));
 
-  const setSelectedPlayerIds = (newselectedPlayerIds: PlayerKey[]) =>
-    (selectedPlayerIds.value = newselectedPlayerIds);
   const setSelectedStatIds = (newselectedStatIds: StatKey[]) =>
     (selectedStatIds.value = newselectedStatIds);
-
-  const restoreDefaultPlayerSelection = () => {
-    selectedPlayerIds.value = [...DEFAULT_PLAYER_IDS];
-  };
 
   const restoreDefaultStatSelection = () => {
     selectedStatIds.value = [...DEFAULT_STAT_IDS];
@@ -210,24 +123,17 @@ export const useConfigStore = defineStore('config', () => {
 
   return {
     isLoaded,
-    selectedPlayerIds,
     selectedStatIds,
-    selectedPlayerIdsCount,
     selectedStatIdsCount,
-    selectablePlayers,
     selectableCategories,
     selectableStats,
-    selectedPlayers,
     selectedCategories,
     selectedSubCategories,
     selectedStats,
     setCategories,
-    setPlayers,
-    setSelectedPlayerIds,
     setSelectedStatIds,
     getCategoryById,
     getSubCategoryById,
-    restoreDefaultPlayerSelection,
     restoreDefaultStatSelection,
   };
 });

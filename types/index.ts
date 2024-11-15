@@ -152,3 +152,12 @@ export interface ToolTipStatLabel {
     holder: string;
   };
 }
+
+// --------------------------------
+// UI
+// --------------------------------
+
+export type SortOption = {
+  label: string;
+  key: string;
+};
