@@ -47,12 +47,12 @@ function shouldFlipText(midAngle: number) {
 function calcTextLength(g: d3GSelection, id: string, text: string, fontSize: number) {
   const tempText = g
     .append('text')
-    .append('textPath')
-    .attr('href', `#${id}`)
-    .style('font-size', fontSize)
     .text(text)
+    .style('font-size', `${fontSize}px`)
     .style('visibility', 'hidden');
-  const textLength = tempText.node()?.getComputedTextLength() || 0;
+
+  const bbox = tempText.node()?.getBBox();
+  const textLength = bbox ? bbox.width : 0;
   tempText.remove();
   return textLength;
 }
