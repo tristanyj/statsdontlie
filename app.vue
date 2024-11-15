@@ -15,10 +15,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="font-host">
+  <main>
     <NuxtLoadingIndicator />
     <NuxtRouteAnnouncer />
-    <!-- <NavigationHeader /> -->
     <NuxtPage />
   </main>
 </template>

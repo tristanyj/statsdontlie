@@ -20,7 +20,7 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
         :class="`left-[${i * 10}%]`"
       />
       <UContainer class="relative">
-        <div class="relative py-16 font-anton">
+        <div class="relative py-16">
           <div class="flex justify-center relative mb-5">
             <div class="relative">
               <img
@@ -39,16 +39,18 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
               </div>
             </div>
           </div>
-          <h1 class="uppercase text-gray-50 text-center text-7xl md:text-8xl">Stats don't lie</h1>
+          <h1 class="uppercase text-gray-50 text-center text-7xl md:text-8xl font-anton">
+            Stats don't lie
+          </h1>
           <div class="mt-8">
             <div class="grid md:grid-cols-2 gap-6 text-justify">
-              <p class="font-host text-gray-100">
+              <p class="text-gray-100">
                 I follow sports for storylines and numbers. I like statistics, records, rivalries. I
                 probably like that better than actually watching the thing. In this visualization, I
                 tried conveying what fascinates me about sports by comparing some of the greatest
                 basketball players of all time.
               </p>
-              <p class="font-host text-gray-100 text-justify">
+              <p class="text-gray-100 text-justify">
                 I collected data for 50 players and 130+ statistics from
                 <a
                   href="https://www.basketball-reference.com/"
