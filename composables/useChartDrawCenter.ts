@@ -64,8 +64,8 @@ export function useChartDrawCenter() {
     const clickableArcs = [
       {
         id: 'top-clickable',
-        startAngle: -Math.PI / 2, // Start at top (-90 degrees)
-        endAngle: Math.PI / 2, // End at bottom (90 degrees)
+        startAngle: -Math.PI / 2,
+        endAngle: Math.PI / 2,
         radius: minRadius * modifier.radius.insideMinStatScale,
         background: '#f9f9f9',
         onClick: () => {
@@ -75,8 +75,8 @@ export function useChartDrawCenter() {
       },
       {
         id: 'bottom-clickable',
-        startAngle: Math.PI / 2, // Start at bottom (90 degrees)
-        endAngle: (3 * Math.PI) / 2, // End at top (270 degrees)
+        startAngle: Math.PI / 2,
+        endAngle: (3 * Math.PI) / 2,
         radius: minRadius * modifier.radius.insideMinStatScale,
         background: '#f9f9f9',
         onClick: () => {
@@ -158,25 +158,6 @@ export function useChartDrawCenter() {
           halfCircle.classed('hover', false);
         });
     });
-
-    // arcGroup
-    //   .append('path')
-    //   .attr(
-    //     'd',
-    //     arcGenerator({
-    //       innerRadius: minRadius * modifier.radius.insideMinStatScale,
-    //       outerRadius: minRadius,
-    //       startAngle: 0,
-    //       endAngle: Math.PI * 2,
-    //       data: null,
-    //     })
-    //   )
-    //   .on('click', () => {
-    //     setHoveredCategory(null);
-    //   })
-    //   .attr('fill', 'transparent')
-    //   .attr('stroke', modifier.color.separator.stroke)
-    //   .attr('stroke-opacity', modifier.color.separator.highOpacity);
   }
 
   return {

@@ -9,7 +9,6 @@ export const DEFAULT_PLAYER_IDS: PlayerKey[] = [
 ];
 
 export const DEFAULT_STAT_IDS: StatKey[] = [
-  // Awards
   'awards.individual.mvp',
   'awards.individual.dpoy',
   'awards.individual.all_nba',
@@ -19,7 +18,6 @@ export const DEFAULT_STAT_IDS: StatKey[] = [
   'awards.individual.all_star',
   'awards.team.nba_championships',
   'awards.team.conference_championships',
-  // Regular season
   'regular_season.total.games_played',
   'regular_season.total.points',
   'regular_season.total.total_rebounds',
@@ -32,7 +30,6 @@ export const DEFAULT_STAT_IDS: StatKey[] = [
   'regular_season.game_high.points',
   'regular_season.game_high.total_rebounds',
   'regular_season.game_high.assists',
-  // Post season
   'post_season.total.games_played',
   'post_season.total.points',
   'post_season.total.total_rebounds',

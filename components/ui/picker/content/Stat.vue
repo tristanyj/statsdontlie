@@ -23,7 +23,6 @@ const getChunks = (
   }[],
   columns: number
 ) => {
-  // Determine number of chunks based on array length
   const numberOfChunks = array.length < 4 ? 1 : array.length < 7 ? 2 : columns;
 
   const chunkSize = Math.ceil(array.length / numberOfChunks);

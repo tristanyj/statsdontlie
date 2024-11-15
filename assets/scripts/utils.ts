@@ -71,10 +71,7 @@ const escapeSelector = (id: string) => {
 };
 
 const heightToInches = (height: string): number => {
-  // Split the height string into feet and inches
   const [feet, inches] = height.split('-').map(Number);
-
-  // Convert feet to inches and add remaining inches
   return feet * 12 + inches;
 };
 

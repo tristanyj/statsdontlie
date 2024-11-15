@@ -42,7 +42,7 @@ export default defineNuxtConfig({
     },
   },
   imports: {
-    dirs: ['stores/**'], // This ensures nested directories are scanned
+    dirs: ['stores/**'],
   },
   modules: [
     '@nuxt/ui',

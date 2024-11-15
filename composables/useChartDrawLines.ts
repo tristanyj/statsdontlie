@@ -33,28 +33,24 @@ export function useChartDrawLines() {
   }
 
   function drawCircularSeparators(g: d3GSelection) {
-    // circle inside min radius
     g.append('circle')
       .attr('r', minRadius * modifier.radius.insideMinStatScale)
       .attr('fill', 'none')
       .attr('stroke', modifier.color.separator.stroke)
       .attr('stroke-opacity', modifier.color.separator.highOpacity);
 
-    // circle min radius
     g.append('circle')
       .attr('r', minRadius)
       .attr('fill', 'none')
       .attr('stroke', modifier.color.separator.stroke)
       .attr('stroke-opacity', modifier.color.separator.highOpacity);
 
-    // circle max radius for stats
     g.append('circle')
       .attr('r', radius * proportions[0])
       .attr('fill', 'none')
       .attr('stroke', modifier.color.separator.stroke)
       .attr('stroke-opacity', modifier.color.separator.highOpacity);
 
-    // circle outside max scale
     g.append('circle')
       .attr('r', radius * proportions[0] * modifier.radius.outsideMaxStatScale)
       .attr('fill', 'none')
@@ -62,7 +58,6 @@ export function useChartDrawLines() {
       .attr('stroke-opacity', modifier.color.separator.lowOpacity);
 
     for (let i = 0; i < 3; i++) {
-      // layers - stats, subgroups, groups
       g.append('circle')
         .attr('r', radius * proportions[i + 1])
         .attr('fill', 'none')
@@ -71,7 +66,6 @@ export function useChartDrawLines() {
     }
 
     for (let i = 0; i < layerCount; i++) {
-      // ticks for stats
       g.append('circle')
         .attr('r', minRadius + restRadius * (i / layerCount))
         .attr('fill', 'none')

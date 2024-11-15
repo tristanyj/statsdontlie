@@ -2,9 +2,9 @@ import type { StatKey, CategoryKey, SubCategoryKey, PlayerKey } from './dataset'
 
 export * from './dataset';
 
-//////////////////////////
-// Dataset Definition
-//////////////////////////
+// --------------------------------
+// Dataset
+// --------------------------------
 
 export type ScaleType = 'linear' | 'log';
 export type FormatType = 'number' | 'percent';
@@ -73,9 +73,9 @@ export interface EnrichedStat extends Stat {
   };
 }
 
-//////////////////////////
-// D3 Types
-//////////////////////////
+// --------------------------------
+// D3
+// --------------------------------
 
 export type d3GSelection = d3.Selection<SVGGElement, unknown, null, undefined>;
 

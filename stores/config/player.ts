@@ -20,12 +20,26 @@ export const usePlayerConfigStore = defineStore('config/player', () => {
   const players = ref<Player[]>([]);
   const selectedPlayerIds = ref<PlayerKey[]>([...DEFAULT_PLAYER_IDS]);
 
+  const currentSort = ref(PLAYER_SORT_OPTIONS[1]);
+  const isSortAscending = ref(false);
+
+  const filters = ref({
+    selectedOnly: false,
+    heightRange: [HEIGHT_RANGE[0], HEIGHT_RANGE[1]],
+    weightRange: [WEIGHT_RANGE[0], WEIGHT_RANGE[1]],
+    yearsRange: [YEARS_RANGE[0], YEARS_RANGE[1]],
+    positions: {
+      PG: true,
+      SG: true,
+      SF: true,
+      PF: true,
+      C: true,
+    },
+  });
+
   // --------------------------------
   // Computed
   // --------------------------------
-
-  const isSortAscending = ref(false);
-  const currentSort = ref(PLAYER_SORT_OPTIONS[1]);
 
   const isLoaded = computed(() => players.value.length > 0);
 
@@ -46,28 +60,6 @@ export const usePlayerConfigStore = defineStore('config/player', () => {
     }));
   });
 
-  // --------------------------------
-  // Methods
-  // --------------------------------
-
-  const setPlayers = (d: Player[]) =>
-    (players.value = d.map((player) => ({
-      ...player,
-      info: {
-        ...player.info,
-        nickname: player.info.nickname.split(',')[0],
-        teams: typeof player.info.teams === 'string' ? [player.info.teams] : player.info.teams,
-        draft: player.id === 'malonmo01' ? [5, 1976] : player.info.draft,
-      },
-    })));
-
-  const setSelectedPlayerIds = (newselectedPlayerIds: PlayerKey[]) =>
-    (selectedPlayerIds.value = newselectedPlayerIds);
-
-  const restoreDefaultPlayerSelection = () => {
-    selectedPlayerIds.value = [...DEFAULT_PLAYER_IDS];
-  };
-
   const filteredPlayers = computed(() => {
     const searchTerm = searchInput.value.toLowerCase();
 
@@ -83,17 +75,26 @@ export const usePlayerConfigStore = defineStore('config/player', () => {
 
     const filteredByHeight = filteredBySelected.filter((player) => {
       const height = heightToInches(player.info.height);
-      return height >= heightMin.value && height <= heightMax.value;
+      return (
+        height >= Math.min(filters.value.heightRange[0], filters.value.heightRange[1]) &&
+        height <= Math.max(filters.value.heightRange[0], filters.value.heightRange[1])
+      );
     });
 
     const filteredByWeight = filteredByHeight.filter((player) => {
       const weight = parseInt(player.info.weight);
-      return weight >= weightMin.value && weight <= weightMax.value;
+      return (
+        weight >= Math.min(filters.value.weightRange[0], filters.value.weightRange[1]) &&
+        weight <= Math.max(filters.value.weightRange[0], filters.value.weightRange[1])
+      );
     });
 
     const filteredByYears = filteredByWeight.filter((player) => {
       const endYear = player.info.draft[1] + player.info.experience;
-      return endYear >= yearsMin.value && endYear <= yearsMax.value;
+      return (
+        endYear >= Math.min(filters.value.yearsRange[0], filters.value.yearsRange[1]) &&
+        endYear <= Math.max(filters.value.yearsRange[0], filters.value.yearsRange[1])
+      );
     });
 
     const selectedPositions = Object.entries(filters.value.positions)
@@ -112,41 +113,6 @@ export const usePlayerConfigStore = defineStore('config/player', () => {
     return filteredByPosition;
   });
 
-  const filters = ref({
-    selectedOnly: false,
-    heightRange: [HEIGHT_RANGE[0], HEIGHT_RANGE[1]],
-    weightRange: [WEIGHT_RANGE[0], WEIGHT_RANGE[1]],
-    yearsRange: [YEARS_RANGE[0], YEARS_RANGE[1]],
-    positions: {
-      PG: true,
-      SG: true,
-      SF: true,
-      PF: true,
-      C: true,
-    },
-  });
-
-  const heightMin = computed(() =>
-    Math.min(filters.value.heightRange[0], filters.value.heightRange[1])
-  );
-  const heightMax = computed(() =>
-    Math.max(filters.value.heightRange[0], filters.value.heightRange[1])
-  );
-
-  const weightMin = computed(() =>
-    Math.min(filters.value.weightRange[0], filters.value.weightRange[1])
-  );
-  const weightMax = computed(() =>
-    Math.max(filters.value.weightRange[0], filters.value.weightRange[1])
-  );
-
-  const yearsMin = computed(() =>
-    Math.min(filters.value.yearsRange[0], filters.value.yearsRange[1])
-  );
-  const yearsMax = computed(() =>
-    Math.max(filters.value.yearsRange[0], filters.value.yearsRange[1])
-  );
-
   const isFiltered = computed(() => {
     return (
       filters.value.selectedOnly ||
@@ -159,26 +125,6 @@ export const usePlayerConfigStore = defineStore('config/player', () => {
       Object.values(filters.value.positions).some((position) => !position)
     );
   });
-
-  const clearFilters = () => {
-    filters.value = {
-      selectedOnly: false,
-      heightRange: [HEIGHT_RANGE[0], HEIGHT_RANGE[1]],
-      weightRange: [WEIGHT_RANGE[0], WEIGHT_RANGE[1]],
-      yearsRange: [YEARS_RANGE[0], YEARS_RANGE[1]],
-      positions: {
-        PG: true,
-        SG: true,
-        SF: true,
-        PF: true,
-        C: true,
-      },
-    };
-  };
-
-  const selectAllFilteredPlayers = () => {
-    setSelectedPlayerIds(filteredPlayers.value.map((player) => player.id));
-  };
 
   const sortedPlayers = computed(() => {
     const copy = [...filteredPlayers.value];
@@ -230,16 +176,58 @@ export const usePlayerConfigStore = defineStore('config/player', () => {
     }
   });
 
+  // --------------------------------
+  // Methods
+  // --------------------------------
+
+  const setPlayers = (d: Player[]) =>
+    (players.value = d.map((player) => ({
+      ...player,
+      info: {
+        ...player.info,
+        nickname: player.info.nickname.split(',')[0],
+        teams: typeof player.info.teams === 'string' ? [player.info.teams] : player.info.teams,
+        draft: player.id === 'malonmo01' ? [5, 1976] : player.info.draft,
+      },
+    })));
+
+  const setSelectedPlayerIds = (newselectedPlayerIds: PlayerKey[]) =>
+    (selectedPlayerIds.value = newselectedPlayerIds);
+
+  const restoreDefaultPlayerSelection = () => {
+    selectedPlayerIds.value = [...DEFAULT_PLAYER_IDS];
+  };
+
+  const clearFilters = () => {
+    filters.value = {
+      selectedOnly: false,
+      heightRange: [HEIGHT_RANGE[0], HEIGHT_RANGE[1]],
+      weightRange: [WEIGHT_RANGE[0], WEIGHT_RANGE[1]],
+      yearsRange: [YEARS_RANGE[0], YEARS_RANGE[1]],
+      positions: {
+        PG: true,
+        SG: true,
+        SF: true,
+        PF: true,
+        C: true,
+      },
+    };
+  };
+
+  const selectAllFilteredPlayers = () => {
+    setSelectedPlayerIds(filteredPlayers.value.map((player) => player.id));
+  };
+
   return {
     isLoaded,
-    isSortAscending,
-    currentSort,
-    filters,
-    isFiltered,
     selectedPlayerIds,
     selectedPlayerIdsCount,
     selectablePlayers,
     selectedPlayers,
+    currentSort,
+    isSortAscending,
+    filters,
+    isFiltered,
     filteredPlayers,
     sortedPlayers,
     setPlayers,

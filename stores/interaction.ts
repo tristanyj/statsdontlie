@@ -4,6 +4,7 @@ export const useInteractionStore = defineStore('interaction', () => {
   // --------------------------------
   // State
   // --------------------------------
+
   const isPickerOpen = ref(false);
   const pickerType = ref<'players' | 'stats'>('players');
 

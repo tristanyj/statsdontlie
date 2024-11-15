@@ -23,8 +23,27 @@ export const useStatConfigStore = defineStore('config/stat', () => {
   // --------------------------------
 
   const categories = ref<Category[]>([]);
-
   const selectedStatIds = ref<StatKey[]>([...DEFAULT_STAT_IDS]);
+
+  const currentSort = ref(STAT_SORT_OPTIONS[0]);
+  const isSortAscending = ref(true);
+
+  const selectedOnly = ref(false);
+  const filters = ref({
+    categories: {
+      'Regular Season': true,
+      'Post Season': true,
+      Awards: true,
+    },
+    subCategories: {
+      Total: true,
+      'Per Game': true,
+      Advanced: true,
+      'Game High': true,
+      Individual: true,
+      Team: true,
+    },
+  });
 
   // --------------------------------
   // Computed
@@ -93,6 +112,83 @@ export const useStatConfigStore = defineStore('config/stat', () => {
       })) as EnrichedCategory[]
   );
 
+  const sortedCategories = computed(() => {
+    const copy = [...filteredCategories.value];
+
+    switch (currentSort.value.key) {
+      case 'name':
+        return copy
+          .map((category) => ({
+            ...category,
+            subCategories: category.subCategories
+              .map((subCategory) => ({
+                ...subCategory,
+                stats: subCategory.stats.sort((a, b) =>
+                  isSortAscending.value
+                    ? a.name.localeCompare(b.name)
+                    : b.name.localeCompare(a.name)
+                ),
+              }))
+              .sort((a, b) =>
+                isSortAscending.value ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+              ),
+          }))
+          .sort((a, b) =>
+            isSortAscending.value ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+          );
+      default:
+        return copy;
+    }
+  });
+
+  const isFiltered = computed(() => {
+    return (
+      selectedOnly.value ||
+      Object.values(filters.value.categories).some((category) => !category) ||
+      Object.values(filters.value.subCategories).some((subCategory) => !subCategory)
+    );
+  });
+
+  const filteredCategories = computed(() => {
+    const searchTerm = searchInput.value.toLowerCase();
+
+    return selectableCategories.value
+      .map((category) => ({
+        ...category,
+        subCategories: category.subCategories
+          .map((subCategory) => ({
+            ...subCategory,
+            stats: subCategory.stats
+              .filter((stat) => (searchTerm ? stat.name.toLowerCase().includes(searchTerm) : true))
+              .filter((stat) =>
+                selectedOnly.value ? selectedStatIds.value.includes(stat.id) : true
+              )
+              .filter((stat) => {
+                const [categoryId, subCategoryId] = stat.id.split('.');
+                const parsedCategoryId = formatString(categoryId);
+                const parsedSubCategoryId = formatString(subCategoryId);
+
+                return (
+                  filters.value.categories[
+                    parsedCategoryId as keyof typeof filters.value.categories
+                  ] &&
+                  filters.value.subCategories[
+                    parsedSubCategoryId as keyof typeof filters.value.subCategories
+                  ]
+                );
+              }),
+          }))
+          .filter((subCategory) => subCategory.stats.length > 0),
+      }))
+      .filter((category) => category.subCategories.length > 0);
+  });
+
+  const filteredStats = computed(() => {
+    return filteredCategories.value.flatMap((category) =>
+      category.subCategories.flatMap((subCategory) => subCategory.stats)
+    );
+  });
+
   // --------------------------------
   // Methods
   // --------------------------------
@@ -132,68 +228,6 @@ export const useStatConfigStore = defineStore('config/stat', () => {
   const restoreDefaultStatSelection = () => {
     selectedStatIds.value = [...DEFAULT_STAT_IDS];
   };
-
-  const selectedOnly = ref(false);
-
-  const filters = ref({
-    categories: {
-      'Regular Season': true,
-      'Post Season': true,
-      Awards: true,
-    },
-    subCategories: {
-      Total: true,
-      'Per Game': true,
-      Advanced: true,
-      'Game High': true,
-      Individual: true,
-      Team: true,
-    },
-  });
-
-  const currentSort = ref(STAT_SORT_OPTIONS[0]);
-
-  const filteredCategories = computed(() => {
-    const searchTerm = searchInput.value.toLowerCase();
-
-    return selectableCategories.value
-      .map((category) => ({
-        ...category,
-        subCategories: category.subCategories
-          .map((subCategory) => ({
-            ...subCategory,
-            stats: subCategory.stats
-              .filter((stat) => (searchTerm ? stat.name.toLowerCase().includes(searchTerm) : true))
-              .filter((stat) =>
-                selectedOnly.value ? selectedStatIds.value.includes(stat.id) : true
-              )
-              .filter((stat) => {
-                const [categoryId, subCategoryId] = stat.id.split('.');
-                const parsedCategoryId = formatString(categoryId);
-                const parsedSubCategoryId = formatString(subCategoryId);
-
-                return (
-                  filters.value.categories[
-                    parsedCategoryId as keyof typeof filters.value.categories
-                  ] &&
-                  filters.value.subCategories[
-                    parsedSubCategoryId as keyof typeof filters.value.subCategories
-                  ]
-                );
-              }),
-          }))
-          .filter((subCategory) => subCategory.stats.length > 0), // Remove empty subCategories
-      }))
-      .filter((category) => category.subCategories.length > 0); // Remove empty categories
-  });
-
-  const filteredStats = computed(() => {
-    return filteredCategories.value.flatMap((category) =>
-      category.subCategories.flatMap((subCategory) => subCategory.stats)
-    );
-  });
-
-  const isSortAscending = ref(true);
 
   const toggleSubCategorySelection = (subCategoryId: SubCategoryKey) => {
     const stats = filteredCategories.value
@@ -237,47 +271,10 @@ export const useStatConfigStore = defineStore('config/stat', () => {
         .map((stat) => stat.id)
     );
   };
+
   const clearSelection = () => {
     setSelectedStatIds([]);
   };
-
-  const sortedCategories = computed(() => {
-    const copy = [...filteredCategories.value];
-
-    switch (currentSort.value.key) {
-      case 'name':
-        // sort stats by name
-        return copy
-          .map((category) => ({
-            ...category,
-            subCategories: category.subCategories
-              .map((subCategory) => ({
-                ...subCategory,
-                stats: subCategory.stats.sort((a, b) =>
-                  isSortAscending.value
-                    ? a.name.localeCompare(b.name)
-                    : b.name.localeCompare(a.name)
-                ),
-              }))
-              .sort((a, b) =>
-                isSortAscending.value ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
-              ),
-          }))
-          .sort((a, b) =>
-            isSortAscending.value ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
-          );
-      default:
-        return copy;
-    }
-  });
-
-  const isFiltered = computed(() => {
-    return (
-      selectedOnly.value ||
-      Object.values(filters.value.categories).some((category) => !category) ||
-      Object.values(filters.value.subCategories).some((subCategory) => !subCategory)
-    );
-  });
 
   return {
     isLoaded,

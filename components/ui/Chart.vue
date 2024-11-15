@@ -10,7 +10,6 @@ const {
   drawStatArcs,
   drawGroupArcs,
   drawOutsideMaxStatScaleArc,
-  drawTest,
 } = useChartDrawArcs();
 const { drawCircularSeparators, drawLinearSeparators, drawDonutLine } = useChartDrawLines();
 const { drawStatLabels, drawScaleLabels, drawGroupLabels } = useChartDrawLabels();
@@ -60,8 +59,6 @@ function createVisualization() {
 
   g.value.selectAll('*').remove();
 
-  drawTest(g.value);
-
   drawBackground(g.value);
 
   // -----------------
@@ -70,11 +67,9 @@ function createVisualization() {
 
   drawCircleBackground(g.value);
 
-  // Draw group and sub-group arcs
   drawGroupArcs(g.value, scales.circle, indices.value.group, selectedCategories.value, 0);
   drawGroupArcs(g.value, scales.circle, indices.value.subCategory, selectedSubCategories.value, 1);
 
-  // Draw stat & stat label arcs
   drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value);
   drawStatLabelArcs(
     g.value,
@@ -90,7 +85,6 @@ function createVisualization() {
   // LABELS
   // -----------------
 
-  // Draw group and sub-group labels
   drawGroupLabels(
     g.value,
     scales.circle,
@@ -108,14 +102,12 @@ function createVisualization() {
     false
   );
 
-  // Draw scale and stat labels
   drawStatLabels(g.value, scales.circle, selectedStats.value);
 
   // -----------------
   // LINES
   // -----------------
 
-  // Draw linear and circular separators
   drawLinearSeparators(
     g.value,
     scales.circle,
@@ -194,7 +186,6 @@ const mountToContainer = () => {
     .select(container.value)
     .append('svg')
     .attr('width', width)
-    // .attr('height', height)
     .attr('viewBox', `0 0 ${width} ${height}`)
     .attr('class', 'mx-auto');
   g.value = svg.append('g').attr('transform', `translate(${width / 2},${height / 2})`);

@@ -47,7 +47,6 @@ export function useChartConfig() {
     scales: scalePositions.reduce((acc, curr) => {
       return {
         ...acc,
-        // `${(curr * 100).toString()}%`
         [curr]: curr === 1 ? 'NBA Record' : curr,
       };
     }, {}),

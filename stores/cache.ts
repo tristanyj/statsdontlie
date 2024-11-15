@@ -4,11 +4,19 @@ import type { Stat } from '~/types';
 import { formatNumber } from '~/assets/scripts/utils';
 
 export const useCacheStore = defineStore('cache', () => {
+  // --------------------------------
+  // State
+  // --------------------------------
+
   const scaleCache = new Map<
     string,
     d3.ScaleContinuousNumeric<number, number> | d3.ScaleThreshold<number, number>
   >();
   const formatCache = new Map<string, (n: number, decimals: number) => string>();
+
+  // --------------------------------
+  // Methods
+  // --------------------------------
 
   const getScale = (column: Stat) => {
     const cacheKey = `${column.id}-${column.meta.scaleType}-${column.meta.domain}`;
@@ -51,6 +59,10 @@ export const useCacheStore = defineStore('cache', () => {
 
     return formatCache.get(cacheKey)!;
   };
+
+  // --------------------------------
+  // Lifecycle Hooks
+  // --------------------------------
 
   onUnmounted(() => {
     scaleCache.clear();
