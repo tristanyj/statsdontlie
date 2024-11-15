@@ -219,9 +219,9 @@ export function useChartDrawArcs() {
     circleScale: d3.ScaleLinear<number, number>,
     selectedStats: EnrichedStat[],
     selectedPlayers: Player[],
-    interaction = false
+    layer: 'base' | 'hover'
   ) {
-    const className = `stat-arc-${interaction ? 'hover' : 'normal'}`;
+    const className = `stat-arc-${layer}`;
     const arcData: Array<StatArc> = [];
 
     selectedStats.forEach((stat, statIndex) => {
@@ -272,69 +272,81 @@ export function useChartDrawArcs() {
       });
     });
 
-    g.selectAll(`.${className}`)
-      .data(arcData, (d) => (d as StatArc).id)
-      .join((enter) =>
-        enter
-          .append('path')
-          .attr('class', (d) => `${className} arc-${d.id}`)
-          .attr('d', (d) =>
+    arcData.forEach((arc) => {
+      g.append('path')
+        .attr('class', `${className} arc-${arc.id}`)
+        .attr('d', () =>
+          arcGenerator({
+            innerRadius: minRadius,
+            outerRadius: minRadius + restRadius * arc.value,
+            startAngle: arc.startAngle,
+            endAngle: arc.endAngle,
+            data: arc,
+          })
+        )
+        .attr('fill', arc.player.color)
+        .on('mouseenter', (event) => {
+          if (layer !== 'hover') return;
+
+          const overlayArc = g.select(`.stat-arc-overlay.arc-${arc.id}`);
+          overlayArc.classed('hover', true);
+
+          setTooltipStat({
+            id: arc.id,
+            player: {
+              id: arc.player.id,
+              name: arc.player.info.name,
+              color: arc.player.color,
+            },
+            category: {
+              name: arc.category.name,
+              color: arc.category.color,
+            },
+            subCategory: {
+              name: arc.subCategory.name,
+            },
+            stat: {
+              name: arc.stat.name,
+              description: arc.stat.description,
+              abbreviation: arc.stat.abbreviation,
+            },
+            value: arc.statValue,
+            record: {
+              value: arc.stat.record.value.toString(),
+              holder: arc.stat.record.name,
+            },
+          });
+          updateMousePosition(event);
+        })
+        .on('mousemove', (event) => {
+          if (layer !== 'hover') return;
+          updateMousePosition(event);
+        })
+        .on('mouseleave', (_) => {
+          if (layer !== 'hover') return;
+
+          g.select(`.stat-arc-overlay.arc-${arc.id}`).classed('hover', false);
+
+          setTooltipStat(null);
+        });
+
+      if (layer === 'base') {
+        g.append('path')
+          .attr('class', `stat-arc-overlay arc-${arc.id}`)
+          .attr('d', () =>
             arcGenerator({
               innerRadius: minRadius,
-              outerRadius: minRadius + restRadius * d.value,
-              startAngle: d.startAngle,
-              endAngle: d.endAngle,
-              data: d,
+              outerRadius: minRadius + restRadius * arc.value,
+              startAngle: arc.startAngle,
+              endAngle: arc.endAngle,
+              data: arc,
             })
           )
-          .attr('fill', (d) => d.player.color)
-          .on('mouseenter', (event, d) => {
-            if (!interaction) return;
+          .attr('fill', () => '#000');
+      }
+    });
 
-            const arc = g.select(`.stat-arc-normal.arc-${d.id}`);
-            arc.classed('hover', true);
-
-            setTooltipStat({
-              id: d.id,
-              player: {
-                id: d.player.id,
-                name: d.player.info.name,
-                color: d.player.color,
-              },
-              category: {
-                name: d.category.name,
-                color: d.category.color,
-              },
-              subCategory: {
-                name: d.subCategory.name,
-              },
-              stat: {
-                name: d.stat.name,
-                description: d.stat.description,
-                abbreviation: d.stat.abbreviation,
-              },
-              value: d.statValue,
-              record: {
-                value: d.stat.record.value.toString(),
-                holder: d.stat.record.name,
-              },
-            });
-            updateMousePosition(event);
-          })
-          .on('mousemove', (event) => {
-            if (!interaction) return;
-            updateMousePosition(event);
-          })
-          .on('mouseleave', (_, d) => {
-            if (!interaction) return;
-
-            g.select(`.stat-arc-normal.arc-${d.id}`).classed('hover', false);
-
-            setTooltipStat(null);
-          })
-      );
-
-    if (interaction) return;
+    if (layer === 'hover') return;
 
     g.append('path')
       .attr('class', 'legend-arc')
@@ -357,9 +369,9 @@ export function useChartDrawArcs() {
     selectedStats: EnrichedStat[],
     indices: number[],
     groups: SubCategory[],
-    interaction = false
+    layer: 'base' | 'hover'
   ) {
-    const className = `stat-label-arc-${interaction ? 'hover' : 'normal'}`;
+    const className = `stat-label-arc-${layer}`;
 
     const getGroupIndex = (statIndex: number) => {
       return indices.findIndex((startIndex, i) => {
@@ -412,9 +424,9 @@ export function useChartDrawArcs() {
               : modifier.color.subCategoryLabel.background.opacity.odd;
           })
           .on('mouseenter', (event, d) => {
-            if (!interaction) return;
+            if (layer !== 'hover') return;
 
-            const arc = g.select(`.stat-label-arc-normal.arc-label-${d.id}`);
+            const arc = g.select(`.stat-label-arc-overlay.arc-label-${d.id}`);
             arc.classed('hover', true);
 
             setTooltipStatLabel({
@@ -439,16 +451,36 @@ export function useChartDrawArcs() {
             updateMousePosition(event);
           })
           .on('mousemove', (event) => {
-            if (!interaction) return;
+            if (layer !== 'hover') return;
             updateMousePosition(event);
           })
           .on('mouseleave', (_, d) => {
-            if (!interaction) return;
+            if (layer !== 'hover') return;
 
-            g.select(`.stat-label-arc-normal.arc-label-${d.id}`).classed('hover', false);
+            g.select(`.stat-label-arc-overlay.arc-label-${d.id}`).classed('hover', false);
             setTooltipStatLabel(null);
           })
       );
+
+    if (layer === 'base') {
+      g.selectAll(`.stat-label-arc-overlay`)
+        .data(arcData, (d) => (d as StatArc).id)
+        .join((enter) =>
+          enter
+            .append('path')
+            .attr('class', (d) => `stat-label-arc-overlay arc-label-${d.id}`)
+            .attr('d', (d) =>
+              arcGenerator({
+                innerRadius: radius * proportions[0],
+                outerRadius: radius * proportions[1],
+                startAngle: d.startAngle,
+                endAngle: d.endAngle,
+                data: d,
+              })
+            )
+            .attr('fill', '#000')
+        );
+    }
   }
 
   function drawGroupArcs(
@@ -457,9 +489,9 @@ export function useChartDrawArcs() {
     indices: number[],
     groups: Category[] | SubCategory[],
     layerModifier: number,
-    interaction = false
+    layer: 'base' | 'hover'
   ) {
-    const className = `group-arc-${interaction ? 'hover' : 'normal'}`;
+    const className = `group-arc-${layer}`;
 
     indices.forEach((startIndex, groupIndex) => {
       const group = groups[groupIndex];
@@ -498,18 +530,25 @@ export function useChartDrawArcs() {
             : modifier.color.subCategoryLabel.background.opacity.odd
         )
         .on('mouseenter', () => {
-          if (!interaction) return;
-          const arc = g.select(`.group-arc-normal.group-arc-${groupId}`);
+          if (layer !== 'hover') return;
+          const arc = g.select(`.group-arc-overlay.group-arc-${groupId}`);
           arc.classed('hover', true);
         })
         .on('mouseleave', () => {
-          if (!interaction) return;
-          g.select(`.group-arc-normal.group-arc-${groupId}`).classed('hover', false);
+          if (layer !== 'hover') return;
+          g.select(`.group-arc-overlay.group-arc-${groupId}`).classed('hover', false);
         })
         .on('click', () => {
-          if (!interaction) return;
+          if (layer !== 'hover') return;
           setHoveredCategory(group);
         });
+
+      if (layer === 'base') {
+        g.append('path')
+          .attr('class', `group-arc-overlay group-arc-${groupId}`)
+          .attr('d', backgroundArc)
+          .attr('fill', '#000');
+      }
     });
   }
 

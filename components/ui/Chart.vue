@@ -67,16 +67,25 @@ function createVisualization() {
 
   drawCircleBackground(g.value);
 
-  drawGroupArcs(g.value, scales.circle, indices.value.group, selectedCategories.value, 0);
-  drawGroupArcs(g.value, scales.circle, indices.value.subCategory, selectedSubCategories.value, 1);
+  drawGroupArcs(g.value, scales.circle, indices.value.group, selectedCategories.value, 0, 'base');
+  drawGroupArcs(
+    g.value,
+    scales.circle,
+    indices.value.subCategory,
+    selectedSubCategories.value,
+    1,
+    'base'
+  );
 
-  drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value);
+  drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value, 'base');
+  // drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value, 'overlay');
   drawStatLabelArcs(
     g.value,
     scales.circle,
     selectedStats.value,
     indices.value.subCategory,
-    selectedSubCategories.value
+    selectedSubCategories.value,
+    'base'
   );
 
   drawOutsideMaxStatScaleArc(g.value);
@@ -108,6 +117,7 @@ function createVisualization() {
   // LINES
   // -----------------
 
+  drawCircularSeparators(g.value);
   drawLinearSeparators(
     g.value,
     scales.circle,
@@ -115,7 +125,6 @@ function createVisualization() {
     indices.value.subCategory,
     selectedStatIdsCount.value
   );
-  drawCircularSeparators(g.value);
 
   // -----------------
   // POINTS
@@ -136,6 +145,7 @@ function createVisualization() {
   // -----------------
 
   drawScaleLabels(g.value, scales.circle, selectedStats.value);
+
   drawOverlayArc(
     g.value,
     scales.circle,
@@ -148,23 +158,23 @@ function createVisualization() {
   // HIDDEN
   // -----------------
 
-  drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value, true);
+  drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value, 'hover');
   drawStatLabelArcs(
     g.value,
     scales.circle,
     selectedStats.value,
     indices.value.subCategory,
     selectedSubCategories.value,
-    true
+    'hover'
   );
-  drawGroupArcs(g.value, scales.circle, indices.value.group, selectedCategories.value, 0, true);
+  drawGroupArcs(g.value, scales.circle, indices.value.group, selectedCategories.value, 0, 'hover');
   drawGroupArcs(
     g.value,
     scales.circle,
     indices.value.subCategory,
     selectedSubCategories.value,
     1,
-    true
+    'hover'
   );
 }
 

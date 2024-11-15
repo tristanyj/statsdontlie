@@ -22,20 +22,28 @@ body {
   opacity: 0 !important;
 }
 
-.stat-arc-normal.hover,
-.group-arc-normal.hover,
-.stat-label-arc-normal.hover {
-  filter: brightness(0.9) !important;
+.stat-arc-overlay,
+.group-arc-overlay,
+.stat-label-arc-overlay,
+.top-clickable-overlay,
+.bottom-clickable-overlay {
+  opacity: 0;
 }
 
-.top-clickable-normal.hover,
-.bottom-clickable-normal.hover {
-  transition: filter 0.1s ease;
-  filter: brightness(0.96) !important;
+.stat-arc-overlay.hover,
+.group-arc-overlay.hover,
+.stat-label-arc-overlay.hover {
+  opacity: 0.05;
+}
+
+.top-clickable-overlay.hover,
+.bottom-clickable-overlay.hover {
+  transition: opacity 0.05s;
+  opacity: 0.05;
 }
 
 .darken:hover {
-  filter: brightness(0.86);
+  filter: brightness(0.85);
 }
 
 .group-arc-hover,

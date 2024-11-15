@@ -3,8 +3,6 @@ import { calcTextLength } from '~/assets/scripts/utils';
 
 import basket from '~/assets/images/basket.svg';
 
-import * as d3 from 'd3';
-
 export function useChartDrawCenter() {
   const { openPicker, setHoveredCategory } = useInteractionStore();
 
@@ -89,7 +87,7 @@ export function useChartDrawCenter() {
     clickableArcs.forEach((arc) => {
       arcGroup
         .append('path')
-        .attr('class', `${arc.id}-normal`)
+        .attr('class', `${arc.id}-base`)
         .attr(
           'd',
           arcGenerator({
@@ -135,6 +133,20 @@ export function useChartDrawCenter() {
     clickableArcs.forEach((arc) => {
       arcGroup
         .append('path')
+        .attr('class', `${arc.id}-overlay`)
+        .attr(
+          'd',
+          arcGenerator({
+            innerRadius: 0,
+            outerRadius: arc.radius,
+            startAngle: arc.startAngle,
+            endAngle: arc.endAngle,
+            data: null,
+          })
+        )
+        .attr('fill', '#000');
+      arcGroup
+        .append('path')
         .attr('class', `${arc.id}-hover`)
         .attr(
           'd',
@@ -149,12 +161,14 @@ export function useChartDrawCenter() {
         .attr('fill', arc.background)
         .style('cursor', 'pointer')
         .on('click', arc.onClick)
-        .on('mouseover', () => {
-          const halfCircle = d3.select(`.${arc.id}-normal`);
+        .on('mouseenter', () => {
+          console.log('enter');
+          const halfCircle = arcGroup.select(`.${arc.id}-overlay`);
+          console.log(halfCircle);
           halfCircle.classed('hover', true);
         })
         .on('mouseout', () => {
-          const halfCircle = d3.select(`.${arc.id}-normal`);
+          const halfCircle = arcGroup.select(`.${arc.id}-overlay`);
           halfCircle.classed('hover', false);
         });
     });
