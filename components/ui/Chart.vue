@@ -19,7 +19,7 @@ const { scales, updateScale } = useChartScales();
 
 const interactionStore = useInteractionStore();
 const { hoveredCategory } = storeToRefs(interactionStore);
-const { updateMousePosition, setHoveredCategory } = interactionStore;
+const { setHoveredCategory } = interactionStore;
 
 const playerConfigStore = usePlayerConfigStore();
 const statConfigStore = useStatConfigStore();
@@ -53,19 +53,23 @@ updateScale('circle', selectedStatIdsCount.value);
 
 const container = ref<HTMLElement | null>(null);
 const g = ref<d3GSelection | null>(null);
+const isLoading = ref(true);
 
 function createVisualization() {
   if (!g.value) return;
 
   g.value.selectAll('*').remove();
 
+  // -----------------
+  // BACKGROUND
+  // -----------------
+
   drawBackground(g.value);
+  drawCircleBackground(g.value);
 
   // -----------------
   // ARCS
   // -----------------
-
-  drawCircleBackground(g.value);
 
   drawGroupArcs(g.value, scales.circle, indices.value.group, selectedCategories.value, 0, 'base');
   drawGroupArcs(
@@ -78,7 +82,7 @@ function createVisualization() {
   );
 
   drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value, 'base');
-  // drawStatArcs(g.value, scales.circle, selectedStats.value, selectedPlayers.value, 'overlay');
+
   drawStatLabelArcs(
     g.value,
     scales.circle,
@@ -89,29 +93,6 @@ function createVisualization() {
   );
 
   drawOutsideMaxStatScaleArc(g.value);
-
-  // -----------------
-  // LABELS
-  // -----------------
-
-  drawGroupLabels(
-    g.value,
-    scales.circle,
-    indices.value.group,
-    selectedStatIdsCount.value,
-    selectedCategories.value,
-    true
-  );
-  drawGroupLabels(
-    g.value,
-    scales.circle,
-    indices.value.subCategory,
-    selectedStatIdsCount.value,
-    selectedSubCategories.value,
-    false
-  );
-
-  drawStatLabels(g.value, scales.circle, selectedStats.value);
 
   // -----------------
   // LINES
@@ -141,10 +122,32 @@ function createVisualization() {
   drawCenterImage(g.value);
 
   // -----------------
-  // OVERLAY
+  // LABELS
   // -----------------
 
+  drawGroupLabels(
+    g.value,
+    scales.circle,
+    indices.value.group,
+    selectedStatIdsCount.value,
+    selectedCategories.value,
+    true
+  );
+  drawGroupLabels(
+    g.value,
+    scales.circle,
+    indices.value.subCategory,
+    selectedStatIdsCount.value,
+    selectedSubCategories.value,
+    false
+  );
+
+  drawStatLabels(g.value, scales.circle, selectedStats.value);
   drawScaleLabels(g.value, scales.circle, selectedStats.value);
+
+  // -----------------
+  // OVERLAY
+  // -----------------
 
   drawOverlayArc(
     g.value,
@@ -180,11 +183,8 @@ function createVisualization() {
 
 function updateVisualization() {
   if (!container.value) return;
-
   createVisualization();
 }
-
-const isLoading = ref(true);
 
 const mountToContainer = () => {
   if (!container.value) {
@@ -223,16 +223,14 @@ watch(
   () => selectedStatIds.value,
   () => {
     updateVisualization();
-  },
-  { deep: true }
+  }
 );
 
 watch(
   () => selectedPlayerIds.value,
   () => {
     updateVisualization();
-  },
-  { deep: true }
+  }
 );
 
 watch(
@@ -251,12 +249,10 @@ const handleOutsideClick = (event: MouseEvent) => {
 
 onMounted(() => {
   mountToContainer();
-  window.addEventListener('mousemove', updateMousePosition);
   window.addEventListener('click', handleOutsideClick);
 });
 
 onUnmounted(() => {
-  window.removeEventListener('mousemove', updateMousePosition);
   window.removeEventListener('click', handleOutsideClick);
 });
 </script>
@@ -271,9 +267,3 @@ onUnmounted(() => {
     />
   </div>
 </template>
-
-<style scoped>
-.aspect-square {
-  aspect-ratio: 1 / 1;
-}
-</style>

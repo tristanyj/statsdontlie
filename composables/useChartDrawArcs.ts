@@ -27,8 +27,7 @@ export function useChartDrawArcs() {
       .attr('cx', 0)
       .attr('cy', 0)
       .attr('r', radius)
-      .attr('fill', modifier.color.default)
-      .attr('opacity', 1);
+      .attr('fill', modifier.color.default);
   }
 
   function drawOverlayArc(

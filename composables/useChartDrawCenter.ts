@@ -162,9 +162,7 @@ export function useChartDrawCenter() {
         .style('cursor', 'pointer')
         .on('click', arc.onClick)
         .on('mouseenter', () => {
-          console.log('enter');
           const halfCircle = arcGroup.select(`.${arc.id}-overlay`);
-          console.log(halfCircle);
           halfCircle.classed('hover', true);
         })
         .on('mouseout', () => {
