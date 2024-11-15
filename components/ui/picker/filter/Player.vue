@@ -18,16 +18,8 @@ const {
   selectedPlayerIds,
   selectablePlayers,
 } = storeToRefs(playerConfigStore);
-const {
-  setSelectedPlayerIds,
-  restoreDefaultPlayerSelection,
-  selectAllFilteredPlayers,
-  clearFilters,
-} = playerConfigStore;
-
-const clearSelection = () => {
-  setSelectedPlayerIds([]);
-};
+const { restoreDefaultPlayerSelection, selectAllFilteredPlayers, clearFilters, clearSelection } =
+  playerConfigStore;
 
 const isFiltersOpen = ref(false);
 const isSortOpen = ref(false);

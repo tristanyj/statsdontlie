@@ -1,4 +1,4 @@
-import type { StatKey, PlayerKey, SortOption, PlayerFilters } from '~/types';
+import type { StatKey, PlayerKey, SortOption, PlayerFilters, StatFilters } from '~/types';
 
 export const DEFAULT_PLAYER_IDS: PlayerKey[] = [
   'abdulka01',
@@ -93,6 +93,23 @@ export const STAT_SORT_OPTIONS: SortOption[] = [
 export const HEIGHT_RANGE = [70, 90];
 export const WEIGHT_RANGE = [150, 350];
 export const YEARS_RANGE = [1960, 2024];
+
+export const DEFAULT_STAT_FILTERS: StatFilters = {
+  selectedOnly: false,
+  categories: {
+    'Regular Season': true,
+    'Post Season': true,
+    Awards: true,
+  },
+  subCategories: {
+    Total: true,
+    'Per Game': true,
+    Advanced: true,
+    'Game High': true,
+    Individual: true,
+    Team: true,
+  },
+};
 
 export const DEFAULT_PLAYER_FILTERS: PlayerFilters = {
   selectedOnly: false,

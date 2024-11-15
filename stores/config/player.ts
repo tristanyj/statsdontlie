@@ -134,7 +134,11 @@ export const usePlayerConfigStore = defineStore('config/player', () => {
   };
 
   const clearFilters = () => {
-    filters.value = DEFAULT_PLAYER_FILTERS;
+    filters.value = JSON.parse(JSON.stringify(DEFAULT_PLAYER_FILTERS));
+  };
+
+  const clearSelection = () => {
+    selectedPlayerIds.value = [];
   };
 
   const selectAllFilteredPlayers = () => {
@@ -161,5 +165,6 @@ export const usePlayerConfigStore = defineStore('config/player', () => {
     restoreDefaultPlayerSelection,
     selectAllFilteredPlayers,
     clearFilters,
+    clearSelection,
   };
 });

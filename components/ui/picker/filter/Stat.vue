@@ -10,7 +10,6 @@ const {
   currentSort,
   isSortAscending,
   isFiltered,
-  selectedOnly,
   filteredStats,
 } = storeToRefs(statConfigStore);
 const { restoreDefaultStatSelection, clearSelection, selectAllFilteredStats, clearFiltersStats } =
@@ -49,7 +48,7 @@ const selectOption = (option: SortOption) => {
     <div class="filters-container rounded-lg w-60">
       <div class="mb-3">
         <label class="block text-sm text-gray-700">Selected Only</label>
-        <UToggle v-model="selectedOnly" />
+        <UToggle v-model="filters.selectedOnly" />
       </div>
       <div class="mb-3">
         <label class="block text-sm text-gray-700 mb-1">Categories</label>

@@ -5,9 +5,14 @@ import type {
   SubCategoryKey,
   Category,
   StatKey,
+  StatFilters,
 } from '~/types';
 
-import { DEFAULT_STAT_IDS, STAT_SORT_OPTIONS } from '~/assets/scripts/constants';
+import {
+  DEFAULT_STAT_IDS,
+  STAT_SORT_OPTIONS,
+  DEFAULT_STAT_FILTERS,
+} from '~/assets/scripts/constants';
 
 import { formatString } from '~/assets/scripts/utils';
 
@@ -28,28 +33,24 @@ export const useStatConfigStore = defineStore('config/stat', () => {
   const currentSort = ref(STAT_SORT_OPTIONS[0]);
   const isSortAscending = ref(true);
 
-  const selectedOnly = ref(false);
-  const filters = ref({
-    categories: {
-      'Regular Season': true,
-      'Post Season': true,
-      Awards: true,
-    },
-    subCategories: {
-      Total: true,
-      'Per Game': true,
-      Advanced: true,
-      'Game High': true,
-      Individual: true,
-      Team: true,
-    },
-  });
+  const filters = ref<StatFilters>(DEFAULT_STAT_FILTERS);
 
   // --------------------------------
   // Computed
   // --------------------------------
 
   const isLoaded = computed(() => categories.value.length > 0);
+
+  const enrichedCategories = computed(
+    () =>
+      categories.value.map((category) => ({
+        ...category,
+        subCategories: category.subCategories.map((subCategory) => ({
+          ...subCategory,
+          stats: subCategory.stats.map((stat) => getEnrichedStat(stat, subCategory.color)),
+        })),
+      })) as EnrichedCategory[]
+  );
 
   const selectedCategories = computed(() => {
     return enrichedCategories?.value
@@ -101,17 +102,6 @@ export const useStatConfigStore = defineStore('config/stat', () => {
     );
   });
 
-  const enrichedCategories = computed(
-    () =>
-      categories.value.map((category) => ({
-        ...category,
-        subCategories: category.subCategories.map((subCategory) => ({
-          ...subCategory,
-          stats: subCategory.stats.map((stat) => getEnrichedStat(stat, subCategory.color)),
-        })),
-      })) as EnrichedCategory[]
-  );
-
   const sortedCategories = computed(() => {
     const copy = [...filteredCategories.value];
 
@@ -143,7 +133,7 @@ export const useStatConfigStore = defineStore('config/stat', () => {
 
   const isFiltered = computed(() => {
     return (
-      selectedOnly.value ||
+      filters.value.selectedOnly ||
       Object.values(filters.value.categories).some((category) => !category) ||
       Object.values(filters.value.subCategories).some((subCategory) => !subCategory)
     );
@@ -161,7 +151,7 @@ export const useStatConfigStore = defineStore('config/stat', () => {
             stats: subCategory.stats
               .filter((stat) => (searchTerm ? stat.name.toLowerCase().includes(searchTerm) : true))
               .filter((stat) =>
-                selectedOnly.value ? selectedStatIds.value.includes(stat.id) : true
+                filters.value.selectedOnly ? selectedStatIds.value.includes(stat.id) : true
               )
               .filter((stat) => {
                 const [categoryId, subCategoryId] = stat.id.split('.');
@@ -203,7 +193,9 @@ export const useStatConfigStore = defineStore('config/stat', () => {
     },
   });
 
-  const getCategoryById = (id: string) => categories.value.find((category) => category.id === id);
+  const getCategoryById = (id: string) => {
+    return categories.value.find((category) => category.id === id);
+  };
   const getSubCategoryById = (category: Category, subCategoryId: string) => {
     return category?.subCategories.find(
       (subCategory) => subCategory.id === `${category.id}.${subCategoryId}`
@@ -251,24 +243,18 @@ export const useStatConfigStore = defineStore('config/stat', () => {
   };
 
   const clearFiltersStats = () => {
-    selectedOnly.value = false;
-    Object.keys(filters.value.categories).forEach(
-      (category) =>
-        (filters.value.categories[category as keyof typeof filters.value.categories] = true)
-    );
-    Object.keys(filters.value.subCategories).forEach(
-      (subCategory) =>
-        (filters.value.subCategories[subCategory as keyof typeof filters.value.subCategories] =
-          true)
-    );
+    filters.value = JSON.parse(JSON.stringify(DEFAULT_STAT_FILTERS));
   };
 
   const selectAllFilteredStats = () => {
     setSelectedStatIds(
-      filteredCategories.value
-        .flatMap((category) => category.subCategories)
-        .flatMap((subCategory) => subCategory.stats)
-        .map((stat) => stat.id)
+      [
+        ...selectedStatIds.value,
+        ...filteredCategories.value
+          .flatMap((category) => category.subCategories)
+          .flatMap((subCategory) => subCategory.stats)
+          .map((stat) => stat.id),
+      ].filter((id, index, self) => self.indexOf(id) === index)
     );
   };
 
@@ -281,7 +267,6 @@ export const useStatConfigStore = defineStore('config/stat', () => {
     isFiltered,
     currentSort,
     isSortAscending,
-    selectedOnly,
     filters,
     filteredStats,
     sortedCategories,

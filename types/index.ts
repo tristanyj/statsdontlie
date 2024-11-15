@@ -167,23 +167,16 @@ export interface ToolTipStatLabel extends Tooltip {
 // Player
 // --------------------------------
 
+export interface StatFilters {
+  selectedOnly: boolean;
+  categories: Record<string, boolean>;
+  subCategories: Record<string, boolean>;
+}
+
 export interface PlayerFilters {
   selectedOnly: boolean;
   heightRange: [number, number];
   weightRange: [number, number];
   yearsRange: [number, number];
   positions: Record<'PG' | 'SG' | 'SF' | 'PF' | 'C', boolean>;
-}
-
-export interface PlayerSort {
-  key: 'name' | 'win-shares' | 'height' | 'weight' | 'experience' | 'draft-year';
-  label: string;
-}
-
-export interface PlayerState {
-  players: Player[];
-  selectedPlayerIds: PlayerKey[];
-  currentSort: PlayerSort;
-  isSortAscending: boolean;
-  filters: PlayerFilters;
 }
