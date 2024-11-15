@@ -16,9 +16,10 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
       <div
         v-for="i in 10"
         :key="`line-${i}`"
-        class="absolute top-0 h-full w-1 bg-gray-50 opacity-5"
-        :class="`left-[${i * 10}%]`"
+        class="absolute top-0 h-full w-1 bg-gray-50"
+        :style="{ left: `${i * 10}%`, opacity: 0.04 }"
       />
+
       <UContainer class="relative">
         <div class="relative py-16">
           <div class="flex justify-center relative mb-5">
