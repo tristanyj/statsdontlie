@@ -1,14 +1,7 @@
 <script setup lang="ts">
 import type { PlayerKey, SubCategoryKey } from '~/types';
 
-import { heightToInches } from '~/assets/scripts/utils';
-
-const formatString = (str: string): string => {
-  return str
-    .split('_')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(' ');
-};
+import { heightToInches, formatString } from '~/assets/scripts/utils';
 
 const configStore = useConfigStore();
 const {
@@ -30,7 +23,7 @@ const { isPickerOpen, pickerType } = storeToRefs(interactionStore);
 const { setIsPickerOpen, openPicker } = interactionStore;
 
 const getImageUrl = (playerId: PlayerKey) => {
-  return new URL(`../../assets/images/player/${playerId}.jpg`, import.meta.url).href;
+  return new URL(`../../../assets/images/player/${playerId}.jpg`, import.meta.url).href;
 };
 
 const selectedOnly = ref(false);
@@ -49,7 +42,6 @@ const weightMax = computed(() => Math.max(weightRange.value[0], weightRange.valu
 const yearsMin = computed(() => Math.min(yearsRange.value[0], yearsRange.value[1]));
 const yearsMax = computed(() => Math.max(yearsRange.value[0], yearsRange.value[1]));
 
-// Positions checkboxes
 const positions = ref({
   PG: true,
   SG: true,
@@ -230,9 +222,6 @@ const clearFilters = () => {
 };
 
 const toggleSubCategorySelection = (subCategoryId: SubCategoryKey) => {
-  // if all stats are selected, deselect all
-  // if some stats are selected, select all
-  // if none are selected, select all
   const stats = filteredCategories.value
     .flatMap((category) => category.subCategories)
     .find((subCategory) => subCategory.id === subCategoryId)?.stats;
@@ -509,38 +498,13 @@ watch(
     class="font-host"
   >
     <div class="grid grid-rows-[auto,auto,1fr] h-full">
-      <div class="grid md:grid-cols-[auto,1fr,auto] gap-3 lg:gap-10 items-center border-b p-4">
-        <div class="order-3 md:order-1">
-          <UTabs
-            v-model="selectedIndex"
-            :items="items"
-            :ui="{ content: false }"
-            @change="value = ''"
-          />
-        </div>
-        <div class="order-2">
-          <UInput
-            v-model="value"
-            icon="i-radix-icons:magnifying-glass"
-            padded
-            size="md"
-            color="gray"
-            variant="outline"
-            :placeholder="`Search ${selectedIndex === 0 ? 'players' : 'stats'}...`"
-            clearable
-          />
-        </div>
-        <div class="order-1 md:order-3">
-          <UButton
-            color="gray"
-            size="md"
-            icon="i-heroicons-x-mark-20-solid"
-            square
-            padded
-            @click="isOpen = false"
-          />
-        </div>
-      </div>
+      <VisualisationPickerHeader
+        v-model="selectedIndex"
+        v-model:searchValue="value"
+        :items="items"
+        @change="value = ''"
+        @close="isOpen = false"
+      />
       <template v-if="selectedIndex === 0">
         <div class="grid lg:grid-flow-col justify-between py-3 mt-2 px-4">
           <div

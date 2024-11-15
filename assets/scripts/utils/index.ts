@@ -78,6 +78,13 @@ const heightToInches = (height: string): number => {
   return feet * 12 + inches;
 };
 
+const formatString = (str: string): string => {
+  return str
+    .split('_')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+};
+
 export {
   wrapText,
   formatNumber,
@@ -86,4 +93,5 @@ export {
   withUnit,
   escapeSelector,
   heightToInches,
+  formatString,
 };
