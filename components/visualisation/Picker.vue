@@ -780,7 +780,7 @@ watch(
         </div>
       </template>
       <template v-else>
-        <div class="grid grid-flow-col justify-between py-3 mt-2 px-4">
+        <div class="grid lg:grid-flow-col justify-between py-3 mt-2 px-4">
           <div class="flex space-x-2 text-sm text-gray-500">
             <div class="">{{ selectedStatIds.length }} Selected,</div>
             <div class="">{{ filteredStats.length }} filtered,</div>
@@ -998,7 +998,7 @@ watch(
           v-if="hasResults"
           class="p-4 pt-3 pb-10"
         >
-          <div class="grid grid-cols-3 gap-20 items-start">
+          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-10 xl:gap-20 items-start">
             <div
               v-for="(group, i) in sortedCategories"
               :key="`group-${i}`"
@@ -1040,7 +1040,7 @@ watch(
                       </h4>
                     </div>
                   </div>
-                  <div class="grid grid-cols-3 items-start gap-x-5">
+                  <div class="grid grid-cols-2 sm:grid-cols-3 items-start gap-x-2 sm:gap-x-5">
                     <div
                       v-for="(chunk, k) in getChunks(subCategory.stats, 3)"
                       :key="`chunk-${k}`"
