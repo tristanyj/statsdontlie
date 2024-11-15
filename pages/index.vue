@@ -2,7 +2,7 @@
 import basket from '@/assets/images/basket.svg';
 import basketCircle from '@/assets/images/basket-circle.svg';
 
-useHead({ title: "Home | Broadway: Compare NFL's best QBs." });
+useHead({ title: "Stats don't lie | A visualization of NBA legends" });
 
 const playerConfigStore = usePlayerConfigStore();
 const { isLoaded: isPlayersLoaded } = storeToRefs(playerConfigStore);
