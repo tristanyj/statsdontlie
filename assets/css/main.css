@@ -5,7 +5,7 @@ html {
 body {
   @apply font-host border-[8px] md:border-[16px] border-gray-50;
   background-color: #6c9591;
-  background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+  background-image: url('../images/asfalt-light.png');
 }
 
 #container svg {
