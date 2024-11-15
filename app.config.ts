@@ -4,6 +4,7 @@ export default defineAppConfig({
     gray: 'cool',
     container: {
       constrained: 'max-w-6xl',
+      padding: 'px-6 sm:px-8 lg:px-10',
     },
     button: {
       color: {

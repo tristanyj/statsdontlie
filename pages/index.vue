@@ -27,10 +27,10 @@ const { isLoaded } = storeToRefs(configStore);
               <img
                 :src="basketCircle"
                 alt=""
-                class="w-36 h-36 spin-slow"
+                class="w-32 h-32 md:w-36 md:h-36 spin-slow"
               />
               <div
-                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-28 h-28"
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 md:w-28 h-24 md:h-28"
               >
                 <img
                   :src="basket"
@@ -40,9 +40,9 @@ const { isLoaded } = storeToRefs(configStore);
               </div>
             </div>
           </div>
-          <h1 class="uppercase text-white text-center text-8xl">Stats don't lie</h1>
+          <h1 class="uppercase text-white text-center text-7xl md:text-8xl">Stats don't lie</h1>
           <div class="mt-8">
-            <div class="grid grid-cols-2 gap-6 text-justify">
+            <div class="grid md:grid-cols-2 gap-6 text-justify">
               <p class="font-host text-gray-100">
                 I follow sports for storylines and numbers. I like statistics, records, rivalries. I
                 probably like that better than actually watching the thing. In this visualization, I
@@ -65,7 +65,7 @@ const { isLoaded } = storeToRefs(configStore);
           </div>
         </div>
       </UContainer>
-      <div class="relative">
+      <div class="relative px-4">
         <VisualisationChart v-if="isLoaded" />
         <div
           v-else
@@ -76,10 +76,10 @@ const { isLoaded } = storeToRefs(configStore);
         </div>
       </div>
       <UContainer>
-        <div class="relative py-16 px-10 text-center lowercase">
-          <p class="text-white pl-4">
+        <div class="relative py-16 text-center lowercase">
+          <p class="text-white">
             Created by Tristan Lanoye
-            <span class="relative right-1 mx-3">|</span>
+            <span class="relative right-1 mx-3 opacity-50">|</span>
             <a
               href="https://tristanyj.com"
               class="underline"

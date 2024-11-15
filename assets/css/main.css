@@ -7,8 +7,7 @@ html {
 }
 
 body {
-  @apply font-anton bg-gray-50;
-  border: 15px solid white;
+  @apply font-anton border-[8px] md:border-[16px] border-white;
   background-color: #6c9591;
   background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
 }
