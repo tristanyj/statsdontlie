@@ -21,7 +21,7 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
       />
 
       <UContainer class="relative">
-        <div class="relative py-16">
+        <div class="relative py-12">
           <div class="flex justify-center relative mb-5">
             <div class="relative">
               <img
@@ -40,10 +40,10 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
               </div>
             </div>
           </div>
-          <h1 class="uppercase text-gray-50 text-center text-7xl md:text-8xl font-anton">
+          <h1 class="uppercase text-gray-50 text-center text-7xl md:text-8xl my-8 pb-1 font-anton">
             Stats don't lie
           </h1>
-          <div class="mt-8">
+          <div class="mt-8 mb-3">
             <div class="grid md:grid-cols-2 gap-6 text-justify">
               <p class="text-gray-100">
                 I follow sports for storylines and numbers. I like statistics, records, rivalries. I
