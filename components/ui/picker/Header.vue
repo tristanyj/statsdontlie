@@ -56,7 +56,7 @@ const placeholder = computed(() => `Search ${selectedIndex.value === 0 ? 'player
       <UButton
         color="gray"
         size="md"
-        icon="i-heroicons-x-mark-20-solid"
+        icon="i-radix-icons:cross-2"
         square
         padded
         @click="emit('close')"

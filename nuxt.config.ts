@@ -62,4 +62,7 @@ export default defineNuxtConfig({
     ],
     '@pinia-plugin-persistedstate/nuxt',
   ],
+  icon: {
+    serverBundle: 'remote',
+  },
 });
