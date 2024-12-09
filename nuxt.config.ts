@@ -61,8 +61,12 @@ export default defineNuxtConfig({
       },
     ],
     '@pinia-plugin-persistedstate/nuxt',
+    '@nuxt/icon',
   ],
   icon: {
-    serverBundle: 'remote',
+    serverBundle: {
+      remote: true,
+      collections: ['radix-icons'],
+    },
   },
 });

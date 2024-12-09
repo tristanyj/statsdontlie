@@ -59,9 +59,9 @@ const { isLoaded: isStatsLoaded } = storeToRefs(statConfigStore);
                   rel="noopener noreferrer"
                   class="underline"
                   >Basketball Reference</a
-                >. Stats are mapped around a circle on a scale from usually 0 to the NBA record.
-                Each player has its own color. You can click the center of the chart to choose
-                players and stats to compare.
+                >. You can click the center of the chart to choose players and stats to compare.
+                Stats are mapped around a circle on a scale from usually 0 to the NBA record. Each
+                player has its own color.
               </p>
             </div>
           </div>
